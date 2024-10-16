@@ -20,7 +20,6 @@ jobs:
               run: npm install -g pnpm
             - run: pnpm install
             - run: pnpm run build
-            - run: cp package.json ./dist/package.json
-            - run: pnpm publish --provenance --access --no-git-checks public
+            - run: npm publish --provenance --access --no-git-checks public
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

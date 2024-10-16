@@ -20,6 +20,6 @@ jobs:
               run: npm install -g pnpm
             - run: pnpm install
             - run: pnpm run build
-            - run: npm publish --provenance --access --no-git-checks public
+            - run: npm publish --provenance --access public
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

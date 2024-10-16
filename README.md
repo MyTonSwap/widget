@@ -2,6 +2,9 @@
 
 `@mytonswap/widget` is a customizable React component that enables developers to integrate swap functionality on the TON blockchain directly into their React applications. With this widget, users can seamlessly swap assets and connect to the TON blockchain via TonConnect.
 
+
+![Preview](./assets/image.png)
+
 ## Features
 
 - **Swap Functionality**: Easily swap assets on the TON blockchain.
@@ -43,6 +46,33 @@ function App() {
 
 export default App;
 ```
+
+## Theme & Customization
+You can fully customize the appearance of the `@mytonswap/widget` by passing a `theme` object as a prop to the Swap component. This allows you to match the widget's styling with the design of your application.
+```tsx
+function App() {
+    return (
+        <>
+            <Swap
+                theme={{
+                    border: "#3A3A3C",           // Border color
+                    primary: "#16A34A",          // Primary button and highlight color
+                    background: "#18181B",       // Widget background color
+                    input_card: "#27272A",       // Input card background
+                    input_token: "#3A3A3C",      // Token input background color
+                    light_shade: "#3A3A3C",      // Lighter shade for elements
+                    slippage_box: "#D1D1E0",     // Slippage box background
+                    text_black: "#FFFFFF",       // Text color on dark backgrounds
+                    text_white: "#000000",       // Text color on light backgrounds
+                    text_fade: "#6B7280",        // Faded text color for descriptions
+                    skeleton_shine: "#585959",   // Skeleton loader shine effect
+                }}
+            />
+        </>
+    );
+}
+```
+
 
 ### Components
 1. TonConnectWrappedSwap:

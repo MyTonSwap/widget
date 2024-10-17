@@ -10,7 +10,8 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import "./SwapDetails.scss";
 const SwapDetails = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { onePayRoute, bestRoute, isFindingBestRoute } = useSwapStore();
+    const { onePayRoute, bestRoute, isFindingBestRoute, slippage } =
+        useSwapStore();
     const { colors } = useThemeStore();
     return (
         <motion.button
@@ -69,7 +70,8 @@ const SwapDetails = () => {
                                         color: colors.text_white,
                                     }}
                                 >
-                                    1% Auto
+                                    {slippage === "auto" ? "1" : slippage}%{" "}
+                                    {slippage === "auto" ? "Auto" : ""}
                                 </div>
                             }
                         />

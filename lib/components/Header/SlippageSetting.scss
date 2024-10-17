@@ -20,20 +20,31 @@
         }
 
         .slippage-setting-dropdown {
-            display: flex;
+            display: grid;
+            grid-template-columns: 80px 1fr;
             width: 100%;
             justify-content: space-around;
+            gap: 0 0.5rem;
 
+            .controllers {
+                display: flex;
+                justify-content: space-between;
+                gap: 0.25rem;
+                align-items: center;
+            }
             .dropdown-item {
                 position: relative;
+                padding: 0.25rem;
                 height: 2rem;
-                width: 100%;
                 margin: 0.125rem;
                 border-radius: 0.75rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
+                &.percent-input {
+                    width: 50px;
+                }
                 background: var(--light-shade-color);
                 .icon {
                     position: absolute;
@@ -46,13 +57,38 @@
                         color: var(--primary-color);
                     }
                 }
-                .slippage-input {
-                    background: transparent;
-                    width: 100%;
-                    outline: none;
+
+                .slippage-input-group {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .slippage-input {
+                        background: transparent;
+                        width: 100%;
+                        outline: none;
+                    }
+                    .slippage-input-percent {
+                        padding-right: 0.25rem;
+                    }
                 }
-                .slippage-input-percent {
-                    padding-right: 0.25rem;
+            }
+            .controller {
+                width: 3rem;
+                height: 2rem;
+                background-color: red;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 0.75rem;
+                background: var(--primary-color);
+                color: var(--light-shade-color);
+                font-weight: 700;
+                cursor: pointer;
+                &:disabled {
+                    background: var(--light-shade-color);
+                    color: var(--text-color);
+                    cursor: not-allowed;
                 }
             }
         }

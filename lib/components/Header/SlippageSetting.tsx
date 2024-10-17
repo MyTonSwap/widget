@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useThemeStore } from "../../store/theme.store";
 import { useSwapStore } from "../../store/swap.store";
 import { FaCircleCheck } from "react-icons/fa6";
-
+import "./SlippageSetting.scss";
 const SlippageSetting = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { slippage, setSlippage } = useSwapStore();
@@ -46,18 +46,18 @@ const SlippageSetting = () => {
         <motion.div
             initial={{ height: 20 }}
             animate={{ height: isOpen ? 56 : 20 }}
-            className="text-sm flex flex-col gap-y-1"
+            className="slippage-setting-container"
         >
             <button
-                className="flex justify-between w-full"
+                className="button-container"
                 onClick={() => setIsOpen((prev) => !prev)}
                 style={{ color: colors.text_black }}
             >
                 <div>Max Slippage</div>
-                <div className="flex items-center justify-center">
+                <div className="slippage-indicator">
                     {slippage === "auto" ? "Auto" : `${slippage}%`}{" "}
                     <MdOutlineKeyboardArrowDown
-                        className="transition-transform text-base"
+                        className="icon"
                         style={{
                             transform: isOpen ? "rotate(180deg)" : "none",
                         }}
@@ -70,17 +70,14 @@ const SlippageSetting = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex w-full justify-around"
+                        className="slippage-setting-dropdown"
                     >
                         <div
                             onClick={handleOnAutoClick}
-                            style={{
-                                background: colors.input_card,
-                            }}
-                            className="h-8 relative w-full mx-1 flex items-center justify-center rounded-xl cursor-pointer"
+                            className="dropdown-item"
                         >
                             <FaCircleCheck
-                                className="absolute -top-1 -left-1 text-lg transition-colors duration-300"
+                                className="icon"
                                 style={{
                                     color:
                                         slippage === "auto"
@@ -90,14 +87,9 @@ const SlippageSetting = () => {
                             />
                             Auto
                         </div>
-                        <div
-                            style={{
-                                background: colors.input_card,
-                            }}
-                            className="h-8 relative w-full mx-1 flex items-center justify-center rounded-xl cursor-pointer"
-                        >
+                        <div className="dropdown-item">
                             <FaCircleCheck
-                                className="absolute -top-1 -left-1 text-lg transition-colors duration-300"
+                                className="icon"
                                 style={{
                                     color:
                                         slippage !== "auto"
@@ -110,10 +102,10 @@ const SlippageSetting = () => {
                                 onChange={handleSlippageChange}
                                 type="text"
                                 dir="rtl"
-                                className="bg-transparent w-full outline-none"
+                                className="slippage-input"
                                 placeholder="1"
                             />
-                            <span className="pr-2">%</span>
+                            <span className="slippage-input-percent">%</span>
                         </div>
                     </motion.div>
                 )}

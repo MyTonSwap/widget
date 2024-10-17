@@ -8,6 +8,13 @@ import { nodePolyfills } from "vite-plugin-node-polyfills";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: "modern-compiler", // or "modern"
+            },
+        },
+    },
     plugins: [
         nodePolyfills({ include: ["buffer"] }),
         tsconfigPaths(),

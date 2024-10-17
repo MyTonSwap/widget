@@ -1,0 +1,37 @@
+.mytonswap-app {
+    .waiting-for-wallet-container {
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        .close-button {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.25rem;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+        .loading-icon-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(1.5);
+            font-size: 1.875rem;
+            .icon {
+                opacity: 0.7;
+            }
+        }
+        .loading-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    }
+}

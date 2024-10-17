@@ -1,0 +1,33 @@
+.mytonswap-app {
+    .token-setting-container {
+        display: flex;
+        font-size: 0.75rem;
+        padding: 0 0.25rem;
+        align-items: center;
+        justify-content: space-between;
+        .checkbox {
+            display: flex;
+            height: 1.5rem;
+            width: 3rem;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0.25rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            position: relative;
+            .checkbox-inner {
+                width: 1rem;
+                height: 1rem;
+                border-radius: 9999px;
+                transition: all 0.3s ease;
+                position: absolute;
+                &.checkbox-inner-active {
+                    left: 1.75rem;
+                }
+                &.checkbox-inner-inactive {
+                    left: 0.25rem;
+                }
+            }
+        }
+    }
+}

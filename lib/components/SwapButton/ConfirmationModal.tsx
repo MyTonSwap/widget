@@ -8,7 +8,7 @@ import formatNumber from "../../utils/formatNum";
 import swap from "../../utils/swap";
 import { useTonConnectUI } from "@tonconnect/ui-react";
 import { FC } from "react";
-
+import "./ConfirmationModal.scss";
 type ConfirmationModalProps = {
     setConfirmModal: (state: boolean) => void;
 };
@@ -38,42 +38,42 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
         setModalState(ModalState.WAITING);
     };
     return (
-        <div className="w-full h-full flex flex-col items-center py-2">
-            <div className="flex items-center justify-between w-full px-4">
-                <h1
-                    className="font-bold opacity-50"
+        <div className="confirm-modal-container">
+            <div className="confirm-modal-header">
+                <span
+                    className="title"
                     style={{
                         color: colors.text_black,
                     }}
                 >
                     Confirm the swap
-                </h1>{" "}
+                </span>{" "}
                 <IoMdClose
                     onClick={handleConfirmClose}
-                    className="cursor-pointer"
+                    className="icon"
                     style={{
                         color: colors.text_black,
                     }}
                 />
             </div>
-            <div className="flex items-center pt-3">
+            <div className="confirm-modal-images">
                 <div
-                    className="w-14 h-14 rounded-full !bg-contain translate-x-2 border-[3px]"
+                    className="pay-image"
                     style={{
+                        borderColor: colors.border,
                         background: `url(${pay_token?.image})`,
-                        borderColor: colors.background,
                     }}
                 ></div>
                 <div
-                    className="w-14 h-14 rounded-full !bg-contain -translate-x-2 border-[3px]"
+                    className="receive-image"
                     style={{
+                        borderColor: colors.border,
                         background: `url(${receive_token?.image})`,
-                        borderColor: colors.background,
                     }}
                 ></div>
             </div>
             <div
-                className="text-center font-bold opacity-70 flex items-center flex-col "
+                className="confirm-modal-change-rate "
                 style={{ color: colors.text_black }}
             >
                 <div>
@@ -81,12 +81,12 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     {pay_token?.symbol}
                 </div>
                 <div>
-                    <FaArrowRightArrowLeft className="rotate-90 text-xs opacity-60" />
+                    <FaArrowRightArrowLeft className="change-icon" />
                 </div>
                 <div>
                     {bestRoute!.pool_data.receive_show!} {receive_token?.symbol}
                 </div>
-                <div className="text-xs opacity-60">
+                <div className="rate">
                     ≈{" "}
                     {formatNumber(
                         Number(bestRoute!.pool_data.receive_show) *
@@ -96,7 +96,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     $
                 </div>
             </div>
-            <div className="w-full px-4 mt-2 text-sm flex flex-col gap-y-1">
+            <div className="confirm-modal-detail">
                 <SwapKeyValue
                     keyText="Slippage"
                     value={slippage === "auto" ? "1% Auto" : slippage + "%"}
@@ -104,7 +104,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                 <SwapKeyValue
                     keyText="Minimum Receive"
                     value={
-                        <div className="flex gap-x-1">
+                        <div className="min-receive">
                             {formatNumber(
                                 bestRoute!.pool_data.minimumReceive_show,
                                 4
@@ -121,7 +121,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     keyText="Route"
                     value={
                         bestRoute ? (
-                            <div className="flex items-center justify-center gap-x-1">
+                            <div className="best-route">
                                 {/* <span className="flex items-center justify-center gap-x-1">
                                 <div
                                     className="w-3 h-3  !bg-contain"
@@ -149,10 +149,10 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     }
                 />
             </div>
-            <div className="w-full px-4 mt-2">
+            <div className="confirm-modal-button-container">
                 <button
                     onClick={handleConfirmSwap}
-                    className=" h-12 rounded-xl cursor-pointer w-full"
+                    className="confirm-button"
                     style={{
                         color: colors.text_black,
                         background: colors.primary,

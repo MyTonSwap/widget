@@ -9,7 +9,7 @@ import CardButton from "./CardButton";
 import { toNano } from "@mytonswap/sdk";
 import { useWalletStore } from "../../store/wallet.store";
 import { TON_ADDR } from "../../constants";
-
+import "./Card.scss";
 type CardProps = {
     type: "pay" | "receive";
 };
@@ -155,8 +155,8 @@ const Card: FC<CardProps> = ({ type }) => {
 
     return (
         <>
-            <div className="w-full flex flex-col gap-y-1 text-xs">
-                <div className="flex items-center justify-between px-1">
+            <div className="swapcard-card">
+                <div className="card-head">
                     <span
                         className=""
                         style={{
@@ -192,10 +192,10 @@ const Card: FC<CardProps> = ({ type }) => {
                     )}
                 </div>
                 <div
-                    className="grid grid-cols-swapcard w-full rounded-lg px-2 py-2 "
+                    className="card-content"
                     style={{ background: colors.background }}
                 >
-                    <div className="flex flex-col">
+                    <div className="card-inputs">
                         {((type === "receive" && !isFindingBestRoute) ||
                             type === "pay") && (
                             <input
@@ -210,13 +210,13 @@ const Card: FC<CardProps> = ({ type }) => {
                                 onChange={handlePayAmountChange}
                                 pattern="^[0-9]*[.,]?[0-9]*$"
                                 placeholder="0"
-                                className="outline-none bg-transparent w-full"
+                                className="card-input"
                                 style={{ color: colors.text_black }}
                             />
                         )}
                         {type === "receive" && isFindingBestRoute && (
                             <div
-                                className="h-4 my-1 w-24 rounded-md"
+                                className="card-input-loading"
                                 data-skeleton
                                 style={{
                                     ...({
@@ -230,7 +230,7 @@ const Card: FC<CardProps> = ({ type }) => {
                         {((type === "receive" && !isFindingBestRoute) ||
                             type === "pay") && (
                             <span
-                                className="text-xs"
+                                className="card-rate"
                                 style={{
                                     color: colors.text_black,
                                     opacity: 0.5,
@@ -241,7 +241,7 @@ const Card: FC<CardProps> = ({ type }) => {
                         )}
                         {type === "receive" && isFindingBestRoute && (
                             <div
-                                className="h-3 my-[2px] w-12 rounded-md"
+                                className="card-rate-loading"
                                 data-skeleton
                                 style={{
                                     ...({
@@ -253,14 +253,14 @@ const Card: FC<CardProps> = ({ type }) => {
                             />
                         )}
                     </div>
-                    <div className="flex items-center ">
+                    <div className="card-button">
                         <CardButton
                             type={type}
                             onClick={() => setIsSelectVisible(true)}
                             isLoading={isLoading || !token}
                         >
                             <div
-                                className="h-6 w-6 rounded-full !bg-contain"
+                                className="selection-box"
                                 style={{
                                     background: `url(${token?.image})`,
                                 }}

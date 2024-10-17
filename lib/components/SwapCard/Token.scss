@@ -1,0 +1,45 @@
+.mytonswap-app {
+    .token-container {
+        width: 100%;
+        height: 2.5rem;
+        cursor: pointer;
+        margin-top: 0.25rem;
+        border-radius: 0.75rem;
+        display: flex;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        align-items: center;
+    }
+    .token-content {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        gap: 0.25rem;
+        .token-image {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            background-size: contain !important;
+        }
+        .token-details {
+            flex-grow: 1;
+        }
+        .token-details-symbol-balance {
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .token-details-name-rate {
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+    }
+}

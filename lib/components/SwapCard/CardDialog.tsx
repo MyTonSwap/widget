@@ -19,7 +19,7 @@ import sortAssets from "../../utils/sortAssets";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { address } from "@ton/ton";
 import { TiWarning } from "react-icons/ti";
-
+import "./CardDialog.scss";
 type CardDialogProps = {
     isSelectVisible: boolean;
     setIsSelectVisible: Dispatch<SetStateAction<boolean>>;
@@ -187,18 +187,14 @@ const CardDialog: FC<CardDialogProps> = ({
                         initial={{ top: "15%", opacity: 0 }}
                         animate={{ top: "0%", opacity: 1 }}
                         exit={{ top: "15%", opacity: 0 }}
-                        className={clsx(
-                            "w-full h-full absolute top-0 left-0 z-10 overflow-hidden"
-                        )}
+                        className={clsx("card-dialog-container")}
                     >
                         <div
-                            className={clsx(
-                                "absolute top-0 left-0 w-full h-full transition-all p-4 flex flex-col"
-                            )}
+                            className={clsx("card-dialog")}
                             style={{ background: colors.background }}
                         >
                             <div
-                                className="flex items-center justify-between"
+                                className="dialog-head"
                                 style={{ color: colors.text_black }}
                             >
                                 <div>Select token</div>
@@ -211,7 +207,7 @@ const CardDialog: FC<CardDialogProps> = ({
                             </div>
                             <div>
                                 <div
-                                    className="h-10 mt-2 rounded-xl w-full border-[1px] border-zinc-200 flex items-center px-2"
+                                    className="dialog-search"
                                     style={{ borderColor: colors.border }}
                                 >
                                     <MdOutlineSearch
@@ -222,7 +218,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                         }}
                                     />
                                     <input
-                                        className="w-full h-full bg-transparent px-1 outline-none text-sm"
+                                        className="dialog-search-input"
                                         type="text"
                                         placeholder="Search..."
                                         style={{
@@ -300,7 +296,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                         </button>
                                     </div> */}
                                     <div
-                                        className="flex-grow overflow-y-scroll"
+                                        className="dialog-tokens-container"
                                         style={{
                                             ...({
                                                 "--thumb-scrollbar":
@@ -317,7 +313,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                             next={() => onNextPage(page)}
                                             scrollableTarget="scroll-div"
                                             loader={
-                                                <div className="flex items-center justify-center h-10 text-xl">
+                                                <div className="infinite-scroll-loading">
                                                     <CgSpinnerTwo
                                                         className="animate-spin"
                                                         style={{
@@ -341,23 +337,23 @@ const CardDialog: FC<CardDialogProps> = ({
                                 </>
                             )}
                             {promptForCommunity && (
-                                <div className="flex flex-col h-full">
+                                <div className="dialog-community-modal">
                                     {contractCommunity && (
                                         <>
-                                            <div className="flex-grow">
+                                            <div className="community-modal-container">
                                                 <div
-                                                    className="flex flex-col justify-center items-center p-2 my-1 rounded-xl"
+                                                    className="community-modal-warning"
                                                     style={{
                                                         color: colors.text_black,
                                                         background:
                                                             colors.input_card,
                                                     }}
                                                 >
-                                                    <TiWarning className="text-3xl text-yellow-500" />
-                                                    <h1 className="text-base font-bold">
+                                                    <TiWarning className="icon" />
+                                                    <h1 className="title">
                                                         Trade at your own risk
                                                     </h1>
-                                                    <p className="text-sm text-center px-5">
+                                                    <p className="description">
                                                         Anyone can create an
                                                         asset including fake
                                                         versions of existing
@@ -375,7 +371,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                 )}
                                             </div>
                                             <button
-                                                className="flex h-10 rounded-xl w-full items-center justify-center text-sm"
+                                                className="accept-button"
                                                 onClick={() => {
                                                     addToken(
                                                         contractCommunity!

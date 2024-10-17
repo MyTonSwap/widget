@@ -1,0 +1,22 @@
+.mytonswap-app {
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.5rem;
+    }
+    .header-setting {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        .setting-icon {
+            &:hover {
+                transform: rotate(90deg);
+                transition: transform 0.15s ease-in-out;
+            }
+            font-size: 1rem;
+            opacity: 0.5;
+        }
+    }
+}

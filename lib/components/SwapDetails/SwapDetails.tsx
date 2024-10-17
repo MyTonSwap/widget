@@ -7,7 +7,7 @@ import { useThemeStore } from "../../store/theme.store";
 import { useSwapStore } from "../../store/swap.store";
 import formatNumber from "../../utils/formatNum";
 import { CgSpinnerTwo } from "react-icons/cg";
-
+import "./SwapDetails.scss";
 const SwapDetails = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { onePayRoute, bestRoute, isFindingBestRoute } = useSwapStore();
@@ -16,7 +16,7 @@ const SwapDetails = () => {
         <motion.button
             initial={{ height: 50 }}
             animate={{ height: isOpen ? 158 : 50 }}
-            className="border-[1px] w-full min-h-12 mt-3 rounded-xl flex flex-col items-center px-3 text-xs "
+            className="detail-accordion-container"
             style={{
                 borderColor: colors.border,
                 color: colors.text_black,
@@ -25,7 +25,7 @@ const SwapDetails = () => {
                 setIsOpen((prev) => !prev);
             }}
         >
-            <div className=" flex items-center justify-between w-full min-h-12">
+            <div className="detail-accordion">
                 {onePayRoute && !isFindingBestRoute ? (
                     <div>
                         1 {onePayRoute.pool_data.route_view[0]} ≈{" "}
@@ -37,7 +37,7 @@ const SwapDetails = () => {
                         }
                     </div>
                 ) : (
-                    <div className="flex items-center gap-x-1 ">
+                    <div className="finding">
                         <CgSpinnerTwo
                             className="animate-spin"
                             style={{ color: colors.primary }}
@@ -45,12 +45,9 @@ const SwapDetails = () => {
                         Fetching best route
                     </div>
                 )}
-                <div className="text-sm">
+                <div>
                     <MdKeyboardArrowDown
-                        className={clsx(
-                            "text-lg transition-all",
-                            isOpen ? "rotate-180" : ""
-                        )}
+                        className={clsx("icon", isOpen ? "is-open" : "")}
                     />
                 </div>
             </div>
@@ -60,13 +57,13 @@ const SwapDetails = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1, transition: { delay: 0.05 } }}
                         exit={{ opacity: 0 }}
-                        className="w-full flex flex-col gap-y-1 mb-3"
+                        className="detail-accordion-content"
                     >
                         <SwapKeyValue
                             keyText={"Slippage tolerance"}
                             value={
                                 <div
-                                    className="rounded-md px-1 text-white"
+                                    className="slippage-box"
                                     style={{
                                         background: colors.slippage_box,
                                         color: colors.text_white,
@@ -100,10 +97,10 @@ const SwapDetails = () => {
                             keyText={"Route"}
                             value={
                                 bestRoute ? (
-                                    <div className="flex items-center justify-center gap-x-1">
-                                        <span className="flex items-center justify-center gap-x-1">
+                                    <div className="route-container">
+                                        <span className="dex">
                                             <div
-                                                className="w-3 h-3 bg-red-500  !bg-contain"
+                                                className="image"
                                                 style={{
                                                     background: `url(${
                                                         bestRoute.selected_pool

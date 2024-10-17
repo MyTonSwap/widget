@@ -3,7 +3,7 @@ import { useThemeStore } from "../../store/theme.store";
 import { useWalletStore } from "../../store/wallet.store";
 import { FC } from "react";
 import formatNumber from "../../utils/formatNum";
-
+import "./Token.scss";
 type TokenProps = {
     asset: Asset;
     onTokenSelect: (asset: Asset) => void;
@@ -20,25 +20,22 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
         (balance.get(asset.address)?.price?.prices.USD ?? 0) * tokenBalance;
     const fixedPrice = price === 0 ? 0 : formatNumber(price, 4);
     return (
-        <div
-            onClick={() => onTokenSelect(asset)}
-            className="w-full h-10 cursor-pointer  mt-1 rounded-xl flex px-2 items-center"
-        >
-            <div className="flex items-center flex-grow gap-1">
+        <div onClick={() => onTokenSelect(asset)} className="token-container">
+            <div className="token-content">
                 <div
-                    className="w-8 h-8 rounded-full !bg-contain "
+                    className="token-image "
                     style={{ background: `url(${asset.image})` }}
                 ></div>
-                <div className="flex-grow">
+                <div className="token-details">
                     <div
-                        className="text-xs flex items-center justify-between flex-grow text-nowrap truncate"
+                        className="token-details-symbol-balance"
                         style={{ color: colors.text_black }}
                     >
                         <div>{asset.symbol}</div>
                         <div>{tokenBalance}</div>
                     </div>
                     <div
-                        className="text-[10px] flex items-center justify-between flex-grow "
+                        className="token-details-name-rate"
                         style={{
                             color: colors.text_black,
                             opacity: 0.5,

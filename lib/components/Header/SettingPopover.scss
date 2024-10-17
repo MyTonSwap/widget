@@ -1,0 +1,21 @@
+.mytonswap-app {
+    .popover-container {
+        position: relative;
+        display: flex;
+        z-index: 2;
+    }
+    .popover {
+        position: absolute;
+        display: flex;
+        min-width: 250px;
+        top: 105%;
+        right: 0;
+        border: 1px solid var(--border-color);
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        padding: 0.5rem;
+        gap: 4px;
+        flex-direction: column;
+    }
+}

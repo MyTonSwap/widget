@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from "react";
 import { useThemeStore } from "../../store/theme.store";
 import clsx from "clsx";
 import { MdKeyboardArrowDown } from "react-icons/md";
-
+import "./CardButton.scss";
 type CardButtonProps = {
     isLoading: boolean;
     onClick: () => void;
@@ -25,10 +25,10 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
                     : {}),
             }}
             className={clsx(
-                "flex items-center gap-x-[2px] px-1 py-1 rounded-full",
-                isLoading && "w-20 h-8",
-                type === "pay" && isLoading && "pointer-events-none ",
-                type === "receive" && isLoading && "justify-center w-fit px-2"
+                "selection-box-container",
+                isLoading && "loading",
+                type === "pay" && isLoading && "pay-loading",
+                type === "receive" && isLoading && "receive-loading"
             )}
             style={{
                 ...(isLoading && type === "pay"

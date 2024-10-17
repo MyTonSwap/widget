@@ -1,0 +1,56 @@
+:root {
+    --border-color: #f4f4f5;
+    --primary-color: #22c55e;
+    --background-color: #ffffff;
+    --input-card-color: #ffffff;
+    --input-token-color: #f4f4f5;
+    --light-shade-color: #f4f4f5;
+    --slippage-box-color: #71717a;
+    --text-black-color: #000000;
+    --text-white-color: #ffffff;
+    --text-fade-color: #9caacb;
+    --skeleton-shine-color: #9c9c9c;
+    --price-impact-color: #e64646;
+}
+
+.mytonswap-app {
+    font-family: sans-serif;
+    button {
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+    input {
+        border: none;
+        background: none;
+        outline: none;
+        width: 100%;
+    }
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .container {
+        border-width: 1px;
+        border-style: solid;
+        max-width: 300px;
+        padding: 0.5rem;
+        border-radius: 1rem;
+        position: relative;
+        overflow: hidden;
+    }
+}

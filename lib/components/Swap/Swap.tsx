@@ -9,7 +9,7 @@ import { TonConnectUIProvider, useTonWallet } from "@tonconnect/ui-react";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import { useWalletStore } from "../../store/wallet.store";
 import SwapButton from "../SwapButton/SwapButton";
-
+import "./Swap.scss";
 type SwapProps = {
     theme?: ColorTheme;
 };
@@ -47,13 +47,10 @@ export const Swap: FC<SwapProps> = ({ theme }) => {
     }, []);
 
     return (
-        <div>
+        <div className="mytonswap-app" style={{ color: colors.border }}>
             <div
-                className={clsx(
-                    "border-[1px]  max-w-[350px] rounded-2xl p-3 relative overflow-hidden"
-                )}
+                className={clsx("container")}
                 style={{
-                    borderColor: colors.border,
                     background: colors.background,
                 }}
             >

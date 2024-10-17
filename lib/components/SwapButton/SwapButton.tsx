@@ -9,6 +9,7 @@ import ConfirmationModal from "./ConfirmationModal";
 import WaitingForWallet from "./WaitingForWallet";
 import Inprogress from "./Inprogress";
 import Done from "./Done";
+import "./SwapButton.scss";
 
 const SwapButton = () => {
     const { open } = useTonConnectModal();
@@ -65,13 +66,13 @@ const SwapButton = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="w-full h-full absolute left-0 z-10 top-0 bg-black/10"
+                            className="modal-container"
                         >
                             <motion.div
                                 initial={{ bottom: "-105%" }}
                                 animate={{ bottom: "0%" }}
                                 exit={{ bottom: "-105%" }}
-                                className="absolute left-0 z-20 w-full border-[1px] h-[350px] rounded-xl "
+                                className="modal-container-inner"
                                 style={{
                                     background: colors.background,
                                     borderColor: colors.border,
@@ -97,7 +98,7 @@ const SwapButton = () => {
                     )}
             </AnimatePresence>
             <button
-                className="w-full h-12 mt-2 rounded-xl text-white disabled:opacity-70"
+                className="swap-button"
                 style={{
                     background:
                         bestRoute?.pool_data?.priceImpact ?? 0 > 50

@@ -1,0 +1,25 @@
+.mytonswap-app {
+    .selection-box-container {
+        display: flex;
+        align-items: center;
+        column-gap: 2px;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        border-radius: 9999px;
+        &.loading {
+            width: 5rem;
+            height: 2rem;
+        }
+        &.pay-loading {
+            pointer-events: none;
+        }
+        &.receive-loading {
+            justify-content: center;
+            width: fit-content;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+    }
+}

@@ -4,6 +4,9 @@ import { useOnClickOutside } from "usehooks-ts";
 import TokensSettings from "./TokensSettings";
 import { AnimatePresence, motion } from "framer-motion";
 import { useThemeStore } from "../../store/theme.store";
+
+import "./SettingPopover.scss";
+
 export type SettingPopoverProps = PropsWithChildren & {};
 
 const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
@@ -21,7 +24,7 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
         setIsOpen((prev) => !prev);
     };
     return (
-        <div className="relative flex ">
+        <div className="popover-container">
             <button onClick={handleButtonClick}>{children}</button>
             <AnimatePresence>
                 {isOpen && (
@@ -35,7 +38,7 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ ease: "easeOut", duration: 0.15 }}
                         ref={ref}
-                        className="min-w-[250px] absolute top-[105%]  border-[1px] border-zinc-100 bg-white shadow-sm/50 rounded-xl  right-0 p-2 flex gap-y-1 flex-col"
+                        className="popover"
                         style={{
                             borderColor: colors.border,
                             background: colors.background,

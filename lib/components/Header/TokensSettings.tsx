@@ -1,18 +1,19 @@
 import clsx from "clsx";
 import { useThemeStore } from "../../store/theme.store";
 import { useSwapStore } from "../../store/swap.store";
+import "./TokensSettings.scss";
 const TokensSettings = () => {
     const { colors } = useThemeStore();
     const { communityTokens, setCommunityTokens } = useSwapStore();
     return (
-        <div className="flex text-sm items-center justify-between">
+        <div className="token-setting-container">
             <div style={{ color: colors.text_black }}>
                 <span>Community Tokens</span>
             </div>
             <div>
                 <button
                     className={clsx(
-                        "flex h-6 w-12  items-center justify-start p-1 rounded-full transition-all relative",
+                        "checkbox",
                         communityTokens ? "bg-green-600" : "bg-zinc-100"
                     )}
                     style={{
@@ -24,10 +25,10 @@ const TokensSettings = () => {
                 >
                     <div
                         className={clsx(
-                            "w-4 h-4  rounded-full transition-all absolute",
+                            "checkbox-inner",
                             communityTokens
-                                ? "bg-white left-7"
-                                : "bg-green-600 left-1"
+                                ? "checkbox-inner-active"
+                                : "checkbox-inner-inactive"
                         )}
                         style={{
                             background: !communityTokens

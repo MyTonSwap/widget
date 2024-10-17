@@ -1,0 +1,60 @@
+.mytonswap-app {
+    .slippage-setting-container {
+        font-size: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .slippage-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .icon {
+                transition: transform 0.3s ease;
+            }
+        }
+
+        .slippage-setting-dropdown {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+
+            .dropdown-item {
+                position: relative;
+                height: 2rem;
+                width: 100%;
+                margin: 0.125rem;
+                border-radius: 0.75rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                background: var(--light-shade-color);
+                .icon {
+                    position: absolute;
+                    top: -0.25rem;
+                    left: -0.25rem;
+                    font-size: 1.125rem;
+                    transition: color 0.3s ease;
+                    color: var(--text-color);
+                    &:hover {
+                        color: var(--primary-color);
+                    }
+                }
+                .slippage-input {
+                    background: transparent;
+                    width: 100%;
+                    outline: none;
+                }
+                .slippage-input-percent {
+                    padding-right: 0.25rem;
+                }
+            }
+        }
+    }
+}

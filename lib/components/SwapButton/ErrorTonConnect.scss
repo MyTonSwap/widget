@@ -1,0 +1,30 @@
+.mytonswap-app {
+    .error-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        .close-button {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.25rem;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+        .icon {
+            color: #ffd400;
+            font-size: 2.5rem;
+        }
+        .text {
+            text-align: center;
+            padding-left: 1.75rem;
+            padding-right: 1.75rem;
+            .title {
+                font-size: 1.25rem;
+                font-weight: bold;
+            }
+        }
+    }
+}

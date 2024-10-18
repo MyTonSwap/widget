@@ -202,7 +202,12 @@ const CardDialog: FC<CardDialogProps> = ({
                                     onClick={handleOnClose}
                                     className="text-xl"
                                 >
-                                    <IoClose />
+                                    <IoClose
+                                        style={{
+                                            color: colors.text_black,
+                                            opacity: 0.5,
+                                        }}
+                                    />
                                 </button>
                             </div>
                             <div>

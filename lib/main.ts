@@ -11,6 +11,7 @@ if (!customElements.get("mts-swap"))
         "mts-swap",
         r2wc(TonConnectWrappedSwap, {
             props: { theme: "json" },
+
         })
     );
 

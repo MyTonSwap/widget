@@ -47,11 +47,12 @@ export const Swap: FC<SwapProps> = ({ theme }) => {
     }, []);
 
     return (
-        <div className="mytonswap-app" style={{ color: colors.border }}>
+        <div className="mytonswap-app">
             <div
                 className={clsx("container")}
                 style={{
                     background: colors.background,
+                    borderColor: colors.border,
                 }}
             >
                 <Header />

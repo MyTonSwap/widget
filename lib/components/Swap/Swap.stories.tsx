@@ -38,33 +38,58 @@ export const Default: Story = {
 export const Dark: Story = {
     args: {
         theme: {
-            border: "#1D2939", // Darker version of the light border
-            primary: "#16A34A", // A slightly darker, more muted green for primary
-            background: "#101828", // Dark background
-            input_card: "#27272A", // Dark input card
-            input_token: "#1D2939", // Dark version of the input token background
-            light_shade: "#1D2939", // Light shade adapted to darker theme
-            slippage_box: "#D1D1E0", // Lighter, contrasting text for slippage box
-            text_black: "#FFFFFF", // Text should now be light
-            text_white: "#000000", // White text becomes dark
-            text_fade: "#6B7280", // Darker, muted version of the faded text
+            border: "#1D2939",
+            primary: "#16A34A",
+            background: "#101828",
+            input_card: "#27272A",
+            input_token: "#1D2939",
+            light_shade: "#1D2939",
+            slippage_box: "#D1D1E0",
+            text_black: "#FFFFFF",
+            text_white: "#000000",
+            text_fade: "#6B7280",
             skeleton_shine: "#585959",
+        },
+    },
+};
+
+export const WithDefaultTokens: Story = {
+    args: {
+        theme: {
+            border: "#1D2939",
+            primary: "#16A34A",
+            background: "#101828",
+            input_card: "#27272A",
+            input_token: "#1D2939",
+            light_shade: "#1D2939",
+            slippage_box: "#D1D1E0",
+            text_black: "#FFFFFF",
+            text_white: "#000000",
+            text_fade: "#6B7280",
+            skeleton_shine: "#585959",
+        },
+        options: {
+            defaultTokens: {
+                pay_token: "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+                receive_token:
+                    "EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
+            },
         },
     },
 };
 export const RedStone: Story = {
     args: {
         theme: {
-            border: "#3A3A3C", // Darker version of the light border
+            border: "#3A3A3C",
             primary: "#b91c1c",
-            background: "#101828", // Dark background
-            input_card: "#27272A", // Dark input card
-            input_token: "#3A3A3C", // Dark version of the input token background
-            light_shade: "#3A3A3C", // Light shade adapted to darker theme
-            slippage_box: "#D1D1E0", // Lighter, contrasting text for slippage box
-            text_black: "#FFFFFF", // Text should now be light
-            text_white: "#000000", // White text becomes dark
-            text_fade: "#6B7280", // Darker, muted version of the faded text
+            background: "#101828",
+            input_card: "#27272A",
+            input_token: "#3A3A3C",
+            light_shade: "#3A3A3C",
+            slippage_box: "#D1D1E0",
+            text_black: "#FFFFFF",
+            text_white: "#000000",
+            text_fade: "#6B7280",
             skeleton_shine: "#585959",
         },
     },
@@ -73,16 +98,16 @@ export const RedStone: Story = {
 export const CyberPunk: Story = {
     args: {
         theme: {
-            border: "#2A2B2F", // Dark with a subtle border effect
-            primary: "#FFCC00", // Vibrant neon yellow, similar to the Cyberpunk logo
-            background: "#121212", // Deep black with a slight gray tint
-            input_card: "#1C1C1E", // Dark input card with a subtle bluish tone
-            input_token: "#252527", // Dark gray with a slight hint of metal sheen
-            light_shade: "#2F3136", // Darker gray for subtle highlights
-            slippage_box: "#FF0057", // Neon pink/red for striking contrast
-            text_black: "#EDEDED", // Light text for high contrast against the dark background
-            text_white: "#0C0C0E", // Very dark gray/black for specific uses
-            text_fade: "#808080", // Muted gray for less prominent text
+            border: "#2A2B2F",
+            primary: "#FFCC00",
+            background: "#121212",
+            input_card: "#1C1C1E",
+            input_token: "#252527",
+            light_shade: "#2F3136",
+            slippage_box: "#FF0057",
+            text_black: "#EDEDED",
+            text_white: "#0C0C0E",
+            text_fade: "#808080",
             skeleton_shine: "#585959",
         },
     },

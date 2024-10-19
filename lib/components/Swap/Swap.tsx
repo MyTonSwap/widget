@@ -5,24 +5,25 @@ import SwapDetails from "../SwapDetails/SwapDetails";
 import clsx from "clsx";
 import { ColorTheme, useThemeStore } from "../../store/theme.store";
 import { TonConnectUIProvider, useTonWallet } from "@tonconnect/ui-react";
-// import { useOptionsStore } from "../../store/options.store";
+import { useOptionsStore, SwapOptions } from "../../store/options.store";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import { useWalletStore } from "../../store/wallet.store";
 import SwapButton from "../SwapButton/SwapButton";
 import "./Swap.scss";
 type SwapProps = {
     theme?: ColorTheme;
+    options?: SwapOptions;
 };
 
-export const Swap: FC<SwapProps> = ({ theme }) => {
+export const Swap: FC<SwapProps> = ({ theme, options }) => {
     const { colors, setTheme } = useThemeStore();
-    // const { setOptions } = useOptionsStore();
+    const { setOptions } = useOptionsStore();
     if (theme) {
         setTheme(theme);
     }
-    // if (options) {
-    //     setOptions(options);
-    // }
+    if (options) {
+        setOptions(options);
+    }
     const wallet = useTonWallet();
     const {
         setWallet,
@@ -71,10 +72,10 @@ export const Swap: FC<SwapProps> = ({ theme }) => {
     );
 };
 
-export const TonConnectWrappedSwap: FC<SwapProps> = ({ theme }) => {
+export const TonConnectWrappedSwap: FC<SwapProps> = ({ theme, options }) => {
     return (
         <TonConnectUIProvider manifestUrl="https://mytonswap.com/wallet/manifest.json">
-            <Swap theme={theme} />
+            <Swap theme={theme} options={options} />
         </TonConnectUIProvider>
     );
 };

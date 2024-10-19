@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { Asset, BestRoute, MyTonSwapClient, Prices } from "@mytonswap/sdk";
 import { toNano } from "@mytonswap/sdk";
+import { useOptionsStore } from "./options.store";
+import { address } from "@ton/ton";
 
 export enum ModalState {
     NONE = "NONE",
@@ -227,15 +229,68 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     },
 
     async initializeApp() {
-        const { client } = get();
-        const TON = await client.assets.getExactAsset("TON");
-        if (!TON) return;
-        const tonRate = await client.tonapi.getAssetsRates([TON.address]);
-        set({
-            pay_token: TON,
-            pay_rate: tonRate.get(TON.address),
-            isLoading: false,
-        });
+        const { client, slippage } = get();
+        const userOptions = useOptionsStore.getState().options;
+
+        const getAsset = async (
+            tokenAddress: string | undefined,
+            fallback: string
+        ): Promise<Asset | null> => {
+            if (!tokenAddress)
+                return await client.assets.getExactAsset(fallback);
+            try {
+                address(tokenAddress);
+                return await client.assets.getExactAsset(tokenAddress);
+            } catch (e) {
+                console.log("Something went wrong", e);
+                return await client.assets.getExactAsset(fallback);
+            }
+        };
+
+        const getRates = async (
+            token: Asset | null
+        ): Promise<Prices | null> => {
+            if (!token) return null;
+            const rates = await client.tonapi.getAssetsRates([token.address]);
+            return rates.get(token.address) ?? { USD: 0 };
+        };
+
+        const initializeTokens = async () => {
+            const payToken = await getAsset(
+                userOptions.defaultTokens?.pay_token,
+                "TON"
+            );
+            const receiveToken = await getAsset(
+                userOptions.defaultTokens?.receive_token,
+                ""
+            );
+
+            if (!payToken) return;
+
+            const payRate = await getRates(payToken);
+            const receiveRate = await getRates(receiveToken);
+
+            let onePayRoute: null | BestRoute = null;
+            if (payToken && receiveToken) {
+                onePayRoute = await client.router.findBestRoute(
+                    payToken.address,
+                    receiveToken.address,
+                    toNano(1, payToken!.decimal),
+                    slippage === "auto" ? undefined : slippage
+                );
+            }
+
+            set({
+                pay_token: payToken,
+                pay_rate: payRate,
+                receive_token: receiveToken,
+                receive_rate: receiveRate,
+                onePayRoute: onePayRoute,
+                isLoading: false,
+            });
+        };
+
+        await initializeTokens();
     },
     async refetchBestRoute() {
         const { pay_token, receive_token, pay_amount, slippage, client } =

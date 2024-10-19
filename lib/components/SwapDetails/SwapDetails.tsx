@@ -27,7 +27,7 @@ const SwapDetails = () => {
             }}
         >
             <div className="detail-accordion">
-                {onePayRoute && !isFindingBestRoute ? (
+                {onePayRoute && onePayRoute.pool_data && !isFindingBestRoute ? (
                     <div>
                         1 {onePayRoute.pool_data.route_view[0]} ≈{" "}
                         {formatNumber(onePayRoute.pool_data.receive_show, 4)}{" "}
@@ -117,7 +117,7 @@ const SwapDetails = () => {
                                                 ? "Dedust -"
                                                 : "Ston.fi -"}
                                         </span>
-                                        {bestRoute.pool_data.route_view.join(
+                                        {bestRoute?.pool_data?.route_view.join(
                                             " > "
                                         )}
                                     </div>

@@ -59,8 +59,12 @@ const Card: FC<CardProps> = ({ type }) => {
         }
     })();
 
+    const isRouteAvailable = bestRoute && bestRoute.pool_data;
+
     const value =
-        type === "pay" ? userInput : bestRoute?.pool_data.receive_show ?? 0;
+        type === "pay"
+            ? userInput
+            : (isRouteAvailable && bestRoute?.pool_data.receive_show) ?? 0;
 
     const calculatePayRate = (payAmount: bigint, tokenRate: number) =>
         payAmount
@@ -74,9 +78,9 @@ const Card: FC<CardProps> = ({ type }) => {
         bestRoute: BestRoute | null,
         tokenRate: number
     ) =>
-        bestRoute?.pool_data.receive_show
+        isRouteAvailable && bestRoute!.pool_data.receive_show
             ? formatNumber(
-                  Number(bestRoute.pool_data.receive_show) * tokenRate,
+                  Number(bestRoute!.pool_data.receive_show) * tokenRate,
                   4
               )
             : 0;

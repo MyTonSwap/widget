@@ -54,6 +54,8 @@ const SwapButton = () => {
         }
     };
 
+    const isRouteAvailable = bestRoute && bestRoute.pool_data;
+
     return (
         <>
             <AnimatePresence>
@@ -99,7 +101,7 @@ const SwapButton = () => {
                 className="swap-button"
                 style={{
                     background:
-                        bestRoute && !bestRoute.pool_data.status
+                        isRouteAvailable && !bestRoute.pool_data.status
                             ? colors.price_impact
                             : colors.primary,
                     color: colors.text_white,

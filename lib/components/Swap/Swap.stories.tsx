@@ -38,12 +38,12 @@ export const Default: Story = {
 export const Dark: Story = {
     args: {
         theme: {
-            border: "#3A3A3C", // Darker version of the light border
+            border: "#1D2939", // Darker version of the light border
             primary: "#16A34A", // A slightly darker, more muted green for primary
-            background: "#18181B", // Dark background
+            background: "#101828", // Dark background
             input_card: "#27272A", // Dark input card
-            input_token: "#3A3A3C", // Dark version of the input token background
-            light_shade: "#3A3A3C", // Light shade adapted to darker theme
+            input_token: "#1D2939", // Dark version of the input token background
+            light_shade: "#1D2939", // Light shade adapted to darker theme
             slippage_box: "#D1D1E0", // Lighter, contrasting text for slippage box
             text_black: "#FFFFFF", // Text should now be light
             text_white: "#000000", // White text becomes dark
@@ -52,13 +52,12 @@ export const Dark: Story = {
         },
     },
 };
-
 export const RedStone: Story = {
     args: {
         theme: {
             border: "#3A3A3C", // Darker version of the light border
             primary: "#b91c1c",
-            background: "#18181B", // Dark background
+            background: "#101828", // Dark background
             input_card: "#27272A", // Dark input card
             input_token: "#3A3A3C", // Dark version of the input token background
             light_shade: "#3A3A3C", // Light shade adapted to darker theme
@@ -84,24 +83,6 @@ export const CyberPunk: Story = {
             text_black: "#EDEDED", // Light text for high contrast against the dark background
             text_white: "#0C0C0E", // Very dark gray/black for specific uses
             text_fade: "#808080", // Muted gray for less prominent text
-            skeleton_shine: "#585959",
-        },
-    },
-};
-
-export const WAddress: Story = {
-    args: {
-        theme: {
-            border: "#3A3A3C", // Darker version of the light border
-            primary: "#b91c1c",
-            background: "#18181B", // Dark background
-            input_card: "#27272A", // Dark input card
-            input_token: "#3A3A3C", // Dark version of the input token background
-            light_shade: "#3A3A3C", // Light shade adapted to darker theme
-            slippage_box: "#D1D1E0", // Lighter, contrasting text for slippage box
-            text_black: "#FFFFFF", // Text should now be light
-            text_white: "#000000", // White text becomes dark
-            text_fade: "#6B7280", // Darker, muted version of the faded text
             skeleton_shine: "#585959",
         },
     },

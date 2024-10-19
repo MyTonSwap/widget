@@ -46,6 +46,7 @@ const CardDialog: FC<CardDialogProps> = ({
         communityTokens,
         isInAgreedTokens,
         addToken,
+        pinnedTokens,
     } = useSwapStore();
     const [receiveAssets, setReceiveAssets] = useState<Asset[]>([]);
     // const [activeTab, setActiveTab] = useState<TABS>(TABS.ALL);
@@ -233,6 +234,33 @@ const CardDialog: FC<CardDialogProps> = ({
                                     />
                                 </div>
                             </div>
+                            {pinnedTokens && (
+                                <div className="pinned-token-container">
+                                    {pinnedTokens.map((item) => {
+                                        return (
+                                            <button
+                                                className="pinned-token"
+                                                style={{
+                                                    color: colors.text_black,
+                                                    background:
+                                                        colors.light_shade,
+                                                }}
+                                                onClick={() => {
+                                                    handleOnTokenSelect(item);
+                                                }}
+                                            >
+                                                <div
+                                                    className="pinned-token-image"
+                                                    style={{
+                                                        background: `url(${item.image}) ${colors.background}`,
+                                                    }}
+                                                ></div>
+                                                <span>{item.symbol}</span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            )}
                             {!promptForCommunity && (
                                 <>
                                     {/* <div

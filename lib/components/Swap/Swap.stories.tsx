@@ -53,6 +53,30 @@ export const Dark: Story = {
     },
 };
 
+export const WithPinnedTokens: Story = {
+    args: {
+        theme: {
+            border: "#1D2939",
+            primary: "#16A34A",
+            background: "#101828",
+            input_card: "#27272A",
+            input_token: "#1D2939",
+            light_shade: "#1D2939",
+            slippage_box: "#D1D1E0",
+            text_black: "#FFFFFF",
+            text_white: "#000000",
+            text_fade: "#6B7280",
+            skeleton_shine: "#585959",
+        },
+        options: {
+            pin_tokens: [
+                "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c",
+                "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+            ],
+        },
+    },
+};
+
 export const WithDefaultTokens: Story = {
     args: {
         theme: {

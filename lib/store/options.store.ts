@@ -6,6 +6,7 @@ export type SwapOptions = {
         pay_token?: string;
         receive_token?: string;
     };
+    pin_tokens?: string[];
 };
 
 type SwapOptionsStates = {

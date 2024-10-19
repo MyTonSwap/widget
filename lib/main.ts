@@ -10,8 +10,7 @@ if (!customElements.get("mts-swap"))
     customElements.define(
         "mts-swap",
         r2wc(TonConnectWrappedSwap, {
-            props: { theme: "json" },
-
+            props: { theme: "json", options: "json" },
         })
     );
 

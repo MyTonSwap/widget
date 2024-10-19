@@ -32,6 +32,7 @@ type SwapStates = {
     transactionError: string | null;
     transactionErrorBody: string | null;
     transactionHash: string | null;
+    pinnedTokens: Asset[] | null;
 };
 
 type SwapActions = {
@@ -81,6 +82,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     transactionErrorBody: null,
     transactionHash: null,
     transactionBestRoute: null,
+    pinnedTokens: null,
     setTransactionHash(hash) {
         set(() => ({
             transactionHash: hash,
@@ -180,7 +182,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     },
     setReceiveToken: async (token) => {
         const { client, pay_token, pay_amount, slippage } = get();
-        if (!token) return;
+        if (!token || token.address === pay_token?.address) return;
         const rates = await client.tonapi.getAssetsRates([token.address]);
         const tokenRate = rates.get(token.address);
         set(() => ({
@@ -230,7 +232,8 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
 
     async initializeApp() {
         const { client, slippage } = get();
-        const userOptions = useOptionsStore.getState().options;
+        const { defaultTokens, pin_tokens } =
+            useOptionsStore.getState().options;
 
         const getAsset = async (
             tokenAddress: string | undefined,
@@ -256,12 +259,9 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         };
 
         const initializeTokens = async () => {
-            const payToken = await getAsset(
-                userOptions.defaultTokens?.pay_token,
-                "TON"
-            );
+            const payToken = await getAsset(defaultTokens?.pay_token, "TON");
             const receiveToken = await getAsset(
-                userOptions.defaultTokens?.receive_token,
+                defaultTokens?.receive_token,
                 ""
             );
 
@@ -280,12 +280,18 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 );
             }
 
+            let pinnedTokens: Asset[] | null = null;
+            if (pin_tokens && pin_tokens.length > 0) {
+                pinnedTokens = await client.assets.getAssets(pin_tokens);
+            }
+
             set({
                 pay_token: payToken,
                 pay_rate: payRate,
                 receive_token: receiveToken,
                 receive_rate: receiveRate,
-                onePayRoute: onePayRoute,
+                onePayRoute,
+                pinnedTokens,
                 isLoading: false,
             });
         };

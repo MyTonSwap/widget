@@ -11,6 +11,9 @@
             justify-content: space-between;
             padding-left: 0.25rem;
             padding-right: 0.25rem;
+            .max-button {
+                cursor: pointer;
+            }
         }
         .card-content {
             display: grid;

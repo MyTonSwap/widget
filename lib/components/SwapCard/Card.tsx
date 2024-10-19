@@ -140,16 +140,14 @@ const Card: FC<CardProps> = ({ type }) => {
 
     const handleMaxClick = () => {
         if (!balanceToken || !pay_token) return;
-        setUserInput(
-            formatNumber(
-                +fromNano(balanceToken?.balance, pay_token?.decimal),
-                2
-            )
-        );
+
         let payAmount = BigInt(balanceToken.balance);
         if (pay_token.address === TON_ADDR) {
             payAmount = payAmount - toNano(0.4);
         }
+        if (payAmount === pay_amount) return;
+
+        setUserInput(formatNumber(+fromNano(payAmount), 2));
         setPayAmount(payAmount);
     };
 
@@ -168,7 +166,7 @@ const Card: FC<CardProps> = ({ type }) => {
                     </span>
                     {type === "pay" && balanceToken ? (
                         <span
-                            className="cursor-pointer"
+                            className="max-button"
                             onClick={handleMaxClick}
                             style={{ color: colors.text_black }}
                         >

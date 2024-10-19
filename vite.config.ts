@@ -19,7 +19,11 @@ export default defineConfig({
         nodePolyfills({ include: ["buffer"] }),
         tsconfigPaths(),
         react(),
-        dts({ rollupTypes: true, tsconfigPath: "./tsconfig.app.json" }),
+        dts({
+            rollupTypes: true,
+            tsconfigPath: "./tsconfig.app.json",
+            insertTypesEntry: true,
+        }),
         cssInjectedByJsPlugin(),
     ],
     build: {

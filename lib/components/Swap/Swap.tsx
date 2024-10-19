@@ -24,10 +24,17 @@ export const Swap: FC<SwapProps> = ({ theme }) => {
     //     setOptions(options);
     // }
     const wallet = useTonWallet();
-    const { setWallet, refetch } = useWalletStore();
+    const {
+        setWallet,
+        refetch,
+        wallet: stateWallet,
+        disconnect,
+    } = useWalletStore();
     useEffect(() => {
         if (wallet) {
             setWallet(wallet);
+        } else if (stateWallet && !wallet) {
+            disconnect();
         }
     }, [setWallet, wallet]);
 

@@ -12,6 +12,7 @@ type WalletStates = {
 type WalletActions = {
     setWallet: (wallet: Wallet) => Promise<void>;
     refetch: () => void;
+    disconnect: () => void;
 };
 
 export const useWalletStore = create<WalletActions & WalletStates>(
@@ -20,6 +21,9 @@ export const useWalletStore = create<WalletActions & WalletStates>(
         wallet: null,
         walletConnected: false,
         balance: new Map<string, Balance>(),
+        disconnect() {
+            set(() => ({ wallet: null, balance: new Map() }));
+        },
         async setWallet(newWallet) {
             const { client, wallet } = get();
             if (

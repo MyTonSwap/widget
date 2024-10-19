@@ -1,0 +1,78 @@
+.mytonswap-app {
+    .wallet-card {
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        .title {
+            font-size: 0.7rem;
+            opacity: 0.75;
+        }
+        .wallet-content {
+            display: flex;
+            flex-direction: column;
+            .balance-title {
+                font-size: 0.8rem;
+                margin-top: 0.5rem;
+            }
+            .balance-amount {
+                font-size: 1.25rem;
+                font-weight: bolder;
+                margin-bottom: 0.5rem;
+            }
+            .address {
+                font-size: 0.8rem;
+                width: fit-content;
+                padding: 0.25rem 0.5rem;
+                border-radius: 0.25rem;
+                opacity: 0.75;
+                display: flex;
+            }
+            .address-section {
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+
+                .address {
+                    font-size: 0.8rem;
+                    width: fit-content;
+                    height: 1.75rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 0.5rem;
+                    opacity: 0.75;
+                    display: flex;
+                }
+                .wallet-icon {
+                    font-size: 0.5rem;
+                    width: 1.75rem;
+                    height: 1.75rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 0.5rem;
+                    opacity: 0.75;
+                    cursor: pointer;
+                    &:disabled {
+                        cursor: not-allowed;
+                        opacity: 0.5;
+                    }
+                }
+            }
+            .disconnect-wallet {
+                font-size: 0.8rem;
+                margin-top: 0.5rem;
+                height: 2.5rem;
+                border-radius: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease-in-out;
+                cursor: pointer;
+                opacity: 0.75;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

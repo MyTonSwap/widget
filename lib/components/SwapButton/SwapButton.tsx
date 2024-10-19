@@ -25,19 +25,21 @@ const SwapButton = () => {
         if (!wallet) return "Connect Wallet";
         if (!receive_token || !pay_token) return "Choose a token";
         if (pay_amount === 0n) return "Enter an amount";
+        if (bestRoute && !bestRoute.pool_data.status)
+            return "Price Impact is too high";
         if (pay_amount > Number(balance.get(pay_token!.address)?.balance))
             return "Insufficient balance";
-        if (bestRoute && bestRoute.pool_data.priceImpact)
-            return "Price Impact is too high";
+
         return "Swap";
     };
 
     const isButtonDisabled = () => {
         if (!wallet) return false;
         if (!pay_amount || !pay_token) return true;
+        if (bestRoute && !bestRoute.pool_data.status) return true;
         if (pay_amount > Number(balance.get(pay_token!.address)?.balance))
             return true;
-        if (bestRoute && bestRoute.pool_data.priceImpact) return true;
+
         return false;
     };
 
@@ -97,7 +99,7 @@ const SwapButton = () => {
                 className="swap-button"
                 style={{
                     background:
-                        bestRoute?.pool_data?.priceImpact ?? 0 > 50
+                        bestRoute && !bestRoute.pool_data.status
                             ? colors.price_impact
                             : colors.primary,
                     color: colors.text_white,

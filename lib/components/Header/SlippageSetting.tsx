@@ -89,7 +89,11 @@ const SlippageSetting = () => {
                     exit={{ opacity: 0 }}
                     className="slippage-setting-dropdown"
                 >
-                    <div onClick={handleOnAutoClick} className="dropdown-item">
+                    <div
+                        onClick={handleOnAutoClick}
+                        style={{ background: colors.light_shade }}
+                        className="dropdown-item"
+                    >
                         <FaCircleCheck
                             className="icon"
                             style={{
@@ -106,10 +110,23 @@ const SlippageSetting = () => {
                             className="controller"
                             onClick={handleOnMinusClick}
                             disabled={slippage !== "auto" && slippage <= 1}
+                            style={{
+                                color:
+                                    slippage !== "auto" && slippage <= 1
+                                        ? colors.text_fade
+                                        : colors.text_black,
+                                background:
+                                    slippage !== "auto" && slippage <= 1
+                                        ? colors.light_shade
+                                        : colors.primary,
+                            }}
                         >
                             <FaMinus />
                         </button>
-                        <div className="slippage-input-group dropdown-item percent-input">
+                        <div
+                            className="slippage-input-group dropdown-item percent-input"
+                            style={{ background: colors.light_shade }}
+                        >
                             <FaCircleCheck
                                 className="icon"
                                 style={{
@@ -122,6 +139,9 @@ const SlippageSetting = () => {
                             <input
                                 value={userInput}
                                 onChange={handleSlippageChange}
+                                style={{
+                                    color: colors.text_black,
+                                }}
                                 type="text"
                                 dir="rtl"
                                 className="slippage-input"
@@ -133,6 +153,16 @@ const SlippageSetting = () => {
                             className="controller"
                             onClick={handleOnPlusClick}
                             disabled={slippage !== "auto" && slippage >= 10}
+                            style={{
+                                color:
+                                    slippage !== "auto" && slippage >= 10
+                                        ? colors.text_fade
+                                        : colors.text_black,
+                                background:
+                                    slippage !== "auto" && slippage >= 10
+                                        ? colors.light_shade
+                                        : colors.primary,
+                            }}
                         >
                             <TiPlus />
                         </button>

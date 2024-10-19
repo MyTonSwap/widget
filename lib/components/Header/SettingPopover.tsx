@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useThemeStore } from "../../store/theme.store";
 
 import "./SettingPopover.scss";
+import Wallet from "./Wallet";
 
 export type SettingPopoverProps = PropsWithChildren & {};
 
@@ -46,6 +47,7 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
                     >
                         <SlippageSetting />
                         <TokensSettings />
+                        <Wallet />
                     </motion.div>
                 )}
             </AnimatePresence>

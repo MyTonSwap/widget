@@ -183,13 +183,11 @@ const CardDialog: FC<CardDialogProps> = ({
         <>
             <AnimatePresence>
                 {isSelectVisible && (
-                    <motion.div
-                        initial={{ top: "15%", opacity: 0 }}
-                        animate={{ top: "0%", opacity: 1 }}
-                        exit={{ top: "15%", opacity: 0 }}
-                        className={clsx("card-dialog-container")}
-                    >
-                        <div
+                    <motion.div className={clsx("card-dialog-container")}>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
                             className={clsx("card-dialog")}
                             style={{ background: colors.background }}
                         >
@@ -397,7 +395,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                     )}
                                 </div>
                             )}
-                        </div>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>

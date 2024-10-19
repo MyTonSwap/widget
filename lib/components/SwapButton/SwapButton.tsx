@@ -17,37 +17,32 @@ const SwapButton = () => {
     const wallet = useTonWallet();
 
     const { balance } = useWalletStore();
-    const { pay_amount, pay_token, bestRoute, swapModal } = useSwapStore();
+    const { pay_amount, pay_token, bestRoute, swapModal, receive_token } =
+        useSwapStore();
 
     const [confirmModal, setConfirmModal] = useState(false);
-    const swapText = (() => {
-        if (!wallet) {
-            return "Connect Wallet";
-        }
-        if (!pay_amount || !pay_token) {
-            return "Enter amount";
-        }
-
-        if (pay_amount > Number(balance.get(pay_token!.address)?.balance)) {
+    const getSwapText = () => {
+        if (!wallet) return "Connect Wallet";
+        if (!receive_token || !pay_token) return "Choose a token";
+        if (pay_amount === 0n) return "Enter an amount";
+        if (pay_amount > Number(balance.get(pay_token!.address)?.balance))
             return "Insufficient balance";
-        } else if (bestRoute && bestRoute.pool_data.priceImpact) {
-            return `Price Impact is too high`;
-        } else {
-            return "Swap";
-        }
-    })();
+        if (bestRoute && bestRoute.pool_data.priceImpact)
+            return "Price Impact is too high";
+        return "Swap";
+    };
 
-    const buttonDisabled = (() => {
-        if (!pay_amount || !pay_token) {
+    const isButtonDisabled = () => {
+        if (!wallet) return false;
+        if (!pay_amount || !pay_token) return true;
+        if (pay_amount > Number(balance.get(pay_token!.address)?.balance))
             return true;
-        }
-        if (pay_amount > Number(balance.get(pay_token!.address)?.balance)) {
-            return true;
-        }
-        if (bestRoute && bestRoute.pool_data.priceImpact) {
-            return true;
-        }
-    })();
+        if (bestRoute && bestRoute.pool_data.priceImpact) return true;
+        return false;
+    };
+
+    const swapText = getSwapText();
+    const buttonDisabled = isButtonDisabled();
 
     const handleSwapClick = () => {
         if (!wallet) {
@@ -69,10 +64,11 @@ const SwapButton = () => {
                             className="modal-container"
                         >
                             <motion.div
-                                initial={{ bottom: "-105%" }}
-                                animate={{ bottom: "0%" }}
-                                exit={{ bottom: "-105%" }}
+                                transition={{ ease: [0.6, -0.05, 0.01, 0.99] }}
                                 className="modal-container-inner"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
                                 style={{
                                     background: colors.background,
                                     borderColor: colors.border,

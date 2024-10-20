@@ -2,10 +2,8 @@ import { create } from "zustand";
 import { defaultsDeep } from "lodash";
 
 export type SwapOptions = {
-    defaultTokens?: {
-        pay_token?: string;
-        receive_token?: string;
-    };
+    default_pay_token?: string;
+    default_receive_token?: string;
     pin_tokens?: string[];
 };
 

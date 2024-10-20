@@ -232,7 +232,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
 
     async initializeApp() {
         const { client, slippage } = get();
-        const { defaultTokens, pin_tokens } =
+        const { default_pay_token, default_receive_token, pin_tokens } =
             useOptionsStore.getState().options;
 
         const getAsset = async (
@@ -259,11 +259,8 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         };
 
         const initializeTokens = async () => {
-            const payToken = await getAsset(defaultTokens?.pay_token, "TON");
-            const receiveToken = await getAsset(
-                defaultTokens?.receive_token,
-                ""
-            );
+            const payToken = await getAsset(default_pay_token, "TON");
+            const receiveToken = await getAsset(default_receive_token, "");
 
             if (!payToken) return;
 

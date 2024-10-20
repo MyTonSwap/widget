@@ -72,7 +72,43 @@ function App() {
     );
 }
 ```
-
+## Default Tokens
+You can specify default tokens to be displayed in the swap interface by passing a `defaultTokens` prop to the `Swap` component. This prop should be an array of token objects, each containing the necessary details such as the token's address, symbol, and decimals.
+```tsx
+function App() {
+    return (
+        <>
+            <Swap
+                options={{
+                        default_pay_token:
+                            "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+                        default_receive_token:
+                            "EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
+                }}
+            />
+        </>
+    );
+}
+```
+<!-- write about pinned token -->
+### Pinned tokens
+You can pin specific tokens to the top of the token selection list by using the `pin_tokens` prop. This ensures that these tokens are always easily accessible to users.
+```tsx
+function App() {
+    return (
+        <>
+            <Swap
+                options={{
+                    pin_tokens: [
+                        "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c",
+                        "EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
+                    ],
+                }}
+            />
+        </>
+    );
+}
+```
 
 ### Components
 1. TonConnectWrappedSwap:

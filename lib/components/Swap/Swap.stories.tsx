@@ -93,11 +93,10 @@ export const WithDefaultTokens: Story = {
             skeleton_shine: "#585959",
         },
         options: {
-            defaultTokens: {
-                pay_token: "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
-                receive_token:
-                    "EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
-            },
+            default_pay_token:
+                "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+            default_receive_token:
+                "EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
         },
     },
 };

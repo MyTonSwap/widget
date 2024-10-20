@@ -4,6 +4,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 0.5rem;
+        font-size: var(--font-size-base);
     }
     .header-setting {
         display: flex;
@@ -15,7 +16,7 @@
                 transform: rotate(90deg);
                 transition: transform 0.15s ease-in-out;
             }
-            font-size: 1rem;
+            font-size: var(--font-size-xl);
             opacity: 0.5;
         }
     }

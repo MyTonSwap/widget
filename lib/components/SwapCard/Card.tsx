@@ -147,7 +147,8 @@ const Card: FC<CardProps> = ({ type }) => {
 
         let payAmount = BigInt(balanceToken.balance);
         if (pay_token.address === TON_ADDR) {
-            payAmount = payAmount - toNano(0.4);
+            if (payAmount <= toNano(0.2)) return;
+            payAmount = payAmount - toNano(0.2);
         }
         if (payAmount === pay_amount) return;
 
@@ -185,7 +186,8 @@ const Card: FC<CardProps> = ({ type }) => {
                                     balanceToken.balance,
                                     pay_token!.decimal
                                 ),
-                                2
+                                2,
+                                false
                             )}{" "}
                             {pay_token?.symbol}
                         </span>
@@ -238,7 +240,7 @@ const Card: FC<CardProps> = ({ type }) => {
                                     opacity: 0.5,
                                 }}
                             >
-                                {calculatedRate}$
+                                ${calculatedRate}
                             </span>
                         )}
                         {type === "receive" && isFindingBestRoute && (

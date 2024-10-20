@@ -15,6 +15,17 @@ type SwapProps = {
     options?: SwapOptions;
 };
 
+// declare telegram in window
+declare global {
+    interface Window {
+        Telegram: {
+            WebApp: {
+                initData: string;
+            };
+        };
+    }
+}
+
 export const Swap: FC<SwapProps> = ({ theme, options }) => {
     const { colors, setTheme } = useThemeStore();
     const { setOptions } = useOptionsStore();
@@ -49,6 +60,21 @@ export const Swap: FC<SwapProps> = ({ theme, options }) => {
             }
         }, 10000);
         initializeApp();
+        if (window?.Telegram?.WebApp?.initData?.length !== 0) {
+            ensureDocumentIsScrollable();
+        }
+        function ensureDocumentIsScrollable() {
+            const isScrollable =
+                document.documentElement.scrollHeight > window.innerHeight;
+
+            if (!isScrollable) {
+                document.documentElement.style.setProperty(
+                    "height",
+                    "calc(100vh + 1px)",
+                    "important"
+                );
+            }
+        }
         return () => {
             clearInterval(refetchInterval);
         };

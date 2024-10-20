@@ -136,3 +136,21 @@ export const CyberPunk: Story = {
         },
     },
 };
+
+export const TonJiggle: Story = {
+    args: {
+        theme: {
+            border: "#004A6533",
+            primary: "#177594",
+            background: "#181F34",
+            input_card: "#27272A",
+            input_token: "#1D2939",
+            light_shade: "#193349",
+            slippage_box: "#D1D1E0",
+            text_black: "#FFFFFF",
+            text_white: "#FFFFFF",
+            text_fade: "#6B7280",
+            skeleton_shine: "#585959",
+        },
+    },
+};

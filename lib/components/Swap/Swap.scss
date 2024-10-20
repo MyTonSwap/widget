@@ -11,14 +11,31 @@
     --text-fade-color: #9caacb;
     --skeleton-shine-color: #9c9c9c;
     --price-impact-color: #e64646;
+    --font-size-xxs: 0.625rem;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 4rem;
+    --font-size-7xl: 5rem;
+    --font-size-8xl: 6rem;
+    --font-size-9xl: 7rem;
+    --font-size-10xl: 8rem;
 }
 
 .mytonswap-app {
-    font-family: sans-serif;
+    font-family: Inter, sans-serif;
+
     button {
         border: none;
-        background: none;
+        background-color: transparent;
         cursor: pointer;
+        font-family: Inter, sans-serif;
     }
     input {
         border: none;

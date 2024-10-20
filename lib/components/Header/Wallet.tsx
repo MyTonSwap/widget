@@ -35,7 +35,9 @@ const Wallet = () => {
     };
     const { colors } = useThemeStore();
     const TON_BALANCE = formatNumber(
-        +fromNano(balance.get(TON_ADDR)?.balance || 0n)
+        +fromNano(balance.get(TON_ADDR)?.balance || 0n),
+        4,
+        false
     );
 
     return (

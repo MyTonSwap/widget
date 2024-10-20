@@ -1,6 +1,7 @@
 .mytonswap-app {
     .selection-box-container {
         display: flex;
+        height: 2.5rem;
         align-items: center;
         column-gap: 2px;
         padding-left: 0.25rem;
@@ -8,9 +9,11 @@
         padding-top: 0.25rem;
         padding-bottom: 0.25rem;
         border-radius: 9999px;
+        font-size: var(--font-size-lg);
+        font-weight: 700;
         &.loading {
             width: 5rem;
-            height: 2rem;
+            height: 2.5rem;
         }
         &.pay-loading {
             pointer-events: none;

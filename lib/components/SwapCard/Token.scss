@@ -16,8 +16,8 @@
         flex-grow: 1;
         gap: 0.25rem;
         .token-image {
-            width: 2rem;
-            height: 2rem;
+            width: 2.14rem;
+            height: 2.14rem;
             border-radius: 9999px;
             background-size: contain !important;
         }
@@ -33,6 +33,9 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            .symbol {
+                font-size: var(--font-size-sm);
+            }
         }
         .token-details-name-rate {
             font-size: 10px;

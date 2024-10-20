@@ -5,6 +5,7 @@ import {
     FC,
     SetStateAction,
     useEffect,
+    useRef,
     useState,
 } from "react";
 import { IoClose } from "react-icons/io5";
@@ -20,6 +21,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import { address } from "@ton/ton";
 import { TiWarning } from "react-icons/ti";
 import "./CardDialog.scss";
+import { useOnClickOutside } from "usehooks-ts";
 type CardDialogProps = {
     isSelectVisible: boolean;
     setIsSelectVisible: Dispatch<SetStateAction<boolean>>;
@@ -180,6 +182,14 @@ const CardDialog: FC<CardDialogProps> = ({
         }
     }, [searchInput]);
 
+    const ref = useRef(null);
+
+    const handleClickOutside = () => {
+        handleOnClose();
+    };
+
+    useOnClickOutside(ref, handleClickOutside);
+
     return (
         <>
             <AnimatePresence>
@@ -190,6 +200,10 @@ const CardDialog: FC<CardDialogProps> = ({
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             className={clsx("card-dialog")}
+                            ref={ref}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                            }}
                             style={{ background: colors.background }}
                         >
                             <div

@@ -43,10 +43,7 @@ const SlippageSetting = () => {
         setUserInput("");
         setSlippage("auto");
     };
-    // write a function to handle the slippage change
-    // write a function to handle the auto click
-    // write a function to handle the plus click
-    // write a function to handle the minus click
+
     const handleOnPlusClick = () => {
         if (slippage === "auto") {
             setSlippage(1);

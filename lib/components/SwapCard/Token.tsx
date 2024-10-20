@@ -31,7 +31,7 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
                         className="token-details-symbol-balance"
                         style={{ color: colors.text_black }}
                     >
-                        <div>{asset.symbol}</div>
+                        <div className="symbol">{asset.symbol}</div>
                         <div>{tokenBalance}</div>
                     </div>
                     <div

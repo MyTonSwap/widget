@@ -102,7 +102,7 @@ const Card: FC<CardProps> = ({ type }) => {
     };
     const handlePayAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        const decimalRegexp = /^\d*(?:\.\d{0,2})?$/; // Allow up to 2 decimal places
+        const decimalRegexp = /^\d*(?:\.\d{0,18})?$/; // Allow up to 18 decimal places
 
         let userInput = e.target.value.replace(/,/g, ".");
 

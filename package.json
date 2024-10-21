@@ -114,6 +114,7 @@
         "@tonconnect/ui-react": "^2.0.9",
         "framer-motion": "^11.11.2",
         "lodash": "^4.17.21",
+        "react-error-boundary": "^4.1.2",
         "react-infinite-scroll-component": "^6.1.0",
         "usehooks-ts": "^3.1.0",
         "vite-plugin-node-polyfills": "^0.22.0",

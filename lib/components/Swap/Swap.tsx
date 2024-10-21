@@ -10,6 +10,7 @@ import { ModalState, useSwapStore } from "../../store/swap.store";
 import { useWalletStore } from "../../store/wallet.store";
 import SwapButton from "../SwapButton/SwapButton";
 import "./Swap.scss";
+import { ErrorBoundary } from "react-error-boundary";
 type SwapProps = {
     theme?: ColorTheme;
     options?: SwapOptions;
@@ -81,20 +82,22 @@ export const Swap: FC<SwapProps> = ({ theme, options }) => {
     }, []);
 
     return (
-        <div className="mytonswap-app">
-            <div
-                className={clsx("container")}
-                style={{
-                    background: colors.background,
-                    borderColor: colors.border,
-                }}
-            >
-                <Header />
-                <SwapCard />
-                {receive_token && <SwapDetails />}
-                <SwapButton />
+        <ErrorBoundary fallback={<div>Something went wrong</div>}>
+            <div className="mytonswap-app">
+                <div
+                    className={clsx("container")}
+                    style={{
+                        background: colors.background,
+                        borderColor: colors.border,
+                    }}
+                >
+                    <Header />
+                    <SwapCard />
+                    {receive_token && <SwapDetails />}
+                    <SwapButton />
+                </div>
             </div>
-        </div>
+        </ErrorBoundary>
     );
 };
 

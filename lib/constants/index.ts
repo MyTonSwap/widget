@@ -3,22 +3,22 @@ export const TON_ADDR = "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c";
 
 export const modalAnimationMobile = {
     initial: {
-        opacity: 0,
+        // opacity: 0,
         bottom: "-100%",
         left: 0,
-        transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] },
+        transition: { duration: 0.8, ease: [0.4, 0.4, 0, 1] },
     },
     animate: {
-        opacity: 1,
+        // opacity: 1,
         bottom: 0,
         left: 0,
-        transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] },
+        transition: { duration: 0.8, ease: [0.4, 0.4, 0, 1] },
     },
     exit: {
-        opacity: 0,
+        // opacity: 0,
         bottom: "-100%",
         left: 0,
-        transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] },
+        transition: { duration: 0.8, ease: [0.4, 0.4, 0, 1] },
     },
 };
 

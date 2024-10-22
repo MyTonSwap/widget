@@ -21,7 +21,8 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import { address } from "@ton/ton";
 import { TiWarning } from "react-icons/ti";
 import "./CardDialog.scss";
-import { useOnClickOutside } from "usehooks-ts";
+import { useMediaQuery, useOnClickOutside } from "usehooks-ts";
+import { modalAnimationDesktop, modalAnimationMobile } from "../../constants";
 type CardDialogProps = {
     isSelectVisible: boolean;
     setIsSelectVisible: Dispatch<SetStateAction<boolean>>;
@@ -59,7 +60,9 @@ const CardDialog: FC<CardDialogProps> = ({
         null
     );
     const [promptForCommunity, setPromptForCommunity] = useState(false);
-
+    const { colors } = useThemeStore();
+    const isDesktop = useMediaQuery("(min-width: 768px)");
+    const ref = useRef(null);
     const onNextPage = async (currPage: number) => {
         if (type === "pay") {
             const newAssets = await client.assets.getPaginatedAssets(
@@ -120,7 +123,6 @@ const CardDialog: FC<CardDialogProps> = ({
 
     const assetList = type === "pay" ? assets : receiveAssets;
 
-    const { colors } = useThemeStore();
     const handleOnTokenSelect = (asset: Asset) => {
         setSearchInput("");
         onTokenSelect(asset);
@@ -176,13 +178,10 @@ const CardDialog: FC<CardDialogProps> = ({
                 }
             };
             getToken();
-        } catch (err) {
-            console.log(err);
+        } catch {
             if (promptForCommunity) setPromptForCommunity(false);
         }
     }, [searchInput]);
-
-    const ref = useRef(null);
 
     const handleClickOutside = () => {
         handleOnClose();
@@ -190,15 +189,24 @@ const CardDialog: FC<CardDialogProps> = ({
 
     useOnClickOutside(ref, handleClickOutside);
 
+    const modalAnimation = isDesktop
+        ? modalAnimationDesktop
+        : modalAnimationMobile;
+
     return (
         <>
             <AnimatePresence>
                 {isSelectVisible && (
-                    <motion.div className={clsx("card-dialog-container")}>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className={clsx("card-dialog-container")}
+                    >
                         <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
+                            initial={modalAnimation.initial}
+                            animate={modalAnimation.animate}
+                            exit={modalAnimation.exit}
                             className={clsx("card-dialog")}
                             ref={ref}
                             onClick={(e) => {

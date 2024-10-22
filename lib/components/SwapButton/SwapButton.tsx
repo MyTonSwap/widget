@@ -10,12 +10,14 @@ import WaitingForWallet from "./WaitingForWallet";
 import Inprogress from "./Inprogress";
 import Done from "./Done";
 import "./SwapButton.scss";
+import { useMediaQuery } from "usehooks-ts";
+import { modalAnimationDesktop, modalAnimationMobile } from "../../constants";
 
 const SwapButton = () => {
     const { open } = useTonConnectModal();
     const { colors } = useThemeStore();
     const wallet = useTonWallet();
-
+    const isDesktop = useMediaQuery("(min-width: 768px)");
     const { balance } = useWalletStore();
     const { pay_amount, pay_token, bestRoute, swapModal, receive_token } =
         useSwapStore();
@@ -55,6 +57,9 @@ const SwapButton = () => {
     };
 
     const isRouteAvailable = bestRoute && bestRoute.pool_data;
+    const modalAnimation = isDesktop
+        ? modalAnimationDesktop
+        : modalAnimationMobile;
 
     return (
         <>
@@ -70,9 +75,9 @@ const SwapButton = () => {
                             <motion.div
                                 transition={{ ease: [0.6, -0.05, 0.01, 0.99] }}
                                 className="modal-container-inner"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
+                                initial={modalAnimation.initial}
+                                animate={modalAnimation.animate}
+                                exit={modalAnimation.exit}
                                 style={{
                                     background: colors.background,
                                     borderColor: colors.border,

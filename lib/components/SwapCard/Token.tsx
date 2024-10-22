@@ -4,6 +4,10 @@ import { useWalletStore } from "../../store/wallet.store";
 import { FC } from "react";
 import formatNumber from "../../utils/formatNum";
 import "./Token.scss";
+import { RiExternalLinkLine } from "react-icons/ri";
+
+import { TokenTon } from "../../icons/TokenTon";
+import { TON_ADDR } from "../../constants";
 type TokenProps = {
     asset: Asset;
     onTokenSelect: (asset: Asset) => void;
@@ -18,7 +22,7 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
     );
     const price =
         (balance.get(asset.address)?.price?.prices.USD ?? 0) * tokenBalance;
-    const fixedPrice = price === 0 ? 0 : formatNumber(price, 4);
+    const fixedPrice = price === 0 ? 0 : formatNumber(price, 2);
     return (
         <div onClick={() => onTokenSelect(asset)} className="token-container">
             <div className="token-content">
@@ -31,7 +35,18 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
                         className="token-details-symbol-balance"
                         style={{ color: colors.text_black }}
                     >
-                        <div className="symbol">{asset.symbol}</div>
+                        <div className="symbol">
+                            {asset.symbol}{" "}
+                            <span>
+                                <a
+                                    href={`https://tonviewer.com/${asset.address}`}
+                                    onClick={(e) => e.stopPropagation()}
+                                    target="_blank"
+                                >
+                                    <RiExternalLinkLine />
+                                </a>
+                            </span>
+                        </div>
                         <div>{tokenBalance}</div>
                     </div>
                     <div
@@ -41,7 +56,14 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
                             opacity: 0.5,
                         }}
                     >
-                        <div className="line-clamp-1">{asset.name}</div>
+                        <div className="line-clamp-1">
+                            {asset.name}
+                            {asset.address !== TON_ADDR && (
+                                <span>
+                                    | <TokenTon /> {asset.liquidity_text}
+                                </span>
+                            )}
+                        </div>
                         <div>{fixedPrice}$</div>
                     </div>
                 </div>

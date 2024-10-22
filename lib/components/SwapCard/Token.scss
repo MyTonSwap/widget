@@ -35,10 +35,15 @@
             text-overflow: ellipsis;
             .symbol {
                 font-size: var(--font-size-sm);
+                a {
+                    opacity: 50%;
+                    text-decoration: none;
+                    color: inherit;
+                }
             }
         }
         .token-details-name-rate {
-            font-size: 10px;
+            font-size: var(--font-size-xs);
             display: flex;
             align-items: center;
             justify-content: space-between;

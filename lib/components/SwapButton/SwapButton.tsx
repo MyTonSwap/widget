@@ -29,7 +29,7 @@ const SwapButton = () => {
         if (pay_amount === 0n) return "Enter an amount";
         if (bestRoute && !bestRoute.pool_data.status)
             return "Price Impact is too high";
-        if (pay_amount > Number(balance.get(pay_token!.address)?.balance))
+        if (pay_amount > Number(balance.get(pay_token!.address)?.balance ?? 0))
             return "Insufficient balance";
 
         return "Swap";
@@ -39,7 +39,7 @@ const SwapButton = () => {
         if (!wallet) return false;
         if (!pay_amount || !pay_token) return true;
         if (bestRoute && !bestRoute.pool_data.status) return true;
-        if (pay_amount > Number(balance.get(pay_token!.address)?.balance))
+        if (pay_amount > Number(balance.get(pay_token!.address)?.balance ?? 0))
             return true;
 
         return false;

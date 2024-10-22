@@ -7,29 +7,35 @@ import {
     UserRejectsError,
 } from "@tonconnect/ui-react";
 import { useSwapStore } from "../store/swap.store";
+import catchError from "./catchErrors";
 
 export default async function swap(
     tonconnect: TonConnectUI,
     bestRoute: BestRoute
 ) {
     const client = new MyTonSwapClient();
-    const rawMessage = await client.swap.createSwap(
-        tonconnect.account!.address,
-        bestRoute
+    const rawMessageResult = await catchError(() =>
+        client.swap.createSwap(tonconnect.account!.address, bestRoute)
     );
+    if (rawMessageResult.error) return console.log("make this alert!");
+    const rawMessage = rawMessageResult.data;
     if (!rawMessage) return;
-    const stateInit = rawMessage.init
-        ? beginCell()
-              .storeRef(rawMessage.init.code!)
-              .storeRef(rawMessage.init.data!)
-              .endCell()
-              .toBoc()
-              .toString("base64")
-        : undefined;
+
+    let stateInit: undefined | string = undefined;
+    if (rawMessage.init) {
+        const code = Cell.fromBoc(Buffer.from(rawMessage.init.code, "hex"))[0];
+        const data = Cell.fromBoc(Buffer.from(rawMessage.init.data, "hex"))[0];
+        stateInit = beginCell()
+            .storeRef(code)
+            .storeRef(data)
+            .endCell()
+            .toBoc()
+            .toString("base64");
+    }
     const messages = [
         {
-            address: rawMessage.to.toString(),
-            amount: rawMessage.value.toString(),
+            address: rawMessage.to,
+            amount: rawMessage.value,
             stateInit: stateInit,
             payload: rawMessage.body?.toBoc().toString("base64"),
         },

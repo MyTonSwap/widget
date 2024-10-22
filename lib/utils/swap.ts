@@ -37,7 +37,9 @@ export default async function swap(
             address: rawMessage.to,
             amount: rawMessage.value,
             stateInit: stateInit,
-            payload: rawMessage.body?.toBoc().toString("base64"),
+            payload: Cell.fromBoc(Buffer.from(rawMessage.body, "hex"))[0]
+                .toBoc()
+                .toString("base64"),
         },
     ] satisfies SendTransactionRequest["messages"];
     tonconnect

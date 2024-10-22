@@ -23,6 +23,7 @@ import { TiWarning } from "react-icons/ti";
 import "./CardDialog.scss";
 import { useMediaQuery, useOnClickOutside } from "usehooks-ts";
 import { modalAnimationDesktop, modalAnimationMobile } from "../../constants";
+import catchError from "../../utils/catchErrors";
 type CardDialogProps = {
     isSelectVisible: boolean;
     setIsSelectVisible: Dispatch<SetStateAction<boolean>>;
@@ -65,28 +66,35 @@ const CardDialog: FC<CardDialogProps> = ({
     const ref = useRef(null);
     const onNextPage = async (currPage: number) => {
         if (type === "pay") {
-            const newAssets = await client.assets.getPaginatedAssets(
-                currPage,
-                communityTokens,
-                searchInput
+            const result = await catchError(() =>
+                client.assets.getPaginatedAssets(
+                    currPage,
+                    communityTokens,
+                    searchInput
+                )
             );
+            if (result.error) return console.log("make this alert!");
+            const { assets, meta } = result.data;
             setPage(currPage + 1);
-            addToAssets(newAssets.assets);
-            setHasMore(!newAssets.meta.isLastPage);
+            addToAssets(assets);
+            setHasMore(!meta.isLastPage);
             return;
         }
         if (type === "receive" && !pay_token) return;
         if (type === "receive") {
-            const newAssets = await client.assets.getPairs(
-                pay_token!.address,
-                currPage,
-                communityTokens,
-                searchInput
+            const newAssets = await catchError(() =>
+                client.assets.getPairs(
+                    pay_token!.address,
+                    currPage,
+                    communityTokens,
+                    searchInput
+                )
             );
-
+            if (newAssets.error) return console.log("make this alert!");
+            const { assets, meta } = newAssets.data;
             setPage(currPage + 1);
             setReceiveAssets((prev) => {
-                const mergedAssets = [...prev, ...newAssets.assets];
+                const mergedAssets = [...prev, ...assets];
 
                 // Filter to keep unique assets based on the 'address' property
                 const uniqueAssets = mergedAssets.filter(
@@ -97,10 +105,10 @@ const CardDialog: FC<CardDialogProps> = ({
 
                 return uniqueAssets;
             });
-            if (newAssets.assets.length === 0) {
+            if (assets.length === 0) {
                 setHasMore(false);
             } else {
-                setHasMore(!newAssets.meta.isLastPage);
+                setHasMore(!meta.isLastPage);
             }
         }
     };
@@ -162,7 +170,13 @@ const CardDialog: FC<CardDialogProps> = ({
             });
 
             const getToken = async () => {
-                const assetByAddr = await client.assets.getExactAsset(addr);
+                const assetByAddrResult = await catchError(() =>
+                    client.assets.getExactAsset(addr)
+                );
+                if (assetByAddrResult.error)
+                    return console.log("make this alert!");
+
+                const assetByAddr = assetByAddrResult.data;
                 if (assetByAddr) {
                     if (
                         assetByAddr.warning &&

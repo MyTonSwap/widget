@@ -3,6 +3,7 @@ import { Asset, BestRoute, MyTonSwapClient, Prices } from "@mytonswap/sdk";
 import { toNano } from "@mytonswap/sdk";
 import { useOptionsStore } from "./options.store";
 import { address } from "@ton/ton";
+import catchError from "../utils/catchErrors";
 
 export enum ModalState {
     NONE = "NONE",
@@ -154,9 +155,12 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     setPayToken: async (token) => {
         const { client } = get();
         if (!token) return;
-        const rates = await client.tonapi.getAssetsRates([token.address]);
+        const result = await catchError(() =>
+            client.tonapi.getAssetsRates([token.address])
+        );
+        if (result.error) return console.log("make this alert!");
+        const rates = result.data;
         const tokenRate = rates.get(token.address);
-        console.log(rates);
         set(() => ({
             pay_token: token,
             pay_rate: tokenRate ?? null,
@@ -170,12 +174,16 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         set(() => ({ pay_amount: amount }));
         if (!pay_token || !receive_token) return;
         set(() => ({ isFindingBestRoute: true }));
-        const bestRoute = await client.router.findBestRoute(
-            pay_token.address,
-            receive_token.address,
-            amount,
-            slippage === "auto" ? undefined : slippage
+        const bestRouteResult = await catchError(() =>
+            client.router.findBestRoute(
+                pay_token.address,
+                receive_token.address,
+                amount,
+                slippage === "auto" ? undefined : slippage
+            )
         );
+        if (bestRouteResult.error) return console.log("make this alert!");
+        const bestRoute = bestRouteResult.data;
         // TODO: Handle error properly
         if (!bestRoute) throw new Error("failed to get best route");
         set(() => ({ bestRoute, isFindingBestRoute: false }));
@@ -183,28 +191,40 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     setReceiveToken: async (token) => {
         const { client, pay_token, pay_amount, slippage } = get();
         if (!token || token.address === pay_token?.address) return;
-        const rates = await client.tonapi.getAssetsRates([token.address]);
+        const ratesResult = await catchError(() =>
+            client.tonapi.getAssetsRates([token.address])
+        );
+        if (ratesResult.error) return console.log("make this alert!");
+        const rates = ratesResult.data;
         const tokenRate = rates.get(token.address);
         set(() => ({
             receive_token: token,
             receive_rate: tokenRate ?? null,
             isFindingBestRoute: true,
         }));
-        const onePayRoute = await client.router.findBestRoute(
-            pay_token!.address,
-            token.address,
-            toNano(1, pay_token!.decimal),
-            slippage === "auto" ? undefined : slippage
+        const onePayRouteResult = await catchError(() =>
+            client.router.findBestRoute(
+                pay_token!.address,
+                token.address,
+                toNano(1, pay_token!.decimal),
+                slippage === "auto" ? undefined : slippage
+            )
         );
+        if (onePayRouteResult.error) return console.log("make this alert!");
+        const onePayRoute = onePayRouteResult.data;
 
         if (pay_amount > 0n && pay_token) {
             set(() => ({ onePayRoute }));
-            const bestRoute = await client.router.findBestRoute(
-                pay_token.address,
-                token.address,
-                pay_amount,
-                slippage === "auto" ? undefined : slippage
+            const bestRouteResult = await catchError(() =>
+                client.router.findBestRoute(
+                    pay_token.address,
+                    token.address,
+                    pay_amount,
+                    slippage === "auto" ? undefined : slippage
+                )
             );
+            if (bestRouteResult.error) return console.log("make this alert!");
+            const bestRoute = bestRouteResult.data;
             set(() => ({ bestRoute, isFindingBestRoute: false }));
         } else {
             set(() => ({ onePayRoute, isFindingBestRoute: false }));
@@ -239,14 +259,26 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             tokenAddress: string | undefined,
             fallback: string
         ): Promise<Asset | null> => {
-            if (!tokenAddress)
-                return await client.assets.getExactAsset(fallback);
+            if (!tokenAddress) {
+                const assetResult = await catchError(() =>
+                    client.assets.getExactAsset(fallback)
+                );
+                if (assetResult.error) return null; // console.log("make this alert!");
+                return assetResult.data;
+            }
             try {
                 address(tokenAddress);
-                return await client.assets.getExactAsset(tokenAddress);
-            } catch (e) {
-                console.log("Something went wrong", e);
-                return await client.assets.getExactAsset(fallback);
+                const assetResult = await catchError(() =>
+                    client.assets.getExactAsset(tokenAddress)
+                );
+                if (assetResult.error) return null; // console.log("make this alert!");
+                return assetResult.data;
+            } catch {
+                const assetResult = await catchError(() =>
+                    client.assets.getExactAsset(fallback)
+                );
+                if (assetResult.error) return null; // console.log("make this alert!");
+                return assetResult.data;
             }
         };
 
@@ -254,7 +286,11 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             token: Asset | null
         ): Promise<Prices | null> => {
             if (!token) return null;
-            const rates = await client.tonapi.getAssetsRates([token.address]);
+            const ratesResult = await catchError(() =>
+                client.tonapi.getAssetsRates([token.address])
+            );
+            if (ratesResult.error) return null; // console.log("make this alert!");
+            const rates = ratesResult.data;
             return rates.get(token.address) ?? { USD: 0 };
         };
 
@@ -269,17 +305,27 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
 
             let onePayRoute: null | BestRoute = null;
             if (payToken && receiveToken) {
-                onePayRoute = await client.router.findBestRoute(
-                    payToken.address,
-                    receiveToken.address,
-                    toNano(1, payToken!.decimal),
-                    slippage === "auto" ? undefined : slippage
+                const onePayRouteResult = await catchError(() =>
+                    client.router.findBestRoute(
+                        payToken.address,
+                        receiveToken.address,
+                        toNano(1, payToken!.decimal),
+                        slippage === "auto" ? undefined : slippage
+                    )
                 );
+                if (onePayRouteResult.error)
+                    return console.log("make this alert!");
+                onePayRoute = onePayRouteResult.data;
             }
 
             let pinnedTokens: Asset[] | null = null;
             if (pin_tokens && pin_tokens.length > 0) {
-                pinnedTokens = await client.assets.getAssets(pin_tokens);
+                const pinnedTokensResult = await catchError(() =>
+                    client.assets.getAssets(pin_tokens)
+                );
+                if (pinnedTokensResult.error)
+                    return console.log("make this alert!");
+                pinnedTokens = pinnedTokensResult.data;
             }
 
             set({
@@ -300,12 +346,16 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             get();
         if (!pay_token || !receive_token) return;
         set(() => ({ isFindingBestRoute: true }));
-        const bestRoute = await client.router.findBestRoute(
-            pay_token.address,
-            receive_token.address,
-            pay_amount,
-            slippage === "auto" ? undefined : slippage
+        const bestRouteResult = await catchError(() =>
+            client.router.findBestRoute(
+                pay_token.address,
+                receive_token.address,
+                pay_amount,
+                slippage === "auto" ? undefined : slippage
+            )
         );
+        if (bestRouteResult.error) return console.log("make this alert!");
+        const bestRoute = bestRouteResult.data;
         // TODO: Handle error properly
         if (!bestRoute) throw new Error("failed to get best route");
         set(() => ({ bestRoute, isFindingBestRoute: false }));

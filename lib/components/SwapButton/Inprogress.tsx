@@ -22,7 +22,6 @@ const Inprogress = () => {
     const { colors } = useThemeStore();
     useEffect(() => {
         const checkForTransaction = async () => {
-            console.log("runned");
             if (transactionHash) {
                 const event = await client.tonapi.waitForTransactionResult(
                     transactionHash,

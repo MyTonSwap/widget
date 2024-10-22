@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { Balance, MyTonSwapClient } from "@mytonswap/sdk";
 import { Wallet } from "@tonconnect/ui-react";
 import { useSwapStore } from "./swap.store";
+import catchError from "../utils/catchErrors";
 type WalletStates = {
     client: MyTonSwapClient;
     wallet: Wallet | null;
@@ -34,12 +35,19 @@ export const useWalletStore = create<WalletActions & WalletStates>(
 
             set(() => ({ wallet: newWallet }));
             try {
-                const balances = await client.tonapi.getWalletAssets(
-                    newWallet.account.address
+                const balancesResult = await catchError(() =>
+                    client.tonapi.getWalletAssets(newWallet.account.address)
                 );
+                if (balancesResult.error)
+                    return console.log("make this alert!");
+                const balances = balancesResult.data;
                 set(() => ({ balance: balances }));
                 const addresses = Array.from(balances.keys());
-                const assets = await client.assets.getAssets(addresses);
+                const assetsResult = await catchError(() =>
+                    client.assets.getAssets(addresses)
+                );
+                if (assetsResult.error) return console.log("make this alert!");
+                const assets = assetsResult.data;
                 useSwapStore.getState().addToAssets(assets);
             } catch (error) {
                 console.log(error);
@@ -50,9 +58,12 @@ export const useWalletStore = create<WalletActions & WalletStates>(
             const { wallet, client } = get();
             if (wallet) {
                 try {
-                    const balances = await client.tonapi.getWalletAssets(
-                        wallet.account.address
+                    const balancesResult = await catchError(() =>
+                        client.tonapi.getWalletAssets(wallet.account.address)
                     );
+                    if (balancesResult.error)
+                        return console.log("make this alert!");
+                    const balances = balancesResult.data;
                     set(() => ({ balance: balances }));
                 } catch (error) {
                     console.log(error);

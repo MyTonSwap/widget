@@ -34,11 +34,18 @@
             overflow: hidden;
             text-overflow: ellipsis;
             .symbol {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.125rem;
                 font-size: var(--font-size-sm);
                 a {
                     opacity: 50%;
                     text-decoration: none;
                     color: inherit;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
             }
         }

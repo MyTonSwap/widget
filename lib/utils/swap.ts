@@ -8,14 +8,16 @@ import {
 } from "@tonconnect/ui-react";
 import { useSwapStore } from "../store/swap.store";
 import catchError from "./catchErrors";
+import { useOptionsStore } from "../store/options.store";
 
 export default async function swap(
     tonconnect: TonConnectUI,
     bestRoute: BestRoute
 ) {
     const client = new MyTonSwapClient();
+    const app_id = useOptionsStore.getState().options.app_id;
     const rawMessageResult = await catchError(() =>
-        client.swap.createSwap(tonconnect.account!.address, bestRoute)
+        client.swap.createSwap(tonconnect.account!.address, bestRoute, app_id)
     );
     if (rawMessageResult.error) return console.log("make this alert!");
     const rawMessage = rawMessageResult.data;

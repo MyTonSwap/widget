@@ -5,6 +5,7 @@ export type SwapOptions = {
     default_pay_token?: string;
     default_receive_token?: string;
     pin_tokens?: string[];
+    app_id?: string;
 };
 
 type SwapOptionsStates = {
@@ -13,7 +14,7 @@ type SwapOptionsStates = {
 };
 
 type SwapOptionsActions = {
-    setOptions: (colors: SwapOptions) => void;
+    setOptions: (options: SwapOptions) => void;
 };
 
 export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(

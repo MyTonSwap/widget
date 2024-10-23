@@ -4,6 +4,7 @@ import { toNano } from "@mytonswap/sdk";
 import { useOptionsStore } from "./options.store";
 import { address } from "@ton/ton";
 import catchError from "../utils/catchErrors";
+import { WIDGET_VERSION } from "../constants";
 
 export enum ModalState {
     NONE = "NONE",
@@ -63,7 +64,9 @@ type SwapActions = {
 };
 
 export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
-    client: new MyTonSwapClient(),
+    client: new MyTonSwapClient({
+        headers: { "widget-version": WIDGET_VERSION },
+    }),
     pay_token: null,
     pay_rate: null,
     pay_amount: 0n,

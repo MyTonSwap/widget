@@ -11,7 +11,13 @@ import Inprogress from "./Inprogress";
 import Done from "./Done";
 import "./SwapButton.scss";
 import { useMediaQuery } from "usehooks-ts";
-import { modalAnimationDesktop, modalAnimationMobile } from "../../constants";
+import {
+    modalAnimationDesktop,
+    modalAnimationMobile,
+    WIDGET_VERSION,
+} from "../../constants";
+import { useLongPress } from "@uidotdev/usehooks";
+import toast from "react-hot-toast";
 
 const SwapButton = () => {
     const { open } = useTonConnectModal();
@@ -60,7 +66,14 @@ const SwapButton = () => {
     const modalAnimation = isDesktop
         ? modalAnimationDesktop
         : modalAnimationMobile;
-
+    const attrs = useLongPress(
+        () => {
+            toast(`Version: ${WIDGET_VERSION}`);
+        },
+        {
+            threshold: 1000 * 5,
+        }
+    );
     return (
         <>
             <AnimatePresence>
@@ -104,6 +117,7 @@ const SwapButton = () => {
             </AnimatePresence>
             <button
                 className="swap-button"
+                {...attrs}
                 style={{
                     background:
                         isRouteAvailable && !bestRoute.pool_data.status

@@ -1,3 +1,5 @@
+// @ts-expect-error this is also fine
+export const WIDGET_VERSION = import.meta.env.PACKAGE_VERSION as string;
 export const TON_FEE_MINIMUM = 0.25;
 export const TON_ADDR = "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c";
 

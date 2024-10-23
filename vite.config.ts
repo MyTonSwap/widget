@@ -5,6 +5,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import dts from "vite-plugin-dts";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
+import version from "vite-plugin-package-version";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,6 +19,7 @@ export default defineConfig({
     plugins: [
         nodePolyfills({ include: ["buffer"] }),
         tsconfigPaths(),
+        version(),
         react(),
         dts({
             rollupTypes: true,

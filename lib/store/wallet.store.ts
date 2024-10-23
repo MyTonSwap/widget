@@ -3,6 +3,7 @@ import { Balance, MyTonSwapClient } from "@mytonswap/sdk";
 import { Wallet } from "@tonconnect/ui-react";
 import { useSwapStore } from "./swap.store";
 import catchError from "../utils/catchErrors";
+import { WIDGET_VERSION } from "../constants";
 type WalletStates = {
     client: MyTonSwapClient;
     wallet: Wallet | null;
@@ -18,7 +19,9 @@ type WalletActions = {
 
 export const useWalletStore = create<WalletActions & WalletStates>(
     (set, get) => ({
-        client: new MyTonSwapClient(),
+        client: new MyTonSwapClient({
+            headers: { "widget-version": WIDGET_VERSION },
+        }),
         wallet: null,
         walletConnected: false,
         balance: new Map<string, Balance>(),

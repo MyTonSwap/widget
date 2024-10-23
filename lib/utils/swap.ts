@@ -9,12 +9,15 @@ import {
 import { useSwapStore } from "../store/swap.store";
 import catchError from "./catchErrors";
 import { useOptionsStore } from "../store/options.store";
+import { WIDGET_VERSION } from "../constants";
 
 export default async function swap(
     tonconnect: TonConnectUI,
     bestRoute: BestRoute
 ) {
-    const client = new MyTonSwapClient();
+    const client = new MyTonSwapClient({
+        headers: { "widget-version": WIDGET_VERSION },
+    });
     const app_id = useOptionsStore.getState().options.app_id;
     const rawMessageResult = await catchError(() =>
         client.swap.createSwap(tonconnect.account!.address, bestRoute, app_id)

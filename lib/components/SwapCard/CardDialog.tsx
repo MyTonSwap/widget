@@ -284,6 +284,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                 onClick={() => {
                                                     handleOnTokenSelect(item);
                                                 }}
+                                                key={item.address}
                                             >
                                                 <div
                                                     className="pinned-token-image"

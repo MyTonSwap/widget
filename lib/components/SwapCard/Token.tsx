@@ -56,10 +56,10 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
                             opacity: 0.5,
                         }}
                     >
-                        <div className="line-clamp-1">
+                        <div className="line-clamp-1 name-liq">
                             {asset.name}
                             {asset.address !== TON_ADDR && (
-                                <span>
+                                <span className="liq">
                                     | <TokenTon /> {asset.liquidity_text}
                                 </span>
                             )}

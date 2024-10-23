@@ -55,6 +55,18 @@
             align-items: center;
             justify-content: space-between;
             flex-grow: 1;
+            .name-liq {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.125rem;
+                .liq {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.125rem;
+                }
+            }
         }
     }
 }

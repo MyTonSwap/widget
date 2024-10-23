@@ -6,6 +6,9 @@ export type SwapOptions = {
     default_receive_token?: string;
     pin_tokens?: string[];
     app_id?: string;
+    ui_preferences?: {
+        disable_provided_text?: boolean;
+    };
 };
 
 type SwapOptionsStates = {
@@ -19,7 +22,11 @@ type SwapOptionsActions = {
 
 export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
     (set, get) => ({
-        options: {},
+        options: {
+            ui_preferences: {
+                disable_provided_text: false,
+            },
+        },
         userOptions: {},
         setOptions: (option) => {
             const { options, userOptions } = get();

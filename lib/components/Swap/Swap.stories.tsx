@@ -67,6 +67,7 @@ export const WithPinnedTokens: Story = {
             text_white: "#000000",
             text_fade: "#6B7280",
             skeleton_shine: "#585959",
+            price_impact: "#E64646",
         },
         options: {
             pin_tokens: [

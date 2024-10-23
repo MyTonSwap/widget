@@ -11,6 +11,7 @@ import { useWalletStore } from "../../store/wallet.store";
 import SwapButton from "../SwapButton/SwapButton";
 import "./Swap.scss";
 import { ErrorBoundary } from "react-error-boundary";
+import { Toaster } from "react-hot-toast";
 type SwapProps = {
     theme?: ColorTheme;
     options?: SwapOptions;
@@ -95,8 +96,21 @@ export const Swap: FC<SwapProps> = ({ theme, options }) => {
                     <SwapCard />
                     {receive_token && <SwapDetails />}
                     <SwapButton />
+                    {!options?.ui_preferences?.disable_provided_text && (
+                        <div
+                            className="text-provided"
+                            style={{ color: colors.text_black }}
+                        >
+                            Service provided by{" "}
+                            <a href="https://mytonswap.com" target="_blank">
+                                MyTonSwap
+                            </a>
+                        </div>
+                    )}
                 </div>
             </div>
+
+            <Toaster />
         </ErrorBoundary>
     );
 };

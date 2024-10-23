@@ -6,6 +6,7 @@
         left: 0;
         top: 0;
         z-index: 9999999999999999999999999;
+        overflow: hidden;
         background-color: rgba(0, 0, 0, 0.1);
         .modal-container-inner {
             position: fixed;
@@ -26,7 +27,7 @@
                 max-width: 350px;
                 height: 100%;
                 max-height: 80%;
-                min-height: 350px;
+                max-height: 350px;
                 box-shadow: 0 0px 10px rgba(0, 0, 0, 0.05);
                 border-radius: 0.75rem;
             }

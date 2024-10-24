@@ -1,13 +1,13 @@
-import { useTonWallet } from "@tonconnect/ui-react";
 import { ImSpinner8 } from "react-icons/im";
 import { useThemeStore } from "../../store/theme.store";
 import { IoClose } from "react-icons/io5";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import "./WaitingForWallet.scss";
 import { motion } from "framer-motion";
+import { useOptionsStore } from "../../store/options.store";
 
 const WaitingForWallet = () => {
-    const wallet = useTonWallet();
+    const { tonConnectInstance } = useOptionsStore();
     const { setModalState } = useSwapStore();
 
     const handleCloseModal = () => {
@@ -28,7 +28,8 @@ const WaitingForWallet = () => {
                 <ImSpinner8 className="animate-spin icon" />
             </div>
             <div className="loading-text">
-                Confirm the transaction in {wallet?.device.appName}
+                Confirm the transaction in{" "}
+                {tonConnectInstance?.wallet?.device.appName ?? "your Wallet"}
             </div>
             <p>It will only take a moment</p>
         </motion.div>

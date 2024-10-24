@@ -90,7 +90,6 @@ function App() {
     );
 }
 ```
-<!-- write about pinned token -->
 ### Pinned tokens
 You can pin specific tokens to the top of the token selection list by using the `pin_tokens` prop. This ensures that these tokens are always easily accessible to users.
 ```tsx
@@ -109,6 +108,24 @@ function App() {
     );
 }
 ```
+
+### AppId
+This feature allows partners to be uniquely identified when using the widget, enabling better tracking and analytics for partner-related swaps.
+
+```tsx
+function App() {
+    return (
+        <>
+            <Swap
+                options={{
+                    app_id:"your_app_id"
+                }}
+            />
+        </>
+    );
+}
+```
+
 
 ### Components
 1. TonConnectWrappedSwap:

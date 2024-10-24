@@ -8,6 +8,7 @@ import shortAddress from "../../utils/shortAddress";
 import { FaCheck, FaCopy } from "react-icons/fa6";
 import { useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
+import { useOptionsStore } from "../../store/options.store";
 // import { useTonConnectUI } from "@tonconnect/ui-react";
 
 const Wallet = () => {
@@ -26,11 +27,12 @@ const Wallet = () => {
             return false;
         }
     };
-
+    const { tonConnectInstance } = useOptionsStore();
     const { wallet, balance, disconnect } = useWalletStore();
-    // const [tc] = useTonConnectUI();
     const handleDisconnect = async () => {
-        // await tc.disconnect();
+        if (tonConnectInstance) {
+            await tonConnectInstance.disconnect();
+        }
         disconnect();
     };
     const { colors } = useThemeStore();

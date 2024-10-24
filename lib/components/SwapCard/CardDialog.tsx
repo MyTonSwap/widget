@@ -24,6 +24,8 @@ import "./CardDialog.scss";
 import { useMediaQuery, useOnClickOutside } from "usehooks-ts";
 import { modalAnimationDesktop, modalAnimationMobile } from "../../constants";
 import catchError from "../../utils/catchErrors";
+
+import { reportErrorWithToast } from "../../services/errorAnalytics";
 type CardDialogProps = {
     isSelectVisible: boolean;
     setIsSelectVisible: Dispatch<SetStateAction<boolean>>;
@@ -73,7 +75,14 @@ const CardDialog: FC<CardDialogProps> = ({
                     searchInput
                 )
             );
-            if (result.error) return console.log("make this alert!");
+            if (result.error) {
+                reportErrorWithToast(
+                    result.error,
+                    "Failed to fetch assets",
+                    "CardDialog.tsx onNextPage pay :86"
+                );
+                return;
+            }
             const { assets, meta } = result.data;
             setPage(currPage + 1);
             addToAssets(assets);
@@ -90,7 +99,14 @@ const CardDialog: FC<CardDialogProps> = ({
                     searchInput
                 )
             );
-            if (newAssets.error) return console.log("make this alert!");
+            if (newAssets.error) {
+                reportErrorWithToast(
+                    newAssets.error,
+                    "Failed to fetch assets",
+                    "CardDialog.tsx onNextPage receive :105"
+                );
+                return;
+            }
             const { assets, meta } = newAssets.data;
             setPage(currPage + 1);
             setReceiveAssets((prev) => {
@@ -178,8 +194,14 @@ const CardDialog: FC<CardDialogProps> = ({
                 const assetByAddrResult = await catchError(() =>
                     client.assets.getExactAsset(addr)
                 );
-                if (assetByAddrResult.error)
-                    return console.log("make this alert!");
+                if (assetByAddrResult.error) {
+                    reportErrorWithToast(
+                        assetByAddrResult.error,
+                        "Failed to fetch asset",
+                        "CardDialog.tsx getToken :197"
+                    );
+                    return;
+                }
 
                 const assetByAddr = assetByAddrResult.data;
                 if (assetByAddr) {

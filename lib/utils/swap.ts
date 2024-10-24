@@ -10,6 +10,7 @@ import { useSwapStore } from "../store/swap.store";
 import catchError from "./catchErrors";
 import { useOptionsStore } from "../store/options.store";
 import { WIDGET_VERSION } from "../constants";
+import { reportErrorWithToast } from "../services/errorAnalytics";
 
 export default async function swap(
     tonconnect: TonConnectUI,
@@ -22,7 +23,14 @@ export default async function swap(
     const rawMessageResult = await catchError(() =>
         client.swap.createSwap(tonconnect.account!.address, bestRoute, app_id)
     );
-    if (rawMessageResult.error) return console.log("make this alert!");
+    if (rawMessageResult.error) {
+        reportErrorWithToast(
+            rawMessageResult.error,
+            "Failed to get swap data",
+            "swap.ts swap createSwap :30"
+        );
+        return;
+    }
     const rawMessage = rawMessageResult.data;
     if (!rawMessage) return;
 

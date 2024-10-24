@@ -5,6 +5,7 @@ import { useOptionsStore } from "./options.store";
 import { address } from "@ton/ton";
 import catchError from "../utils/catchErrors";
 import { WIDGET_VERSION } from "../constants";
+import { reportErrorWithToast } from "../services/errorAnalytics";
 
 export enum ModalState {
     NONE = "NONE",
@@ -161,7 +162,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         const result = await catchError(() =>
             client.tonapi.getAssetsRates([token.address])
         );
-        if (result.error) return console.log("make this alert!");
+        if (result.error) {
+            reportErrorWithToast(
+                result.error,
+                "Failed to get asset rates",
+                "swap.store.ts setPayToken getAssetsRates :165"
+            );
+            return;
+        }
         const rates = result.data;
         const tokenRate = rates.get(token.address);
         set(() => ({
@@ -185,7 +193,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 slippage === "auto" ? undefined : slippage
             )
         );
-        if (bestRouteResult.error) return console.log("make this alert!");
+        if (bestRouteResult.error) {
+            reportErrorWithToast(
+                bestRouteResult.error,
+                "Failed to get best route",
+                "swap.store.ts setPayAmount findBestRoute :196"
+            );
+            return;
+        }
         const bestRoute = bestRouteResult.data;
         // TODO: Handle error properly
         if (!bestRoute) throw new Error("failed to get best route");
@@ -197,7 +212,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         const ratesResult = await catchError(() =>
             client.tonapi.getAssetsRates([token.address])
         );
-        if (ratesResult.error) return console.log("make this alert!");
+        if (ratesResult.error) {
+            reportErrorWithToast(
+                ratesResult.error,
+                "Failed to get asset rates",
+                "swap.store.ts setReceiveToken getAssetsRates :215"
+            );
+            return;
+        }
         const rates = ratesResult.data;
         const tokenRate = rates.get(token.address);
         set(() => ({
@@ -213,7 +235,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 slippage === "auto" ? undefined : slippage
             )
         );
-        if (onePayRouteResult.error) return console.log("make this alert!");
+        if (onePayRouteResult.error) {
+            reportErrorWithToast(
+                onePayRouteResult.error,
+                "Failed to get one pay route",
+                "swap.store.ts setReceiveToken findBestRoute :238"
+            );
+            return;
+        }
         const onePayRoute = onePayRouteResult.data;
 
         if (pay_amount > 0n && pay_token) {
@@ -226,7 +255,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                     slippage === "auto" ? undefined : slippage
                 )
             );
-            if (bestRouteResult.error) return console.log("make this alert!");
+            if (bestRouteResult.error) {
+                reportErrorWithToast(
+                    bestRouteResult.error,
+                    "Failed to get best route",
+                    "swap.store.ts setReceiveToken findBestRoute :258"
+                );
+                return;
+            }
             const bestRoute = bestRouteResult.data;
             set(() => ({ bestRoute, isFindingBestRoute: false }));
         } else {
@@ -266,7 +302,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 const assetResult = await catchError(() =>
                     client.assets.getExactAsset(fallback)
                 );
-                if (assetResult.error) return null; // console.log("make this alert!");
+                if (assetResult.error) {
+                    reportErrorWithToast(
+                        assetResult.error,
+                        "Failed to get asset",
+                        "swap.store.ts initializeApp getAsset :305"
+                    );
+                    return null;
+                }
                 return assetResult.data;
             }
             try {
@@ -274,13 +317,27 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 const assetResult = await catchError(() =>
                     client.assets.getExactAsset(tokenAddress)
                 );
-                if (assetResult.error) return null; // console.log("make this alert!");
+                if (assetResult.error) {
+                    reportErrorWithToast(
+                        assetResult.error,
+                        "Failed to get asset",
+                        "swap.store.ts initializeApp getAsset :320"
+                    );
+                    return null;
+                }
                 return assetResult.data;
             } catch {
                 const assetResult = await catchError(() =>
                     client.assets.getExactAsset(fallback)
                 );
-                if (assetResult.error) return null; // console.log("make this alert!");
+                if (assetResult.error) {
+                    reportErrorWithToast(
+                        assetResult.error,
+                        "Failed to get asset",
+                        "swap.store.ts initializeApp getAsset :333"
+                    );
+                    return null;
+                }
                 return assetResult.data;
             }
         };
@@ -292,7 +349,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             const ratesResult = await catchError(() =>
                 client.tonapi.getAssetsRates([token.address])
             );
-            if (ratesResult.error) return null; // console.log("make this alert!");
+            if (ratesResult.error) {
+                reportErrorWithToast(
+                    ratesResult.error,
+                    "Failed to get asset rates",
+                    "swap.store.ts initializeApp getRates :352"
+                );
+                return null;
+            }
             const rates = ratesResult.data;
             return rates.get(token.address) ?? { USD: 0 };
         };
@@ -316,8 +380,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                         slippage === "auto" ? undefined : slippage
                     )
                 );
-                if (onePayRouteResult.error)
-                    return console.log("make this alert!");
+                if (onePayRouteResult.error) {
+                    reportErrorWithToast(
+                        onePayRouteResult.error,
+                        "Failed to get one pay route",
+                        "swap.store.ts initializeApp findBestRoute :383"
+                    );
+                    return;
+                }
                 onePayRoute = onePayRouteResult.data;
             }
 
@@ -326,8 +396,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 const pinnedTokensResult = await catchError(() =>
                     client.assets.getAssets(pin_tokens)
                 );
-                if (pinnedTokensResult.error)
-                    return console.log("make this alert!");
+                if (pinnedTokensResult.error) {
+                    reportErrorWithToast(
+                        pinnedTokensResult.error,
+                        "Failed to get pinned tokens",
+                        "swap.store.ts initializeApp getAssets :399"
+                    );
+                    return;
+                }
                 pinnedTokens = pinnedTokensResult.data;
             }
 
@@ -357,7 +433,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 slippage === "auto" ? undefined : slippage
             )
         );
-        if (bestRouteResult.error) return console.log("make this alert!");
+        if (bestRouteResult.error) {
+            reportErrorWithToast(
+                bestRouteResult.error,
+                "Failed to get best route",
+                "swap.store.ts refetchBestRoute findBestRoute :436"
+            );
+            return;
+        }
         const bestRoute = bestRouteResult.data;
         // TODO: Handle error properly
         if (!bestRoute) throw new Error("failed to get best route");

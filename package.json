@@ -113,6 +113,7 @@
         "@r2wc/react-to-web-component": "^2.0.3",
         "@tonconnect/ui-react": "^2.0.9",
         "@uidotdev/usehooks": "^2.4.1",
+        "axios": "^1.7.7",
         "framer-motion": "^11.11.2",
         "lodash": "^4.17.21",
         "react-error-boundary": "^4.1.2",

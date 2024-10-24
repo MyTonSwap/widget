@@ -42,6 +42,7 @@ export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
             set({ options: newSchema, userOptions: option });
         },
         setTonConnectInstance: (instance) => {
+            if (get().tonConnectInstance) return;
             set({ tonConnectInstance: instance });
         },
     })

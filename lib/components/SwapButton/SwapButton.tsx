@@ -1,5 +1,4 @@
 import { useThemeStore } from "../../store/theme.store";
-import { useTonConnectModal, useTonWallet } from "@tonconnect/ui-react";
 import { useWalletStore } from "../../store/wallet.store";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import { AnimatePresence, motion } from "framer-motion";
@@ -18,11 +17,12 @@ import {
 } from "../../constants";
 import { useLongPress } from "@uidotdev/usehooks";
 import toast from "react-hot-toast";
+import { useOptionsStore } from "../../store/options.store";
 
 const SwapButton = () => {
-    const { open } = useTonConnectModal();
+    const { tonConnectInstance } = useOptionsStore();
     const { colors } = useThemeStore();
-    const wallet = useTonWallet();
+
     const isDesktop = useMediaQuery("(min-width: 768px)");
     const { balance } = useWalletStore();
     const { pay_amount, pay_token, bestRoute, swapModal, receive_token } =
@@ -30,7 +30,7 @@ const SwapButton = () => {
 
     const [confirmModal, setConfirmModal] = useState(false);
     const getSwapText = () => {
-        if (!wallet) return "Connect Wallet";
+        if (!tonConnectInstance?.wallet) return "Connect Wallet";
         if (!receive_token || !pay_token) return "Choose a token";
         if (pay_amount === 0n) return "Enter an amount";
         if (bestRoute && !bestRoute.pool_data.status)
@@ -42,7 +42,7 @@ const SwapButton = () => {
     };
 
     const isButtonDisabled = () => {
-        if (!wallet) return false;
+        if (!tonConnectInstance?.wallet) return false;
         if (!pay_amount || !pay_token) return true;
         if (bestRoute && !bestRoute.pool_data.status) return true;
         if (pay_amount > Number(balance.get(pay_token!.address)?.balance ?? 0))
@@ -55,8 +55,8 @@ const SwapButton = () => {
     const buttonDisabled = isButtonDisabled();
 
     const handleSwapClick = () => {
-        if (!wallet) {
-            open();
+        if (!tonConnectInstance?.wallet) {
+            tonConnectInstance?.openModal();
         } else {
             setConfirmModal(true);
         }

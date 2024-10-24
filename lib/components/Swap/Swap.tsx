@@ -4,11 +4,7 @@ import SwapCard from "../SwapCard/SwapCard";
 import SwapDetails from "../SwapDetails/SwapDetails";
 import clsx from "clsx";
 import { ColorTheme, useThemeStore } from "../../store/theme.store";
-import {
-    ITonConnect,
-    TonConnectUIProvider,
-    useTonWallet,
-} from "@tonconnect/ui-react";
+import { TonConnectUI, useTonWallet } from "@tonconnect/ui-react";
 import { useOptionsStore, SwapOptions } from "../../store/options.store";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import { useWalletStore } from "../../store/wallet.store";
@@ -16,17 +12,10 @@ import SwapButton from "../SwapButton/SwapButton";
 import "./Swap.scss";
 import { ErrorBoundary } from "react-error-boundary";
 import { Toaster } from "react-hot-toast";
-type SwapProps = {
+export type SwapProps = {
     theme?: ColorTheme;
     options?: SwapOptions;
-} & (
-    | { connector: ITonConnect; manifestUrl?: never }
-    | { connector?: never; manifestUrl: string }
-);
-
-type SwapComponentProps = {
-    theme?: ColorTheme;
-    options?: SwapOptions;
+    tonConnectInstance: TonConnectUI;
 };
 
 // declare telegram in window
@@ -40,11 +29,18 @@ declare global {
     }
 }
 
-export const SwapComponent: FC<SwapComponentProps> = ({ theme, options }) => {
+export const SwapComponent: FC<SwapProps> = ({
+    theme,
+    options,
+    tonConnectInstance,
+}) => {
     const { colors, setTheme } = useThemeStore();
-    const { setOptions } = useOptionsStore();
+    const { setOptions, setTonConnectInstance } = useOptionsStore();
     if (theme) {
         setTheme(theme);
+    }
+    if (tonConnectInstance) {
+        setTonConnectInstance(tonConnectInstance);
     }
     if (options) {
         setOptions(options);
@@ -114,7 +110,11 @@ export const SwapComponent: FC<SwapComponentProps> = ({ theme, options }) => {
                             style={{ color: colors.text_black }}
                         >
                             Service provided by{" "}
-                            <a href="https://mytonswap.com" target="_blank">
+                            <a
+                                href="https://mytonswap.com"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
                                 MyTonSwap
                             </a>
                         </div>
@@ -127,18 +127,6 @@ export const SwapComponent: FC<SwapComponentProps> = ({ theme, options }) => {
     );
 };
 
-export const Swap: FC<SwapProps> = ({
-    connector,
-    manifestUrl,
-    ...restProps
-}) => {
-    return (
-        <TonConnectUIProvider
-            {...(connector
-                ? { connector: connector }
-                : { manifestUrl: manifestUrl })}
-        >
-            <SwapComponent {...restProps} />
-        </TonConnectUIProvider>
-    );
+export const Swap: FC<SwapProps> = ({ ...restProps }) => {
+    return <SwapComponent {...restProps} />;
 };

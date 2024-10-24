@@ -6,9 +6,9 @@ import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import SwapKeyValue from "../SwapDetails/SwapKeyValue";
 import formatNumber from "../../utils/formatNum";
 import swap from "../../utils/swap";
-import { useTonConnectUI } from "@tonconnect/ui-react";
 import { FC } from "react";
 import "./ConfirmationModal.scss";
+import { useOptionsStore } from "../../store/options.store";
 type ConfirmationModalProps = {
     setConfirmModal: (state: boolean) => void;
 };
@@ -17,10 +17,10 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
     const handleConfirmClose = () => {
         setConfirmModal(false);
     };
-    const [tonConnect, setOptions] = useTonConnectUI();
-    setOptions({
-        actionsConfiguration: { modals: [] },
-    });
+    const { tonConnectInstance } = useOptionsStore();
+    // tonConnectInstance?.uiOptions = {
+    //     actionsConfiguration: { modals: [] },
+    // }
 
     const { colors } = useThemeStore();
     const {
@@ -33,9 +33,11 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
         setModalState,
     } = useSwapStore();
     const handleConfirmSwap = () => {
-        swap(tonConnect, bestRoute!);
-        setConfirmModal(false);
-        setModalState(ModalState.WAITING);
+        if (tonConnectInstance?.wallet) {
+            swap(tonConnectInstance, bestRoute!);
+            setConfirmModal(false);
+            setModalState(ModalState.WAITING);
+        }
     };
     return (
         <div className="confirm-modal-container">

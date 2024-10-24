@@ -8,7 +8,7 @@ import shortAddress from "../../utils/shortAddress";
 import { FaCheck, FaCopy } from "react-icons/fa6";
 import { useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
-import { useTonConnectUI } from "@tonconnect/ui-react";
+// import { useTonConnectUI } from "@tonconnect/ui-react";
 
 const Wallet = () => {
     // make function and state for copy to clipboard address button
@@ -28,9 +28,9 @@ const Wallet = () => {
     };
 
     const { wallet, balance, disconnect } = useWalletStore();
-    const [tc] = useTonConnectUI();
+    // const [tc] = useTonConnectUI();
     const handleDisconnect = async () => {
-        await tc.disconnect();
+        // await tc.disconnect();
         disconnect();
     };
     const { colors } = useThemeStore();

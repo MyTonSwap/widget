@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { defaultsDeep } from "lodash";
+import { TonConnectUI } from "@tonconnect/ui-react";
 
 export type SwapOptions = {
     default_pay_token?: string;
@@ -14,14 +15,17 @@ export type SwapOptions = {
 type SwapOptionsStates = {
     options: SwapOptions;
     userOptions: SwapOptions;
+    tonConnectInstance: TonConnectUI | null;
 };
 
 type SwapOptionsActions = {
     setOptions: (options: SwapOptions) => void;
+    setTonConnectInstance: (instance: TonConnectUI) => void;
 };
 
 export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
     (set, get) => ({
+        tonConnectInstance: null,
         options: {
             ui_preferences: {
                 disable_provided_text: false,
@@ -36,6 +40,9 @@ export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
                 options
             ) satisfies SwapOptions;
             set({ options: newSchema, userOptions: option });
+        },
+        setTonConnectInstance: (instance) => {
+            set({ tonConnectInstance: instance });
         },
     })
 );

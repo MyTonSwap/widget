@@ -4,7 +4,7 @@ import SwapCard from "../SwapCard/SwapCard";
 import SwapDetails from "../SwapDetails/SwapDetails";
 import clsx from "clsx";
 import { ColorTheme, useThemeStore } from "../../store/theme.store";
-import { TonConnectUI, useTonWallet } from "@tonconnect/ui-react";
+import { TonConnectUI } from "@tonconnect/ui-react";
 import { useOptionsStore, SwapOptions } from "../../store/options.store";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import { useWalletStore } from "../../store/wallet.store";
@@ -45,7 +45,6 @@ export const SwapComponent: FC<SwapProps> = ({
     if (options) {
         setOptions(options);
     }
-    const wallet = useTonWallet();
     const {
         setWallet,
         refetch,
@@ -53,12 +52,12 @@ export const SwapComponent: FC<SwapProps> = ({
         disconnect,
     } = useWalletStore();
     useEffect(() => {
-        if (wallet) {
-            setWallet(wallet);
-        } else if (stateWallet && !wallet) {
+        if (tonConnectInstance.wallet) {
+            setWallet(tonConnectInstance.wallet);
+        } else if (stateWallet && !tonConnectInstance.wallet) {
             disconnect();
         }
-    }, [setWallet, wallet]);
+    }, [setWallet, tonConnectInstance.wallet]);
 
     const { initializeApp, receive_token, refetchBestRoute, swapModal } =
         useSwapStore();

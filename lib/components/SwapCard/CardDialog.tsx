@@ -113,21 +113,26 @@ const CardDialog: FC<CardDialogProps> = ({
         }
     };
     useEffect(() => {
-        onNextPage(page);
-    }, []);
+        if (pay_token && type === "pay") {
+            return;
+        }
 
-    useEffect(() => {
         setPage(1);
         setHasMore(true);
         setReceiveAssets([]);
         onNextPage(1);
-    }, [pay_token]);
-    useEffect(() => {
-        setPage(1);
-        setHasMore(true);
-        setReceiveAssets([]);
-        onNextPage(1);
-    }, [searchInput]);
+    }, [pay_token, searchInput]);
+
+    // useEffect(() => {
+    //     setPage(1);
+    //     setHasMore(true);
+    //     setReceiveAssets([]);
+    // }, []);
+    // useEffect(() => {
+    //     setPage(1);
+    //     setHasMore(true);
+    //     setReceiveAssets([]);
+    // }, [searchInput]);
 
     const assetList = type === "pay" ? assets : receiveAssets;
 

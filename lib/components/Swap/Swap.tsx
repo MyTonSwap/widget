@@ -57,7 +57,7 @@ export const SwapComponent: FC<SwapProps> = ({
         } else if (stateWallet && !tonConnectInstance.wallet) {
             disconnect();
         }
-    }, [setWallet, tonConnectInstance.wallet]);
+    }, []);
 
     const { initializeApp, receive_token, refetchBestRoute, swapModal } =
         useSwapStore();

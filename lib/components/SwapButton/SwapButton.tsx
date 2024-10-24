@@ -55,7 +55,7 @@ const SwapButton = () => {
     const buttonDisabled = isButtonDisabled();
 
     const handleSwapClick = () => {
-        if (!tonConnectInstance?.wallet) {
+        if (tonConnectInstance && !tonConnectInstance?.wallet) {
             tonConnectInstance?.openModal();
         } else {
             setConfirmModal(true);

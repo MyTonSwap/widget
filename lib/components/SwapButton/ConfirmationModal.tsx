@@ -6,7 +6,7 @@ import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import SwapKeyValue from "../SwapDetails/SwapKeyValue";
 import formatNumber from "../../utils/formatNum";
 import swap from "../../utils/swap";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import "./ConfirmationModal.scss";
 import { useOptionsStore } from "../../store/options.store";
 type ConfirmationModalProps = {
@@ -18,9 +18,13 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
         setConfirmModal(false);
     };
     const { tonConnectInstance } = useOptionsStore();
-    // tonConnectInstance?.uiOptions = {
-    //     actionsConfiguration: { modals: [] },
-    // }
+    useEffect(() => {
+        if (tonConnectInstance) {
+            tonConnectInstance.uiOptions = {
+                actionsConfiguration: { modals: [] },
+            };
+        }
+    }, [tonConnectInstance]);
 
     const { colors } = useThemeStore();
     const {

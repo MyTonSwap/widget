@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@mytonswap/sdk':
-        specifier: ^0.0.18
-        version: 1.0.6(@dedust/sdk@0.8.7(@ton/core@0.59.0(@ton/crypto@3.3.0))(@tonconnect/sdk@3.0.5)(axios@1.7.7))(@ston-fi/sdk@2.0.0-rc.5(@ston-fi/api@0.7.0)(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)))(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))(typescript@5.6.2)
+        specifier: ^1.0.8
+        version: 1.0.8(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))(typescript@5.6.2)
       '@r2wc/react-to-web-component':
         specifier: ^2.0.3
         version: 2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ton/ton':
-        specifier: ^15.1.0
+        specifier: ^15.0.0
         version: 15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)
       '@tonconnect/ui-react':
         specifier: ^2.0.9
@@ -272,13 +272,6 @@ packages:
   '@chromatic-com/storybook@1.9.0':
     resolution: {integrity: sha512-vYQ+TcfktEE3GHnLZXHCzXF/sN9dw+KivH8a5cmPyd9YtQs7fZtHrEgsIjWpYycXiweKMo1Lm1RZsjxk8DH3rA==}
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
-
-  '@dedust/sdk@0.8.7':
-    resolution: {integrity: sha512-xW7bcdIUD09t9h5iUA+jCR0qLOnjvloYXNgEJbajPmIdXrCal8R+UoLE26a/5as0h6B2DmuC4peSYMoiHDFSlg==}
-    peerDependencies:
-      '@ton/core': '>=0.52.0'
-      '@tonconnect/sdk': '>=2.1.2'
-      axios: '>=1.5.0'
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -665,11 +658,9 @@ packages:
   '@microsoft/tsdoc@0.15.0':
     resolution: {integrity: sha512-HZpPoABogPvjeJOdzCOSJsXeL/SMCBgBZMVC3X3d7YYp2gf31MfxhUoYUNwf1ERPJOnQc0wkFn9trqI6ZEdZuA==}
 
-  '@mytonswap/sdk@1.0.6':
-    resolution: {integrity: sha512-3lVuf+QR+9stcS4ZgPAWUNgZsex5VH5RePqxf/n1W/DTBjPkR8f2xjrA8wnyrqfoBj7jTTQ1XyhN/VcIEVPawQ==}
+  '@mytonswap/sdk@1.0.8':
+    resolution: {integrity: sha512-f+1JRg2/Gyytj+yTsitAa/zqJ+tqlfHl8MbHn6Baccsx4Ya0CVV6Iwa1B5eyZiDqIu/yDXV/H0FQiRAJqT6w7g==}
     peerDependencies:
-      '@dedust/sdk': ^0.8.7
-      '@ston-fi/sdk': 2.0.0-rc.5
       '@ton/ton': ^15.0.0
       typescript: ^5.0.0
 
@@ -893,15 +884,6 @@ packages:
 
   '@rushstack/ts-command-line@4.22.6':
     resolution: {integrity: sha512-QSRqHT/IfoC5nk9zn6+fgyqOPXHME0BfchII9EUPR19pocsNp/xSbeBCbD3PIR2Lg+Q5qk7OFqk1VhWPMdKHJg==}
-
-  '@ston-fi/api@0.7.0':
-    resolution: {integrity: sha512-sLQ2JFWczUIWfyQ/RU3aZeVElHxgg6+Vn2PiNaF8eqxgk3BfsFy3DZ/E9J6WGdqSdsLjv50kKHvw6CiqmLAp1w==}
-
-  '@ston-fi/sdk@2.0.0-rc.5':
-    resolution: {integrity: sha512-dcTnwpNjKLnJkQM9erdzFUx1/Avr9NeBx7aJarLBpmYDmgWRLPOfum2SaXpZMdQjRxTOErWx1tAgXY5/KshclA==}
-    peerDependencies:
-      '@ston-fi/api': ^0.7.0
-      '@ton/ton': ^13.9.0 || ^14.0.0
 
   '@storybook/addon-actions@8.3.5':
     resolution: {integrity: sha512-t8D5oo+4XfD+F8091wLa2y/CDd/W2lExCeol5Vm1tp5saO+u6f2/d7iykLhTowWV84Uohi3D073uFeyTAlGebg==}
@@ -1723,14 +1705,6 @@ packages:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
 
-  camelcase-keys@9.1.2:
-    resolution: {integrity: sha512-nFhquwz7p3nWSHeVYoIkefNPdR2Rt4EuKs9/gaqx3DhJL6HkNHIEcsH+D6N4NvW/MHxc4TT+rp0rc4K7E7x9hw==}
-    engines: {node: '>=16'}
-
-  camelcase@8.0.0:
-    resolution: {integrity: sha512-8WB3Jcas3swSvjIeA2yvCJ+Miyz5l1ZmB6HFb9R1317dt9LCQoswg/BGrmAmkWVEszSrrg4RwmO46qIm2OEnSA==}
-    engines: {node: '>=16'}
-
   caniuse-lite@1.0.30001667:
     resolution: {integrity: sha512-7LTwJjcRkzKFmtqGsibMeuXmvFDfZq/nzIjnmgCGzKKRVzjD72selLDK1oPF/Oxzmt4fNcPvTDvGqSDG4tCALw==}
 
@@ -1904,14 +1878,6 @@ packages:
       supports-color:
         optional: true
 
-  decamelize-keys@2.0.1:
-    resolution: {integrity: sha512-nrNeSCtU2gV3Apcmn/EZ+aR20zKDuNDStV67jPiupokD3sOAFeMzslLMCFdKv1sPqzwoe5ZUhsSW9IAVgKSL/Q==}
-    engines: {node: '>=14.16'}
-
-  decamelize@6.0.0:
-    resolution: {integrity: sha512-Fv96DCsdOgB6mdGl67MT5JaTNKRzrzill5OH5s8bjYJXVlcXyPYGyPsUkWyGV5p1TXI5esYIYMMeDJL0hEIwaA==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
   deep-eql@5.0.2:
     resolution: {integrity: sha512-h5k/5U50IJJFpzfL6nO9jaaumfjO/f2NjK/oYB2Djzm4p9L+3T9qWpZqZ2hAbLPuuYq9wrU08WQyBTL5GbPk5Q==}
     engines: {node: '>=6'}
@@ -1949,9 +1915,6 @@ packages:
 
   des.js@1.1.0:
     resolution: {integrity: sha512-r17GxjhUCjSRy8aiJpr8/UadFIzMzJGexI3Nmz4ADi9LYSFx4gTBp80+NaX/YsXWWLhpZ7v/v/ubEc/bCNfKwg==}
-
-  destr@2.0.3:
-    resolution: {integrity: sha512-2N3BOUU4gYMpTP24s5rF5iP7BDr7uNTCs4ozw3kf/eKfvWSIu93GEBi5m427YoyJoeOzQ5smuu4nNAPGb8idSQ==}
 
   destroy@1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
@@ -2687,14 +2650,6 @@ packages:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
 
-  map-obj@4.3.0:
-    resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
-    engines: {node: '>=8'}
-
-  map-obj@5.0.0:
-    resolution: {integrity: sha512-2L3MIgJynYrZ3TYMriLDLWocz15okFakV6J12HXvMXDHui2x/zgChzg1u9mFFGbbGWE+GsLpQByt4POb9Or+uA==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-
   map-or-similar@1.5.0:
     resolution: {integrity: sha512-0aF7ZmVon1igznGI4VS30yugpduQW3y3GkcgGJOp7d8x8QrizhigUxjI/m2UojsXXto+jLAH3KSz+xOJTiORjg==}
 
@@ -2810,9 +2765,6 @@ packages:
   node-addon-api@7.1.1:
     resolution: {integrity: sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==}
 
-  node-fetch-native@1.6.4:
-    resolution: {integrity: sha512-IhOigYzAKHd244OC0JIMIUrjzctirCmPkaIfhDeGcEETWof5zKYUW7e7MYvChGWh/4CJeXEgsRyGzuF334rOOQ==}
-
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
     engines: {node: 4.x || >=6.0.0}
@@ -2864,9 +2816,6 @@ packages:
   object.assign@4.1.5:
     resolution: {integrity: sha512-byy+U7gp+FVwmyzKPYhW2h5l3crpmGsxl7X2s8y43IgxvG4g3QZ6CffDtsNQy1WsmZpQbO+ybo0AlW7TY6DcBQ==}
     engines: {node: '>= 0.4'}
-
-  ofetch@1.3.3:
-    resolution: {integrity: sha512-s1ZCMmQWXy4b5K/TW9i/DtiN8Ku+xCiHcjQ6/J/nDdssirrQNOoB165Zu8EqLMA2lln1JUth9a0aW9Ap2ctrUg==}
 
   on-finished@2.4.1:
     resolution: {integrity: sha512-oVlzkg3ENAhCk2zdv7IJwd/QUD4z2RxRwpkcGY8psCVcCYZNq4wYnVWALHM+brtuJjePWiYF/ClmuDr8Ch5+kg==}
@@ -3113,10 +3062,6 @@ packages:
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
-
-  quick-lru@6.1.2:
-    resolution: {integrity: sha512-AAFUA5O1d83pIHEhJwWCq/RQcRukCkn/NSm2QsTEMle5f2hP0ChI2+3Xb051PZCkLryI/Ir1MVKviT2FIloaTQ==}
-    engines: {node: '>=12'}
 
   randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
@@ -3591,14 +3536,6 @@ packages:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
 
-  type-fest@3.13.1:
-    resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
-    engines: {node: '>=14.16'}
-
-  type-fest@4.26.1:
-    resolution: {integrity: sha512-yOGpmOAL7CkKe/91I5O3gPICmJNLJ1G4zFYVAsRHg7M64biSnPtRj0WNQt++bRkjYOqjWXrhnUw1utzmVErAdg==}
-    engines: {node: '>=16'}
-
   type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
     engines: {node: '>= 0.6'}
@@ -4004,12 +3941,6 @@ snapshots:
       - '@chromatic-com/playwright'
       - react
 
-  '@dedust/sdk@0.8.7(@ton/core@0.59.0(@ton/crypto@3.3.0))(@tonconnect/sdk@3.0.5)(axios@1.7.7)':
-    dependencies:
-      '@ton/core': 0.59.0(@ton/crypto@3.3.0)
-      '@tonconnect/sdk': 3.0.5
-      axios: 1.7.7
-
   '@esbuild/aix-ppc64@0.21.5':
     optional: true
 
@@ -4280,11 +4211,9 @@ snapshots:
 
   '@microsoft/tsdoc@0.15.0': {}
 
-  '@mytonswap/sdk@1.0.6(@dedust/sdk@0.8.7(@ton/core@0.59.0(@ton/crypto@3.3.0))(@tonconnect/sdk@3.0.5)(axios@1.7.7))(@ston-fi/sdk@2.0.0-rc.5(@ston-fi/api@0.7.0)(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)))(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))(typescript@5.6.2)':
+  '@mytonswap/sdk@1.0.8(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))(typescript@5.6.2)':
     dependencies:
-      '@dedust/sdk': 0.8.7(@ton/core@0.59.0(@ton/crypto@3.3.0))(@tonconnect/sdk@3.0.5)(axios@1.7.7)
       '@lifeomic/attempt': 3.1.0
-      '@ston-fi/sdk': 2.0.0-rc.5(@ston-fi/api@0.7.0)(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))
       '@ton/ton': 15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)
       axios: 1.7.7
       lodash: 4.17.21
@@ -4468,17 +4397,6 @@ snapshots:
       string-argv: 0.3.2
     transitivePeerDependencies:
       - '@types/node'
-
-  '@ston-fi/api@0.7.0':
-    dependencies:
-      camelcase-keys: 9.1.2
-      decamelize-keys: 2.0.1
-      ofetch: 1.3.3
-
-  '@ston-fi/sdk@2.0.0-rc.5(@ston-fi/api@0.7.0)(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))':
-    dependencies:
-      '@ston-fi/api': 0.7.0
-      '@ton/ton': 15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)
 
   '@storybook/addon-actions@8.3.5(storybook@8.3.5)':
     dependencies:
@@ -5539,15 +5457,6 @@ snapshots:
 
   camelcase-css@2.0.1: {}
 
-  camelcase-keys@9.1.2:
-    dependencies:
-      camelcase: 8.0.0
-      map-obj: 5.0.0
-      quick-lru: 6.1.2
-      type-fest: 4.26.1
-
-  camelcase@8.0.0: {}
-
   caniuse-lite@1.0.30001667: {}
 
   chai@5.1.1:
@@ -5713,15 +5622,6 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
-  decamelize-keys@2.0.1:
-    dependencies:
-      decamelize: 6.0.0
-      map-obj: 4.3.0
-      quick-lru: 6.1.2
-      type-fest: 3.13.1
-
-  decamelize@6.0.0: {}
-
   deep-eql@5.0.2: {}
 
   deep-is@0.1.4: {}
@@ -5752,8 +5652,6 @@ snapshots:
     dependencies:
       inherits: 2.0.4
       minimalistic-assert: 1.0.1
-
-  destr@2.0.3: {}
 
   destroy@1.2.0: {}
 
@@ -6521,10 +6419,6 @@ snapshots:
     dependencies:
       semver: 6.3.1
 
-  map-obj@4.3.0: {}
-
-  map-obj@5.0.0: {}
-
   map-or-similar@1.5.0: {}
 
   markdown-to-jsx@7.5.0(react@18.3.1):
@@ -6620,8 +6514,6 @@ snapshots:
 
   node-addon-api@7.1.1: {}
 
-  node-fetch-native@1.6.4: {}
-
   node-fetch@2.7.0:
     dependencies:
       whatwg-url: 5.0.0
@@ -6685,12 +6577,6 @@ snapshots:
       define-properties: 1.2.1
       has-symbols: 1.0.3
       object-keys: 1.1.1
-
-  ofetch@1.3.3:
-    dependencies:
-      destr: 2.0.3
-      node-fetch-native: 1.6.4
-      ufo: 1.5.4
 
   on-finished@2.4.1:
     dependencies:
@@ -6914,8 +6800,6 @@ snapshots:
   querystring-es3@0.2.1: {}
 
   queue-microtask@1.2.3: {}
-
-  quick-lru@6.1.2: {}
 
   randombytes@2.1.0:
     dependencies:
@@ -7453,10 +7337,6 @@ snapshots:
       prelude-ls: 1.2.1
 
   type-fest@2.19.0: {}
-
-  type-fest@3.13.1: {}
-
-  type-fest@4.26.1: {}
 
   type-is@1.6.18:
     dependencies:

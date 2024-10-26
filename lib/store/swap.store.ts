@@ -6,6 +6,7 @@ import { address } from "@ton/ton";
 import catchError from "../utils/catchErrors";
 import { WIDGET_VERSION } from "../constants";
 import { reportErrorWithToast } from "../services/errorAnalytics";
+import { useEventsStore } from "./events.store";
 
 export enum ModalState {
     NONE = "NONE",
@@ -89,6 +90,27 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     transactionBestRoute: null,
     pinnedTokens: null,
     setTransactionHash(hash) {
+        const {
+            pay_token,
+            receive_token,
+            bestRoute,
+            pay_amount,
+            pay_rate,
+            receive_rate,
+        } = get();
+        useEventsStore.getState().onSwap({
+            type: "start",
+            data: {
+                pay: pay_token!,
+                receive: receive_token!,
+                pay_amount: pay_amount.toString(),
+                receive_amount: bestRoute?.pool_data.receive.toString() ?? "0",
+                pay_rate: pay_rate?.USD ?? 0,
+                receive_rate: receive_rate?.USD ?? 0,
+                dex: bestRoute!.selected_pool.dex,
+                hash,
+            },
+        });
         set(() => ({
             transactionHash: hash,
             swapModal: ModalState.IN_PROGRESS,
@@ -108,7 +130,9 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     changeDirection() {
         const { receive_token, receive_rate } = get();
         if (!receive_token) return;
-
+        useEventsStore
+            .getState()
+            .onTokenSelect({ type: "pay", asset: receive_token });
         set(() => ({
             pay_token: receive_token,
             pay_rate: receive_rate,
@@ -157,6 +181,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         set(() => ({ isLoading }));
     },
     setPayToken: async (token) => {
+        useEventsStore.getState().onTokenSelect({ type: "pay", asset: token });
         const { client } = get();
         if (!token) return;
         const result = await catchError(() =>
@@ -207,6 +232,9 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         set(() => ({ bestRoute, isFindingBestRoute: false }));
     },
     setReceiveToken: async (token) => {
+        useEventsStore
+            .getState()
+            .onTokenSelect({ type: "receive", asset: token });
         const { client, pay_token, pay_amount, slippage } = get();
         if (!token || token.address === pay_token?.address) return;
         const ratesResult = await catchError(() =>
@@ -406,7 +434,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 }
                 pinnedTokens = pinnedTokensResult.data;
             }
-
+            useEventsStore
+                .getState()
+                .onTokenSelect({ type: "pay", asset: payToken });
+            if (receiveToken) {
+                useEventsStore
+                    .getState()
+                    .onTokenSelect({ type: "receive", asset: receiveToken });
+            }
             set({
                 pay_token: payToken,
                 pay_rate: payRate,

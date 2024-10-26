@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 import { Swap } from "./Swap";
 import { TonConnectUI } from "@tonconnect/ui-react";
@@ -12,7 +13,12 @@ const meta: Meta<typeof Swap> = {
         (Story, args) => {
             return (
                 <Story
-                    args={{ ...args.args, tonConnectInstance: tonConnectUi }}
+                    args={{
+                        ...args.args,
+                        tonConnectInstance: tonConnectUi,
+                        onTokenSelect: action("onTokenSelect"),
+                        onSwap: action("onSwap"),
+                    }}
                 />
             );
         },

@@ -12,10 +12,19 @@ import SwapButton from "../SwapButton/SwapButton";
 import "./Swap.scss";
 import { ErrorBoundary } from "react-error-boundary";
 import { Toaster } from "react-hot-toast";
+
+import {
+    onSwap,
+    onTokenSelect,
+    useEventsStore,
+} from "../../store/events.store";
+
 export type SwapProps = {
     theme?: ColorTheme;
     options?: SwapOptions;
     tonConnectInstance: TonConnectUI;
+    onTokenSelect?: ({ type, asset }: onTokenSelect) => void;
+    onSwap?: ({ type, data }: onSwap) => void;
 };
 
 // declare telegram in window
@@ -33,6 +42,8 @@ export const SwapComponent: FC<SwapProps> = ({
     theme,
     options,
     tonConnectInstance,
+    onTokenSelect,
+    onSwap,
 }) => {
     const { colors, setTheme } = useThemeStore();
     const { setOptions, setTonConnectInstance } = useOptionsStore();
@@ -66,6 +77,7 @@ export const SwapComponent: FC<SwapProps> = ({
         }
     }, [tonConnectInstance]);
 
+    const { setOnTokenSelect, setOnSwap } = useEventsStore();
     const { initializeApp, receive_token, refetchBestRoute, swapModal } =
         useSwapStore();
     useEffect(() => {
@@ -91,6 +103,13 @@ export const SwapComponent: FC<SwapProps> = ({
                 );
             }
         }
+        if (onTokenSelect) {
+            setOnTokenSelect(onTokenSelect);
+        }
+        if (onSwap) {
+            setOnSwap(onSwap);
+        }
+
         return () => {
             clearInterval(refetchInterval);
         };

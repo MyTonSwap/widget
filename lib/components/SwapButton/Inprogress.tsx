@@ -7,6 +7,7 @@ import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import formatNumber from "../../utils/formatNum";
 import { ImSpinner8 } from "react-icons/im";
 import "./Inprogress.scss";
+import { useEventsStore } from "../../store/events.store";
 const Inprogress = () => {
     const {
         transactionHash,
@@ -18,7 +19,9 @@ const Inprogress = () => {
         receive_token,
         bestRoute,
         receive_rate,
+        pay_rate,
     } = useSwapStore();
+    const { onSwap } = useEventsStore();
     const { colors } = useThemeStore();
     useEffect(() => {
         const checkForTransaction = async () => {
@@ -28,8 +31,36 @@ const Inprogress = () => {
                     10000
                 );
                 if (event) {
+                    onSwap({
+                        type: "success",
+                        data: {
+                            pay: pay_token!,
+                            receive: receive_token!,
+                            pay_amount: pay_amount.toString(),
+                            receive_amount:
+                                bestRoute!.pool_data.receive_show!.toString(),
+                            pay_rate: pay_rate?.USD ?? 0,
+                            receive_rate: receive_rate?.USD ?? 0,
+                            dex: bestRoute!.selected_pool.dex,
+                            hash: transactionHash,
+                        },
+                    });
                     setModalState(ModalState.DONE);
                 } else {
+                    onSwap({
+                        type: "error",
+                        data: {
+                            pay: pay_token!,
+                            receive: receive_token!,
+                            pay_amount: pay_amount.toString(),
+                            receive_amount:
+                                bestRoute!.pool_data.receive_show!.toString(),
+                            pay_rate: pay_rate!.USD,
+                            receive_rate: receive_rate!.USD,
+                            dex: bestRoute!.selected_pool.dex,
+                            hash: transactionHash,
+                        },
+                    });
                     setErrorMessage({
                         errorTitle: "Transaction Failed!",
                         errorMessage:

@@ -39,6 +39,7 @@ export const SwapComponent: FC<SwapProps> = ({
     if (theme) {
         setTheme(theme);
     }
+    console.log(tonConnectInstance);
     if (tonConnectInstance) {
         setTonConnectInstance(tonConnectInstance);
     }
@@ -52,14 +53,16 @@ export const SwapComponent: FC<SwapProps> = ({
         disconnect,
     } = useWalletStore();
     useEffect(() => {
-        // tonConnectInstance.onStatusChange((wallet) => {
-        //     if (wallet) {
-        //         setWallet(wallet);
-        //     } else if (stateWallet && !wallet) {
-        //         disconnect();
-        //     }
-        // });
+        console.log(tonConnectInstance);
+        tonConnectInstance.onStatusChange((wallet) => {
+            if (wallet) {
+                console.log(wallet);
+            } else if (stateWallet && !wallet) {
+                disconnect();
+            }
+        });
         if (tonConnectInstance.wallet) {
+            console.log(tonConnectInstance.wallet);
             setWallet(tonConnectInstance.wallet);
         } else if (stateWallet && !tonConnectInstance.wallet) {
             disconnect();

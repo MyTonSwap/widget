@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Asset, BestRoute, MyTonSwapClient, Prices } from "@mytonswap/sdk";
+import { Asset, BestRoute, Dex, MyTonSwapClient, Prices } from "@mytonswap/sdk";
 import { toNano } from "@mytonswap/sdk";
 import { useOptionsStore } from "./options.store";
 import { address } from "@ton/ton";
@@ -107,7 +107,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 receive_amount: bestRoute?.pool_data.receive.toString() ?? "0",
                 pay_rate: pay_rate?.USD ?? 0,
                 receive_rate: receive_rate?.USD ?? 0,
-                dex: bestRoute!.selected_pool.dex,
+                dex: bestRoute!.selected_pool.dex as Dex,
                 hash,
             },
         });

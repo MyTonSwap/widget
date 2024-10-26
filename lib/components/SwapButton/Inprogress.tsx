@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import { IoClose } from "react-icons/io5";
 import { useThemeStore } from "../../store/theme.store";
-import { fromNano } from "@mytonswap/sdk";
+import { Dex, fromNano } from "@mytonswap/sdk";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import formatNumber from "../../utils/formatNum";
 import { ImSpinner8 } from "react-icons/im";
@@ -41,7 +41,7 @@ const Inprogress = () => {
                                 bestRoute!.pool_data.receive_show!.toString(),
                             pay_rate: pay_rate?.USD ?? 0,
                             receive_rate: receive_rate?.USD ?? 0,
-                            dex: bestRoute!.selected_pool.dex,
+                            dex: bestRoute!.selected_pool.dex as Dex,
                             hash: transactionHash,
                         },
                     });
@@ -57,7 +57,7 @@ const Inprogress = () => {
                                 bestRoute!.pool_data.receive_show!.toString(),
                             pay_rate: pay_rate!.USD,
                             receive_rate: receive_rate!.USD,
-                            dex: bestRoute!.selected_pool.dex,
+                            dex: bestRoute!.selected_pool.dex as Dex,
                             hash: transactionHash,
                         },
                     });

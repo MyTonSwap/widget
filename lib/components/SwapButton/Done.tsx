@@ -16,10 +16,12 @@ const Done = () => {
     return (
         <div className="done-container">
             <IoClose onClick={handleCloseModal} className=" close-icon" />
-            <div className="done-icon">
+            <div className="done-icon" style={{ color: colors.text_black }}>
                 <FaCircleCheck className="" style={{ color: colors.primary }} />
             </div>
-            <div className="done-text ">Transaction was successful</div>
+            <div className="done-text " style={{ color: colors.text_black }}>
+                Transaction was successful
+            </div>
             <div className="done-modal-images">
                 <div
                     className="pay-image"

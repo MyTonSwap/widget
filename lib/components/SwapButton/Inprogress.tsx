@@ -88,9 +88,11 @@ const Inprogress = () => {
                 </div>
             </div>
 
-            <div className="description">Transaction in progress</div>
-            <p>It may take while</p>
-            <div className="loading-icon">
+            <div className="description" style={{ color: colors.text_black }}>
+                Transaction in progress
+            </div>
+            <p style={{ color: colors.text_black }}>It may take while</p>
+            <div className="loading-icon" style={{ color: colors.text_black }}>
                 <ImSpinner8 className="animate-spin icon" />
             </div>
         </div>

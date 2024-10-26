@@ -123,7 +123,14 @@ export const SwapComponent: FC<SwapProps> = ({
                 </div>
             </div>
 
-            <Toaster />
+            <Toaster
+                toastOptions={{
+                    style: {
+                        background: colors.background,
+                        color: colors.text_black,
+                    },
+                }}
+            />
         </ErrorBoundary>
     );
 };

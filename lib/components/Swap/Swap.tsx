@@ -52,14 +52,19 @@ export const SwapComponent: FC<SwapProps> = ({
         disconnect,
     } = useWalletStore();
     useEffect(() => {
-        tonConnectInstance.onStatusChange((wallet) => {
-            if (wallet) {
-                setWallet(wallet);
-            } else if (stateWallet && !wallet) {
-                disconnect();
-            }
-        });
-    }, [tonConnectInstance.wallet]);
+        // tonConnectInstance.onStatusChange((wallet) => {
+        //     if (wallet) {
+        //         setWallet(wallet);
+        //     } else if (stateWallet && !wallet) {
+        //         disconnect();
+        //     }
+        // });
+        if (tonConnectInstance.wallet) {
+            setWallet(tonConnectInstance.wallet);
+        } else if (stateWallet && !tonConnectInstance.wallet) {
+            disconnect();
+        }
+    }, [tonConnectInstance]);
 
     const { initializeApp, receive_token, refetchBestRoute, swapModal } =
         useSwapStore();

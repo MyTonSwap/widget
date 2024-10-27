@@ -7,10 +7,10 @@
         left: 0;
         z-index: 9999999999999999999999999;
         overflow: hidden;
-        background-color: rgba(0, 0, 0, 0.1);
-
+        // background-color: rgba(0, 0, 0, 0.1);
         .card-dialog {
             position: fixed;
+
             width: 100%;
             max-height: 85dvh;
             min-height: 85dvh;
@@ -18,10 +18,12 @@
             display: flex;
             flex-direction: column;
             background-color: #fff;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
             overflow-y: auto;
+            bottom: 0;
+            left: 0;
 
             @media (min-width: 768px) {
                 width: 90%;

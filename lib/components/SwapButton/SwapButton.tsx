@@ -3,7 +3,6 @@ import { useWalletStore } from "../../store/wallet.store";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import { AnimatePresence, motion } from "framer-motion";
 import ErrorTonConnect from "./ErrorTonConnect";
-import { useState } from "react";
 import ConfirmationModal from "./ConfirmationModal";
 import WaitingForWallet from "./WaitingForWallet";
 import Inprogress from "./Inprogress";
@@ -25,10 +24,15 @@ const SwapButton = () => {
 
     const isDesktop = useMediaQuery("(min-width: 768px)");
     const { balance } = useWalletStore();
-    const { pay_amount, pay_token, bestRoute, swapModal, receive_token } =
-        useSwapStore();
+    const {
+        pay_amount,
+        pay_token,
+        bestRoute,
+        swapModal,
+        receive_token,
+        setModalState,
+    } = useSwapStore();
 
-    const [confirmModal, setConfirmModal] = useState(false);
     const getSwapText = () => {
         if (!tonConnectInstance?.wallet) return "Connect Wallet";
         if (!receive_token || !pay_token) return "Choose a token";
@@ -58,7 +62,7 @@ const SwapButton = () => {
         if (tonConnectInstance && !tonConnectInstance?.wallet) {
             tonConnectInstance?.openModal();
         } else {
-            setConfirmModal(true);
+            setModalState(ModalState.CONFIRM);
         }
     };
 
@@ -77,43 +81,42 @@ const SwapButton = () => {
     return (
         <>
             <AnimatePresence>
-                {bestRoute &&
-                    (confirmModal || swapModal !== ModalState.NONE) && (
+                {bestRoute && swapModal !== ModalState.NONE && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="modal-container"
+                    >
                         <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="modal-container"
+                            transition={{ ease: [0.6, -0.05, 0.01, 0.99] }}
+                            className="modal-container-inner"
+                            initial={modalAnimation.initial}
+                            animate={modalAnimation.animate}
+                            exit={modalAnimation.exit}
+                            style={{
+                                background: colors.background,
+                                borderColor: colors.border,
+                            }}
                         >
-                            <motion.div
-                                transition={{ ease: [0.6, -0.05, 0.01, 0.99] }}
-                                className="modal-container-inner"
-                                initial={modalAnimation.initial}
-                                animate={modalAnimation.animate}
-                                exit={modalAnimation.exit}
-                                style={{
-                                    background: colors.background,
-                                    borderColor: colors.border,
-                                }}
-                            >
-                                {confirmModal && (
-                                    <ConfirmationModal
-                                        setConfirmModal={setConfirmModal}
-                                    />
-                                )}
-                                {swapModal === ModalState.WAITING && (
-                                    <WaitingForWallet />
-                                )}
-                                {swapModal === ModalState.ERROR && (
-                                    <ErrorTonConnect />
-                                )}
-                                {swapModal === ModalState.IN_PROGRESS && (
-                                    <Inprogress />
-                                )}
-                                {swapModal === ModalState.DONE && <Done />}
-                            </motion.div>
+                            {swapModal === ModalState.CONFIRM && (
+                                <ConfirmationModal
+                                    setConfirmModal={setModalState}
+                                />
+                            )}
+                            {swapModal === ModalState.WAITING && (
+                                <WaitingForWallet />
+                            )}
+                            {swapModal === ModalState.ERROR && (
+                                <ErrorTonConnect />
+                            )}
+                            {swapModal === ModalState.IN_PROGRESS && (
+                                <Inprogress />
+                            )}
+                            {swapModal === ModalState.DONE && <Done />}
                         </motion.div>
-                    )}
+                    </motion.div>
+                )}
             </AnimatePresence>
             <button
                 className="swap-button"

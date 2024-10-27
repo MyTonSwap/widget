@@ -10,12 +10,12 @@ import { FC, useEffect } from "react";
 import "./ConfirmationModal.scss";
 import { useOptionsStore } from "../../store/options.store";
 type ConfirmationModalProps = {
-    setConfirmModal: (state: boolean) => void;
+    setConfirmModal: (state: ModalState) => void;
 };
 
 const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
     const handleConfirmClose = () => {
-        setConfirmModal(false);
+        setConfirmModal(ModalState.NONE);
     };
     const { tonConnectInstance } = useOptionsStore();
     useEffect(() => {
@@ -39,7 +39,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
     const handleConfirmSwap = () => {
         if (tonConnectInstance?.wallet) {
             swap(tonConnectInstance, bestRoute!);
-            setConfirmModal(false);
+            setConfirmModal(ModalState.NONE);
             setModalState(ModalState.WAITING);
         }
     };

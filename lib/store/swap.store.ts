@@ -15,6 +15,7 @@ export enum ModalState {
     IN_PROGRESS = "IN_PROGRESS",
     DONE = "DONE",
     ERROR = "ERROR",
+    CONFIRM = "CONFIRM",
 }
 
 type SwapStates = {
@@ -456,9 +457,16 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         await initializeTokens();
     },
     async refetchBestRoute() {
-        const { pay_token, receive_token, pay_amount, slippage, client } =
-            get();
+        const {
+            pay_token,
+            receive_token,
+            pay_amount,
+            slippage,
+            client,
+            swapModal,
+        } = get();
         if (!pay_token || !receive_token) return;
+        if (swapModal !== ModalState.NONE) return;
         set(() => ({ isFindingBestRoute: true }));
         const bestRouteResult = await catchError(() =>
             client.router.findBestRoute(

@@ -2,11 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import { Swap } from "./Swap";
-import { TonConnectUI } from "@tonconnect/ui-react";
+import { tonConnectUi } from "../../../.storybook/preview";
 
-const tonConnectUi = new TonConnectUI({
-    manifestUrl: "https://mytonswap.com/wallet/manifest.json",
-});
 const meta: Meta<typeof Swap> = {
     component: Swap,
     decorators: [

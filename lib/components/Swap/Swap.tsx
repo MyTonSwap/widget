@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 import Header from "../Header/Header";
 import SwapCard from "../SwapCard/SwapCard";
 import SwapDetails from "../SwapDetails/SwapDetails";
@@ -82,41 +82,54 @@ export const SwapComponent: FC<SwapProps> = ({
     }, [tonConnectInstance]);
 
     const { setOnTokenSelect, setOnSwap } = useEventsStore();
-    const { initializeApp, receive_token, refetchBestRoute, swapModal } =
-        useSwapStore();
+    const {
+        initializeApp,
+        receive_token,
+        refetchBestRoute,
+        swapModal,
+        pay_token,
+    } = useSwapStore();
+
+    const isInitMount = useRef(true);
+
     useEffect(() => {
-        const refetchInterval = setInterval(() => {
-            if (swapModal === ModalState.NONE) {
-                refetch();
-                refetchBestRoute();
+        if (isInitMount) {
+            let refetchInterval: ReturnType<typeof setInterval>;
+            if (!pay_token) {
+                initializeApp();
+                refetchInterval = setInterval(() => {
+                    if (swapModal === ModalState.NONE) {
+                        refetch();
+                        refetchBestRoute();
+                    }
+                }, 10000);
             }
-        }, 10000);
-        initializeApp();
-        if (window?.Telegram?.WebApp?.initData?.length !== 0) {
-            ensureDocumentIsScrollable();
-        }
-        function ensureDocumentIsScrollable() {
-            const isScrollable =
-                document.documentElement.scrollHeight > window.innerHeight;
-
-            if (!isScrollable) {
-                document.documentElement.style.setProperty(
-                    "height",
-                    "calc(100vh + 1px)",
-                    "important"
-                );
+            if (window?.Telegram?.WebApp?.initData?.length !== 0) {
+                ensureDocumentIsScrollable();
             }
-        }
-        if (onTokenSelect) {
-            setOnTokenSelect(onTokenSelect);
-        }
-        if (onSwap) {
-            setOnSwap(onSwap);
-        }
+            function ensureDocumentIsScrollable() {
+                const isScrollable =
+                    document.documentElement.scrollHeight > window.innerHeight;
 
-        return () => {
-            clearInterval(refetchInterval);
-        };
+                if (!isScrollable) {
+                    document.documentElement.style.setProperty(
+                        "height",
+                        "calc(100vh + 1px)",
+                        "important"
+                    );
+                }
+            }
+            if (onTokenSelect) {
+                setOnTokenSelect(onTokenSelect);
+            }
+            if (onSwap) {
+                setOnSwap(onSwap);
+            }
+            isInitMount.current = false;
+            return () => {
+                clearInterval(refetchInterval);
+            };
+        }
     }, []);
 
     const shouldShowSwapDetails =

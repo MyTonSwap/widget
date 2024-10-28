@@ -46,7 +46,11 @@ export const SwapComponent: FC<SwapProps> = ({
     onSwap,
 }) => {
     const { colors, setTheme } = useThemeStore();
-    const { setOptions, setTonConnectInstance } = useOptionsStore();
+    const {
+        setOptions,
+        setTonConnectInstance,
+        options: appOptions,
+    } = useOptionsStore();
     if (theme) {
         setTheme(theme);
     }
@@ -115,6 +119,11 @@ export const SwapComponent: FC<SwapProps> = ({
         };
     }, []);
 
+    const shouldShowSwapDetails =
+        receive_token && appOptions?.ui_preferences?.show_swap_details;
+    const shouldShowProvidedText =
+        !appOptions?.ui_preferences?.disable_provided_text;
+
     return (
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
             <div className="mytonswap-app">
@@ -127,9 +136,9 @@ export const SwapComponent: FC<SwapProps> = ({
                 >
                     <Header />
                     <SwapCard />
-                    {receive_token && <SwapDetails />}
+                    {shouldShowSwapDetails && <SwapDetails />}
                     <SwapButton />
-                    {!options?.ui_preferences?.disable_provided_text && (
+                    {shouldShowProvidedText && (
                         <div
                             className="text-provided"
                             style={{ color: colors.text_black }}

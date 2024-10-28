@@ -7,11 +7,13 @@ import { useThemeStore } from "../../store/theme.store";
 
 import "./SettingPopover.scss";
 import Wallet from "./Wallet";
+import { useOptionsStore } from "../../store/options.store";
 
 export type SettingPopoverProps = PropsWithChildren & {};
 
 const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
     const { colors } = useThemeStore();
+    const { options } = useOptionsStore();
     const [isOpen, setIsOpen] = useState(false);
     const ref = useRef(null);
     const onClickOutSite = () => {
@@ -24,6 +26,7 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
         e.stopPropagation();
         setIsOpen((prev) => !prev);
     };
+
     return (
         <div className="popover-container">
             <button onClick={handleButtonClick}>{children}</button>
@@ -45,9 +48,15 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
                             background: colors.background,
                         }}
                     >
-                        <SlippageSetting />
-                        <TokensSettings />
-                        <Wallet />
+                        {options.ui_preferences?.show_settings_slippage && (
+                            <SlippageSetting />
+                        )}
+                        {options.ui_preferences?.show_settings_community && (
+                            <TokensSettings />
+                        )}
+                        {options.ui_preferences?.show_settings_wallet && (
+                            <Wallet />
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>

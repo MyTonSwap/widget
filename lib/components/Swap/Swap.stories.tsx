@@ -186,3 +186,30 @@ export const WithAppId: Story = {
         },
     },
 };
+
+export const HideSwapDetail: Story = {
+    args: {
+        theme: {
+            border: "#004A6533",
+            primary: "#177594",
+            background: "#181F34",
+            input_card: "#27272A",
+            input_token: "#1D2939",
+            light_shade: "#193349",
+            slippage_box: "#D1D1E0",
+            text_black: "#FFFFFF",
+            text_white: "#FFFFFF",
+            text_fade: "#6B7280",
+            skeleton_shine: "#585959",
+            price_impact: "#E64646",
+        },
+        options: {
+            app_id: "tonjiggle",
+
+            ui_preferences: {
+                show_swap_details: false,
+                disable_provided_text: false,
+            },
+        },
+    },
+};

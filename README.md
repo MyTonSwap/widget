@@ -28,6 +28,7 @@ yarn add @mytonswap/widget
 
 After installation, you can integrate the `@mytonswap/widget` components in your React app as follows:
 
+### Swap Component
 ```tsx
 import "./App.css";
 import { useEffect } from "react";
@@ -49,8 +50,35 @@ function App() {
 }
 
 export default App;
-
 ```
+### Wallet Button
+```tsx
+import "./App.css";
+import { useEffect } from "react";
+import { createWalletProfile } from "@mytonswap/widget";
+import { useTonConnectUI } from "@tonconnect/ui-react";
+
+function App() {
+    const [tc] = useTonConnectUI();
+    useEffect(() => {
+        if (tc) {
+            createWalletProfile("wallet-button", {
+                tonConnectInstance: tc,
+                position: "bottom-right",
+            });
+        }
+    }, [tc]);
+    return (
+        <div className="App">
+            <div id="wallet-button"></div>
+        </div>
+    );
+}
+
+export default App;
+```
+
+
 
 ## Theme & Customization
 You can fully customize the appearance of the `@mytonswap/widget` by passing a `theme` object as a property to the createSwap function. This allows you to match the widget's styling with the design of your application.

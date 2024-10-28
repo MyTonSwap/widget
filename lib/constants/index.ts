@@ -44,3 +44,167 @@ export const modalAnimationDesktop = {
         transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
     },
 };
+
+export const popOverVariations = {
+    bottomRight: {
+        initial: {
+            opacity: 0,
+            scale: 0.95,
+            transformOrigin: "top right",
+            top: "115%",
+            right: "0%",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        animate: {
+            opacity: 1,
+            scale: 1,
+            top: "115%",
+            right: "0%",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        exit: {
+            opacity: 0,
+            scale: 0.95,
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+    },
+    bottomLeft: {
+        initial: {
+            opacity: 0,
+            scale: 0.95,
+            transformOrigin: "top left",
+            top: "115%",
+            left: "0%",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        animate: {
+            opacity: 1,
+            scale: 1,
+            top: "115%",
+            left: "0%",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        exit: {
+            opacity: 0,
+            scale: 0.95,
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+    },
+    topRight: {
+        initial: {
+            opacity: 0,
+            scale: 0.95,
+            transformOrigin: "top right",
+            bottom: "115%",
+            top: "auto",
+            right: "0%",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        animate: {
+            opacity: 1,
+            scale: 1,
+            bottom: "115%",
+            top: "auto",
+            right: "0%",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        exit: {
+            opacity: 0,
+            scale: 0.95,
+            top: "auto",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+    },
+    topLeft: {
+        initial: {
+            opacity: 0,
+            scale: 0.95,
+            transformOrigin: "bottom left",
+            bottom: "115%",
+            top: "auto",
+            left: "0%",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        animate: {
+            opacity: 1,
+            scale: 1,
+            bottom: "115%",
+            top: "auto",
+            left: "0%",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        exit: {
+            opacity: 0,
+            top: "auto",
+            scale: 0.95,
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+    },
+
+    topCenter: {
+        initial: {
+            opacity: 0,
+            scale: 0.5,
+            transformOrigin: "bottom center",
+            bottom: "115%",
+            top: "auto",
+            left: "50%",
+            transform: "translateX(-50%) scale(0.95)",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        animate: {
+            opacity: 1,
+            scale: 1,
+            bottom: "115%",
+            top: "auto",
+            left: "50%",
+            transform: "translateX(-50%) scale(1)",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        exit: {
+            opacity: 0,
+            bottom: "110%",
+            top: "auto",
+            left: "50%",
+            scale: 0.5,
+            transform: "translateX(-50%) scale(0.95)",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+    },
+    bottomCenter: {
+        initial: {
+            opacity: 0,
+            scale: 0.8,
+            transformOrigin: "top center",
+            top: "110%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        animate: {
+            opacity: 1,
+            scale: 1,
+            transformOrigin: "bottom center",
+            top: "115%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+        exit: {
+            opacity: 0,
+            top: "110%",
+            transformOrigin: "bottom center",
+            scale: 0.8,
+            transition: { duration: 0.15, ease: "easeOut" },
+        },
+    },
+};
+
+export const popOverVariationsKeyValue = {
+    "top-right": popOverVariations.topRight,
+    "top-left": popOverVariations.topLeft,
+    "bottom-right": popOverVariations.bottomRight,
+    "bottom-left": popOverVariations.bottomLeft,
+    "top-center": popOverVariations.topCenter,
+    "bottom-center": popOverVariations.bottomCenter,
+};

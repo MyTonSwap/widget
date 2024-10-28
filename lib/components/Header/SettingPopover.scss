@@ -7,8 +7,9 @@
     .popover {
         position: absolute;
         display: flex;
+        height: fit-content;
         min-width: 250px;
-        top: 105%;
+        top: 110%;
         right: 0;
         border: 1px solid var(--border-color);
         background: white;
@@ -18,4 +19,7 @@
         gap: 12px;
         flex-direction: column;
     }
+}
+.wallet-profile-mts .popover {
+    padding: 0px;
 }

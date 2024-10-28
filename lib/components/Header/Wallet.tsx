@@ -45,10 +45,7 @@ const Wallet = () => {
     return (
         <>
             {wallet && (
-                <div
-                    className="wallet-card"
-                    style={{ background: colors.light_shade }}
-                >
+                <div className="wallet-card">
                     <p className="title">Account</p>
                     <div className="wallet-content">
                         <p className="balance-title">Balance</p>
@@ -61,7 +58,7 @@ const Wallet = () => {
                         <div className="address-section">
                             <div
                                 className="address"
-                                style={{ background: colors.background }}
+                                style={{ background: colors.light_shade }}
                             >
                                 {shortAddress(
                                     wallet.account.address,
@@ -76,7 +73,7 @@ const Wallet = () => {
                                     copyToClipboard(wallet.account.address)
                                 }
                                 style={{
-                                    background: colors.background,
+                                    background: colors.light_shade,
                                     color: colors.text_black,
                                 }}
                             >
@@ -87,7 +84,7 @@ const Wallet = () => {
                                 target="_blank"
                                 href={`https://tonviewer.com/${wallet.account.address}`}
                                 style={{
-                                    background: colors.background,
+                                    background: colors.light_shade,
                                     color: colors.text_black,
                                 }}
                             >

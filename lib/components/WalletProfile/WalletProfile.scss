@@ -1,0 +1,14 @@
+.wallet-profile-mts {
+    position: relative;
+    .wallet-profile-button {
+        background: #26ad5f;
+        color: white;
+        padding: 0.5rem 0.75rem;
+        border-radius: 9999999rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        user-select: none;
+    }
+}

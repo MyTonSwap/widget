@@ -201,6 +201,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         set(() => ({
             pay_token: token,
             pay_rate: tokenRate ?? null,
+            pay_amount: 0n,
             receive_rate: null,
             receive_token: null,
             bestRoute: null,

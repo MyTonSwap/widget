@@ -22,6 +22,7 @@ const TokensSettings = () => {
                             : colors.light_shade,
                     }}
                     onClick={() => setCommunityTokens(!communityTokens)}
+                    data-testid="community-token-setting"
                 >
                     <div
                         className={clsx(

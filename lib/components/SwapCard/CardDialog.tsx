@@ -295,6 +295,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                         className="dialog-search-input"
                                         type="text"
                                         placeholder="Search..."
+                                        data-testid="dialog-search-input"
                                         style={{
                                             color: colors.text_black,
                                         }}

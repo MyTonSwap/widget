@@ -24,6 +24,7 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
                     ? { "data-skeleton": true }
                     : {}),
             }}
+            data-testid={`card-button-${type}`}
             className={clsx(
                 "selection-box-container",
                 isLoading && "loading",

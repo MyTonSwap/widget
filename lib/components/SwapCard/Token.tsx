@@ -24,7 +24,11 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
         (balance.get(asset.address)?.price?.prices.USD ?? 0) * tokenBalance;
     const fixedPrice = price === 0 ? 0 : formatNumber(price, 2);
     return (
-        <div onClick={() => onTokenSelect(asset)} className="token-container">
+        <div
+            onClick={() => onTokenSelect(asset)}
+            className="token-container"
+            data-testid={asset.address}
+        >
             <div className="token-content">
                 <div
                     className="token-image "

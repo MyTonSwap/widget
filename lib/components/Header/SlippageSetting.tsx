@@ -69,13 +69,19 @@ const SlippageSetting = () => {
     };
 
     return (
-        <div className="slippage-setting-container">
+        <div
+            className="slippage-setting-container"
+            data-testid="slippage-setting"
+        >
             <button
                 className="button-container"
                 style={{ color: colors.text_black }}
             >
                 <div>Max Slippage</div>
-                <div className="slippage-indicator">
+                <div
+                    className="slippage-indicator"
+                    data-testid="slippage-indicator"
+                >
                     {slippage === "auto" ? "Auto" : `${slippage}%`}{" "}
                 </div>
             </button>
@@ -90,6 +96,7 @@ const SlippageSetting = () => {
                         onClick={handleOnAutoClick}
                         style={{ background: colors.light_shade }}
                         className="dropdown-item"
+                        data-testid="slippage-setting-auto"
                     >
                         <FaCircleCheck
                             className="icon"
@@ -105,6 +112,7 @@ const SlippageSetting = () => {
                     <div className="controllers">
                         <button
                             className="controller"
+                            data-testid="slippage-setting-minus"
                             onClick={handleOnMinusClick}
                             disabled={slippage !== "auto" && slippage <= 1}
                             style={{
@@ -136,6 +144,7 @@ const SlippageSetting = () => {
                             <input
                                 value={userInput}
                                 onChange={handleSlippageChange}
+                                data-testid="slippage-setting-input"
                                 style={{
                                     color: colors.text_black,
                                 }}
@@ -149,6 +158,7 @@ const SlippageSetting = () => {
                         <button
                             className="controller"
                             onClick={handleOnPlusClick}
+                            data-testid="slippage-setting-plus"
                             disabled={slippage !== "auto" && slippage >= 10}
                             style={{
                                 color:

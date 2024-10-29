@@ -23,6 +23,7 @@ const SwapCard = () => {
                         changeDirection();
                     }}
                     className="change-direction-button"
+                    data-testid="change-direction-button"
                     style={{
                         color: colors.text_white,
                         background: colors.primary,

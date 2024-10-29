@@ -29,7 +29,9 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
 
     return (
         <div className="popover-container">
-            <button onClick={handleButtonClick}>{children}</button>
+            <button onClick={handleButtonClick} data-testid="setting-button">
+                {children}
+            </button>
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -47,6 +49,7 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
                             borderColor: colors.border,
                             background: colors.background,
                         }}
+                        data-testid="setting-popover"
                     >
                         {options.ui_preferences?.show_settings_slippage && (
                             <SlippageSetting />

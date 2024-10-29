@@ -214,8 +214,9 @@ const Card: FC<CardProps> = ({ type }) => {
                                 onChange={handlePayAmountChange}
                                 pattern="^[0-9]*[.,]?[0-9]*$"
                                 placeholder="0"
-                                className="card-input"
+                                className={`card-input ${type}`}
                                 style={{ color: colors.text_black }}
+                                data-testid={`swapcard-input-${type}`}
                             />
                         )}
                         {type === "receive" && isFindingBestRoute && (

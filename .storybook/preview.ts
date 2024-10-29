@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/react";
+
 import "../lib/tailwind.css";
 import { TonConnectUI } from "@tonconnect/ui-react";
 

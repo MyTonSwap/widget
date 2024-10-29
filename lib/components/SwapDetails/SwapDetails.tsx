@@ -25,6 +25,7 @@ const SwapDetails = () => {
             onClick={() => {
                 setIsOpen((prev) => !prev);
             }}
+            data-testid="swap-details"
         >
             <div className="detail-accordion">
                 {onePayRoute && onePayRoute.pool_data && !isFindingBestRoute ? (
@@ -84,9 +85,11 @@ const SwapDetails = () => {
                         <SwapKeyValue
                             keyText={"Price impact"}
                             value={
-                                bestRoute
-                                    ? bestRoute.pool_data.priceImpact + "%"
-                                    : "0%"
+                                <span data-testid="price-impact">
+                                    {bestRoute
+                                        ? bestRoute.pool_data.priceImpact + "%"
+                                        : "0%"}
+                                </span>
                             }
                         />
                         <SwapKeyValue
@@ -100,7 +103,10 @@ const SwapDetails = () => {
                             value={
                                 bestRoute ? (
                                     <div className="route-container">
-                                        <span className="dex">
+                                        <span
+                                            className="dex"
+                                            data-testid="dex-container"
+                                        >
                                             <div
                                                 className="image"
                                                 style={{

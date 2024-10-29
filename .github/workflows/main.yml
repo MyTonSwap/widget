@@ -22,6 +22,6 @@ jobs:
             - name: Run Cypress tests
               run: |
                   npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
-                    "pnpm run storybook" \
-                    "pnpx wait-on tcp:6006 && pnpm cypress:run"
+                    "npx http-server storybook-static --port 6006 --silent" \
+                    "npx wait-on tcp:6006 && pnpm cypress:run"
             - run: pnpm run build

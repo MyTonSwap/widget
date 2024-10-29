@@ -1,6 +1,5 @@
 describe("swap tests", () => {
     beforeEach(() => {
-        cy.wait(10000);
         cy.visit(
             "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--default&viewMode=story"
         );

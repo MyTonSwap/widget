@@ -123,7 +123,9 @@ const SwapButton = () => {
                 {...attrs}
                 style={{
                     background:
-                        isRouteAvailable && !bestRoute.pool_data.status
+                        tonConnectInstance?.wallet &&
+                        isRouteAvailable &&
+                        !bestRoute.pool_data.status
                             ? colors.price_impact
                             : colors.primary,
                     color: colors.text_white,

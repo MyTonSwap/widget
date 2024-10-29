@@ -17,4 +17,11 @@ jobs:
             - name: Install pnpm
               run: npm install -g pnpm
             - run: pnpm install
+            - name: Install Cypress
+              run: pnpx cypress install
+            - name: Run Cypress tests
+              run: |
+                  npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+                    "pnpx http-server storybook-static --port 6006 --silent" \
+                    "pnpx wait-on tcp:6006 && pnpm cypress:run"
             - run: pnpm run build

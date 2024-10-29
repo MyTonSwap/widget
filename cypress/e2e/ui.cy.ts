@@ -3,6 +3,9 @@ describe("setting ui components test", () => {
         cy.visit(
             "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--default&viewMode=story"
         );
+        cy.get("[data-testid='swap-header-title']").should("be.visible", {
+            timeout: 10000,
+        });
         cy.get("[data-testid='setting-button']").click();
         cy.get("[data-testid='setting-popover']").should("be.visible");
         cy.get("[data-testid='slippage-setting']").should("be.visible");

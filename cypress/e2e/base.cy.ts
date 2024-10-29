@@ -3,6 +3,9 @@ describe("swap tests", () => {
         cy.visit(
             "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--default&viewMode=story"
         );
+        cy.get("[data-testid='swap-header-title']").should("be.visible", {
+            timeout: 10000,
+        });
     });
     it("should be able to swap ston with right dex", () => {
         cy.get("[data-testid='card-button-receive']").click();

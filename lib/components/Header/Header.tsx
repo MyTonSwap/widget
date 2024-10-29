@@ -9,7 +9,7 @@ const Header = () => {
 
     return (
         <div className="header-container" style={{ color: colors.text_black }}>
-            <div>Swap</div>
+            <div data-testid="swap-header-title">Swap</div>
             <div className="header-setting">
                 {options.ui_preferences?.show_settings && (
                     <SettingPopover>

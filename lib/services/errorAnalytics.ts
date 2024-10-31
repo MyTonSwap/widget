@@ -1,6 +1,8 @@
 import axios from "axios";
 import { WIDGET_VERSION } from "../constants";
 import toast from "react-hot-toast";
+import { useSwapStore } from "../store/swap.store";
+import { useWalletStore } from "../store/wallet.store";
 
 const ERROR_REPORTING_ENDPOINT = "https://app.mytonswap.com/api/stats/error";
 
@@ -21,6 +23,44 @@ async function sendErrorReport(body: ErrorReportBody): Promise<void> {
 }
 
 export async function reportError(message: string): Promise<void> {
+    const {
+        onePayRoute,
+        pay_token,
+        pay_rate,
+        pay_amount,
+        receive_token,
+        receive_rate,
+        bestRoute,
+        slippage,
+        swapModal,
+        transactionHash,
+    } = useSwapStore.getState();
+    const swapStateDump = JSON.stringify(
+        {
+            onePayRoute,
+            pay_token,
+            pay_rate,
+            pay_amount: pay_amount.toString(),
+            receive_token,
+            receive_rate,
+            bestRoute,
+            slippage,
+            swapModal,
+            transactionHash,
+        },
+        null,
+        2
+    );
+    const { wallet, balance } = useWalletStore.getState();
+    const walletStateDump = JSON.stringify(
+        {
+            wallet,
+            balance: Object.fromEntries(balance),
+        },
+        null,
+        2
+    );
+    message += `\n\n[SWAP STATE]: ${swapStateDump}\n[WALLET STATE]: ${walletStateDump}`;
     const body: ErrorReportBody = {
         section: "widget",
         error: message,
@@ -42,7 +82,7 @@ export function reportErrorWithToast(
             reportError(
                 `Message: ${message}\nError Code: 002\nLocation: ${location}\nReason: ${JSON.stringify(
                     error.response.data
-                )}\n${error}\n${error.cause}\n${error.code}\n${error.stack} `
+                )}\n${error}\n${error.cause}\n${error.code}`
             );
             return toast.error(`${message} E${errorcode}`);
         }
@@ -50,13 +90,13 @@ export function reportErrorWithToast(
 
     if (axios.isCancel(error) || !axios.isAxiosError(error)) {
         reportError(
-            `Message: Failed to fetch assets\nError Code: 001\nLocation: ${location}\nReason: ${error.message}\n${error.stack}`
+            `Message: Failed to fetch assets\nError Code: 001\nLocation: ${location}\nReason: ${error.message}\nTrace: ${error.stack}`
         );
-        return toast.error(`${message}} E${errorcode}`);
+        return toast.error(`${message} E${errorcode}`);
     }
 
     reportError(
-        `Message: Failed to fetch assets\nError Code: 001\nLocation: ${location}\nReason: ${error.message}\n${error.stack}`
+        `Message: Failed to fetch assets\nError Code: 001\nLocation: ${location}\nReason: ${error.message}\nTrace: ${error.stack}`
     );
-    return toast.error(`${message}} E${errorcode}`);
+    return toast.error(`${message} E${errorcode}`);
 }

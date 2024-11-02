@@ -89,4 +89,9 @@ describe("card input ui components test", () => {
         ).click();
         cy.get("[data-testid='swapcard-input-pay']").should("have.text", "");
     });
+    it("should show 'token not found' when an invalid token is searched", () => {
+        cy.get("[data-testid='card-button-receive']").click();
+        cy.get("[data-testid='dialog-search-input']").type("INVALIDTOKEN");
+        cy.get("[data-testid='token-not-found']").should("be.visible");
+    });
 });

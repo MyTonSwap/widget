@@ -438,6 +438,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                             {filteredAssets.length === 0 && (
                                                 <div
                                                     className="no-token-found"
+                                                    data-testid="token-not-found"
                                                     style={{
                                                         color: colors.text_black,
                                                     }}

@@ -50,6 +50,9 @@ importers:
       react-infinite-scroll-component:
         specifier: ^6.1.0
         version: 6.1.0(react@18.3.1)
+      tailwind-merge:
+        specifier: ^2.5.4
+        version: 2.5.4
       usehooks-ts:
         specifier: ^3.1.0
         version: 3.1.0(react@18.3.1)
@@ -3681,6 +3684,9 @@ packages:
 
   symbol.inspect@1.0.1:
     resolution: {integrity: sha512-YQSL4duoHmLhsTD1Pw8RW6TZ5MaTX5rXJnqacJottr2P2LZBF/Yvrc3ku4NUpMOm8aM0KOCqM+UAkMA5HWQCzQ==}
+
+  tailwind-merge@2.5.4:
+    resolution: {integrity: sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==}
 
   tailwindcss@3.4.13:
     resolution: {integrity: sha512-KqjHOJKogOUt5Bs752ykCeiwvi0fKVkr5oqsFNt/8px/tA8scFPIlkygsf6jXrfCqGHz7VflA6+yytWuM+XhFw==}
@@ -7858,6 +7864,8 @@ snapshots:
   supports-preserve-symlinks-flag@1.0.0: {}
 
   symbol.inspect@1.0.1: {}
+
+  tailwind-merge@2.5.4: {}
 
   tailwindcss@3.4.13:
     dependencies:

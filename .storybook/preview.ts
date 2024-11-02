@@ -1,6 +1,6 @@
 import type { Preview } from "@storybook/react";
 
-import "../lib/tailwind.css";
+import "../lib/global.css";
 import { TonConnectUI } from "@tonconnect/ui-react";
 
 export const tonConnectUi = new TonConnectUI({

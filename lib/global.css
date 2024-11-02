@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@keyframes loading {
+    to {
+        background-position-x: -20%;
+    }
+}
+
+:where([data-skeleton]) {
+    /* These will need to be intents (ie, dark mode), perhaps new global intents */
+    --skeleton-shine: white;
+    background-color: var(--skeleton-bg) !important;
+    background-image: linear-gradient(
+        100deg,
+        transparent 40%,
+        color-mix(in srgb, var(--skeleton-shine), transparent 50%) 50%,
+        transparent 60%
+    ) !important;
+    background-size: 200% 100%;
+    background-position-x: 120%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :where([data-skeleton]) {
+        background-position-x: 180%;
+        animation: 2s loading ease-in-out infinite;
+    }
+}
+
+:where([data-skeleton][style*="--skeleton-lines"]) {
+    --l-h: 1lh;
+    --l-gap: 1ex;
+    min-height: calc(
+        var(--skeleton-lines) * var(--l-h) + (var(--skeleton-lines) - 1) *
+            var(--l-gap)
+    );
+    mask: linear-gradient(
+            #000 0 var(--l-h),
+            transparent var(--l-h) calc(var(--l-h) + var(--l-gap))
+        )
+        0 0/100% calc(var(--l-h) + var(--l-gap));
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--thumb-scrollbar);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--thumb-scrollbar);
+    border-radius: 5px;
+}
+
+._refresher_wadtj_43 {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.icon_overlay {
+    color: rgb(108, 108, 108);
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: color 0.25s ease-in-out;
+    width: 100%;
+}
+
+.refresh_icon {
+    color: #6c6c6c;
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: color 0.25s ease-in-out;
+    width: 100%;
+}
+
+.icon_overlay.overlay {
+    color: #22c55e;
+}
+
+.active {
+    cursor: pointer;
+}
+
+.icon_overlay.progressing {
+    animation-iteration-count: 1;
+    animation-name: loading_refresh_icon;
+    animation-timing-function: linear;
+    animation-duration: 30000ms;
+}
+
+.icon_overlay.waiting {
+    animation-iteration-count: infinite;
+    animation-name: waiting_refresh_icon;
+    animation-timing-function: ease-in-out;
+    animation-duration: 30000ms;
+}
+
+@keyframes loading_refresh_icon {
+    0% {
+        clip-path: polygon(50% 50%, 150% 50%, 150% 50%);
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 150% 50%, 50% 150%);
+    }
+
+    25.000001% {
+        clip-path: polygon(50% 50%, 150% 50%, 50% 150%, 50% 150%);
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 150% 50%, 50% 150%, -50% 50%);
+    }
+
+    50.000001% {
+        clip-path: polygon(50% 50%, 150% 50%, 50% 150%, -50% 50%, -50% 50%);
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 150% 50%, 50% 150%, -50% 50%, 50% -50%);
+    }
+
+    75.000001% {
+        clip-path: polygon(
+            50% 50%,
+            150% 50%,
+            50% 150%,
+            -50% 50%,
+            50% -50%,
+            50% -50%
+        );
+    }
+
+    97.5% {
+        clip-path: polygon(
+            50% 50%,
+            150% 50%,
+            50% 150%,
+            -50% 50%,
+            50% -50%,
+            150% 50%
+        );
+        color: #f2f2f2;
+    }
+
+    to {
+        clip-path: polygon(
+            50% 50%,
+            150% 50%,
+            50% 150%,
+            -50% 50%,
+            50% -50%,
+            150% 50%
+        );
+        color: #6c6c6c;
+    }
+}
+
+@keyframes waiting_refresh_icon {
+    0% {
+        color: #6c6c6c;
+    }
+
+    50% {
+        color: #f2f2f2;
+    }
+
+    to {
+        color: #6c6c6c;
+    }
+}

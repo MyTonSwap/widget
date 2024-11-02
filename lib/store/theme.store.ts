@@ -61,3 +61,7 @@ export const useThemeStore = create<ThemeActions & ThemeStates>((set, get) => ({
         set({ colors: newSchema, userTheme: theme });
     },
 }));
+
+export const setTheme = (theme: ColorTheme) => {
+    useThemeStore.getState().setTheme(theme);
+};

@@ -19,6 +19,15 @@ jobs:
             - name: Install pnpm
               run: npm install -g pnpm
             - run: pnpm install
+            - name: Install Cypress
+              run: pnpx cypress install
+            - name: Build Storybook
+              run: pnpm run build-storybook
+            - name: Run Cypress tests
+              run: |
+                  npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+                    "npx http-server storybook-static --port 6006 --silent" \
+                    "npx wait-on tcp:6006 && pnpm cypress:run"
             - run: pnpm run build
             - run: npm publish --provenance --access public
               env:

@@ -5,6 +5,7 @@ import "./global.css";
 
 // import { TonConnectWrappedSwap } from "./components/Swap/Swap";
 export * from "./components";
+export * from "./store/theme.store";
 
 // if (!customElements.get("mts-swap"))
 //     customElements.define(

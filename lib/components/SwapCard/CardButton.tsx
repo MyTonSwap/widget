@@ -3,6 +3,7 @@ import { useThemeStore } from "../../store/theme.store";
 import clsx from "clsx";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import "./CardButton.scss";
+import { useOptionsStore } from "../../store/options.store";
 type CardButtonProps = {
     isLoading: boolean;
     onClick: () => void;
@@ -16,9 +17,15 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
     onClick,
 }) => {
     const { colors } = useThemeStore();
+    const { options } = useOptionsStore();
+    const isDisabled = (() => {
+        if (type === "pay" && options.lock_pay_token) return true;
+        if (type === "receive" && options.lock_receive_token) return true;
+        return false;
+    })();
     return (
         <button
-            onClick={onClick}
+            onClick={isDisabled ? () => {} : onClick}
             {...{
                 ...(isLoading && type === "pay"
                     ? { "data-skeleton": true }
@@ -32,6 +39,7 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
                 type === "receive" && isLoading && "receive-loading"
             )}
             style={{
+                ...(isDisabled && { opacity: 0.7, cursor: "auto" }),
                 ...(isLoading && type === "pay"
                     ? { color: colors.text_black }
                     : {

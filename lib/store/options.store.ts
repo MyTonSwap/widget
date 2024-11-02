@@ -7,6 +7,10 @@ export type SwapOptions = {
     default_pay_token?: string;
     default_receive_token?: string;
     default_slippage?: number;
+    lock_pay_token?: boolean;
+    lock_receive_token?: boolean;
+    lock_input?: boolean;
+    default_pay_amount?: string;
     pin_tokens?: string[];
     app_id?: string;
     ui_preferences?: {
@@ -37,6 +41,8 @@ export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
         options: {
             ui_preferences: {
                 disable_provided_text: false,
+                disable_token_select_pay: false,
+                disable_token_select_receive: false,
                 show_swap_details: true,
                 show_settings_wallet: true,
                 show_settings_slippage: true,

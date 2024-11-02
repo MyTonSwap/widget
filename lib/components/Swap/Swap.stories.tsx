@@ -109,6 +109,71 @@ export const WithDefaultTokens: Story = {
         },
     },
 };
+
+export const WithLockedToken: Story = {
+    args: {
+        theme: {
+            border: "#1D2939",
+            primary: "#16A34A",
+            background: "#101828",
+            input_card: "#27272A",
+            input_token: "#1D2939",
+            light_shade: "#1D2939",
+            slippage_box: "#D1D1E0",
+            text_black: "#FFFFFF",
+            text_white: "#000000",
+            text_fade: "#6B7280",
+            skeleton_shine: "#585959",
+        },
+        options: {
+            default_pay_token:
+                "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+            default_receive_token:
+                "EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
+            lock_pay_token: true,
+        },
+    },
+};
+
+export const WithLockedInput: Story = {
+    args: {
+        theme: {
+            border: "#1D2939",
+            primary: "#16A34A",
+            background: "#101828",
+            input_card: "#27272A",
+            input_token: "#1D2939",
+            light_shade: "#1D2939",
+            slippage_box: "#D1D1E0",
+            text_black: "#FFFFFF",
+            text_white: "#000000",
+            text_fade: "#6B7280",
+            skeleton_shine: "#585959",
+            price_impact: "#E64646",
+        },
+        options: {
+            default_pay_token:
+                "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+            default_receive_token:
+                "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c",
+            lock_pay_token: true,
+            lock_receive_token: true,
+            lock_input: true,
+            default_pay_amount: "1000000",
+
+            ui_preferences: {
+                disable_provided_text: false,
+                show_swap_details: true,
+                show_settings_wallet: true,
+                show_settings_slippage: true,
+                show_settings_community: true,
+                show_change_direction: true,
+                show_settings: true,
+            },
+        },
+    },
+};
+
 export const RedStone: Story = {
     args: {
         theme: {

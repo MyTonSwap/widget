@@ -10,6 +10,7 @@ import { toNano } from "@mytonswap/sdk";
 import { useWalletStore } from "../../store/wallet.store";
 import { TON_ADDR } from "../../constants";
 import "./Card.scss";
+import { useOptionsStore } from "../../store/options.store";
 type CardProps = {
     type: "pay" | "receive";
 };
@@ -34,6 +35,7 @@ const Card: FC<CardProps> = ({ type }) => {
         isFindingBestRoute,
     } = useSwapStore();
     const { balance } = useWalletStore();
+    const { options } = useOptionsStore();
     const onTokenSelect = (asset: Asset) => {
         if (type === "pay") {
             setPayToken(asset);
@@ -155,7 +157,11 @@ const Card: FC<CardProps> = ({ type }) => {
         setUserInput(formatNumber(+fromNano(payAmount), 2));
         setPayAmount(payAmount);
     };
-
+    const isDisabled = (() => {
+        if (type === "pay" && options.lock_pay_token) return true;
+        if (type === "receive" && options.lock_receive_token) return true;
+        return false;
+    })();
     return (
         <>
             <div className="swapcard-card">
@@ -210,7 +216,9 @@ const Card: FC<CardProps> = ({ type }) => {
                                 minLength={1}
                                 maxLength={14}
                                 value={value ?? ""}
-                                disabled={type === "receive"}
+                                disabled={
+                                    type === "receive" || options.lock_input
+                                }
                                 onChange={handlePayAmountChange}
                                 pattern="^[0-9]*[.,]?[0-9]*$"
                                 placeholder="0"
@@ -271,9 +279,11 @@ const Card: FC<CardProps> = ({ type }) => {
                                 }}
                             ></div>
                             <div>{token?.symbol}</div>
-                            <div>
-                                <MdKeyboardArrowDown />
-                            </div>
+                            {!isDisabled && (
+                                <div>
+                                    <MdKeyboardArrowDown />
+                                </div>
+                            )}
                         </CardButton>
                     </div>
                 </div>

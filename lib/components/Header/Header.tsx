@@ -14,12 +14,17 @@ const Header = () => {
         <div className="header-container" style={{ color: colors.text_black }}>
             <div data-testid="swap-header-title">Swap</div>
             <div className="header-setting">
-                <div className="loading-container" onClick={refetchBestRoute}>
-                    <Refresh
-                        isLoading={isFindingBestRoute}
-                        enabled={!!receive_token}
-                    />
-                </div>
+                {options.ui_preferences?.show_refresh && (
+                    <div
+                        className="loading-container"
+                        onClick={refetchBestRoute}
+                    >
+                        <Refresh
+                            isLoading={isFindingBestRoute}
+                            enabled={!!receive_token}
+                        />
+                    </div>
+                )}
                 {options.ui_preferences?.show_settings && (
                     <SettingPopover>
                         <IoSettingsOutline

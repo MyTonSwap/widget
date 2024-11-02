@@ -21,6 +21,7 @@ export type SwapOptions = {
         show_settings_community?: boolean;
         show_change_direction?: boolean;
         show_settings?: boolean;
+        show_refresh?: boolean;
     };
 };
 
@@ -49,6 +50,7 @@ export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
                 show_settings_community: true,
                 show_change_direction: true,
                 show_settings: true,
+                show_refresh: true,
             },
         },
         userOptions: {},

@@ -435,6 +435,20 @@ const CardDialog: FC<CardDialogProps> = ({
                                                     key={item.address}
                                                 />
                                             ))}
+                                            {filteredAssets.length === 0 && (
+                                                <div
+                                                    className="no-token-found"
+                                                    style={{
+                                                        color: colors.text_black,
+                                                    }}
+                                                >
+                                                    No token found
+                                                    <span>
+                                                        Double-check your
+                                                        request and try again
+                                                    </span>
+                                                </div>
+                                            )}
                                         </InfiniteScroll>
                                     </div>
                                 </>

@@ -1,7 +1,7 @@
 describe("setting ui components test", () => {
     beforeEach(() => {
         cy.visit(
-            "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--default&viewMode=story"
+            "http://127.0.0.1:6006/iframe.html?args=&globals=&id=components-swap--default&viewMode=story"
         );
 
         cy.get("[data-testid='setting-button']").click();

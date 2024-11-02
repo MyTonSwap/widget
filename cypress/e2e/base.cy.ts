@@ -1,7 +1,7 @@
 describe("swap tests", () => {
     beforeEach(() => {
         cy.visit(
-            "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--default&viewMode=story"
+            "http://127.0.0.1:6006/iframe.html?args=&globals=&id=components-swap--default&viewMode=story"
         );
     });
     it("should be able to swap ston with right dex", () => {

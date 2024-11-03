@@ -1,0 +1,6 @@
+.dockerignore
+node_modules
+storybook-static
+.npmrc
+dist
+.idea

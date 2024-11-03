@@ -66,7 +66,7 @@ export const SwapComponent: FC<SwapProps> = ({
         setTonConnectInstance(tonConnectInstance);
     }
     if (options) {
-        setOptions({ ...{ layout_direction: direction }, ...options });
+        setOptions(options);
     }
     const {
         setWallet,

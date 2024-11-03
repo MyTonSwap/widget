@@ -66,3 +66,16 @@
         }
     }
 }
+
+.mytonswap-app.rtl {
+    .swapcard-card {
+        .card-content {
+            .card-inputs {
+                .card-rate {
+                    text-align: right;
+                    font-size: var(--font-size-xs);
+                }
+            }
+        }
+    }
+}

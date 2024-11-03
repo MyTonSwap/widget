@@ -8,7 +8,9 @@ import formatNumber from "../../utils/formatNum";
 import { ImSpinner8 } from "react-icons/im";
 import "./Inprogress.scss";
 import { useEventsStore } from "../../store/events.store";
+import { useTranslation } from "react-i18next";
 const Inprogress = () => {
+    const { t } = useTranslation();
     const {
         transactionHash,
         client,
@@ -62,9 +64,8 @@ const Inprogress = () => {
                         },
                     });
                     setErrorMessage({
-                        errorTitle: "Transaction Failed!",
-                        errorMessage:
-                            "Something went wrong. Please try again later. If the problem persists, please contact us.",
+                        errorTitle: t("errors.transaction_failed"),
+                        errorMessage: t("errors.unknown_error"),
                     });
                 }
             }
@@ -120,9 +121,11 @@ const Inprogress = () => {
             </div>
 
             <div className="description" style={{ color: colors.text_black }}>
-                Transaction in progress
+                {t("transaction.pending")}
             </div>
-            <p style={{ color: colors.text_black }}>It may take while</p>
+            <p style={{ color: colors.text_black }}>
+                {t("transaction.action_in_progress")}
+            </p>
             <div className="loading-icon" style={{ color: colors.text_black }}>
                 <ImSpinner8 className="animate-spin icon" />
             </div>

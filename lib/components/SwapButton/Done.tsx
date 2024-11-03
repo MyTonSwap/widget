@@ -5,7 +5,9 @@ import { ModalState, useSwapStore } from "../../store/swap.store";
 import { fromNano } from "@mytonswap/sdk";
 import formatNumber from "../../utils/formatNum";
 import "./Done.scss";
+import { useTranslation } from "react-i18next";
 const Done = () => {
+    const { t } = useTranslation();
     const { colors } = useThemeStore();
     const { bestRoute, pay_amount, pay_token, receive_token, receive_rate } =
         useSwapStore();
@@ -20,7 +22,7 @@ const Done = () => {
                 <FaCircleCheck className="" style={{ color: colors.primary }} />
             </div>
             <div className="done-text " style={{ color: colors.text_black }}>
-                Transaction was successful
+                {t("transaction.complete")}
             </div>
             <div className="done-modal-images">
                 <div

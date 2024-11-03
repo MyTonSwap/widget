@@ -8,7 +8,9 @@ import { useSwapStore } from "../../store/swap.store";
 import formatNumber from "../../utils/formatNum";
 import { CgSpinnerTwo } from "react-icons/cg";
 import "./SwapDetails.scss";
+import { useTranslation } from "react-i18next";
 const SwapDetails = () => {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const { onePayRoute, bestRoute, isFindingBestRoute, slippage } =
         useSwapStore();
@@ -29,7 +31,7 @@ const SwapDetails = () => {
         >
             <div className="detail-accordion">
                 {onePayRoute && onePayRoute.pool_data && !isFindingBestRoute ? (
-                    <div>
+                    <div className="one-pay">
                         1 {onePayRoute.pool_data.route_view[0]} ≈{" "}
                         {formatNumber(onePayRoute.pool_data.receive_show, 4)}{" "}
                         {
@@ -44,7 +46,7 @@ const SwapDetails = () => {
                             className="animate-spin"
                             style={{ color: colors.primary }}
                         />
-                        Fetching best route
+                        {t("fetching_best_route")}
                     </div>
                 )}
                 <div>
@@ -62,7 +64,7 @@ const SwapDetails = () => {
                         className="detail-accordion-content"
                     >
                         <SwapKeyValue
-                            keyText={"Slippage tolerance"}
+                            keyText={t("slippage_tolerance")}
                             value={
                                 <div
                                     className="slippage-box"
@@ -72,18 +74,18 @@ const SwapDetails = () => {
                                     }}
                                 >
                                     {slippage === "auto" ? "1" : slippage}%{" "}
-                                    {slippage === "auto" ? "Auto" : ""}
+                                    {slippage === "auto" ? t("auto") : ""}
                                 </div>
                             }
                         />
                         <SwapKeyValue
-                            keyText={"Blockchain fee"}
+                            keyText={t("blockchain_fee")}
                             value={
                                 bestRoute?.pool_data.blockchainFee ?? "0 TON"
                             }
                         />
                         <SwapKeyValue
-                            keyText={"Price impact"}
+                            keyText={t("price_impact")}
                             value={
                                 <span data-testid="price-impact">
                                     {bestRoute
@@ -93,13 +95,13 @@ const SwapDetails = () => {
                             }
                         />
                         <SwapKeyValue
-                            keyText={"Minimum Receive"}
+                            keyText={t("minimum_received")}
                             value={
                                 bestRoute?.pool_data.minimumReceive_show ?? "0"
                             }
                         />
                         <SwapKeyValue
-                            keyText={"Route"}
+                            keyText={t("route")}
                             value={
                                 bestRoute ? (
                                     <div className="route-container">

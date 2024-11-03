@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import "./CardButton.scss";
 import { useOptionsStore } from "../../store/options.store";
+import { useTranslation } from "react-i18next";
 type CardButtonProps = {
     isLoading: boolean;
     onClick: () => void;
@@ -16,6 +17,7 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
     type,
     onClick,
 }) => {
+    const { t } = useTranslation();
     const { colors } = useThemeStore();
     const { options } = useOptionsStore();
     const isDisabled = (() => {
@@ -56,7 +58,7 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
                 children
             ) : type === "receive" ? (
                 <>
-                    SELECT{" "}
+                    {t("select")}{" "}
                     <div>
                         <MdKeyboardArrowDown />
                     </div>

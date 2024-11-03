@@ -38,7 +38,10 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
                         initial={{
                             opacity: 0,
                             scale: 0.95,
-                            transformOrigin: "top right",
+                            transformOrigin:
+                                options.layout_direction === "ltr"
+                                    ? "top right"
+                                    : "top left",
                         }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}

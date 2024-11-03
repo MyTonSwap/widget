@@ -11,11 +11,13 @@ import { useWalletStore } from "../../store/wallet.store";
 import { TON_ADDR } from "../../constants";
 import "./Card.scss";
 import { useOptionsStore } from "../../store/options.store";
+import { useTranslation } from "react-i18next";
 type CardProps = {
     type: "pay" | "receive";
 };
 
 const Card: FC<CardProps> = ({ type }) => {
+    const { t } = useTranslation();
     const [isSelectVisible, setIsSelectVisible] = useState(false);
     const [typingTimeout, setTypingTimeout] =
         useState<ReturnType<typeof setTimeout>>();
@@ -173,7 +175,7 @@ const Card: FC<CardProps> = ({ type }) => {
                             opacity: 0.7,
                         }}
                     >
-                        You {type === "pay" ? "Pay" : "Receive"}
+                        {type === "pay" ? t("you_pay") : t("you_receive")}
                     </span>
                     {type === "pay" && balanceToken ? (
                         <span
@@ -185,17 +187,19 @@ const Card: FC<CardProps> = ({ type }) => {
                                 className=""
                                 style={{ color: colors.primary }}
                             >
-                                Max:{" "}
+                                {t("max")}:{" "}
                             </span>
-                            {formatNumber(
-                                +fromNano(
-                                    balanceToken.balance,
-                                    pay_token!.decimal
-                                ),
-                                2,
-                                false
-                            )}{" "}
-                            {pay_token?.symbol}
+                            <span>
+                                {formatNumber(
+                                    +fromNano(
+                                        balanceToken.balance,
+                                        pay_token!.decimal
+                                    ),
+                                    2,
+                                    false
+                                )}{" "}
+                                {pay_token?.symbol}
+                            </span>
                         </span>
                     ) : (
                         ""

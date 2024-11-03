@@ -6,8 +6,11 @@ import { FaCircleCheck } from "react-icons/fa6";
 import "./SlippageSetting.scss";
 import { TiPlus } from "react-icons/ti";
 import { FaMinus } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 
 const SlippageSetting = () => {
+    const { t } = useTranslation();
+
     const { slippage, setSlippage } = useSwapStore();
     const { colors } = useThemeStore();
     const [userInput, setUserInput] = useState("");
@@ -77,12 +80,12 @@ const SlippageSetting = () => {
                 className="button-container"
                 style={{ color: colors.text_black }}
             >
-                <div>Max Slippage</div>
+                <div>{t("max_slippage")}</div>
                 <div
                     className="slippage-indicator"
                     data-testid="slippage-indicator"
                 >
-                    {slippage === "auto" ? "Auto" : `${slippage}%`}{" "}
+                    {slippage === "auto" ? t("auto") : `${slippage}%`}{" "}
                 </div>
             </button>
             <AnimatePresence>
@@ -107,7 +110,7 @@ const SlippageSetting = () => {
                                         : colors.text_fade,
                             }}
                         />
-                        Auto
+                        {t("auto")}
                     </div>
                     <div className="controllers">
                         <button
@@ -119,7 +122,7 @@ const SlippageSetting = () => {
                                 color:
                                     slippage !== "auto" && slippage <= 1
                                         ? colors.text_fade
-                                        : colors.text_black,
+                                        : colors.text_white,
                                 background:
                                     slippage !== "auto" && slippage <= 1
                                         ? colors.light_shade
@@ -164,7 +167,7 @@ const SlippageSetting = () => {
                                 color:
                                     slippage !== "auto" && slippage >= 10
                                         ? colors.text_fade
-                                        : colors.text_black,
+                                        : colors.text_white,
                                 background:
                                     slippage !== "auto" && slippage >= 10
                                         ? colors.light_shade

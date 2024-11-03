@@ -12,16 +12,19 @@ import SwapButton from "../SwapButton/SwapButton";
 import "./Swap.scss";
 import { ErrorBoundary } from "react-error-boundary";
 import { Toaster } from "react-hot-toast";
-
+import "../../i18n/i18n";
 import {
     onSwap,
     onTokenSelect,
     useEventsStore,
 } from "../../store/events.store";
+import { useTranslation } from "react-i18next";
+import { cn } from "../../utils/cn";
 
 export type SwapProps = {
     theme?: ColorTheme;
     options?: SwapOptions;
+    locale?: string;
     tonConnectInstance: TonConnectUI;
     onTokenSelect?: ({ type, asset }: onTokenSelect) => void;
     onSwap?: ({ type, data }: onSwap) => void;
@@ -45,6 +48,11 @@ export const SwapComponent: FC<SwapProps> = ({
     onTokenSelect,
     onSwap,
 }) => {
+    const { t, i18n } = useTranslation();
+    const direction = i18n.getResourceBundle(
+        i18n.resolvedLanguage!,
+        "direction"
+    );
     const { colors, setTheme } = useThemeStore();
     const {
         setOptions,
@@ -58,7 +66,7 @@ export const SwapComponent: FC<SwapProps> = ({
         setTonConnectInstance(tonConnectInstance);
     }
     if (options) {
-        setOptions(options);
+        setOptions({ ...{ layout_direction: direction }, ...options });
     }
     const {
         setWallet,
@@ -139,7 +147,7 @@ export const SwapComponent: FC<SwapProps> = ({
 
     return (
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
-            <div className="mytonswap-app">
+            <div className={cn("mytonswap-app", direction)}>
                 <div
                     className={clsx("container")}
                     style={{
@@ -156,13 +164,13 @@ export const SwapComponent: FC<SwapProps> = ({
                             className="text-provided"
                             style={{ color: colors.text_black }}
                         >
-                            Service provided by{" "}
+                            {t("service_provided")}{" "}
                             <a
                                 href="https://mytonswap.com"
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                MyTonSwap
+                                {t("mytonswap")}
                             </a>
                         </div>
                     )}

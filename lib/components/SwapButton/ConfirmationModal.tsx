@@ -9,11 +9,13 @@ import swap from "../../utils/swap";
 import { FC, useEffect } from "react";
 import "./ConfirmationModal.scss";
 import { useOptionsStore } from "../../store/options.store";
+import { useTranslation } from "react-i18next";
 type ConfirmationModalProps = {
     setConfirmModal: (state: ModalState) => void;
 };
 
 const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
+    const { t } = useTranslation();
     const handleConfirmClose = () => {
         setConfirmModal(ModalState.NONE);
     };
@@ -52,7 +54,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                         color: colors.text_black,
                     }}
                 >
-                    Confirm the swap
+                    {t("confirm.confirm_title")}
                 </span>{" "}
                 <IoMdClose
                     onClick={handleConfirmClose}
@@ -104,11 +106,11 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
             </div>
             <div className="confirm-modal-detail">
                 <SwapKeyValue
-                    keyText="Slippage"
+                    keyText={t("slippage_tolerance")}
                     value={slippage === "auto" ? "1% Auto" : slippage + "%"}
                 />
                 <SwapKeyValue
-                    keyText="Minimum Receive"
+                    keyText={t("minimum_received")}
                     value={
                         <div className="min-receive">
                             {formatNumber(
@@ -120,11 +122,11 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     }
                 />
                 <SwapKeyValue
-                    keyText="Blockchain Fee"
+                    keyText={t("blockchain_fee")}
                     value={bestRoute!.pool_data.blockchainFee}
                 />
                 <SwapKeyValue
-                    keyText="Route"
+                    keyText={t("route")}
                     value={
                         bestRoute ? (
                             <div className="best-route">
@@ -160,11 +162,11 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     onClick={handleConfirmSwap}
                     className="confirm-button"
                     style={{
-                        color: colors.text_black,
+                        color: colors.text_white,
                         background: colors.primary,
                     }}
                 >
-                    Confirm
+                    {t("confirm.confirm_button")}
                 </button>
             </div>
         </div>

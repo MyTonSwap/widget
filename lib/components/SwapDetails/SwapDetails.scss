@@ -65,3 +65,11 @@
         }
     }
 }
+
+.mytonswap-app.rtl {
+    .detail-accordion-container {
+        .one-pay {
+            direction: ltr;
+        }
+    }
+}

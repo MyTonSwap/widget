@@ -23,3 +23,10 @@
 .wallet-profile-mts .popover {
     padding: 0px;
 }
+
+.mytonswap-app.rtl {
+    .popover {
+        right: auto;
+        left: 0;
+    }
+}

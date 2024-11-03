@@ -11,7 +11,7 @@ import catchError from "./catchErrors";
 import { useOptionsStore } from "../store/options.store";
 import { WIDGET_VERSION } from "../constants";
 import { reportErrorWithToast } from "../services/errorAnalytics";
-
+import i18n from "../i18n/i18n";
 export default async function swap(
     tonconnect: TonConnectUI,
     bestRoute: BestRoute
@@ -70,15 +70,13 @@ export default async function swap(
             const stateInstance = useSwapStore.getState();
             if (e instanceof UserRejectsError) {
                 stateInstance.setErrorMessage({
-                    errorTitle: "Transaction Canceled!",
-                    errorMessage:
-                        "You have canceled the transaction. There will be no changes to your account.",
+                    errorTitle: i18n.t("errors.transaction_canceled"),
+                    errorMessage: i18n.t("errors.transaction_canceled_by_user"),
                 });
             } else {
                 stateInstance.setErrorMessage({
-                    errorTitle: "Transaction Failed!",
-                    errorMessage:
-                        "Something went wrong. Please try again later. If the problem persists, please contact us.",
+                    errorTitle: i18n.t("errors.transaction_failed"),
+                    errorMessage: i18n.t("errors.unknown_error"),
                 });
             }
         });

@@ -17,8 +17,10 @@ import {
 import { useLongPress } from "@uidotdev/usehooks";
 import toast from "react-hot-toast";
 import { useOptionsStore } from "../../store/options.store";
+import { useTranslation } from "react-i18next";
 
 const SwapButton = () => {
+    const { t } = useTranslation();
     const { tonConnectInstance } = useOptionsStore();
     const { colors } = useThemeStore();
 
@@ -34,15 +36,16 @@ const SwapButton = () => {
     } = useSwapStore();
 
     const getSwapText = () => {
-        if (!tonConnectInstance?.wallet) return "Connect Wallet";
-        if (!receive_token || !pay_token) return "Choose a token";
-        if (pay_amount === 0n) return "Enter an amount";
+        if (!tonConnectInstance?.wallet) return t("button_text.connect_wallet");
+        if (!receive_token || !pay_token)
+            return t("button_text.choose_a_token");
+        if (pay_amount === 0n) return t("button_text.enter_amount");
         if (bestRoute && !bestRoute.pool_data.status)
-            return "Price Impact is too high";
+            return t("button_text.price_impact");
         if (pay_amount > Number(balance.get(pay_token!.address)?.balance ?? 0))
-            return "Insufficient balance";
+            return t("button_text.insufficient_balance");
 
-        return "Swap";
+        return t("button_text.swap");
     };
 
     const isButtonDisabled = () => {

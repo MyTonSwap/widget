@@ -5,8 +5,11 @@ import { ModalState, useSwapStore } from "../../store/swap.store";
 import "./WaitingForWallet.scss";
 import { motion } from "framer-motion";
 import { useOptionsStore } from "../../store/options.store";
+import { useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 
 const WaitingForWallet = () => {
+    const { t } = useTranslation();
     const { tonConnectInstance } = useOptionsStore();
     const { setModalState } = useSwapStore();
 
@@ -28,10 +31,14 @@ const WaitingForWallet = () => {
                 <ImSpinner8 className="animate-spin icon" />
             </div>
             <div className="loading-text">
-                Confirm the transaction in{" "}
-                {tonConnectInstance?.wallet?.device.appName ?? "your Wallet"}
+                <Trans
+                    i18nKey={"confirm.confirm_in_wallet"}
+                    values={{
+                        wallet: tonConnectInstance?.wallet?.device.appName,
+                    }}
+                ></Trans>
             </div>
-            <p>It will only take a moment</p>
+            <p>{t("confirm.action_in_progress")}</p>
         </motion.div>
     );
 };

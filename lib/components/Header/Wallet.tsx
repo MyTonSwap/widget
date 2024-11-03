@@ -9,10 +9,12 @@ import { FaCheck, FaCopy } from "react-icons/fa6";
 import { useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
 import { useOptionsStore } from "../../store/options.store";
+import { useTranslation } from "react-i18next";
 // import { useTonConnectUI } from "@tonconnect/ui-react";
 
 const Wallet = () => {
     // make function and state for copy to clipboard address button
+    const { t } = useTranslation();
     const [copied, setCopied] = useState(false);
     const copyToClipboard = async (text: string) => {
         try {
@@ -46,14 +48,15 @@ const Wallet = () => {
         <>
             {wallet && (
                 <div className="wallet-card">
-                    <p className="title">Account</p>
+                    <p className="title">{t("account")}</p>
                     <div className="wallet-content">
-                        <p className="balance-title">Balance</p>
+                        <p className="balance-title">{t("balance")}</p>
                         <div
                             className="balance-amount"
                             style={{ color: colors.primary }}
                         >
-                            {TON_BALANCE}TON
+                            {TON_BALANCE}
+                            {t("ton")}
                         </div>
                         <div className="address-section">
                             <div
@@ -96,10 +99,10 @@ const Wallet = () => {
                             onClick={handleDisconnect}
                             style={{
                                 background: colors.primary,
-                                color: colors.text_black,
+                                color: colors.text_white,
                             }}
                         >
-                            Disconnect Wallet
+                            {t("disconnect_wallet")}
                         </button>
                     </div>
                 </div>

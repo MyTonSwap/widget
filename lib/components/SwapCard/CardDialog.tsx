@@ -26,6 +26,7 @@ import { modalAnimationDesktop, modalAnimationMobile } from "../../constants";
 import catchError from "../../utils/catchErrors";
 
 import { reportErrorWithToast } from "../../services/errorAnalytics";
+import { useTranslation } from "react-i18next";
 type CardDialogProps = {
     isSelectVisible: boolean;
     setIsSelectVisible: Dispatch<SetStateAction<boolean>>;
@@ -44,6 +45,7 @@ const CardDialog: FC<CardDialogProps> = ({
     onTokenSelect,
     type,
 }) => {
+    const { t } = useTranslation();
     const {
         client,
         addToAssets,
@@ -266,7 +268,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                 className="dialog-head"
                                 style={{ color: colors.text_black }}
                             >
-                                <div>Select token</div>
+                                <div>{t("select_a_token")}</div>
                                 <button
                                     onClick={handleOnClose}
                                     className="text-xl"
@@ -294,7 +296,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                     <input
                                         className="dialog-search-input"
                                         type="text"
-                                        placeholder="Search..."
+                                        placeholder={t("search")}
                                         data-testid="dialog-search-input"
                                         style={{
                                             color: colors.text_black,
@@ -443,10 +445,9 @@ const CardDialog: FC<CardDialogProps> = ({
                                                         color: colors.text_black,
                                                     }}
                                                 >
-                                                    No token found
+                                                    {t("token_notfound")}
                                                     <span>
-                                                        Double-check your
-                                                        request and try again
+                                                        {t("not_found_desc")}
                                                     </span>
                                                 </div>
                                             )}
@@ -469,14 +470,14 @@ const CardDialog: FC<CardDialogProps> = ({
                                                 >
                                                     <TiWarning className="icon" />
                                                     <h1 className="title">
-                                                        Trade at your own risk
+                                                        {t(
+                                                            "trade_warning.trade_title"
+                                                        )}
                                                     </h1>
                                                     <p className="description">
-                                                        Anyone can create an
-                                                        asset including fake
-                                                        versions of existing
-                                                        assets that claim a
-                                                        project representation
+                                                        {t(
+                                                            "trade_warning.trade_description"
+                                                        )}
                                                     </p>
                                                 </div>
                                                 {contractCommunity && (
@@ -504,7 +505,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                     color: colors.text_black,
                                                 }}
                                             >
-                                                Agree and proceed
+                                                {t("trade_warning.agree")}
                                             </button>
                                         </>
                                     )}

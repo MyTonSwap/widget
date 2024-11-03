@@ -20,6 +20,7 @@ import {
 } from "../../store/events.store";
 import { useTranslation } from "react-i18next";
 import { cn } from "../../utils/cn";
+import { supportedLanguages } from "../../i18n/i18n";
 
 export type SwapProps = {
     theme?: ColorTheme;
@@ -44,11 +45,23 @@ declare global {
 export const SwapComponent: FC<SwapProps> = ({
     theme,
     options,
+    locale,
     tonConnectInstance,
     onTokenSelect,
     onSwap,
 }) => {
     const { t, i18n } = useTranslation();
+    if (
+        locale &&
+        i18n.resolvedLanguage !== locale &&
+        supportedLanguages.includes(locale as supportedLanguages)
+    ) {
+        i18n.changeLanguage(locale);
+    } else {
+        if (!locale && i18n.resolvedLanguage !== "en") {
+            i18n.changeLanguage("en");
+        }
+    }
     const direction = i18n.getResourceBundle(
         i18n.resolvedLanguage!,
         "direction"

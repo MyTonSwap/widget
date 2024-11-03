@@ -308,3 +308,33 @@ export const HideSwapDetail: Story = {
         },
     },
 };
+
+export const Russian: Story = {
+    args: {
+        locale: "ru",
+    },
+};
+
+export const Arabic: Story = {
+    args: {
+        locale: "ar",
+    },
+};
+
+export const Spanish: Story = {
+    args: {
+        locale: "es",
+    },
+};
+
+export const SimplifiedChinese: Story = {
+    args: {
+        locale: "cn",
+    },
+};
+
+export const Farsi: Story = {
+    args: {
+        locale: "fa",
+    },
+};

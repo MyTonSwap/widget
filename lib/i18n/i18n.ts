@@ -4,7 +4,9 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { resources } from "./resources";
 
 export type supportedLanguages = keyof typeof resources;
-
+export const supportedLanguages = Object.keys(
+    resources
+) as supportedLanguages[];
 i18n.use(initReactI18next)
     .use(LanguageDetector)
     .init({

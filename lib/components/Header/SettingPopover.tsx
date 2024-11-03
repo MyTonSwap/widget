@@ -8,10 +8,16 @@ import { useThemeStore } from "../../store/theme.store";
 import "./SettingPopover.scss";
 import Wallet from "./Wallet";
 import { useOptionsStore } from "../../store/options.store";
+import { useTranslation } from "react-i18next";
 
 export type SettingPopoverProps = PropsWithChildren & {};
 
 const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
+    const { i18n } = useTranslation();
+    const direction = i18n.getResourceBundle(
+        i18n.resolvedLanguage!,
+        "direction"
+    );
     const { colors } = useThemeStore();
     const { options } = useOptionsStore();
     const [isOpen, setIsOpen] = useState(false);
@@ -39,9 +45,7 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
                             opacity: 0,
                             scale: 0.95,
                             transformOrigin:
-                                options.layout_direction === "ltr"
-                                    ? "top right"
-                                    : "top left",
+                                direction === "ltr" ? "top right" : "top left",
                         }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}

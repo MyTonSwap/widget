@@ -16,6 +16,11 @@ const preview: Preview = {
             },
         },
         layout: "centered",
+        options: {
+            storySort: {
+                order: ["Components", ["Swap", "Default"]],
+            },
+        },
     },
 };
 

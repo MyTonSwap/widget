@@ -139,7 +139,7 @@ const CardDialog: FC<CardDialogProps> = ({
         setHasMore(true);
         setReceiveAssets([]);
         onNextPage(1);
-    }, [pay_token]);
+    }, [pay_token, communityTokens]);
 
     // useEffect(() => {
     //     setPage(1);
@@ -171,21 +171,24 @@ const CardDialog: FC<CardDialogProps> = ({
     };
 
     const filteredAssets = assetList
-        ? assetList.sort(sortAssets).filter((item) => {
-              if (
-                  searchInput.toLowerCase() === "usdt" &&
-                  item.symbol === "USD₮"
-              ) {
-                  return true;
-              }
-              const searchValue = searchInput.toLowerCase();
+        ? assetList
+              .sort(sortAssets)
+              .filter((item) => {
+                  if (
+                      searchInput.toLowerCase() === "usdt" &&
+                      item.symbol === "USD₮"
+                  ) {
+                      return true;
+                  }
+                  const searchValue = searchInput.toLowerCase();
 
-              return (
-                  item.name.toLowerCase().includes(searchValue) ||
-                  item.symbol.toLowerCase().includes(searchValue) ||
-                  item.address.includes(searchInput)
-              );
-          })
+                  return (
+                      item.name.toLowerCase().includes(searchValue) ||
+                      item.symbol.toLowerCase().includes(searchValue) ||
+                      item.address.includes(searchInput)
+                  );
+              })
+              .filter((item) => (communityTokens ? true : !item.warning))
         : [];
 
     const handleOnClose = () => {
@@ -427,17 +430,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                     />
                                                 </div>
                                             }
-                                        >
-                                            {filteredAssets?.map((item) => (
-                                                <Token
-                                                    onTokenSelect={
-                                                        handleOnTokenSelect
-                                                    }
-                                                    asset={item}
-                                                    key={item.address}
-                                                />
-                                            ))}
-                                            {filteredAssets.length === 0 && (
+                                            endMessage={
                                                 <div
                                                     className="no-token-found"
                                                     data-testid="token-not-found"
@@ -450,7 +443,17 @@ const CardDialog: FC<CardDialogProps> = ({
                                                         {t("not_found_desc")}
                                                     </span>
                                                 </div>
-                                            )}
+                                            }
+                                        >
+                                            {filteredAssets?.map((item) => (
+                                                <Token
+                                                    onTokenSelect={
+                                                        handleOnTokenSelect
+                                                    }
+                                                    asset={item}
+                                                    key={item.address}
+                                                />
+                                            ))}
                                         </InfiniteScroll>
                                     </div>
                                 </>

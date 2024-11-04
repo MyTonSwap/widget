@@ -1,7 +1,7 @@
 describe("setting ui components test", () => {
     beforeEach(() => {
         cy.visit(
-            "http://127.0.0.1:6006/iframe.html?args=&globals=&id=components-swap--default&viewMode=story"
+            "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--default&viewMode=story"
         );
 
         cy.get("[data-testid='setting-button']").click();
@@ -93,5 +93,71 @@ describe("card input ui components test", () => {
         cy.get("[data-testid='card-button-receive']").click();
         cy.get("[data-testid='dialog-search-input']").type("INVALIDTOKEN");
         cy.get("[data-testid='token-not-found']").should("be.visible");
+    });
+});
+
+describe("i18n ui components test", () => {
+    it("should change language russian version is opened", () => {
+        cy.visit(
+            "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--russian&viewMode=story"
+        );
+        cy.get("[data-testid='swap-header-title']").should(
+            "contain.text",
+            "Обмен"
+        );
+        cy.get("[data-testid='swapcard-title']").should(
+            "contain.text",
+            "Вы платите"
+        );
+        cy.get("[data-testid='swapcard-title']").should(
+            "contain.text",
+            "Вы получаете"
+        );
+        cy.get("[data-testid='swap-button']").should(
+            "have.text",
+            "Подключить кошелек"
+        );
+    });
+    it("should change language arabic version is opened", () => {
+        cy.visit(
+            "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--arabic"
+        );
+        cy.get("[data-testid='swap-header-title']").should(
+            "contain.text",
+            "تبادل"
+        );
+        cy.get("[data-testid='swapcard-title']").should(
+            "contain.text",
+            "أنت تدفع"
+        );
+        cy.get("[data-testid='swapcard-title']").should(
+            "contain.text",
+            "أنت تستلم"
+        );
+        cy.get("[data-testid='swap-button']").should(
+            "have.text",
+            "توصيل المحفظة"
+        );
+    });
+    it("should change language arabic version is opened", () => {
+        cy.visit(
+            "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--spanish"
+        );
+        cy.get("[data-testid='swap-header-title']").should(
+            "contain.text",
+            "Intercambiar"
+        );
+        cy.get("[data-testid='swapcard-title']").should(
+            "contain.text",
+            "Usted paga"
+        );
+        cy.get("[data-testid='swapcard-title']").should(
+            "contain.text",
+            "Usted recibe"
+        );
+        cy.get("[data-testid='swap-button']").should(
+            "have.text",
+            "Conectar billetera"
+        );
     });
 });

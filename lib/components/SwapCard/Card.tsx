@@ -169,7 +169,7 @@ const Card: FC<CardProps> = ({ type }) => {
             <div className="swapcard-card">
                 <div className="card-head">
                     <span
-                        className=""
+                        data-testid="swapcard-title"
                         style={{
                             color: colors.text_black,
                             opacity: 0.7,

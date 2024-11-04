@@ -123,6 +123,7 @@ const SwapButton = () => {
             </AnimatePresence>
             <button
                 className="swap-button"
+                data-testid="swap-button"
                 {...attrs}
                 style={{
                     background:

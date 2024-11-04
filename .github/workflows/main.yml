@@ -27,27 +27,27 @@ jobs:
                     "npx http-server storybook-static --port 6006 --silent" \
                     "npx wait-on tcp:6006 && pnpm cypress:run"
             - run: pnpm run build
-    
+
     deploy:
         runs-on: ubuntu-latest
         needs: test
-        
+
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
-          
+
             - name: Set up SSH
               uses: webfactory/ssh-agent@v0.5.3
               with:
-                ssh-private-key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
-          
+                  ssh-private-key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
+
             - name: Deploy to Server
               env:
-                DEPLOY_USER: ${{ secrets.DEV_SSH_USER }}
-                DEPLOY_HOST: ${{ secrets.DEV_SSH_HOST }}
-                DEPLOY_PATH: ${{ secrets.DEV_SSH_DEPLOY_PATH }}
+                  DEPLOY_USER: ${{ secrets.DEV_SSH_USER }}
+                  DEPLOY_HOST: ${{ secrets.DEV_SSH_HOST }}
+                  DEPLOY_PATH: ${{ secrets.DEV_SSH_DEPLOY_PATH }}
               run: |
-                echo $DEPLOY_PATH
-                ssh-keyscan $DEPLOY_HOST >> ~/.ssh/known_hosts
-                rsync -avz -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o BatchMode=yes" --rsync-path="TERM=xterm rsync" $GITHUB_WORKSPACE/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-                ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o BatchMode=yes $DEPLOY_USER@$DEPLOY_HOST "cd $DEPLOY_PATH && (docker stop storybook-build || true) && (docker rm storybook-build || true) && docker build -t storybook-build . && docker run -d -p 6006:6006 --name storybook-build storybook-build"
+                  echo $DEPLOY_PATH
+                  ssh-keyscan $DEPLOY_HOST >> ~/.ssh/known_hosts
+                  rsync -avz -e "ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o BatchMode=yes" --rsync-path="TERM=xterm rsync" $GITHUB_WORKSPACE/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+                  ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o BatchMode=yes $DEPLOY_USER@$DEPLOY_HOST "cd $DEPLOY_PATH && (docker stop storybook-build || true) && (docker rm storybook-build || true) && docker build -t storybook-build . && docker run -d -p 6006:80 --name storybook-build storybook-build"

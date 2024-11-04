@@ -1,18 +1,17 @@
-FROM node:lts-alpine
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-RUN npm install -g pnpm
-RUN npm install -g serve
-
 COPY package.json pnpm-lock.yaml ./
-
 RUN pnpm install
 
 COPY . .
-
 RUN pnpm run build-storybook
 
-EXPOSE 6006
+FROM nginx:alpine
 
-CMD ["npx", "serve", "-l", "6006", "storybook-static"]
+COPY --from=builder /app/build-storybook /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

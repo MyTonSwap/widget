@@ -1,10 +1,8 @@
-FROM node:18-alpine AS builder
+FROM node:18-alpine
 
 RUN npm install -g pnpm
 
 WORKDIR /app
-
-COPY .git .git
 
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
@@ -12,9 +10,7 @@ RUN pnpm install
 COPY . .
 RUN pnpm run build-storybook
 
-FROM nginx:alpine
-
-COPY --from=builder /app/build-storybook /usr/share/nginx/html
+COPY  /app/build-storybook /usr/share/nginx/html
 
 EXPOSE 80
 

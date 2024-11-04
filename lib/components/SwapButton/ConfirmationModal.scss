@@ -100,3 +100,48 @@
         }
     }
 }
+
+@media screen and (min-width: 768px) {
+    .mytonswap-app {
+        .confirm-modal-container {
+            .confirm-modal-header {
+                .title {
+                    font-size: 1.25rem;
+                }
+            }
+            .confirm-modal-images {
+                .pay-image {
+                    width: 3rem;
+                    height: 3rem;
+                }
+                .receive-image {
+                    width: 3rem;
+                    height: 3rem;
+                }
+            }
+            .confirm-modal-change-rate {
+                .change-icon {
+                    font-size: 1rem;
+                }
+                .rate {
+                    font-size: 1rem;
+                }
+            }
+            .confirm-modal-detail {
+                font-size: 1rem;
+                .min-receive {
+                    gap: 0.5rem;
+                }
+                .best-route {
+                    gap: 0.5rem;
+                }
+            }
+            .confirm-modal-button-container {
+                .confirm-button {
+                    height: 3rem;
+                    font-size: var(--font-size-base);
+                }
+            }
+        }
+    }
+}

@@ -48,3 +48,19 @@
         opacity: 0.7;
     }
 }
+
+@media screen and (min-width: 768px) {
+    .mytonswap-app {
+        .modal-container {
+            .modal-container-inner {
+                height: 100%;
+                max-height: 80%;
+                max-height: 400px;
+            }
+        }
+        .swap-button {
+            height: 3.5rem;
+            font-size: var(--font-size-md);
+        }
+    }
+}

@@ -31,3 +31,11 @@
         }
     }
 }
+
+@media screen and (min-width: 768px) {
+    .mytonswap-app {
+        .token-setting-container {
+            font-size: var(--font-size-sm);
+        }
+    }
+}

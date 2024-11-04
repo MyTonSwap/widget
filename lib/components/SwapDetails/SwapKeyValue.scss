@@ -7,3 +7,11 @@
         font-size: var(--font-size-xs);
     }
 }
+
+@media screen and (min-width: 768px) {
+    .mytonswap-app {
+        .details-key-value {
+            font-size: var(--font-size-sm);
+        }
+    }
+}

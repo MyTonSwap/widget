@@ -7,7 +7,6 @@
         left: 0;
         z-index: 9999999999999999999999999;
         overflow: hidden;
-        // background-color: rgba(0, 0, 0, 0.1);
         .card-dialog {
             position: fixed;
 
@@ -153,6 +152,33 @@
                         height: 1.25rem;
                         background-size: contain !important;
                         border-radius: 9999px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .mytonswap-app {
+        .card-dialog-container {
+            .card-dialog {
+                .no-token-found {
+                    font-size: var(--font-size-lg);
+                    span {
+                        font-size: var(--font-size-sm);
+                    }
+                }
+                .dialog-head {
+                    font-size: var(--font-size-base);
+                }
+                .dialog-search {
+                    height: 3rem;
+
+                    font-size: var(--font-size-xl);
+
+                    .dialog-search-input {
+                        font-size: var(--font-size-base);
                     }
                 }
             }

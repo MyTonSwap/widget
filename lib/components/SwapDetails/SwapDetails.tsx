@@ -9,16 +9,17 @@ import formatNumber from "../../utils/formatNum";
 import { CgSpinnerTwo } from "react-icons/cg";
 import "./SwapDetails.scss";
 import { useTranslation } from "react-i18next";
+import { useMeasure } from "@uidotdev/usehooks";
 const SwapDetails = () => {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const { onePayRoute, bestRoute, isFindingBestRoute, slippage } =
         useSwapStore();
     const { colors } = useThemeStore();
+    const [ref, { height }] = useMeasure();
+    console.log(height);
     return (
         <motion.button
-            initial={{ height: 50 }}
-            animate={{ height: isOpen ? 158 : 50 }}
             className="detail-accordion-container"
             style={{
                 borderColor: colors.border,
@@ -58,82 +59,93 @@ const SwapDetails = () => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1, transition: { delay: 0.05 } }}
-                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{
+                            opacity: 1,
+                            transition: { delay: 0.05 },
+                            height: height ?? 0,
+                        }}
+                        exit={{ opacity: 0, height: 0 }}
                         className="detail-accordion-content"
                     >
-                        <SwapKeyValue
-                            keyText={t("slippage_tolerance")}
-                            value={
-                                <div
-                                    className="slippage-box"
-                                    style={{
-                                        background: colors.slippage_box,
-                                        color: colors.text_white,
-                                    }}
-                                >
-                                    {slippage === "auto" ? "1" : slippage}%{" "}
-                                    {slippage === "auto" ? t("auto") : ""}
-                                </div>
-                            }
-                        />
-                        <SwapKeyValue
-                            keyText={t("blockchain_fee")}
-                            value={
-                                bestRoute?.pool_data.blockchainFee ?? "0 TON"
-                            }
-                        />
-                        <SwapKeyValue
-                            keyText={t("price_impact")}
-                            value={
-                                <span data-testid="price-impact">
-                                    {bestRoute
-                                        ? bestRoute.pool_data.priceImpact + "%"
-                                        : "0%"}
-                                </span>
-                            }
-                        />
-                        <SwapKeyValue
-                            keyText={t("minimum_received")}
-                            value={
-                                bestRoute?.pool_data.minimumReceive_show ?? "0"
-                            }
-                        />
-                        <SwapKeyValue
-                            keyText={t("route")}
-                            value={
-                                bestRoute ? (
-                                    <div className="route-container">
-                                        <span
-                                            className="dex"
-                                            data-testid="dex-container"
-                                        >
-                                            <div
-                                                className="image"
-                                                style={{
-                                                    background: `url(${
-                                                        bestRoute.selected_pool
-                                                            .dex === "dedust"
-                                                            ? "https://dedust.io/favicon-32x32.png"
-                                                            : "https://ston.fi/images/tild3432-3236-4431-b139-376231383134__favicon.svg"
-                                                    })`,
-                                                }}
-                                            ></div>
-                                            {bestRoute.selected_pool.dex ===
-                                            "dedust"
-                                                ? "Dedust -"
-                                                : "Ston.fi -"}
-                                        </span>
-                                        {bestRoute?.pool_data?.route_view.join(
-                                            " > "
-                                        )}
+                        <div ref={ref} className="details-inner-container">
+                            <SwapKeyValue
+                                keyText={t("slippage_tolerance")}
+                                value={
+                                    <div
+                                        className="slippage-box"
+                                        style={{
+                                            background: colors.slippage_box,
+                                            color: colors.text_white,
+                                        }}
+                                    >
+                                        {slippage === "auto" ? "1" : slippage}%{" "}
+                                        {slippage === "auto" ? t("auto") : ""}
                                     </div>
-                                ) : (
-                                    "Enter amount"
-                                )
-                            }
-                        />
+                                }
+                            />
+                            <SwapKeyValue
+                                keyText={t("blockchain_fee")}
+                                value={
+                                    bestRoute?.pool_data.blockchainFee ??
+                                    "0 TON"
+                                }
+                            />
+                            <SwapKeyValue
+                                keyText={t("price_impact")}
+                                value={
+                                    <span data-testid="price-impact">
+                                        {bestRoute
+                                            ? bestRoute.pool_data.priceImpact +
+                                              "%"
+                                            : "0%"}
+                                    </span>
+                                }
+                            />
+                            <SwapKeyValue
+                                keyText={t("minimum_received")}
+                                value={
+                                    bestRoute?.pool_data.minimumReceive_show ??
+                                    "0"
+                                }
+                            />
+                            <SwapKeyValue
+                                keyText={t("route")}
+                                value={
+                                    bestRoute ? (
+                                        <div className="route-container">
+                                            <span
+                                                className="dex"
+                                                data-testid="dex-container"
+                                            >
+                                                <div
+                                                    className="image"
+                                                    style={{
+                                                        background: `url(${
+                                                            bestRoute
+                                                                .selected_pool
+                                                                .dex ===
+                                                            "dedust"
+                                                                ? "https://dedust.io/favicon-32x32.png"
+                                                                : "https://ston.fi/images/tild3432-3236-4431-b139-376231383134__favicon.svg"
+                                                        })`,
+                                                    }}
+                                                ></div>
+                                                {bestRoute.selected_pool.dex ===
+                                                "dedust"
+                                                    ? "Dedust -"
+                                                    : "Ston.fi -"}
+                                            </span>
+                                            {bestRoute?.pool_data?.route_view.join(
+                                                " > "
+                                            )}
+                                        </div>
+                                    ) : (
+                                        "Enter amount"
+                                    )
+                                }
+                            />
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

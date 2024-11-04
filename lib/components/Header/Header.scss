@@ -26,3 +26,21 @@
         }
     }
 }
+
+@media screen and (min-width: 768px) {
+    .mytonswap-app {
+        .header-container {
+            padding: 0 1rem;
+            font-size: var(--font-size-lg);
+        }
+        .header-setting {
+            .loading-container {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+            .setting-icon {
+                font-size: var(--font-size-2xl);
+            }
+        }
+    }
+}

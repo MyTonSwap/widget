@@ -73,12 +73,16 @@ const Inprogress = () => {
         checkForTransaction();
     }, []);
     const handleCloseModal = () => {
-        setModalState(ModalState.DONE);
+        setModalState(ModalState.NONE);
     };
 
     return (
         <div className="inprogress-container">
-            <IoClose onClick={handleCloseModal} className=" close-button" />
+            <IoClose
+                onClick={handleCloseModal}
+                style={{ color: colors.text_black }}
+                className=" close-button"
+            />
             <div className="inprogress-modal-images">
                 <div
                     className="pay-image"

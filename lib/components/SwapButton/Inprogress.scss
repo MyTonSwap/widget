@@ -70,3 +70,33 @@
         }
     }
 }
+
+@media screen and (min-width: 768px) {
+    .mytonswap-app {
+        .inprogress-container {
+            .inprogress-modal-images {
+                .pay-image {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                }
+                .receive-image {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                }
+            }
+            .inprogress-modal-change-rate {
+                .change-icon {
+                    font-size: 0.875rem;
+                }
+                .rate {
+                    font-size: 0.875rem;
+                }
+            }
+
+            .loading-icon {
+                margin-top: 1rem;
+                font-size: 2.5rem;
+            }
+        }
+    }
+}

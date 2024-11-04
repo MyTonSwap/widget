@@ -70,3 +70,24 @@
         }
     }
 }
+
+@media screen and (min-width: 1024px) {
+    .mytonswap-app {
+        .token-container {
+            height: 3rem;
+            margin-top: 0.5rem;
+        }
+        .token-content {
+            .token-image {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            .token-details-symbol-balance {
+                font-size: var(--font-size-sm);
+            }
+            .token-details-name-rate {
+                font-size: var(--font-size-xs);
+            }
+        }
+    }
+}

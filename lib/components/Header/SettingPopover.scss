@@ -30,3 +30,11 @@
         left: 0;
     }
 }
+
+@media screen and (min-width: 768px) {
+    .mytonswap-app {
+        .popover {
+            min-width: 300px;
+        }
+    }
+}

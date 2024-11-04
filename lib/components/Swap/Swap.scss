@@ -76,6 +76,20 @@
         border-radius: 1rem;
         overflow: hidden;
     }
+    @media screen and (min-width: 768px) {
+        .container {
+            max-width: 450px;
+            width: 450px;
+            padding: 1rem 0.75rem;
+            border-radius: 1rem;
+        }
+    }
+    @media screen and (min-width: 1024px) {
+        .container {
+            max-width: 500px;
+            width: 550px;
+        }
+    }
     .text-provided {
         width: 100%;
         text-align: center;

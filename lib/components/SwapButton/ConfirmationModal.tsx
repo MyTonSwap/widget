@@ -17,7 +17,7 @@ type ConfirmationModalProps = {
 const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
     const { t } = useTranslation();
     const handleConfirmClose = () => {
-        setConfirmModal(ModalState.NONE);
+        setConfirmModal(ModalState.IN_PROGRESS);
     };
     const { tonConnectInstance } = useOptionsStore();
     useEffect(() => {

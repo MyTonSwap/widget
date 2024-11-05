@@ -90,9 +90,13 @@
             .dialog-community-modal {
                 display: flex;
                 flex-direction: column;
+                flex-grow: 1;
                 height: 100%;
             }
             .community-modal-container {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem 0.5rem;
                 flex-grow: 1;
             }
             .community-modal-warning {
@@ -118,15 +122,16 @@
                     padding-left: 1.25rem;
                     padding-right: 1.25rem;
                 }
-                .accept-button {
-                    display: flex;
-                    height: 2.5rem;
-                    border-radius: 0.75rem;
-                    width: 100%;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 0.875rem;
-                }
+            }
+
+            .accept-button {
+                display: flex;
+                height: 2.5rem;
+                border-radius: 0.75rem;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.875rem;
             }
             .pinned-token-container {
                 display: flex;

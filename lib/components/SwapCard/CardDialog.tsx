@@ -162,6 +162,13 @@ const CardDialog: FC<CardDialogProps> = ({
     const assetList = type === "pay" ? assets : receiveAssets;
 
     const handleOnTokenSelect = (asset: Asset) => {
+        if (!communityTokens && asset.warning) {
+            setContractCommunity(asset);
+            setPromptForCommunity(true);
+        }
+        if (promptForCommunity) {
+            setPromptForCommunity(false);
+        }
         setSearchInput("");
         onTokenSelect(asset);
         setPage(1);
@@ -499,8 +506,8 @@ const CardDialog: FC<CardDialogProps> = ({
                                                         contractCommunity!
                                                             .address
                                                     );
-                                                    onTokenSelect(
-                                                        contractCommunity!
+                                                    handleOnTokenSelect(
+                                                        contractCommunity
                                                     );
                                                 }}
                                                 style={{

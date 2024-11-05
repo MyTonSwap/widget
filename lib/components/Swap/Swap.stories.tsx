@@ -39,6 +39,8 @@ export const Default: Story = {
             text_black: "#000000",
             text_white: "#FFFFFF",
             text_fade: "#9CAACB",
+            price_impact: "#E64646",
+            skeleton_shine: "#FFFFFF",
         },
     },
 };

@@ -51,7 +51,7 @@ export const Dark: Story = {
             border: "#1D2939",
             primary: "#16A34A",
             background: "#101828",
-            input_card: "#27272A",
+            input_card: "#101828",
             input_token: "#1D2939",
             light_shade: "#1D2939",
             slippage_box: "#D1D1E0",

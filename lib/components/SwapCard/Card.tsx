@@ -207,7 +207,7 @@ const Card: FC<CardProps> = ({ type }) => {
                 </div>
                 <div
                     className="card-content"
-                    style={{ background: colors.background }}
+                    style={{ background: colors.input_card }}
                 >
                     <div className="card-inputs">
                         {((type === "receive" && !isFindingBestRoute) ||

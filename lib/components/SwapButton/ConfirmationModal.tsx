@@ -1,4 +1,3 @@
-import { useThemeStore } from "../../store/theme.store";
 import { IoMdClose } from "react-icons/io";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import { fromNano } from "@mytonswap/sdk";
@@ -28,7 +27,6 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
         }
     }, [tonConnectInstance]);
 
-    const { colors } = useThemeStore();
     const {
         pay_amount,
         pay_token,
@@ -48,42 +46,24 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
     return (
         <div className="confirm-modal-container">
             <div className="confirm-modal-header">
-                <span
-                    className="title"
-                    style={{
-                        color: colors.text_black,
-                    }}
-                >
-                    {t("confirm.confirm_title")}
-                </span>{" "}
-                <IoMdClose
-                    onClick={handleConfirmClose}
-                    className="icon"
-                    style={{
-                        color: colors.text_black,
-                    }}
-                />
+                <span className="title">{t("confirm.confirm_title")}</span>{" "}
+                <IoMdClose onClick={handleConfirmClose} className="icon" />
             </div>
             <div className="confirm-modal-images">
                 <div
                     className="pay-image"
                     style={{
-                        borderColor: colors.border,
                         background: `url(${pay_token?.image})`,
                     }}
                 ></div>
                 <div
                     className="receive-image"
                     style={{
-                        borderColor: colors.border,
                         background: `url(${receive_token?.image})`,
                     }}
                 ></div>
             </div>
-            <div
-                className="confirm-modal-change-rate "
-                style={{ color: colors.text_black }}
-            >
+            <div className="confirm-modal-change-rate ">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{" "}
                     {pay_token?.symbol}
@@ -158,14 +138,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                 />
             </div>
             <div className="confirm-modal-button-container">
-                <button
-                    onClick={handleConfirmSwap}
-                    className="confirm-button"
-                    style={{
-                        color: colors.text_white,
-                        background: colors.primary,
-                    }}
-                >
+                <button onClick={handleConfirmSwap} className="confirm-button">
                     {t("confirm.confirm_button")}
                 </button>
             </div>

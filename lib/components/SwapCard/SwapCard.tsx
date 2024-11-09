@@ -1,21 +1,16 @@
 import { useSwapStore } from "../../store/swap.store";
-import { useThemeStore } from "../../store/theme.store";
 import Card from "./Card";
 import { IoSwapHorizontal } from "react-icons/io5";
 import "./SwapCard.scss";
 import { useOptionsStore } from "../../store/options.store";
 const SwapCard = () => {
-    const { colors } = useThemeStore();
     const { changeDirection } = useSwapStore();
     const { options } = useOptionsStore();
 
     const shouldShowChangeDirection =
         options.ui_preferences?.show_change_direction;
     return (
-        <div
-            className="swap-card-container"
-            style={{ background: colors.light_shade }}
-        >
+        <div className="swap-card-container">
             <Card type="pay" />
             {shouldShowChangeDirection && (
                 <button
@@ -24,10 +19,6 @@ const SwapCard = () => {
                     }}
                     className="change-direction-button"
                     data-testid="change-direction-button"
-                    style={{
-                        color: colors.text_white,
-                        background: colors.primary,
-                    }}
                 >
                     <IoSwapHorizontal className="rotate-90" />
                 </button>

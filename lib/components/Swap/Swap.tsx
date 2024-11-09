@@ -3,7 +3,6 @@ import Header from "../Header/Header";
 import SwapCard from "../SwapCard/SwapCard";
 import SwapDetails from "../SwapDetails/SwapDetails";
 import clsx from "clsx";
-import { ColorTheme, useThemeStore } from "../../store/theme.store";
 import { TonConnectUI } from "@tonconnect/ui-react";
 import { useOptionsStore, SwapOptions } from "../../store/options.store";
 import { ModalState, useSwapStore } from "../../store/swap.store";
@@ -23,7 +22,6 @@ import { cn } from "../../utils/cn";
 import { supportedLanguages } from "../../i18n/i18n";
 
 export type SwapProps = {
-    theme?: ColorTheme;
     options?: SwapOptions;
     locale?: string;
     tonConnectInstance: TonConnectUI;
@@ -43,7 +41,6 @@ declare global {
 }
 
 export const SwapComponent: FC<SwapProps> = ({
-    theme,
     options,
     locale,
     tonConnectInstance,
@@ -66,15 +63,12 @@ export const SwapComponent: FC<SwapProps> = ({
         i18n.resolvedLanguage!,
         "direction"
     );
-    const { colors, setTheme } = useThemeStore();
     const {
         setOptions,
         setTonConnectInstance,
         options: appOptions,
     } = useOptionsStore();
-    if (theme) {
-        setTheme(theme);
-    }
+
     if (tonConnectInstance) {
         setTonConnectInstance(tonConnectInstance);
     }
@@ -161,22 +155,13 @@ export const SwapComponent: FC<SwapProps> = ({
     return (
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
             <div className={cn("mytonswap-app", direction)}>
-                <div
-                    className={clsx("container")}
-                    style={{
-                        background: colors.background,
-                        borderColor: colors.border,
-                    }}
-                >
+                <div className={clsx("container")}>
                     <Header />
                     <SwapCard />
                     {shouldShowSwapDetails && <SwapDetails />}
                     <SwapButton />
                     {shouldShowProvidedText && (
-                        <div
-                            className="text-provided"
-                            style={{ color: colors.text_black }}
-                        >
+                        <div className="text-provided">
                             {t("service_provided")}{" "}
                             <a
                                 href="https://mytonswap.com"
@@ -193,8 +178,8 @@ export const SwapComponent: FC<SwapProps> = ({
             <Toaster
                 toastOptions={{
                     style: {
-                        background: colors.background,
-                        color: colors.text_black,
+                        background: `var(--background-color)`,
+                        color: `var(--text-black-color)`,
                     },
                 }}
             />

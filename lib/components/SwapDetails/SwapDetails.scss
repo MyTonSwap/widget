@@ -1,5 +1,7 @@
 .mytonswap-app {
     .detail-accordion-container {
+        border-color: var(--border-color);
+        color: var(--text-black-color);
         border-width: 1px;
         border-width: 1px;
         border-style: solid;
@@ -49,6 +51,8 @@
             }
 
             .slippage-box {
+                background: var(--slippage-box-color);
+                color: var(--text-white-color);
                 border-radius: 0.375rem;
                 padding: 0.1rem 0.25rem;
                 color: var(--text-white-color);

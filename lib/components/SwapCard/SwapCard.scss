@@ -1,5 +1,6 @@
 .mytonswap-app {
     .swap-card-container {
+        background: var(--light-shade-color);
         padding: 1rem 0.75rem;
         border-radius: 0.75rem;
         display: flex;
@@ -8,6 +9,8 @@
         gap: 0.5rem;
         margin-top: 0.5rem;
         .change-direction-button {
+            color: var(--text-white-color);
+            background: var(--primary-color);
             padding: 0.6rem 3rem;
             display: flex;
             align-items: center;

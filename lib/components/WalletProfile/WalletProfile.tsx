@@ -1,6 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { useWalletStore } from "../../store/wallet.store";
-import { useThemeStore } from "../../store/theme.store";
 import { ConnectedWallet, TonConnectUI } from "@tonconnect/ui-react";
 import shortAddress from "../../utils/shortAddress";
 
@@ -28,10 +27,8 @@ export type WalletProfileProps = {
 export const WalletProfile: FC<WalletProfileProps> = ({
     tonConnectInstance,
     position = "top-right",
-    theme,
 }) => {
     const { setWallet, disconnect, wallet } = useWalletStore();
-    const { setTheme, colors } = useThemeStore();
 
     const [isOpen, setIsOpen] = useState(false);
     const ref = useRef(null);
@@ -67,21 +64,6 @@ export const WalletProfile: FC<WalletProfileProps> = ({
         }
     }, [tonConnectInstance, setWallet, disconnect]);
 
-    useEffect(() => {
-        if (theme) {
-            if (theme) {
-                setTheme({
-                    background: theme.background_color,
-                    light_shade: theme.background_shade_color,
-                    border: theme.border_color,
-                    primary: theme.primary_color,
-                    text_black: theme.text_black_color,
-                    text_white: theme.text_white_color,
-                });
-            }
-        }
-    }, []);
-
     const popOverAnimationVariation = popOverVariationsKeyValue[position];
     return (
         <div className="wallet-profile-mts mytonswap-app">
@@ -89,11 +71,6 @@ export const WalletProfile: FC<WalletProfileProps> = ({
                 <div
                     className="wallet-profile-button"
                     onClick={handleButtonClick}
-                    style={{
-                        background: colors.primary,
-                        color: colors.text_white,
-                        borderColor: colors.border,
-                    }}
                 >
                     {shortAddress(wallet.account.address, "mainnet", 4)}
                 </div>
@@ -114,11 +91,6 @@ export const WalletProfile: FC<WalletProfileProps> = ({
                         transition={{ ease: "easeOut", duration: 0.15 }}
                         ref={ref}
                         className="popover"
-                        style={{
-                            borderColor: colors.border,
-                            background: colors.background,
-                            color: colors.text_black,
-                        }}
                     >
                         <Wallet />
                     </motion.div>

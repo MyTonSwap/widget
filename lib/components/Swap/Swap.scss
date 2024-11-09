@@ -1,16 +1,4 @@
 :root {
-    --border-color: #f4f4f5;
-    --primary-color: #22c55e;
-    --background-color: #ffffff;
-    --input-card-color: #ffffff;
-    --input-token-color: #f4f4f5;
-    --light-shade-color: #f4f4f5;
-    --slippage-box-color: #71717a;
-    --text-black-color: #000000;
-    --text-white-color: #ffffff;
-    --text-fade-color: #9caacb;
-    --skeleton-shine-color: #9c9c9c;
-    --price-impact-color: #e64646;
     --font-size-xxs: 0.625rem;
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
@@ -51,6 +39,7 @@
 
     .animate-spin {
         animation: spin 1s linear infinite;
+        color: var(--primary-color);
     }
 
     @keyframes spin {
@@ -69,6 +58,8 @@
         line-clamp: 1;
     }
     .container {
+        background: var(--background-color);
+        border-color: var(--border-color);
         border-width: 1px;
         border-style: solid;
         max-width: 350px;
@@ -91,6 +82,7 @@
         }
     }
     .text-provided {
+        color: var(--text-black-color);
         width: 100%;
         text-align: center;
         font-size: var(--font-size-xxs);

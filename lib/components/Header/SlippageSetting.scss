@@ -5,6 +5,7 @@
         gap: 0.25rem;
 
         .button-container {
+            color: var(--text-black-color);
             display: flex;
             justify-content: space-between;
             width: 100%;
@@ -33,6 +34,7 @@
                 align-items: center;
             }
             .dropdown-item {
+                background: var(--light-shade-color);
                 position: relative;
                 padding: 0.25rem;
                 height: 2rem;
@@ -44,6 +46,7 @@
                 cursor: pointer;
                 &.percent-input {
                     width: 50px;
+                    background-color: var(--light-shade-color);
                 }
                 background: var(--light-shade-color);
                 .icon {
@@ -52,9 +55,12 @@
                     left: -0.25rem;
                     font-size: 1.125rem;
                     transition: color 0.3s ease;
-                    color: var(--text-color);
+                    color: var(--primary-color);
                     &:hover {
                         color: var(--primary-color);
+                    }
+                    &.disabled {
+                        color: var(--text-fade-color);
                     }
                 }
 
@@ -65,6 +71,7 @@
 
                     .slippage-input {
                         background: transparent;
+                        color: var(--text-black-color);
                         width: 100%;
                         outline: none;
                     }
@@ -81,11 +88,16 @@
                 align-items: center;
                 justify-content: center;
                 border-radius: 0.75rem;
-
+                color: var(--text-white-color);
+                background: var(--primary-color);
                 font-weight: 700;
                 cursor: pointer;
                 &:disabled {
                     cursor: not-allowed;
+                }
+                &.disabled {
+                    color: var(--text-fade-color);
+                    background: var(--light-shade-color);
                 }
             }
         }

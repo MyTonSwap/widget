@@ -3,7 +3,6 @@ import SlippageSetting from "./SlippageSetting";
 import { useOnClickOutside } from "usehooks-ts";
 import TokensSettings from "./TokensSettings";
 import { AnimatePresence, motion } from "framer-motion";
-import { useThemeStore } from "../../store/theme.store";
 
 import "./SettingPopover.scss";
 import Wallet from "./Wallet";
@@ -18,7 +17,6 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
         i18n.resolvedLanguage!,
         "direction"
     );
-    const { colors } = useThemeStore();
     const { options } = useOptionsStore();
     const [isOpen, setIsOpen] = useState(false);
     const ref = useRef(null);
@@ -52,10 +50,6 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
                         transition={{ ease: "easeOut", duration: 0.15 }}
                         ref={ref}
                         className="popover"
-                        style={{
-                            borderColor: colors.border,
-                            background: colors.background,
-                        }}
                         data-testid="setting-popover"
                     >
                         {options.ui_preferences?.show_settings_slippage && (

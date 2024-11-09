@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import { IoClose } from "react-icons/io5";
-import { useThemeStore } from "../../store/theme.store";
 import { Dex, fromNano } from "@mytonswap/sdk";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import formatNumber from "../../utils/formatNum";
@@ -24,7 +23,6 @@ const Inprogress = () => {
         pay_rate,
     } = useSwapStore();
     const { onSwap } = useEventsStore();
-    const { colors } = useThemeStore();
     useEffect(() => {
         const checkForTransaction = async () => {
             if (transactionHash) {
@@ -78,31 +76,22 @@ const Inprogress = () => {
 
     return (
         <div className="inprogress-container">
-            <IoClose
-                onClick={handleCloseModal}
-                style={{ color: colors.text_black }}
-                className=" close-button"
-            />
+            <IoClose onClick={handleCloseModal} className=" close-button" />
             <div className="inprogress-modal-images">
                 <div
                     className="pay-image"
                     style={{
                         background: `url(${pay_token?.image})`,
-                        borderColor: colors.background,
                     }}
                 ></div>
                 <div
                     className="receive-image"
                     style={{
                         background: `url(${receive_token?.image})`,
-                        borderColor: colors.background,
                     }}
                 ></div>
             </div>
-            <div
-                className="inprogress-modal-change-rate "
-                style={{ color: colors.text_black }}
-            >
+            <div className="inprogress-modal-change-rate ">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{" "}
                     {pay_token?.symbol}
@@ -124,13 +113,11 @@ const Inprogress = () => {
                 </div>
             </div>
 
-            <div className="description" style={{ color: colors.text_black }}>
-                {t("transaction.pending")}
-            </div>
-            <p style={{ color: colors.text_black }}>
+            <div className="description">{t("transaction.pending")}</div>
+            <p className="description-2">
                 {t("transaction.action_in_progress")}
             </p>
-            <div className="loading-icon" style={{ color: colors.text_black }}>
+            <div className="loading-icon">
                 <ImSpinner8 className="animate-spin icon" />
             </div>
         </div>

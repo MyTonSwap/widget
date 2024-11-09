@@ -1,5 +1,4 @@
 import { Asset, fromNano } from "@mytonswap/sdk";
-import { useThemeStore } from "../../store/theme.store";
 import { useWalletStore } from "../../store/wallet.store";
 import { FC } from "react";
 import formatNumber from "../../utils/formatNum";
@@ -15,7 +14,6 @@ type TokenProps = {
 
 const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
     const { balance } = useWalletStore();
-    const { colors } = useThemeStore();
     const tokenBalance = +fromNano(
         balance.get(asset.address)?.balance ?? 0,
         asset.decimal
@@ -35,10 +33,7 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
                     style={{ background: `url(${asset.image})` }}
                 ></div>
                 <div className="token-details">
-                    <div
-                        className="token-details-symbol-balance"
-                        style={{ color: colors.text_black }}
-                    >
+                    <div className="token-details-symbol-balance">
                         <div className="symbol">
                             {asset.symbol}{" "}
                             <span>
@@ -53,13 +48,7 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
                         </div>
                         <div>{tokenBalance}</div>
                     </div>
-                    <div
-                        className="token-details-name-rate"
-                        style={{
-                            color: colors.text_black,
-                            opacity: 0.5,
-                        }}
-                    >
+                    <div className="token-details-name-rate">
                         <div className="line-clamp-1 name-liq">
                             {asset.name}
                             {asset.address !== TON_ADDR && (

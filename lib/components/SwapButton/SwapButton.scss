@@ -9,6 +9,8 @@
         overflow: hidden;
         background-color: rgba(0, 0, 0, 0.1);
         .modal-container-inner {
+            background: var(--background-color);
+            border-color: var(--border-color);
             position: fixed;
             width: 100%;
             height: 80vh;
@@ -42,6 +44,11 @@
         border-radius: 0.75rem;
         color: white;
         font-size: var(--font-size-sm);
+        color: var(--text-white-color);
+        background-color: var(--primary-color);
+        &.price-impact {
+            background: var(--price-impact-color);
+        }
     }
 
     .swap-button:disabled {

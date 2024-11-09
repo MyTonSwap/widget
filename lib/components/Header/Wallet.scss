@@ -14,11 +14,13 @@
                 margin-top: 0.5rem;
             }
             .balance-amount {
+                color: var(--primary-color);
                 font-size: 1.25rem;
                 font-weight: bolder;
                 margin-bottom: 0.5rem;
             }
             .address {
+                background: var(--light-shade-color);
                 font-size: 0.8rem;
                 width: fit-content;
                 padding: 0.25rem 0.5rem;
@@ -43,6 +45,8 @@
                     display: flex;
                 }
                 .wallet-icon {
+                    color: var(--text-black-color);
+                    background: var(--light-shade-color);
                     font-size: 0.5rem;
                     width: 1.75rem;
                     height: 1.75rem;
@@ -59,6 +63,8 @@
                 }
             }
             .disconnect-wallet {
+                background: var(--primary-color);
+                color: var(--text-white-color);
                 font-size: 0.8rem;
                 margin-top: 0.5rem;
                 height: 2.5rem;

@@ -1,5 +1,4 @@
 import { FC, PropsWithChildren } from "react";
-import { useThemeStore } from "../../store/theme.store";
 import clsx from "clsx";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import "./CardButton.scss";
@@ -18,7 +17,6 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
     onClick,
 }) => {
     const { t } = useTranslation();
-    const { colors } = useThemeStore();
     const { options } = useOptionsStore();
     const isDisabled = (() => {
         if (type === "pay" && options.lock_pay_token) return true;
@@ -43,14 +41,14 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
             style={{
                 ...(isDisabled && { opacity: 0.7, cursor: "auto" }),
                 ...(isLoading && type === "pay"
-                    ? { color: colors.text_black }
+                    ? { color: `var(--text-black-color)` }
                     : {
-                          background: colors.input_token,
-                          color: colors.text_black,
+                          background: `var(--input-token-color)`,
+                          color: `var(--text-black-color)`,
                       }),
                 ...{
-                    "--skeleton-bg": colors.input_token,
-                    "--skeleton-shine": colors.skeleton_shine,
+                    "--skeleton-bg": `var(--input-token-color)`,
+                    "--skeleton-shine": `var(--skeleton-shine-color)`,
                 },
             }}
         >

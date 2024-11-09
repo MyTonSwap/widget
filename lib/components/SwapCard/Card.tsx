@@ -1,7 +1,6 @@
 import { ChangeEvent, CSSProperties, FC, useEffect, useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import CardDialog from "./CardDialog";
-import { useThemeStore } from "../../store/theme.store";
 import { useSwapStore } from "../../store/swap.store";
 import { Asset, BestRoute, fromNano } from "@mytonswap/sdk";
 import formatNumber from "../../utils/formatNum";
@@ -22,7 +21,6 @@ const Card: FC<CardProps> = ({ type }) => {
     const [typingTimeout, setTypingTimeout] =
         useState<ReturnType<typeof setTimeout>>();
     const [userInput, setUserInput] = useState("");
-    const { colors } = useThemeStore();
     const {
         setPayToken,
         pay_token,
@@ -168,27 +166,12 @@ const Card: FC<CardProps> = ({ type }) => {
         <>
             <div className="swapcard-card">
                 <div className="card-head">
-                    <span
-                        data-testid="swapcard-title"
-                        style={{
-                            color: colors.text_black,
-                            opacity: 0.7,
-                        }}
-                    >
+                    <span data-testid="swapcard-title" className="card-title">
                         {type === "pay" ? t("you_pay") : t("you_receive")}
                     </span>
                     {type === "pay" && balanceToken ? (
-                        <span
-                            className="max-button"
-                            onClick={handleMaxClick}
-                            style={{ color: colors.text_black }}
-                        >
-                            <span
-                                className=""
-                                style={{ color: colors.primary }}
-                            >
-                                {t("max")}:{" "}
-                            </span>
+                        <span className="max-button" onClick={handleMaxClick}>
+                            <span className="max-text">{t("max")}: </span>
                             <span>
                                 {formatNumber(
                                     +fromNano(
@@ -205,10 +188,7 @@ const Card: FC<CardProps> = ({ type }) => {
                         ""
                     )}
                 </div>
-                <div
-                    className="card-content"
-                    style={{ background: colors.input_card }}
-                >
+                <div className="card-content">
                     <div className="card-inputs">
                         {((type === "receive" && !isFindingBestRoute) ||
                             type === "pay") && (
@@ -227,7 +207,6 @@ const Card: FC<CardProps> = ({ type }) => {
                                 pattern="^[0-9]*[.,]?[0-9]*$"
                                 placeholder="0"
                                 className={`card-input ${type}`}
-                                style={{ color: colors.text_black }}
                                 data-testid={`swapcard-input-${type}`}
                             />
                         )}
@@ -237,24 +216,15 @@ const Card: FC<CardProps> = ({ type }) => {
                                 data-skeleton
                                 style={{
                                     ...({
-                                        "--skeleton-bg": colors.input_token,
-                                        "--skeleton-shine":
-                                            colors.skeleton_shine,
+                                        "--skeleton-bg": `var(--input-token-color)`,
+                                        "--skeleton-shine": `var(--skeleton-shine-color)`,
                                     } as CSSProperties),
                                 }}
                             />
                         )}
                         {((type === "receive" && !isFindingBestRoute) ||
                             type === "pay") && (
-                            <span
-                                className="card-rate"
-                                style={{
-                                    color: colors.text_black,
-                                    opacity: 0.5,
-                                }}
-                            >
-                                ${calculatedRate}
-                            </span>
+                            <span className="card-rate">${calculatedRate}</span>
                         )}
                         {type === "receive" && isFindingBestRoute && (
                             <div
@@ -262,9 +232,8 @@ const Card: FC<CardProps> = ({ type }) => {
                                 data-skeleton
                                 style={{
                                     ...({
-                                        "--skeleton-bg": colors.input_token,
-                                        "--skeleton-shine":
-                                            colors.skeleton_shine,
+                                        "--skeleton-bg": `var(--input-token-color)`,
+                                        "--skeleton-shine": `var(--skeleton-shine-color)`,
                                     } as CSSProperties),
                                 }}
                             />

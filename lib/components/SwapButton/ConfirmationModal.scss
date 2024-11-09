@@ -16,10 +16,12 @@
             padding-left: 1rem;
             padding-right: 1rem;
             .title {
+                color: var(--text-black-color);
                 font-weight: bold;
                 opacity: 0.5;
             }
             .icon {
+                color: var(--text-black-color);
                 cursor: pointer;
             }
         }
@@ -28,6 +30,7 @@
             align-items: center;
             padding-top: 0.25rem;
             .pay-image {
+                border-color: var(--border-color);
                 width: 2.25rem;
                 height: 2.25rem;
                 border-radius: 9999px;
@@ -37,6 +40,8 @@
                 border-style: solid;
             }
             .receive-image {
+                border-color: var(--border-color);
+
                 width: 2.25rem;
                 height: 2.25rem;
                 border-radius: 9999px;
@@ -47,6 +52,7 @@
             }
         }
         .confirm-modal-change-rate {
+            color: var(--text-black-color);
             text-align: center;
             font-weight: bold;
             opacity: 0.7;
@@ -92,6 +98,8 @@
             padding-right: 1rem;
             margin-top: 0.125rem;
             .confirm-button {
+                background-color: var(--primary-color);
+                color: var(--text-white-color);
                 height: 3rem;
                 border-radius: 0.75rem;
                 cursor: pointer;

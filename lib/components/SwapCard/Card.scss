@@ -11,13 +11,22 @@
             justify-content: space-between;
             padding-left: 0.25rem;
             padding-right: 0.25rem;
+            .card-title {
+                color: var(--text-black-color);
+                opacity: 0.7;
+            }
 
             .max-button {
+                color: var(--text-black-color);
                 cursor: pointer;
+                .max-text {
+                    color: var(--primary-color);
+                }
             }
         }
 
         .card-content {
+            background: var(--input-card-color);
             display: grid;
             grid-template-columns: 1fr auto;
             width: 100%;
@@ -33,6 +42,7 @@
                 justify-content: center;
                 width: 100%;
                 .card-input {
+                    color: var(--text-black-color);
                     font-family: inherit;
                     outline: none;
                     background: transparent;
@@ -47,6 +57,8 @@
                 .card-rate {
                     text-align: left;
                     font-size: var(--font-size-xs);
+                    color: var(--text-black-color);
+                    opacity: 0.5;
                 }
                 .card-rate-loading {
                     height: 0.75rem;

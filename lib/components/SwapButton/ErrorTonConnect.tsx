@@ -1,12 +1,10 @@
 import { ModalState, useSwapStore } from "../../store/swap.store";
-import { useThemeStore } from "../../store/theme.store";
 import { IoClose } from "react-icons/io5";
 import { IoCloseCircle } from "react-icons/io5";
 import "./ErrorTonConnect.scss";
 const ErrorTonConnect = () => {
     const { transactionError, transactionErrorBody, setModalState } =
         useSwapStore();
-    const { colors } = useThemeStore();
     const handleCloseModal = () => {
         useSwapStore.setState({
             transactionError: null,
@@ -16,7 +14,7 @@ const ErrorTonConnect = () => {
         setModalState(ModalState.NONE);
     };
     return (
-        <div className="error-container" style={{ color: colors.text_black }}>
+        <div className="error-container">
             <IoCloseCircle className="icon" />
             <IoClose onClick={handleCloseModal} className=" close-button" />
             <div className="text">

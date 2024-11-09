@@ -1,5 +1,48 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
+.default {
+    --border-color: #f4f4f5;
+    --primary-color: #22c55e;
+    --background-color: #ffffff;
+    --input-card-color: #ffffff;
+    --input-token-color: #f4f4f5;
+    --light-shade-color: #f4f4f5;
+    --slippage-box-color: #71717a;
+    --text-black-color: #000000;
+    --text-white-color: #ffffff;
+    --text-fade-color: #9caacb;
+    --skeleton-shine-color: #9c9c9c;
+    --price-impact-color: #e64646;
+}
+
+.dark {
+    --border-color: #1d2939;
+    --primary-color: #16a34a;
+    --background-color: #101828;
+    --input-card-color: #101828;
+    --input-token-color: #1d2939;
+    --light-shade-color: #1d2939;
+    --slippage-box-color: #d1d1e0;
+    --text-black-color: #ffffff;
+    --text-white-color: #000000;
+    --text-fade-color: #6b7280;
+    --skeleton-shine-color: #585959;
+}
+
+.ton-jiggle {
+    --border-color: #004a6533;
+    --primary-color: #177594;
+    --background-color: #181f34;
+    --input-card-color: #181f34;
+    --input-token-color: #1d2939;
+    --light-shade-color: #193349;
+    --slippage-box-color: #d1d1e0;
+    --text-black-color: #ffffff;
+    --text-white-color: #ffffff;
+    --text-fade-color: #6b7280;
+    --skeleton-shine-color: #585959;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;

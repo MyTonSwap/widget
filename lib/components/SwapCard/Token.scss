@@ -25,6 +25,7 @@
             flex-grow: 1;
         }
         .token-details-symbol-balance {
+            color: var(--text-black-color);
             font-size: 0.75rem;
             display: flex;
             align-items: center;
@@ -50,6 +51,8 @@
             }
         }
         .token-details-name-rate {
+            color: var(--text-black-color);
+            opacity: 0.5;
             font-size: var(--font-size-xs);
             display: flex;
             align-items: center;

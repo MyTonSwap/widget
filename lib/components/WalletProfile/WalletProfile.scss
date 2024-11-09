@@ -1,7 +1,9 @@
 .wallet-profile-mts {
     position: relative;
     .wallet-profile-button {
-        background: #26ad5f;
+        background: var(--primary-color);
+        color: var(--text-white-color);
+        border-color: var(--border-color);
         color: white;
         padding: 0.5rem 0.75rem;
         border-radius: 9999999rem;

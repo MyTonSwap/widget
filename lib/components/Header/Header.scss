@@ -5,6 +5,7 @@
         justify-content: space-between;
         padding: 0 0.5rem;
         font-size: var(--font-size-base);
+        color: var(--text-black-color);
     }
     .header-setting {
         display: flex;
@@ -17,6 +18,7 @@
         }
 
         .setting-icon {
+            color: var(--text-black-color);
             &:hover {
                 transform: rotate(90deg);
                 transition: transform 0.15s ease-in-out;

@@ -6,6 +6,7 @@
         flex-direction: column;
         height: 100%;
         .close-button {
+            color: var(--text-black-color);
             position: absolute;
             right: 1rem;
             top: 1rem;
@@ -18,6 +19,7 @@
             align-items: center;
             padding-top: 0.25rem;
             .pay-image {
+                border-color: var(--background-color);
                 width: 2.25rem;
                 height: 2.25rem;
                 border-radius: 9999px;
@@ -26,6 +28,8 @@
                 border-width: 1px;
             }
             .receive-image {
+                border-color: var(--background-color);
+
                 width: 2.25rem;
                 height: 2.25rem;
                 border-radius: 9999px;
@@ -35,6 +39,7 @@
             }
         }
         .inprogress-modal-change-rate {
+            color: var(--text-black-color);
             text-align: center;
             font-weight: bold;
             opacity: 0.7;
@@ -52,12 +57,17 @@
             }
         }
         .description {
+            color: var(--text-black-color);
             text-align: center;
             font-weight: bold;
             font-size: 1.25rem;
             margin-top: 1rem;
         }
+        .description-2 {
+            color: var(--text-black-color);
+        }
         .loading-icon {
+            color: var(--text-black-color);
             width: 100%;
             display: flex;
             align-items: center;

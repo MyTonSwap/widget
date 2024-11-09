@@ -3,7 +3,6 @@ import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import SwapKeyValue from "./SwapKeyValue";
 import { AnimatePresence, motion } from "framer-motion";
-import { useThemeStore } from "../../store/theme.store";
 import { useSwapStore } from "../../store/swap.store";
 import formatNumber from "../../utils/formatNum";
 import { CgSpinnerTwo } from "react-icons/cg";
@@ -15,16 +14,11 @@ const SwapDetails = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { onePayRoute, bestRoute, isFindingBestRoute, slippage } =
         useSwapStore();
-    const { colors } = useThemeStore();
     const [ref, { height }] = useMeasure();
     console.log(height);
     return (
         <motion.button
             className="detail-accordion-container"
-            style={{
-                borderColor: colors.border,
-                color: colors.text_black,
-            }}
             onClick={() => {
                 setIsOpen((prev) => !prev);
             }}
@@ -43,10 +37,7 @@ const SwapDetails = () => {
                     </div>
                 ) : (
                     <div className="finding">
-                        <CgSpinnerTwo
-                            className="animate-spin"
-                            style={{ color: colors.primary }}
-                        />
+                        <CgSpinnerTwo className="animate-spin" />
                         {t("fetching_best_route")}
                     </div>
                 )}
@@ -72,13 +63,7 @@ const SwapDetails = () => {
                             <SwapKeyValue
                                 keyText={t("slippage_tolerance")}
                                 value={
-                                    <div
-                                        className="slippage-box"
-                                        style={{
-                                            background: colors.slippage_box,
-                                            color: colors.text_white,
-                                        }}
-                                    >
+                                    <div className="slippage-box">
                                         {slippage === "auto" ? "1" : slippage}%{" "}
                                         {slippage === "auto" ? t("auto") : ""}
                                     </div>

@@ -1,6 +1,5 @@
 import { fromNano } from "@mytonswap/sdk";
 import { TON_ADDR } from "../../constants";
-import { useThemeStore } from "../../store/theme.store";
 import { useWalletStore } from "../../store/wallet.store";
 import "./Wallet.scss";
 import formatNumber from "../../utils/formatNum";
@@ -37,7 +36,6 @@ const Wallet = () => {
         }
         disconnect();
     };
-    const { colors } = useThemeStore();
     const TON_BALANCE = formatNumber(
         +fromNano(balance.get(TON_ADDR)?.balance || 0n),
         4,
@@ -51,18 +49,12 @@ const Wallet = () => {
                     <p className="title">{t("account")}</p>
                     <div className="wallet-content">
                         <p className="balance-title">{t("balance")}</p>
-                        <div
-                            className="balance-amount"
-                            style={{ color: colors.primary }}
-                        >
+                        <div className="balance-amount">
                             {TON_BALANCE}
                             {t("ton")}
                         </div>
                         <div className="address-section">
-                            <div
-                                className="address"
-                                style={{ background: colors.light_shade }}
-                            >
+                            <div className="address">
                                 {shortAddress(
                                     wallet.account.address,
                                     "mainnet",
@@ -75,10 +67,6 @@ const Wallet = () => {
                                 onClick={() =>
                                     copyToClipboard(wallet.account.address)
                                 }
-                                style={{
-                                    background: colors.light_shade,
-                                    color: colors.text_black,
-                                }}
                             >
                                 {copied ? <FaCheck /> : <FaCopy />}
                             </button>
@@ -86,10 +74,6 @@ const Wallet = () => {
                                 className="wallet-icon"
                                 target="_blank"
                                 href={`https://tonviewer.com/${wallet.account.address}`}
-                                style={{
-                                    background: colors.light_shade,
-                                    color: colors.text_black,
-                                }}
                             >
                                 <MdArrowOutward />
                             </a>
@@ -97,10 +81,6 @@ const Wallet = () => {
                         <button
                             className="disconnect-wallet"
                             onClick={handleDisconnect}
-                            style={{
-                                background: colors.primary,
-                                color: colors.text_white,
-                            }}
                         >
                             {t("disconnect_wallet")}
                         </button>

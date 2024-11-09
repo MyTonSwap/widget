@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useThemeStore } from "../../store/theme.store";
 import { useSwapStore } from "../../store/swap.store";
 import { FaCircleCheck } from "react-icons/fa6";
 import "./SlippageSetting.scss";
@@ -12,7 +11,6 @@ const SlippageSetting = () => {
     const { t } = useTranslation();
 
     const { slippage, setSlippage } = useSwapStore();
-    const { colors } = useThemeStore();
     const [userInput, setUserInput] = useState("");
 
     const handleSlippageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -76,10 +74,7 @@ const SlippageSetting = () => {
             className="slippage-setting-container"
             data-testid="slippage-setting"
         >
-            <button
-                className="button-container"
-                style={{ color: colors.text_black }}
-            >
+            <button className="button-container">
                 <div>{t("max_slippage")}</div>
                 <div
                     className="slippage-indicator"
@@ -97,60 +92,39 @@ const SlippageSetting = () => {
                 >
                     <div
                         onClick={handleOnAutoClick}
-                        style={{ background: colors.light_shade }}
                         className="dropdown-item"
                         data-testid="slippage-setting-auto"
                     >
                         <FaCircleCheck
-                            className="icon"
-                            style={{
-                                color:
-                                    slippage === "auto"
-                                        ? colors.primary
-                                        : colors.text_fade,
-                            }}
+                            className={`icon ${
+                                slippage === "auto" ? "" : "disabled"
+                            }`}
                         />
                         {t("auto")}
                     </div>
                     <div className="controllers">
                         <button
-                            className="controller"
+                            className={`controller ${
+                                slippage !== "auto" && slippage <= 1
+                                    ? "disabled"
+                                    : ""
+                            }`}
                             data-testid="slippage-setting-minus"
                             onClick={handleOnMinusClick}
                             disabled={slippage !== "auto" && slippage <= 1}
-                            style={{
-                                color:
-                                    slippage !== "auto" && slippage <= 1
-                                        ? colors.text_fade
-                                        : colors.text_white,
-                                background:
-                                    slippage !== "auto" && slippage <= 1
-                                        ? colors.light_shade
-                                        : colors.primary,
-                            }}
                         >
                             <FaMinus />
                         </button>
-                        <div
-                            className="slippage-input-group dropdown-item percent-input"
-                            style={{ background: colors.light_shade }}
-                        >
+                        <div className="slippage-input-group dropdown-item percent-input">
                             <FaCircleCheck
-                                className="icon"
-                                style={{
-                                    color:
-                                        slippage !== "auto"
-                                            ? colors.primary
-                                            : colors.text_fade,
-                                }}
+                                className={`icon ${
+                                    slippage !== "auto" ? "" : "disabled"
+                                }`}
                             />
                             <input
                                 value={userInput}
                                 onChange={handleSlippageChange}
                                 data-testid="slippage-setting-input"
-                                style={{
-                                    color: colors.text_black,
-                                }}
                                 type="text"
                                 dir="rtl"
                                 className="slippage-input"
@@ -159,20 +133,14 @@ const SlippageSetting = () => {
                             <span className="slippage-input-percent">%</span>
                         </div>
                         <button
-                            className="controller"
+                            className={`controller ${
+                                slippage !== "auto" && slippage >= 10
+                                    ? "disabled"
+                                    : ""
+                            }`}
                             onClick={handleOnPlusClick}
                             data-testid="slippage-setting-plus"
                             disabled={slippage !== "auto" && slippage >= 10}
-                            style={{
-                                color:
-                                    slippage !== "auto" && slippage >= 10
-                                        ? colors.text_fade
-                                        : colors.text_white,
-                                background:
-                                    slippage !== "auto" && slippage >= 10
-                                        ? colors.light_shade
-                                        : colors.primary,
-                            }}
                         >
                             <TiPlus />
                         </button>

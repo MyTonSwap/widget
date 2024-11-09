@@ -6,6 +6,7 @@
         flex-direction: column;
         height: 100%;
         .close-icon {
+            color: var(--text-black-color);
             position: absolute;
             right: 1rem;
             top: 1rem;
@@ -14,6 +15,7 @@
             cursor: pointer;
         }
         .done-icon {
+            color: var(--primary-color);
             width: 100%;
             display: flex;
             align-items: center;
@@ -22,6 +24,7 @@
             color: var(--primary-color);
         }
         .done-text {
+            color: var(--text-black-color);
             font-size: 1.25rem;
             font-weight: bold;
             text-align: center;
@@ -31,6 +34,7 @@
             align-items: center;
             padding-top: 0.25rem;
             .pay-image {
+                border-color: var(--background-color);
                 width: 2.25rem;
                 height: 2.25rem;
                 border-radius: 9999px;
@@ -40,6 +44,8 @@
                 border-style: solid;
             }
             .receive-image {
+                border-color: var(--background-color);
+
                 width: 2.25rem;
                 height: 2.25rem;
                 border-radius: 9999px;
@@ -50,6 +56,7 @@
             }
         }
         .done-modal-change-rate {
+            color: var(--text-black-color);
             text-align: center;
             font-weight: bold;
             opacity: 0.7;

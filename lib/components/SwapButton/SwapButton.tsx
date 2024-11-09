@@ -1,4 +1,3 @@
-import { useThemeStore } from "../../store/theme.store";
 import { useWalletStore } from "../../store/wallet.store";
 import { ModalState, useSwapStore } from "../../store/swap.store";
 import { AnimatePresence, motion } from "framer-motion";
@@ -18,11 +17,11 @@ import { useLongPress } from "@uidotdev/usehooks";
 import toast from "react-hot-toast";
 import { useOptionsStore } from "../../store/options.store";
 import { useTranslation } from "react-i18next";
+import { cn } from "../../utils/cn";
 
 const SwapButton = () => {
     const { t } = useTranslation();
     const { tonConnectInstance } = useOptionsStore();
-    const { colors } = useThemeStore();
 
     const isDesktop = useMediaQuery("(min-width: 768px)");
     const { balance } = useWalletStore();
@@ -97,10 +96,6 @@ const SwapButton = () => {
                             initial={modalAnimation.initial}
                             animate={modalAnimation.animate}
                             exit={modalAnimation.exit}
-                            style={{
-                                background: colors.background,
-                                borderColor: colors.border,
-                            }}
                         >
                             {swapModal === ModalState.CONFIRM && (
                                 <ConfirmationModal
@@ -122,18 +117,16 @@ const SwapButton = () => {
                 )}
             </AnimatePresence>
             <button
-                className="swap-button"
-                data-testid="swap-button"
-                {...attrs}
-                style={{
-                    background:
-                        tonConnectInstance?.wallet &&
+                className={cn(
+                    "swap-button",
+                    tonConnectInstance?.wallet &&
                         isRouteAvailable &&
                         !bestRoute.pool_data.status
-                            ? colors.price_impact
-                            : colors.primary,
-                    color: colors.text_white,
-                }}
+                        ? "price-impact"
+                        : ""
+                )}
+                data-testid="swap-button"
+                {...attrs}
                 onClick={handleSwapClick}
                 disabled={buttonDisabled}
             >

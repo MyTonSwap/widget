@@ -12,7 +12,6 @@ import { IoClose } from "react-icons/io5";
 import { MdOutlineSearch } from "react-icons/md";
 import { AnimatePresence, motion } from "framer-motion";
 import Token from "./Token";
-import { useThemeStore } from "../../store/theme.store";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSwapStore } from "../../store/swap.store";
 import { Asset } from "@mytonswap/sdk";
@@ -65,7 +64,6 @@ const CardDialog: FC<CardDialogProps> = ({
         null
     );
     const [promptForCommunity, setPromptForCommunity] = useState(false);
-    const { colors } = useThemeStore();
     const isDesktop = useMediaQuery("(min-width: 768px)");
     const ref = useRef(null);
     const onNextPage = async (currPage: number) => {
@@ -272,45 +270,24 @@ const CardDialog: FC<CardDialogProps> = ({
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}
-                            style={{ background: colors.background }}
                         >
-                            <div
-                                className="dialog-head"
-                                style={{ color: colors.text_black }}
-                            >
+                            <div className="dialog-head">
                                 <div>{t("select_a_token")}</div>
                                 <button
                                     onClick={handleOnClose}
-                                    className="text-xl"
+                                    className="card-dialog-close"
                                 >
-                                    <IoClose
-                                        style={{
-                                            color: colors.text_black,
-                                            opacity: 0.5,
-                                        }}
-                                    />
+                                    <IoClose />
                                 </button>
                             </div>
                             <div>
-                                <div
-                                    className="dialog-search"
-                                    style={{ borderColor: colors.border }}
-                                >
-                                    <MdOutlineSearch
-                                        className="text-black/50"
-                                        style={{
-                                            color: colors.text_black,
-                                            opacity: 0.5,
-                                        }}
-                                    />
+                                <div className="dialog-search">
+                                    <MdOutlineSearch className="dialog-search-icon" />
                                     <input
                                         className="dialog-search-input"
                                         type="text"
                                         placeholder={t("search")}
                                         data-testid="dialog-search-input"
-                                        style={{
-                                            color: colors.text_black,
-                                        }}
                                         onChange={(e) => {
                                             setSearchInput(e.target.value);
                                         }}
@@ -323,11 +300,6 @@ const CardDialog: FC<CardDialogProps> = ({
                                         return (
                                             <button
                                                 className="pinned-token"
-                                                style={{
-                                                    color: colors.text_black,
-                                                    background:
-                                                        colors.light_shade,
-                                                }}
                                                 onClick={() => {
                                                     handleOnTokenSelect(item);
                                                 }}
@@ -336,7 +308,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                 <div
                                                     className="pinned-token-image"
                                                     style={{
-                                                        background: `url(${item.image}) ${colors.background}`,
+                                                        background: `url(${item.image}) var(--background-color)`,
                                                     }}
                                                 ></div>
                                                 <span>{item.symbol}</span>
@@ -414,8 +386,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                         className="dialog-tokens-container"
                                         style={{
                                             ...({
-                                                "--thumb-scrollbar":
-                                                    colors.primary,
+                                                "--thumb-scrollbar": `var(--primary-color)`,
                                             } as CSSProperties),
                                         }}
                                         id="scroll-div"
@@ -429,21 +400,13 @@ const CardDialog: FC<CardDialogProps> = ({
                                             scrollableTarget="scroll-div"
                                             loader={
                                                 <div className="infinite-scroll-loading">
-                                                    <CgSpinnerTwo
-                                                        className="animate-spin"
-                                                        style={{
-                                                            color: colors.primary,
-                                                        }}
-                                                    />
+                                                    <CgSpinnerTwo className="animate-spin" />
                                                 </div>
                                             }
                                             endMessage={
                                                 <div
                                                     className="no-token-found"
                                                     data-testid="token-not-found"
-                                                    style={{
-                                                        color: colors.text_black,
-                                                    }}
                                                 >
                                                     {t("token_notfound")}
                                                     <span>
@@ -470,14 +433,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                     {contractCommunity && (
                                         <>
                                             <div className="community-modal-container">
-                                                <div
-                                                    className="community-modal-warning"
-                                                    style={{
-                                                        color: colors.text_black,
-                                                        background:
-                                                            colors.input_card,
-                                                    }}
-                                                >
+                                                <div className="community-modal-warning">
                                                     <TiWarning className="icon" />
                                                     <h1 className="title">
                                                         {t(
@@ -509,10 +465,6 @@ const CardDialog: FC<CardDialogProps> = ({
                                                     handleOnTokenSelect(
                                                         contractCommunity
                                                     );
-                                                }}
-                                                style={{
-                                                    background: colors.primary,
-                                                    color: colors.text_black,
                                                 }}
                                             >
                                                 {t("trade_warning.agree")}

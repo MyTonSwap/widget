@@ -9,14 +9,13 @@
         overflow: hidden;
         .card-dialog {
             position: fixed;
-
+            background: var(--background-color);
             width: 100%;
             max-height: 85dvh;
             min-height: 85dvh;
             padding: 1rem;
             display: flex;
             flex-direction: column;
-            background-color: #fff;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
@@ -35,6 +34,7 @@
             }
 
             .no-token-found {
+                color: var(--text-black-color);
                 margin-top: 1rem;
                 height: 100%;
                 display: flex;
@@ -49,9 +49,15 @@
             }
 
             .dialog-head {
+                color: var(--text-black-color);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                .card-dialog-close {
+                    color: var(--text-black-color);
+                    font-size: var(--font-size-xl);
+                    opacity: 0.5;
+                }
             }
 
             .dialog-search {
@@ -60,13 +66,20 @@
                 margin-bottom: 0.5rem;
                 border-radius: 0.75rem;
                 width: 100%;
-                border: 1px solid #e4e4e7;
+                border: 1px solid var(--border-color);
                 display: flex;
                 align-items: center;
                 padding-left: 0.5rem;
                 padding-right: 0.5rem;
 
+                .dialog-search-icon {
+                    font-size: var(--font-size-lg);
+                    color: var(--text-black-color);
+                    opacity: 0.5;
+                }
+
                 .dialog-search-input {
+                    color: var(--text-black-color);
                     width: 100%;
                     height: 100%;
                     background-color: transparent;
@@ -100,6 +113,8 @@
                 flex-grow: 1;
             }
             .community-modal-warning {
+                background: var(--input-card-color);
+                color: var(--text-black-color);
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -125,6 +140,8 @@
             }
 
             .accept-button {
+                color: var(--text-black-color);
+                background: var(--primary-color);
                 display: flex;
                 height: 2.5rem;
                 border-radius: 0.75rem;
@@ -139,6 +156,8 @@
                 padding: 0.75rem 0;
                 gap: 0.5rem;
                 .pinned-token {
+                    color: var(--text-black-color);
+                    background: var(--light-shade-color);
                     display: flex;
                     align-items: center;
                     font-size: 0.9rem;

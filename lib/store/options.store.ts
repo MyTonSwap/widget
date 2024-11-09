@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { defaultsDeep } from "lodash";
 import { TonConnectUI } from "@tonconnect/ui-react";
 import { useSwapStore } from "./swap.store";
-import i18n from "../i18n/i18n";
 
 export type SwapOptions = {
     default_pay_token?: string;
@@ -75,7 +74,3 @@ export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
         },
     })
 );
-
-export const setLang = (lang: string) => {
-    i18n.changeLanguage(lang);
-};

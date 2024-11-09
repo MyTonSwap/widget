@@ -2,10 +2,9 @@
 // import * as React from "react";
 
 import "./global.css";
-
 // import { TonConnectWrappedSwap } from "./components/Swap/Swap";
 export * from "./components";
-export { setLang } from "./store/options.store";
+export { default as i18n } from "./i18n/i18n";
 
 // if (!customElements.get("mts-swap"))
 //     customElements.define(

@@ -18,7 +18,6 @@
             padding: 0.25rem;
             display: flex;
             flex-direction: column;
-            background-color: #fff;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
             border-top-left-radius: 0.75rem;
             border-top-right-radius: 0.75rem;
@@ -42,7 +41,6 @@
         height: 3rem;
         margin-top: 0.5rem;
         border-radius: 0.75rem;
-        color: white;
         font-size: var(--font-size-sm);
         color: var(--text-white-color);
         background-color: var(--primary-color);

@@ -50,7 +50,7 @@
     "scripts": {
         "dev": "vite",
         "prebuild": "rm -rf dist",
-        "build": "tsc -b && vite build",
+        "build": "tsc -b && vite build && vite build --config vite.config.cdn.js",
         "lint": "eslint .",
         "preview": "vite preview",
         "prepublish": "pnpm run build",

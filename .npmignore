@@ -16,6 +16,7 @@ tsconfig.json
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo
 vite.config.ts
+vite.config.cdn.ts
 Dockerfile
 .dockerignore
 storybook-static

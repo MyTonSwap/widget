@@ -5,6 +5,16 @@ import WalletProfile, {
 } from "./WalletProfile/WalletProfile";
 import i18n from "../i18n/i18n";
 
+declare global {
+    interface Window {
+        createSwap: (elementId: string, options: SwapProps) => void;
+        createWalletProfile: (
+            elementId: string,
+            options: WalletProfileProps
+        ) => void;
+    }
+}
+
 export const createSwap = (elementId: string, options: SwapProps) => {
     i18n.changeLanguage(options.locale || "en");
     const root = document.getElementById(elementId);
@@ -20,3 +30,8 @@ export const createWalletProfile = (
     if (!root) throw new Error("Element does not exist");
     createRoot(root).render(<WalletProfile {...options} />);
 };
+
+if (window) {
+    window.createSwap = createSwap;
+    window.createWalletProfile = createWalletProfile;
+}

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-.default {
+.mts-default {
     --border-color: #f4f4f5;
     --primary-color: #22c55e;
     --background-color: #ffffff;
@@ -15,7 +15,7 @@
     --price-impact-color: #e64646;
 }
 
-.dark {
+.mts-dark {
     --border-color: #1d2939;
     --primary-color: #16a34a;
     --background-color: #101828;
@@ -29,7 +29,7 @@
     --skeleton-shine-color: #585959;
 }
 
-.ton-jiggle {
+.mts-ton-jiggle {
     --border-color: #004a6533;
     --primary-color: #177594;
     --background-color: #181f34;

@@ -9,7 +9,7 @@ const meta: Meta<typeof Swap> = {
     decorators: [
         (Story, args) => {
             return (
-                <div className="default">
+                <div className="mts-default">
                     <Story
                         args={{
                             ...args.args,
@@ -31,7 +31,7 @@ type Story = StoryObj<typeof Swap>;
 export const Default: Story = {
     decorators: [
         (Story) => (
-            <div className="default">
+            <div className="mts-default">
                 <Story />
             </div>
         ),
@@ -41,7 +41,7 @@ export const Default: Story = {
 export const Dark: Story = {
     decorators: [
         (Story) => (
-            <div className="dark">
+            <div className="mts-dark">
                 <Story />
             </div>
         ),
@@ -129,7 +129,7 @@ export const WithoutRefresh: Story = {
 export const TonJiggle: Story = {
     decorators: [
         (Story) => (
-            <div className="ton-jiggle">
+            <div className="mts-ton-jiggle">
                 <Story />
             </div>
         ),
@@ -144,7 +144,7 @@ export const WithAppId: Story = {
     },
     decorators: [
         (Story) => (
-            <div className="ton-jiggle">
+            <div className="mts-ton-jiggle">
                 <Story />
             </div>
         ),

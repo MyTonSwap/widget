@@ -33,7 +33,7 @@ Using CDN
 ```
 ## Usage
 
-[Example in html](examples/html.md)
+[🛟 Example in HTML](examples/html.md)
 
 After installation, you can integrate the `@mytonswap/widget` components in your React app as follows:
 

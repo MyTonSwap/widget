@@ -24,7 +24,16 @@ npm install @mytonswap/widget
 # Using yarn
 yarn add @mytonswap/widget
 ```
+Using CDN
+
+```html
+<script type="module"
+        src="https://cdn.jsdelivr.net/npm/@mytonswap/widget@latest/dist/cdn/mytonswap-widget.js"></script>
+<style>
+```
 ## Usage
+
+[Example in html](examples/html.md)
 
 After installation, you can integrate the `@mytonswap/widget` components in your React app as follows:
 

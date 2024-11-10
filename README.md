@@ -29,16 +29,23 @@ yarn add @mytonswap/widget
 After installation, you can integrate the `@mytonswap/widget` components in your React app as follows:
 
 ### Swap Component
+
 ```tsx
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect,useRef } from "react";
 import { createSwap } from "@mytonswap/widget";
 import { useTonConnectUI } from "@tonconnect/ui-react";
 
 function App() {
     const [tc] = useTonConnectUI();
+    const initMount = useRef(false)
+
     useEffect(() => {
         if (tc) {
+            if (initMount){
+                return
+            }
+            initMount.current = true;
             createSwap("swap-component", { tonConnectInstance: tc });
         }
     }, [tc]);
@@ -50,6 +57,22 @@ function App() {
 }
 
 export default App;
+```
+```css
+:root {
+    --border-color: #f4f4f5;
+    --primary-color: #22c55e;
+    --background-color: #ffffff;
+    --input-card-color: #ffffff;
+    --input-token-color: #f4f4f5;
+    --light-shade-color: #f4f4f5;
+    --slippage-box-color: #71717a;
+    --text-black-color: #000000;
+    --text-white-color: #ffffff;
+    --text-fade-color: #9caacb;
+    --skeleton-shine-color: #9c9c9c;
+    --price-impact-color: #e64646;
+}
 ```
 ### Wallet Button
 ```tsx
@@ -81,35 +104,20 @@ export default App;
 
 
 ## Theme & Customization
-You can fully customize the appearance of the `@mytonswap/widget` by passing a `theme` object as a property to the createSwap function. This allows you to match the widget's styling with the design of your application.
-```tsx
-function App() {
-    const [tc] = useTonConnectUI();
-    useEffect(() => {
-        if (tc) {
-          createSwap("swap-component", {
-              tonConnectInstance: tc,
-              theme: {
-                  border: "#3A3A3C", // Border color
-                  primary: "#16A34A", // Primary button and highlight color
-                  background: "#18181B", // Widget background color
-                  input_card: "#27272A", // Input card background
-                  input_token: "#3A3A3C", // Token input background color
-                  light_shade: "#3A3A3C", // Lighter shade for elements
-                  slippage_box: "#D1D1E0", // Slippage box background
-                  text_black: "#FFFFFF", // Text color on dark backgrounds
-                  text_white: "#000000", // Text color on light backgrounds
-                  text_fade: "#6B7280", // Faded text color for descriptions
-                  skeleton_shine: "#585959", // Skeleton loader shine effect
-              },
-          });
-        }
-    }, [tc]);
-    return (
-        <div className="App">
-            <div id="swap-component"></div>
-        </div>
-    );
+You can fully customize the appearance of the `@mytonswap/widget` by defining css variables for widget like example down bellow.
+```css
+:root {
+    --border-color: #004a6533;
+    --primary-color: #177594;
+    --background-color: #181f34;
+    --input-card-color: #181f34;
+    --input-token-color: #1d2939;
+    --light-shade-color: #193349;
+    --slippage-box-color: #d1d1e0;
+    --text-black-color: #ffffff;
+    --text-white-color: #ffffff;
+    --text-fade-color: #6b7280;
+    --skeleton-shine-color: #585959;
 }
 ```
 ## Default Tokens

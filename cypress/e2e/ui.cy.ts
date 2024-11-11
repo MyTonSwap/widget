@@ -161,3 +161,29 @@ describe("i18n ui components test", () => {
         );
     });
 });
+
+describe("locked input tests", () => {
+    it("should not change pay input when locked", () => {
+        cy.visit(
+            "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--with-locked-token"
+        );
+        cy.get("[data-testid='card-button-pay']").should(
+            "contain.text",
+            "HYDRA"
+        );
+        cy.get("[data-testid='card-button-pay']").should("be.disabled");
+        cy.get("[data-testid='change-direction-button']").should("be.disabled");
+    });
+    it("should not change pay input when locked", () => {
+        cy.visit(
+            "http://localhost:6006/iframe.html?args=&globals=&id=components-swap--with-locked-input"
+        );
+        cy.get("[data-testid='card-button-receive']").should(
+            "contain.text",
+            "TON"
+        );
+        cy.get("[data-testid='card-button-receive']").should("be.disabled");
+        cy.get("[data-testid='swapcard-input-pay']").should("be.disabled");
+        cy.get("[data-testid='change-direction-button']").should("be.disabled");
+    });
+});

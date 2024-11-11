@@ -5,7 +5,7 @@ const Refresh: FC<{ isLoading: boolean; enabled: boolean }> = ({
     isLoading,
 }) => {
     return (
-        <div className="_refresher_wadtj_43">
+        <div data-testid="refresh-button" className="_refresher_wadtj_43">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

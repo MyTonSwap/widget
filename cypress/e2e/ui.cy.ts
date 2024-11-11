@@ -187,3 +187,12 @@ describe("locked input tests", () => {
         cy.get("[data-testid='change-direction-button']").should("be.disabled");
     });
 });
+
+describe("refresh hide option tests", () => {
+    it("should not be visible", () => {
+        cy.visit(
+            "http://localhost:6006/iframe.html?globals=&args=&id=components-swap--without-refresh&viewMode=story"
+        );
+        cy.get("[data-testid='refresh-button']").should("not.exist");
+    });
+});

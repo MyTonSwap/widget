@@ -25,6 +25,7 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
     })();
     return (
         <button
+            disabled={isDisabled}
             onClick={isDisabled ? () => {} : onClick}
             {...{
                 ...(isLoading && type === "pay"

@@ -9,11 +9,14 @@ const SwapCard = () => {
 
     const shouldShowChangeDirection =
         options.ui_preferences?.show_change_direction;
+
+    const isDisabled = options.lock_pay_token || options.lock_receive_token;
     return (
         <div className="swap-card-container">
             <Card type="pay" />
             {shouldShowChangeDirection && (
                 <button
+                    disabled={isDisabled}
                     onClick={() => {
                         changeDirection();
                     }}

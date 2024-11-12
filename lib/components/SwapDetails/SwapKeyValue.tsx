@@ -9,7 +9,7 @@ const SwapKeyValue: FC<SwapKeyValueProps> = ({ keyText, value }) => {
     return (
         <div className="details-key-value">
             <div className="details-key-value-key">{keyText}</div>
-            <div>{value}</div>
+            <div className="details-key-value-value">{value}</div>
         </div>
     );
 };

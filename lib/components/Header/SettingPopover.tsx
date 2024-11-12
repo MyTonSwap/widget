@@ -23,7 +23,7 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
     const onClickOutSite = () => {
         setTimeout(() => {
             setIsOpen(false);
-        }, 100);
+        }, 150);
     };
     useOnClickOutside(ref, onClickOutSite);
     const handleButtonClick = (e: React.MouseEvent) => {

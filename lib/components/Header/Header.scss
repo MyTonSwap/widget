@@ -19,10 +19,7 @@
 
         .setting-icon {
             color: var(--text-black-color);
-            &:hover {
-                transform: rotate(90deg);
-                transition: transform 0.15s ease-in-out;
-            }
+
             font-size: var(--font-size-xl);
             opacity: 0.5;
         }
@@ -37,8 +34,8 @@
         }
         .header-setting {
             .loading-container {
-                width: 1.5rem;
-                height: 1.5rem;
+                width: 1.25rem;
+                height: 1.25rem;
             }
             .setting-icon {
                 font-size: var(--font-size-2xl);

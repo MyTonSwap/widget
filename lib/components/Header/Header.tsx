@@ -1,4 +1,5 @@
-import { IoSettingsOutline } from "react-icons/io5";
+import { VscSettings } from "react-icons/vsc";
+
 import SettingPopover from "./SettingPopover";
 import "./Header.scss";
 import { useOptionsStore } from "../../store/options.store";
@@ -28,7 +29,7 @@ const Header = () => {
                 )}
                 {options.ui_preferences?.show_settings && (
                     <SettingPopover>
-                        <IoSettingsOutline className="setting-icon" />
+                        <VscSettings className="setting-icon" />
                     </SettingPopover>
                 )}
             </div>

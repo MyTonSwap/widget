@@ -1,6 +1,7 @@
 import { useSwapStore } from "../../store/swap.store";
 import Card from "./Card";
-import { IoSwapHorizontal } from "react-icons/io5";
+import { LuArrowDownUp } from "react-icons/lu";
+
 import "./SwapCard.scss";
 import { useOptionsStore } from "../../store/options.store";
 const SwapCard = () => {
@@ -14,6 +15,7 @@ const SwapCard = () => {
     return (
         <div className="swap-card-container">
             <Card type="pay" />
+            <div className="line"></div>
             {shouldShowChangeDirection && (
                 <button
                     disabled={isDisabled}
@@ -23,7 +25,7 @@ const SwapCard = () => {
                     className="change-direction-button"
                     data-testid="change-direction-button"
                 >
-                    <IoSwapHorizontal className="rotate-90" />
+                    <LuArrowDownUp />
                 </button>
             )}
             <Card type="receive" />

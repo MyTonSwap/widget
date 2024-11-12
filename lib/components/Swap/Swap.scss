@@ -80,6 +80,12 @@
             width: 550px;
         }
     }
+    @media screen and (min-width: 1440px) {
+        .container {
+            max-width: 600px;
+            width: 600px;
+        }
+    }
     .text-provided {
         color: var(--text-black-color);
         width: 100%;

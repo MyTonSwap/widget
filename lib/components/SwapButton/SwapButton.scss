@@ -34,6 +34,11 @@
                 box-shadow: 0 0px 10px rgba(0, 0, 0, 0.05);
                 border-radius: 0.75rem;
             }
+
+            @media (min-width: 1024px) {
+                max-width: 420px;
+                width: 420px;
+            }
         }
     }
     .swap-button {
@@ -61,10 +66,29 @@
                 height: 100%;
                 max-height: 80%;
                 max-height: 400px;
+                border-radius: 1rem;
             }
         }
         .swap-button {
             height: 3.5rem;
+            font-size: var(--font-size-md);
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .mytonswap-app {
+        .modal-container {
+            .modal-container-inner {
+                height: 100%;
+                max-height: 80%;
+                max-height: 420px;
+                border-radius: 1rem;
+            }
+        }
+        .swap-button {
+            height: 4rem;
+            border-radius: 1rem;
             font-size: var(--font-size-md);
         }
     }

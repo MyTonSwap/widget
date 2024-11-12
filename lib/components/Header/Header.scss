@@ -43,3 +43,11 @@
         }
     }
 }
+
+@media screen and (min-width: 1024px) {
+    .mytonswap-app {
+        .header-container {
+            font-size: var(--font-size-xl);
+        }
+    }
+}

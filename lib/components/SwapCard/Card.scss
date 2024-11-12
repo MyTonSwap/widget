@@ -117,3 +117,19 @@
         }
     }
 }
+
+@media screen and (min-width: 1024px) {
+    .mytonswap-app {
+        .swapcard-card {
+            .card-content {
+                padding: 1rem 1rem;
+                padding-right: 1.5rem;
+                .card-inputs {
+                    .card-input {
+                        font-size: var(--font-size-2xl);
+                    }
+                }
+            }
+        }
+    }
+}

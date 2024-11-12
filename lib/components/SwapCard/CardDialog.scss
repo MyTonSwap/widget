@@ -33,6 +33,11 @@
                 border-radius: 0.75rem;
             }
 
+            @media (min-width: 1024px) {
+                max-width: 440px;
+                width: 440px;
+            }
+
             .no-token-found {
                 color: var(--text-black-color);
                 margin-top: 1rem;
@@ -71,6 +76,15 @@
                 align-items: center;
                 padding-left: 0.5rem;
                 padding-right: 0.5rem;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    background: var(--input-token-color);
+                }
+
+                &:focus-within {
+                    border-color: var(--primary-color);
+                }
 
                 .dialog-search-icon {
                     font-size: var(--font-size-lg);
@@ -194,7 +208,40 @@
                     }
                 }
                 .dialog-head {
-                    font-size: var(--font-size-base);
+                    font-size: var(--font-size-2xl);
+                }
+                .dialog-search {
+                    height: 3rem;
+
+                    font-size: var(--font-size-xl);
+
+                    .dialog-search-input {
+                        font-size: var(--font-size-base);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .mytonswap-app {
+        .card-dialog-container {
+            .card-dialog {
+                .no-token-found {
+                    font-size: var(--font-size-lg);
+                    span {
+                        font-size: var(--font-size-sm);
+                    }
+                }
+                .dialog-head {
+                    margin-bottom: 0.5rem;
+                    font-size: var(--font-size-xl);
+                    .card-dialog-close {
+                        color: var(--text-black-color);
+                        font-size: var(--font-size-2xl);
+                        opacity: 0.5;
+                    }
                 }
                 .dialog-search {
                     height: 3rem;

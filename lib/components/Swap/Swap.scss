@@ -58,8 +58,8 @@
         line-clamp: 1;
     }
     .container {
-        background: var(--background-color);
-        border-color: var(--border-color);
+        background: var(--swap-container-background-color);
+        border-color: var(--swap-container-border-color);
         border-width: 1px;
         border-style: solid;
         max-width: 350px;

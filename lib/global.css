@@ -4,6 +4,8 @@
     --border-color: #f4f4f5;
     --primary-color: #22c55e;
     --background-color: #ffffff;
+    --swap-container-background: #f4f4f5;
+    --swap-container-border-color: #ffffff;
     --input-card-color: #ffffff;
     --input-token-color: #f4f4f5;
     --light-shade-color: #f4f4f5;
@@ -19,6 +21,8 @@
     --border-color: #1d2939;
     --primary-color: #16a34a;
     --background-color: #101828;
+    --swap-container-background-color: #101828;
+    --swap-container-border-color: #1d293900;
     --input-card-color: #101828;
     --input-token-color: #1d2939;
     --light-shade-color: #1d2939;
@@ -30,6 +34,8 @@
 }
 
 .mts-ton-jiggle {
+    --swap-container-background-color: #101828;
+    --swap-container-border-color: #1d293900;
     --border-color: #004a6533;
     --primary-color: #177594;
     --background-color: #181f34;

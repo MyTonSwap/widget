@@ -4,7 +4,8 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 0.5rem;
-        font-size: var(--font-size-base);
+        font-weight: 600;
+        font-size: var(--font-size-lg);
         color: var(--text-black-color);
     }
     .header-setting {
@@ -13,14 +14,14 @@
         align-items: center;
 
         .loading-container {
-            width: 1rem;
-            height: 1rem;
+            width: 1.25rem;
+            height: 1.25rem;
         }
 
         .setting-icon {
             color: var(--text-black-color);
 
-            font-size: var(--font-size-xl);
+            font-size: var(--font-size-2xl);
             opacity: 0.5;
         }
     }

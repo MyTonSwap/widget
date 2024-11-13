@@ -30,9 +30,14 @@
             display: grid;
             grid-template-columns: 1fr auto;
             width: 100%;
-            border-radius: 1rem;
-            padding: 0.5rem 1rem;
-
+            border-radius: 0.75rem;
+            padding: 1rem 1rem;
+            &.pay {
+                background: var(--input-card-pay-color);
+            }
+            &.receive {
+                background: var(--input-card-receive-color);
+            }
             margin-top: 0.5rem;
             .card-inputs {
                 display: flex;
@@ -48,7 +53,7 @@
                     font-weight: 700;
                 }
                 .card-input-loading {
-                    height: 1rem;
+                    height: 1.25rem;
                     width: 6rem;
                     border-radius: 0.375rem;
                 }
@@ -103,8 +108,21 @@
             }
             .card-content {
                 .card-inputs {
+                    gap: 0.5rem;
                     .card-input {
                         font-size: var(--font-size-xl);
+                    }
+                    .card-input-loading {
+                        height: 1.25rem;
+                        width: 7rem;
+                    }
+                    .card-rate {
+                        font-size: var(--font-size-sm);
+                    }
+                    .card-rate-loading {
+                        margin-top: 0.5rem;
+                        height: 1rem;
+                        width: 5rem;
                     }
                 }
                 .card-button {

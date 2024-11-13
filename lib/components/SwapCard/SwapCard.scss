@@ -18,15 +18,15 @@
         }
         .change-direction-button {
             margin: 0.75rem 0;
-            color: var(--text-white-color);
-            background: var(--primary-color);
-            padding: 0.75rem 4rem;
+            color: var(--change-direction-icon-color);
+            background: var(--change-direction-background-color);
+            padding: 0.75rem 3.5rem;
             display: flex;
             position: relative;
             z-index: 1;
             align-items: center;
             justify-content: center;
-            font-size: var(--font-size-xl);
+            font-size: var(--font-size-2xl);
             border-radius: 99999px;
             .rotate-90 {
                 transform: rotate(90deg);

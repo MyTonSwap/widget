@@ -188,7 +188,7 @@ const Card: FC<CardProps> = ({ type }) => {
                         ""
                     )}
                 </div>
-                <div className="card-content">
+                <div className={`card-content ${type}`}>
                     <div className="card-inputs">
                         {((type === "receive" && !isFindingBestRoute) ||
                             type === "pay") && (

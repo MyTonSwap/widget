@@ -473,6 +473,14 @@ const CardDialog: FC<CardDialogProps> = ({
                                     )}
                                 </div>
                             )}
+                            <div className="close-footer">
+                                <button
+                                    onClick={handleOnClose}
+                                    className="close-footer-button"
+                                >
+                                    Close
+                                </button>
+                            </div>
                         </motion.div>
                     </motion.div>
                 )}

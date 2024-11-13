@@ -8,7 +8,7 @@ export default (a: Asset, b: Asset): number => {
     const getTotalValue = (asset: Asset) => {
         const assetBalance = balance.get(asset.address);
         return (
-            (assetBalance?.jetton.prices?.USD ?? 0) *
+            (assetBalance?.price?.prices.USD ?? 0) *
             +fromNano(
                 assetBalance?.balance ?? "0",
                 assetBalance?.jetton.decimals ?? 0
@@ -18,7 +18,6 @@ export default (a: Asset, b: Asset): number => {
 
     const totalValueA = getTotalValue(a);
     const totalValueB = getTotalValue(b);
-
     if (totalValueA !== totalValueB) {
         return totalValueB - totalValueA; // Descending order for (price * balance)
     }

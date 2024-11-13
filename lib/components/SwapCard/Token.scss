@@ -1,7 +1,7 @@
 .mytonswap-app {
     .token-container {
         width: 100%;
-        height: 2.5rem;
+        height: 3rem;
         cursor: pointer;
         margin-top: 0.25rem;
         border-radius: 0.75rem;
@@ -14,10 +14,10 @@
         display: flex;
         align-items: center;
         flex-grow: 1;
-        gap: 0.25rem;
+        gap: 0.5rem;
         .token-image {
-            width: 2.14rem;
-            height: 2.14rem;
+            width: 2.75rem;
+            height: 2.75rem;
             border-radius: 9999px;
             background-size: contain !important;
         }
@@ -26,7 +26,8 @@
         }
         .token-details-symbol-balance {
             color: var(--text-black-color);
-            font-size: 0.75rem;
+            font-size: var(--font-size-base);
+            font-weight: 500;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -39,7 +40,7 @@
                 align-items: center;
                 justify-content: center;
                 gap: 0.125rem;
-                font-size: var(--font-size-sm);
+                font-size: var(--font-size-base);
                 a {
                     opacity: 50%;
                     text-decoration: none;
@@ -86,10 +87,10 @@
                 height: 2.5rem;
             }
             .token-details-symbol-balance {
-                font-size: var(--font-size-sm);
+                font-size: var(--font-size-lg);
             }
             .token-details-name-rate {
-                font-size: var(--font-size-xs);
+                font-size: var(--font-size-sm);
             }
         }
     }

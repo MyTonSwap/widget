@@ -15,13 +15,14 @@ type TokenProps = {
 
 const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
     const { balance } = useWalletStore();
-    const tokenBalance = toFixedDecimal(
-        fromNano(balance.get(asset.address)?.balance ?? 0, asset.decimal),
-        2
+    const tokenBalance = parseFloat(
+        toFixedDecimal(
+            fromNano(balance.get(asset.address)?.balance ?? 0, asset.decimal),
+            2
+        )
     );
     const price =
-        (balance.get(asset.address)?.price?.prices.USD ?? 0) *
-        Number(tokenBalance);
+        (balance.get(asset.address)?.price?.prices.USD ?? 0) * tokenBalance;
     const fixedPrice = price === 0 ? 0 : formatNumber(price, 2);
     return (
         <div

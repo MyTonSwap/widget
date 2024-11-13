@@ -7,6 +7,7 @@ import { RiExternalLinkLine } from "react-icons/ri";
 
 import { TokenTon } from "../../icons/TokenTon";
 import { TON_ADDR } from "../../constants";
+import { toFixedDecimal } from "../../utils/toFixedDecimals";
 type TokenProps = {
     asset: Asset;
     onTokenSelect: (asset: Asset) => void;
@@ -14,12 +15,13 @@ type TokenProps = {
 
 const Token: FC<TokenProps> = ({ asset, onTokenSelect }) => {
     const { balance } = useWalletStore();
-    const tokenBalance = +fromNano(
-        balance.get(asset.address)?.balance ?? 0,
-        asset.decimal
+    const tokenBalance = toFixedDecimal(
+        fromNano(balance.get(asset.address)?.balance ?? 0, asset.decimal),
+        2
     );
     const price =
-        (balance.get(asset.address)?.price?.prices.USD ?? 0) * tokenBalance;
+        (balance.get(asset.address)?.price?.prices.USD ?? 0) *
+        Number(tokenBalance);
     const fixedPrice = price === 0 ? 0 : formatNumber(price, 2);
     return (
         <div

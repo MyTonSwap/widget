@@ -22,6 +22,7 @@
             }
             .icon {
                 color: var(--text-black-color);
+                font-size: var(--font-size-xl);
                 cursor: pointer;
             }
         }
@@ -30,24 +31,23 @@
             align-items: center;
             padding-top: 0.25rem;
             .pay-image {
-                border-color: var(--border-color);
-                width: 2.25rem;
-                height: 2.25rem;
+                border-color: var(--modal-background-color);
+                width: 4rem;
+                height: 4rem;
                 border-radius: 9999px;
                 background-size: contain !important;
-                transform: translateX(0.2rem);
-                border-width: 2px;
+                transform: translateX(0.75rem);
+                border-width: 5px;
                 border-style: solid;
             }
             .receive-image {
-                border-color: var(--border-color);
-
-                width: 2.25rem;
-                height: 2.25rem;
+                border-color: var(--modal-background-color);
+                width: 4rem;
+                height: 4rem;
                 border-radius: 9999px;
                 background-size: contain !important;
                 transform: translateX(-0.2rem);
-                border-width: 2px;
+                border-width: 5px;
                 border-style: solid;
             }
         }
@@ -75,7 +75,7 @@
             padding-left: 1rem;
             padding-right: 1rem;
             margin-top: 0.125rem;
-            font-size: 0.875rem;
+            font-size: var(--font-size-lg);
             display: flex;
             justify-content: center;
             flex-direction: column;
@@ -119,12 +119,12 @@
             }
             .confirm-modal-images {
                 .pay-image {
-                    width: 3rem;
-                    height: 3rem;
+                    width: 4rem;
+                    height: 4rem;
                 }
                 .receive-image {
-                    width: 3rem;
-                    height: 3rem;
+                    width: 4rem;
+                    height: 4rem;
                 }
             }
             .confirm-modal-change-rate {
@@ -146,7 +146,7 @@
             }
             .confirm-modal-button-container {
                 .confirm-button {
-                    height: 3rem;
+                    height: 3.25rem;
                     font-size: var(--font-size-base);
                 }
             }

@@ -5,6 +5,7 @@
     --primary-color: #22c55e;
     --secondary-color: #ebebeb;
     --background-color: #ffffff;
+    --modal-background-color: #ffffff;
     --swap-container-background: #f4f4f5;
     --swap-container-border-color: #ffffff;
     --input-card-color: #ffffff;
@@ -27,6 +28,7 @@
     --primary-color: #16a34a;
     --secondary-color: #283241;
     --background-color: #101828;
+    --modal-background-color: #101828;
     --swap-container-background-color: #101828;
     --swap-container-border-color: #1d293900;
     --input-card-pay-color: #09090b;

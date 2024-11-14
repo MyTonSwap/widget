@@ -43,12 +43,13 @@
     }
     .swap-button {
         width: 100%;
-        height: 3rem;
+        height: 3.75rem;
         margin-top: 0.5rem;
         border-radius: 0.75rem;
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-base);
         color: var(--text-white-color);
         background-color: var(--primary-color);
+        margin-top: 0.75rem;
         &.price-impact {
             background: var(--price-impact-color);
         }

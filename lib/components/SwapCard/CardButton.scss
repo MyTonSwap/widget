@@ -10,9 +10,14 @@
         padding-top: 0.25rem;
         padding-bottom: 0.25rem;
         border-radius: 9999px;
-        font-size: var(--font-size-lg);
+        font-size: var(--font-size-2xl);
         font-weight: 700;
         transition: all 0.2s ease;
+        .dropdown-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         &:active {
             scale: 0.95;
         }

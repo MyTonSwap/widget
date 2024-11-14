@@ -58,7 +58,7 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
             ) : type === "receive" ? (
                 <>
                     {t("select")}{" "}
-                    <div>
+                    <div className="dropdown-icon">
                         <MdKeyboardArrowDown />
                     </div>
                 </>

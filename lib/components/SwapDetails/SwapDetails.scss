@@ -19,7 +19,8 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            min-height: 3rem;
+            min-height: 52px;
+            font-size: var(--font-size-sm);
 
             .finding {
                 display: flex;

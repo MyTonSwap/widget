@@ -171,7 +171,7 @@ const Card: FC<CardProps> = ({ type }) => {
                     </span>
                     {type === "pay" && balanceToken ? (
                         <span className="max-button" onClick={handleMaxClick}>
-                            <span className="max-text">{t("max")}: </span>
+                            <span className="max-text">{t("max")} : </span>
                             <span>
                                 {formatNumber(
                                     +fromNano(
@@ -253,7 +253,7 @@ const Card: FC<CardProps> = ({ type }) => {
                             ></div>
                             <div>{token?.symbol}</div>
                             {!isDisabled && (
-                                <div>
+                                <div className="dropdown-icon">
                                     <MdKeyboardArrowDown />
                                 </div>
                             )}

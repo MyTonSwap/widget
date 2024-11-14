@@ -4,6 +4,11 @@
         display: flex;
         align-items: center;
         z-index: 2;
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
     .popover {
         background-color: var(--background-color);

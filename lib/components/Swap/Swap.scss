@@ -17,8 +17,11 @@
 }
 
 .mytonswap-app {
-    font-family: Inter, sans-serif;
-
+    font-family: "Plus Jakarta Sans", sans-serif;
+    * {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        -webkit-tap-highlight-color: transparent;
+    }
     button {
         border: none;
         background-color: transparent;
@@ -62,7 +65,7 @@
         border-color: var(--swap-container-border-color);
         border-width: 1px;
         border-style: solid;
-        // max-width: 350px;
+        max-width: 350px;
         padding: 0.5rem;
         border-radius: 1rem;
         overflow: hidden;

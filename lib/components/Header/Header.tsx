@@ -1,11 +1,10 @@
-import { VscSettings } from "react-icons/vsc";
-
 import SettingPopover from "./SettingPopover";
 import "./Header.scss";
 import { useOptionsStore } from "../../store/options.store";
 import Refresh from "../Common/Refresh";
 import { useSwapStore } from "../../store/swap.store";
 import { useTranslation } from "react-i18next";
+import Setting from "../icons/Setting";
 const Header = () => {
     const { t } = useTranslation();
     const { options } = useOptionsStore();
@@ -29,7 +28,7 @@ const Header = () => {
                 )}
                 {options.ui_preferences?.show_settings && (
                     <SettingPopover>
-                        <VscSettings className="setting-icon" />
+                        <Setting className="setting-icon" />
                     </SettingPopover>
                 )}
             </div>

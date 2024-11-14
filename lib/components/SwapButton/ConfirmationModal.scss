@@ -100,7 +100,8 @@
             .confirm-button {
                 background-color: var(--primary-color);
                 color: var(--text-white-color);
-                height: 3rem;
+                height: 3.25rem;
+                font-size: var(--font-size-base);
                 border-radius: 0.75rem;
                 cursor: pointer;
                 width: 100%;

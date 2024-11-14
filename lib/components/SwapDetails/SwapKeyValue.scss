@@ -4,13 +4,14 @@
         align-items: center;
         justify-content: space-between;
         font-family: Inter, sans-serif;
-        font-size: var(--font-size-xs);
+        font-size: var(--font-size-sm);
+        font-weight: 500;
         .details-key-value-value {
             color: var(--text-black-color);
         }
         .details-key-value-key {
             color: var(--text-black-color);
-            opacity: 0.7;
+            opacity: 0.6;
         }
     }
 }

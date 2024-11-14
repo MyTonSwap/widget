@@ -7,7 +7,7 @@ import WaitingForWallet from "./WaitingForWallet";
 import Inprogress from "./Inprogress";
 import Done from "./Done";
 import "./SwapButton.scss";
-import { useMediaQuery } from "usehooks-ts";
+import { useMediaQuery, useOnClickOutside } from "usehooks-ts";
 import {
     modalAnimationDesktop,
     modalAnimationMobile,
@@ -18,10 +18,14 @@ import toast from "react-hot-toast";
 import { useOptionsStore } from "../../store/options.store";
 import { useTranslation } from "react-i18next";
 import { cn } from "../../utils/cn";
+import { useRef } from "react";
 
 const SwapButton = () => {
     const { t } = useTranslation();
     const { tonConnectInstance } = useOptionsStore();
+
+    const refModal = useRef(null);
+    useOnClickOutside(refModal, () => [setModalState(ModalState.NONE)]);
 
     const isDesktop = useMediaQuery("(min-width: 768px)");
     const { balance } = useWalletStore();
@@ -93,6 +97,7 @@ const SwapButton = () => {
                         <motion.div
                             transition={{ ease: [0.6, -0.05, 0.01, 0.99] }}
                             className="modal-container-inner"
+                            ref={refModal}
                             initial={modalAnimation.initial}
                             animate={modalAnimation.animate}
                             exit={modalAnimation.exit}

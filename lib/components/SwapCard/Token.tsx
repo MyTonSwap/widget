@@ -5,7 +5,7 @@ import formatNumber from "../../utils/formatNum";
 import "./Token.scss";
 import { RiExternalLinkLine } from "react-icons/ri";
 
-import { TokenTon } from "../../icons/TokenTon";
+import { TokenTon } from "../icons/TokenTon";
 import { TON_ADDR } from "../../constants";
 import { toFixedDecimal } from "../../utils/toFixedDecimals";
 type TokenProps = {

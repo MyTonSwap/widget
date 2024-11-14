@@ -3,8 +3,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 0.25wrem;
-        font-weight: 600;
+        padding: 0 0.25rem;
+        font-weight: 500;
         font-size: var(--font-size-lg);
         color: var(--text-black-color);
     }
@@ -22,7 +22,6 @@
             color: var(--text-black-color);
 
             font-size: var(--font-size-2xl);
-            opacity: 0.5;
         }
     }
 }

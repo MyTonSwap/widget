@@ -63,7 +63,9 @@
                         color: var(--text-fade-color);
                     }
                 }
-
+                input {
+                    color: var(--text-black-color);
+                }
                 .slippage-input-group {
                     display: flex;
                     align-items: center;

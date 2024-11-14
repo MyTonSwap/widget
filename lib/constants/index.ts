@@ -6,15 +6,21 @@ export const TON_ADDR = "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c";
 export const modalAnimationMobile = {
     initial: {
         opacity: 0,
+        bottom: "0%",
+        left: "0%",
         transform: "translateY(60%) translateX(0)",
         transition: { duration: 0.5, ease: [0.4, 0.4, 0, 1] },
     },
     animate: {
+        bottom: "0%",
+        left: "0%",
         opacity: 1,
         transform: "translateY(0) translateX(0)",
         transition: { duration: 0.5, ease: [0.4, 0.4, 0, 1] },
     },
     exit: {
+        bottom: "0%",
+        left: "0%",
         opacity: 0,
         transform: "translateY(60%) translateX(0)",
         transition: { duration: 0.5, ease: [0.4, 0.4, 0, 1] },

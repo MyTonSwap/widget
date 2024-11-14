@@ -4,7 +4,7 @@
         align-items: center;
         justify-content: space-between;
         font-family: Inter, sans-serif;
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-xs);
         .details-key-value-value {
             color: var(--text-black-color);
         }
@@ -18,7 +18,7 @@
 @media screen and (min-width: 768px) {
     .mytonswap-app {
         .details-key-value {
-            font-size: var(--font-size-sm);
+            font-size: var(--font-size-xs);
         }
     }
 }

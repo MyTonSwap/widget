@@ -28,6 +28,10 @@
             justify-content: center;
             font-size: var(--font-size-2xl);
             border-radius: 99999px;
+            transition: all 0.3s ease;
+            &:active {
+                scale: 0.95;
+            }
             .rotate-90 {
                 transform: rotate(90deg);
             }
@@ -48,7 +52,7 @@
             }
             .change-direction-button {
                 padding: 1rem 5rem;
-                font-size: var(--font-size-xl);
+                font-size: var(--font-size-2xl);
             }
         }
     }

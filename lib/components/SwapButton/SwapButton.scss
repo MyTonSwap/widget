@@ -16,18 +16,18 @@
             height: 80vh;
             max-height: 400px;
             padding: 0.25rem;
+            padding-top: 0.5rem;
             display: flex;
             flex-direction: column;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
             border-top-left-radius: 0.75rem;
             border-top-right-radius: 0.75rem;
-            overflow-y: auto;
             bottom: 0;
             left: 0;
 
             @media (min-width: 768px) {
                 width: 90%;
-                max-width: 350px;
+                max-width: 450px;
                 height: 100%;
                 max-height: 80%;
                 max-height: 380px;
@@ -36,8 +36,8 @@
             }
 
             @media (min-width: 1024px) {
-                max-width: 420px;
-                width: 420px;
+                max-width: 520px;
+                width: 520px;
             }
         }
     }
@@ -70,7 +70,7 @@
             }
         }
         .swap-button {
-            height: 3.5rem;
+            height: 3.25rem;
             font-size: var(--font-size-md);
         }
     }
@@ -87,7 +87,7 @@
             }
         }
         .swap-button {
-            height: 4rem;
+            height: 3.5rem;
             border-radius: 1rem;
             font-size: var(--font-size-md);
         }

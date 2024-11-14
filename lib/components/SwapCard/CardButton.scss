@@ -12,6 +12,10 @@
         border-radius: 9999px;
         font-size: var(--font-size-lg);
         font-weight: 700;
+        transition: all 0.2s ease;
+        &:active {
+            scale: 0.95;
+        }
         &.loading {
             width: 5rem;
             height: 2.5rem;
@@ -31,7 +35,7 @@
 @media screen and (min-width: 768px) {
     .mytonswap-app {
         .selection-box-container {
-            height: 3rem;
+            height: 2.75rem;
             font-size: var(--font-size-xl);
             padding-left: 0.3rem;
             padding-right: 0.75rem;
@@ -39,7 +43,7 @@
             padding-bottom: 0.5rem;
             &.loading {
                 width: 8rem;
-                height: 3rem;
+                height: 2.75rem;
             }
         }
     }

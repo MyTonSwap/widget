@@ -28,6 +28,7 @@
         .card-content {
             background: var(--input-card-color);
             display: grid;
+            gap: 0.25rem;
             grid-template-columns: 1fr auto;
             width: 100%;
             border-radius: 0.75rem;
@@ -45,6 +46,7 @@
                 justify-content: center;
                 width: 100%;
                 .card-input {
+                    height: 1.5rem;
                     color: var(--text-black-color);
                     font-family: inherit;
                     outline: none;
@@ -63,6 +65,7 @@
                     font-size: var(--font-size-xs);
                     color: var(--text-black-color);
                     opacity: 0.5;
+                    height: 1rem;
                 }
                 .card-rate-loading {
                     height: 0.75rem;
@@ -108,27 +111,25 @@
             }
             .card-content {
                 .card-inputs {
-                    gap: 0.5rem;
                     .card-input {
                         font-size: var(--font-size-xl);
                     }
                     .card-input-loading {
-                        height: 1.25rem;
+                        height: 1.5rem;
                         width: 7rem;
                     }
                     .card-rate {
                         font-size: var(--font-size-sm);
                     }
                     .card-rate-loading {
-                        margin-top: 0.5rem;
                         height: 1rem;
                         width: 5rem;
                     }
                 }
                 .card-button {
                     .selection-box {
-                        height: 2.5rem;
-                        width: 2.5rem;
+                        height: 2rem;
+                        width: 2rem;
                     }
                 }
             }

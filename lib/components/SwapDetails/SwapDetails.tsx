@@ -15,7 +15,6 @@ const SwapDetails = () => {
     const { onePayRoute, bestRoute, isFindingBestRoute, slippage } =
         useSwapStore();
     const [ref, { height }] = useMeasure();
-    console.log(height);
     return (
         <motion.button
             className="detail-accordion-container"

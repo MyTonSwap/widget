@@ -46,13 +46,19 @@
 }
 
 .mts-ton-jiggle {
-    --swap-container-background-color: #101828;
-    --swap-container-border-color: #1d293900;
     --border-color: #004a6533;
     --primary-color: #177594;
+    --secondary-color: #283241;
     --background-color: #181f34;
+    --modal-background-color: #101828;
+    --swap-container-background-color: #101828;
+    --swap-container-border-color: #1d293900;
+    --input-card-pay-color: #09090b;
+    --input-card-receive-color: #30475b;
     --input-card-color: #181f34;
     --input-token-color: #1d2939;
+    --change-direction-background-color: #101828;
+    --change-direction-icon-color: #177594;
     --light-shade-color: #193349;
     --slippage-box-color: #d1d1e0;
     --text-black-color: #ffffff;

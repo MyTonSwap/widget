@@ -57,7 +57,7 @@
                 .card-input-loading {
                     height: 1.875rem;
                     width: 6rem;
-                    border-radius: 0.375rem;
+                    border-radius: 0.75rem;
                 }
                 .card-rate {
                     font-family: inherit;
@@ -72,7 +72,7 @@
                 .card-rate-loading {
                     height: 1.25rem;
                     width: 3rem;
-                    border-radius: 0.375rem;
+                    border-radius: 0.75rem;
                 }
             }
             .card-button {
@@ -118,6 +118,7 @@
                     .card-input-loading {
                         height: 1.5rem;
                         width: 7rem;
+                        border-radius: 0.75rem;
                     }
                     .card-rate {
                         font-size: var(--font-size-sm);
@@ -125,6 +126,7 @@
                     .card-rate-loading {
                         height: 1rem;
                         width: 5rem;
+                        border-radius: 0.75rem;
                     }
                 }
                 .card-button {

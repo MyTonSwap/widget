@@ -42,7 +42,7 @@ const SlippageSetting = () => {
         setSlippage("auto");
     };
     const handleOnPercentClick = (percent: number) => {
-        setUserInput("");
+        setUserInput(percent.toString());
         setSlippage(percent);
     };
 
@@ -81,7 +81,7 @@ const SlippageSetting = () => {
                         className={`dropdown-item ${
                             slippage === 2 ? "active" : "disabled"
                         }`}
-                        data-testid="slippage-setting-auto"
+                        data-testid="slippage-setting-2"
                     >
                         2%
                     </div>
@@ -90,7 +90,7 @@ const SlippageSetting = () => {
                         className={`dropdown-item ${
                             slippage === 5 ? "active" : "disabled"
                         }`}
-                        data-testid="slippage-setting-auto"
+                        data-testid="slippage-setting-5"
                     >
                         5%
                     </div>

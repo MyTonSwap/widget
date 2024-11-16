@@ -19,15 +19,31 @@ describe("setting ui components test", () => {
             "have.value",
             ""
         );
-        cy.get("[data-testid='slippage-setting-plus']").click();
+        cy.get("[data-testid='slippage-setting-2']").click();
         cy.get("[data-testid='slippage-setting-input']").should(
             "have.value",
-            "1"
+            "2"
         );
         cy.get("[data-testid='slippage-setting-auto']").click();
         cy.get("[data-testid='slippage-setting-input']").should(
             "have.value",
             ""
+        );
+        cy.get("[data-testid='slippage-setting-5']").click();
+        cy.get("[data-testid='slippage-setting-input']").should(
+            "have.value",
+            "5"
+        );
+        cy.get("[data-testid='slippage-setting-auto']").click();
+        cy.get("[data-testid='slippage-setting-input']").should(
+            "have.value",
+            ""
+        );
+
+        cy.get("[data-testid='slippage-setting-input']").type("10");
+        cy.get("[data-testid='slippage-indicator']").should(
+            "contain.text",
+            "10"
         );
     });
     it("community token setting should work", () => {

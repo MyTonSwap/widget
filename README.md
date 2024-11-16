@@ -1,4 +1,9 @@
 # MyTonSwap Widget
+![GitHub package.json version](https://img.shields.io/github/package-json/v/mytonswap/widget?style=for-the-badge&color=%230f904d)
+![GitHub last commit](https://img.shields.io/github/last-commit/mytonswap/widget?style=for-the-badge&color=%230f904d)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/mytonswap/widget/main.yml?style=for-the-badge&color=%230f904d)
+![NPM Downloads](https://img.shields.io/npm/dw/%40mytonswap%2Fwidget?style=for-the-badge&color=%230f904d)
+![GitHub License](https://img.shields.io/github/license/mytonswap/widget?style=for-the-badge&color=%230f904d)
 
 `@mytonswap/widget` is a customizable Swap component that enables developers to integrate swap functionality on the TON blockchain directly into their React applications. With this widget, users can seamlessly swap assets and connect to the TON blockchain via TonConnect.
 

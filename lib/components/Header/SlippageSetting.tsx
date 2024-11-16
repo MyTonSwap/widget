@@ -1,10 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSwapStore } from "../../store/swap.store";
-import { FaCircleCheck } from "react-icons/fa6";
 import "./SlippageSetting.scss";
-import { TiPlus } from "react-icons/ti";
-import { FaMinus } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 
 const SlippageSetting = () => {
@@ -44,29 +41,9 @@ const SlippageSetting = () => {
         setUserInput("");
         setSlippage("auto");
     };
-
-    const handleOnPlusClick = () => {
-        if (slippage === "auto") {
-            setSlippage(1);
-            setUserInput("1");
-        } else {
-            const newSlippage = Math.min(10, +(slippage + 0.1).toFixed(1));
-            setSlippage(newSlippage);
-            setUserInput(`${newSlippage}`);
-        }
-    };
-    const handleOnMinusClick = () => {
-        if (slippage === "auto") {
-            setSlippage(1);
-            setUserInput("1");
-        } else {
-            const newSlippage = Math.max(
-                1,
-                +((slippage as number) - 0.1).toFixed(1)
-            );
-            setSlippage(newSlippage);
-            setUserInput(`${newSlippage}`);
-        }
+    const handleOnPercentClick = (percent: number) => {
+        setUserInput("");
+        setSlippage(percent);
     };
 
     return (
@@ -92,58 +69,48 @@ const SlippageSetting = () => {
                 >
                     <div
                         onClick={handleOnAutoClick}
-                        className="dropdown-item"
+                        className={`dropdown-item ${
+                            slippage === "auto" ? "active" : "disabled"
+                        }`}
                         data-testid="slippage-setting-auto"
                     >
-                        <FaCircleCheck
-                            className={`icon ${
-                                slippage === "auto" ? "" : "disabled"
-                            }`}
-                        />
                         {t("auto")}
                     </div>
-                    <div className="controllers">
-                        <button
-                            className={`controller ${
-                                slippage !== "auto" && slippage <= 1
-                                    ? "disabled"
-                                    : ""
-                            }`}
-                            data-testid="slippage-setting-minus"
-                            onClick={handleOnMinusClick}
-                            disabled={slippage !== "auto" && slippage <= 1}
-                        >
-                            <FaMinus />
-                        </button>
-                        <div className="slippage-input-group dropdown-item percent-input">
-                            <FaCircleCheck
-                                className={`icon ${
-                                    slippage !== "auto" ? "" : "disabled"
-                                }`}
-                            />
-                            <input
-                                value={userInput}
-                                onChange={handleSlippageChange}
-                                data-testid="slippage-setting-input"
-                                type="text"
-                                dir="rtl"
-                                className="slippage-input"
-                                placeholder="1"
-                            />
-                            <span className="slippage-input-percent">%</span>
-                        </div>
-                        <button
-                            className={`controller ${
-                                slippage !== "auto" && slippage >= 10
-                                    ? "disabled"
-                                    : ""
-                            }`}
-                            onClick={handleOnPlusClick}
-                            data-testid="slippage-setting-plus"
-                            disabled={slippage !== "auto" && slippage >= 10}
-                        >
-                            <TiPlus />
-                        </button>
+                    <div
+                        onClick={() => handleOnPercentClick(2)}
+                        className={`dropdown-item ${
+                            slippage === 2 ? "active" : "disabled"
+                        }`}
+                        data-testid="slippage-setting-auto"
+                    >
+                        2%
+                    </div>
+                    <div
+                        onClick={() => handleOnPercentClick(5)}
+                        className={`dropdown-item ${
+                            slippage === 5 ? "active" : "disabled"
+                        }`}
+                        data-testid="slippage-setting-auto"
+                    >
+                        5%
+                    </div>
+                    <div
+                        className={`controllers dropdown-item ${
+                            ["auto", 2, 5].includes(slippage)
+                                ? "disabled"
+                                : "active"
+                        }`}
+                    >
+                        <input
+                            value={userInput}
+                            onChange={handleSlippageChange}
+                            data-testid="slippage-setting-input"
+                            type="text"
+                            dir="rtl"
+                            className={`slippage-input `}
+                            placeholder="1"
+                        />
+                        <span className="slippage-input-percent">%</span>
                     </div>
                 </motion.div>
             </AnimatePresence>

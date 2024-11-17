@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" class="mts-dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTonSwap Widget Html Example</title>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@mytonswap/widget@latest/dist/cdn/mytonswap-widget.js"></script>
+    <style>
+        :root {
+            --border-color: #f4f4f5;
+            --primary-color: #22c55e;
+            --secondary-color: #ebebeb;
+            --background-color: #ffffff;
+            --modal-background-color: #ffffff;
+            --swap-container-background: #f4f4f5;
+            --swap-container-border-color: #ffffff;
+            --input-card-color: #ffffff;
+            --input-card-pay-color: #ffffff;
+            --input-card-receive-color: #d0d5dd;
+            --input-token-color: #f4f4f5;
+            --change-direction-background-color: #22c55e;
+            --change-direction-icon-color: #f4f4f5;
+            --light-shade-color: #f4f4f5;
+            --slippage-box-color: #71717a;
+            --text-black-color: #000000;
+            --text-white-color: #ffffff;
+            --text-fade-color: #9caacb;
+            --skeleton-shine-color: #9c9c9c;
+            --price-impact-color: #e64646;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="swap-widget"></div>
+    <script type="module">
+        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            manifestUrl: 'https://mytonswap.com/wallet/manifest.json',
+        });
+        createSwap("swap-widget", { tonConnectInstance: tonConnectUI });
+    </script>
+    </script>
+</body>
+
+</html>

@@ -11,6 +11,7 @@
 
 📃 Docs: https://mytonswap.com/docs
 🌐 Demo & Preview: https://widget.mytonswap.com
+👨‍💻 Code Examples: [HTML](https://github.com/MyTonSwap/widget/tree/main/examples/html), [React](https://github.com/MyTonSwap/widget/tree/main/examples/react), [Vue](https://github.com/MyTonSwap/widget/tree/main/examples/vue)
 
 ## Features
 

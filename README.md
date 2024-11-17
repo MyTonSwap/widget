@@ -1,13 +1,16 @@
-# MyTonSwap Widget
+![Preview](./assets/image.png)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/mytonswap/widget?style=for-the-badge&color=%230f904d)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mytonswap/widget?style=for-the-badge&color=%230f904d)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/mytonswap/widget/main.yml?style=for-the-badge&color=%230f904d)
 ![NPM Downloads](https://img.shields.io/npm/dw/%40mytonswap%2Fwidget?style=for-the-badge&color=%230f904d)
 ![GitHub License](https://img.shields.io/github/license/mytonswap/widget?style=for-the-badge&color=%230f904d)
 
+# MyTonSwap Widget
+
 `@mytonswap/widget` is a customizable Swap component that enables developers to integrate swap functionality on the TON blockchain directly into their React applications. With this widget, users can seamlessly swap assets and connect to the TON blockchain via TonConnect.
 
-![Preview](./assets/image.png)
+📃 Docs: https://mytonswap.com/docs
+🌐 Demo & Preview: https://widget.mytonswap.com
 
 ## Features
 
@@ -32,15 +35,16 @@ yarn add @mytonswap/widget
 Using CDN
 
 ```html
-<script type="module"
-        src="https://cdn.jsdelivr.net/npm/@mytonswap/widget@latest/dist/cdn/mytonswap-widget.js"></script>
-<style>
+<script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@mytonswap/widget@latest/dist/cdn/mytonswap-widget.js"
+></script>
 ```
 
 ## Usage
 
--   [🛟 Example in HTML](examples/html.md)
--   [🛟 Example in Vue.js](examples/vue.md)
+-   [🛟 Example in HTML](https://mytonswap.com/docs/widget/html)
+-   [🛟 Example in Vue.js](https://mytonswap.com/docs/widget/vue)
 
 After installation, you can integrate the `@mytonswap/widget` components in your React app as follows:
 
@@ -79,11 +83,17 @@ export default App;
 :root {
     --border-color: #f4f4f5;
     --primary-color: #22c55e;
+    --secondary-color: #ebebeb;
+    --background-color: #ffffff;
+    --modal-background-color: #ffffff;
     --swap-container-background: #f4f4f5;
     --swap-container-border-color: #ffffff;
-    --background-color: #ffffff;
     --input-card-color: #ffffff;
+    --input-card-pay-color: #ffffff;
+    --input-card-receive-color: #d0d5dd;
     --input-token-color: #f4f4f5;
+    --change-direction-background-color: #22c55e;
+    --change-direction-icon-color: #f4f4f5;
     --light-shade-color: #f4f4f5;
     --slippage-box-color: #71717a;
     --text-black-color: #000000;

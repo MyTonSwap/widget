@@ -9,9 +9,9 @@
 
 `@mytonswap/widget` is a customizable Swap component that enables developers to integrate swap functionality on the TON blockchain directly into their React applications. With this widget, users can seamlessly swap assets and connect to the TON blockchain via TonConnect.
 
-📃 Docs: https://mytonswap.com/docs
-🌐 Demo & Preview: https://widget.mytonswap.com
-👨‍💻 Code Examples: [HTML](https://github.com/MyTonSwap/widget/tree/main/examples/html), [React](https://github.com/MyTonSwap/widget/tree/main/examples/react), [Vue](https://github.com/MyTonSwap/widget/tree/main/examples/vue)
+- 📃 Docs: https://mytonswap.com/docs
+- 🌐 Demo & Preview: https://widget.mytonswap.com
+- 👨‍💻 Code Examples: [HTML](https://github.com/MyTonSwap/widget/tree/main/examples/html), [React](https://github.com/MyTonSwap/widget/tree/main/examples/react), [Vue](https://github.com/MyTonSwap/widget/tree/main/examples/vue)
 
 ## Features
 

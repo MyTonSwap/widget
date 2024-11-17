@@ -51,10 +51,21 @@
         }
     }
 }
-.wallet-profile-mts .popover {
-    padding: 0px;
+.wallet-profile-mts {
+    position: relative;
+    .wallet-popover {
+        background: var(--modal-background-color);
+        color: var(--text-black-color);
+        border-radius: 1rem;
+        padding: 0.25rem;
+        position: absolute;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        height: 100%;
+        min-width: 250px;
+        height: fit-content;
+    }
 }
-
 .mytonswap-app.rtl {
     .popover {
         right: auto;

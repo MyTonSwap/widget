@@ -34,7 +34,7 @@ export const WalletProfile: FC<WalletProfileProps> = ({
     const ref = useRef(null);
 
     useOnClickOutside(ref, () => {
-        setTimeout(() => setIsOpen(false), 100);
+        setTimeout(() => setIsOpen(false), 150);
     });
 
     const handleButtonClick = (e: React.MouseEvent) => {
@@ -90,7 +90,7 @@ export const WalletProfile: FC<WalletProfileProps> = ({
                         animate={popOverAnimationVariation.animate}
                         transition={{ ease: "easeOut", duration: 0.15 }}
                         ref={ref}
-                        className="popover"
+                        className="wallet-popover"
                     >
                         <Wallet />
                     </motion.div>

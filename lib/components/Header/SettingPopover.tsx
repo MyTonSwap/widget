@@ -49,33 +49,40 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={modalAnimation.initial}
-                        animate={modalAnimation.animate}
-                        exit={modalAnimation.exit}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         transition={{ ease: "easeOut", duration: 0.15 }}
-                        ref={ref}
-                        className="popover"
-                        data-testid="setting-popover"
+                        className="modal-backdrop"
                     >
-                        <div className="popover-header">
-                            <div>{t("setting")}</div>
-                            <button
-                                onClick={handleCloseSetting}
-                                className="popover-header-close"
-                            >
-                                <IoClose />
-                            </button>
-                        </div>
+                        <motion.div
+                            initial={modalAnimation.initial}
+                            animate={modalAnimation.animate}
+                            exit={modalAnimation.exit}
+                            transition={{ ease: "easeOut", duration: 0.15 }}
+                            ref={ref}
+                            className="popover"
+                            data-testid="setting-popover"
+                        >
+                            <div className="popover-header">
+                                <div>{t("setting")}</div>
+                                <button
+                                    onClick={handleCloseSetting}
+                                    className="popover-header-close"
+                                >
+                                    <IoClose />
+                                </button>
+                            </div>
 
-                        {options.ui_preferences?.show_settings_slippage && (
-                            <SlippageSetting />
-                        )}
-                        {options.ui_preferences?.show_settings_community && (
-                            <TokensSettings />
-                        )}
-                        {options.ui_preferences?.show_settings_wallet && (
-                            <Wallet />
-                        )}
+                            {options.ui_preferences?.show_settings_slippage && (
+                                <SlippageSetting />
+                            )}
+                            {options.ui_preferences
+                                ?.show_settings_community && <TokensSettings />}
+                            {options.ui_preferences?.show_settings_wallet && (
+                                <Wallet />
+                            )}
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>

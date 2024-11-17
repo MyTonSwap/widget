@@ -10,35 +10,43 @@
             justify-content: center;
         }
     }
-    .popover {
-        background-color: var(--background-color);
-        color: var(--text-black-color);
+    .modal-backdrop {
         position: fixed;
-        display: flex;
-        height: fit-content;
-        min-width: 250px;
-        bottom: 0;
-        right: 0;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-top-left-radius: 1rem;
-        border-top-right-radius: 1rem;
-        padding: 1rem;
-        gap: 12px;
-        flex-direction: column;
-        .popover-header {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        .popover {
+            background-color: var(--background-color);
+            color: var(--text-black-color);
+            position: fixed;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            button {
-                color: var(--text-black-color);
-                font-size: var(--font-size-xl);
+            height: fit-content;
+            min-width: 250px;
+            bottom: 0;
+            right: 0;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            padding: 1rem;
+            gap: 12px;
+            flex-direction: column;
+            .popover-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                button {
+                    color: var(--text-black-color);
+                    font-size: var(--font-size-xl);
+                }
             }
-        }
-        @media screen and (min-width: 768px) {
-            & {
-                max-width: 500px;
-                border-radius: 1rem;
+            @media screen and (min-width: 768px) {
+                & {
+                    max-width: 500px;
+                    border-radius: 1rem;
+                }
             }
         }
     }

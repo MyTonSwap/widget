@@ -132,6 +132,12 @@
                     .card-input {
                         font-size: var(--font-size-2xl);
                     }
+                    .card-input-loading {
+                        width: 10rem;
+                    }
+                    .card-rate-loading {
+                        width: 5rem;
+                    }
                 }
             }
         }

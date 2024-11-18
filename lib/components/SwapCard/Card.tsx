@@ -142,7 +142,13 @@ const Card: FC<CardProps> = ({ type }) => {
         }
     }, [pay_amount]);
 
-    const balanceToken = pay_token ? balance.get(pay_token.address) : null;
+    const balanceToken = (() => {
+        if (type === "pay") {
+            return pay_token ? balance.get(pay_token.address) : null;
+        } else {
+            return receive_token ? balance.get(receive_token.address) : null;
+        }
+    })();
 
     const handleMaxClick = () => {
         if (!balanceToken || !pay_token) return;
@@ -185,7 +191,21 @@ const Card: FC<CardProps> = ({ type }) => {
                             </span>
                         </span>
                     ) : (
-                        ""
+                        <span className="max-button pay">
+                            {balanceToken && receive_token && (
+                                <span>
+                                    {formatNumber(
+                                        +fromNano(
+                                            balanceToken.balance,
+                                            receive_token!.decimal
+                                        ),
+                                        2,
+                                        false
+                                    )}{" "}
+                                    {receive_token?.symbol}
+                                </span>
+                            )}
+                        </span>
                     )}
                 </div>
                 <div className={`card-content ${type}`}>

@@ -34,7 +34,7 @@ export const WalletProfile: FC<WalletProfileProps> = ({
     const ref = useRef(null);
 
     useOnClickOutside(ref, () => {
-        setTimeout(() => setIsOpen(false), 100);
+        setTimeout(() => setIsOpen(false), 150);
     });
 
     const handleButtonClick = (e: React.MouseEvent) => {
@@ -67,30 +67,24 @@ export const WalletProfile: FC<WalletProfileProps> = ({
     const popOverAnimationVariation = popOverVariationsKeyValue[position];
     return (
         <div className="wallet-profile-mts mytonswap-app">
-            {wallet ? (
-                <div
-                    className="wallet-profile-button"
-                    onClick={handleButtonClick}
-                >
-                    {shortAddress(wallet.account.address, "mainnet", 4)}
-                </div>
-            ) : (
-                <button
-                    className="wallet-profile-button"
-                    onClick={handleConnectWallet}
-                >
-                    Connect Wallet
-                </button>
-            )}
+            <div
+                className={`wallet-profile-button ${wallet ? "connected" : ""}`}
+                onClick={wallet ? handleButtonClick : handleConnectWallet}
+            >
+                {wallet
+                    ? shortAddress(wallet.account.address, "mainnet", 4)
+                    : "Connect Wallet"}
+            </div>
+
             <AnimatePresence>
-                {isOpen && (
+                {wallet && isOpen && (
                     <motion.div
                         initial={popOverAnimationVariation.initial}
                         exit={popOverAnimationVariation.exit}
                         animate={popOverAnimationVariation.animate}
                         transition={{ ease: "easeOut", duration: 0.15 }}
                         ref={ref}
-                        className="popover"
+                        className="wallet-popover"
                     >
                         <Wallet />
                     </motion.div>

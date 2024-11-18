@@ -16,8 +16,8 @@
             .balance-amount {
                 color: var(--primary-color);
                 font-size: 1.25rem;
-                font-weight: bolder;
-                margin-bottom: 0.5rem;
+                font-weight: 900;
+                margin: 0.5rem 0;
             }
             .address {
                 background: var(--light-shade-color);
@@ -36,7 +36,7 @@
                 .address {
                     font-size: 0.8rem;
                     width: fit-content;
-                    height: 1.75rem;
+                    height: 2rem;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -47,9 +47,9 @@
                 .wallet-icon {
                     color: var(--text-black-color);
                     background: var(--light-shade-color);
-                    font-size: 0.5rem;
-                    width: 1.75rem;
-                    height: 1.75rem;
+                    font-size: var(--font-size-xs);
+                    width: 2rem;
+                    height: 2rem;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -63,8 +63,8 @@
                 }
             }
             .disconnect-wallet {
-                background: var(--primary-color);
-                color: var(--text-white-color);
+                background: var(--secondary-color);
+                color: var(--text-black-color);
                 font-size: 0.8rem;
                 margin-top: 0.5rem;
                 height: 2.5rem;
@@ -94,13 +94,13 @@
                 }
                 .address-section {
                     .address {
-                        font-size: var(--font-size-sm);
-                        height: 2rem;
+                        font-size: var(--font-size-base);
+                        height: 2.5rem;
                     }
                     .wallet-icon {
                         font-size: var(--font-size-xs);
-                        width: 2rem;
-                        height: 2rem;
+                        width: 2.5rem;
+                        height: 2.5rem;
                     }
                 }
                 .disconnect-wallet {

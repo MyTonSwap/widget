@@ -26,6 +26,7 @@ import catchError from "../../utils/catchErrors";
 
 import { reportErrorWithToast } from "../../services/errorAnalytics";
 import { useTranslation } from "react-i18next";
+import FavList from "./FavList";
 type CardDialogProps = {
     isSelectVisible: boolean;
     setIsSelectVisible: Dispatch<SetStateAction<boolean>>;
@@ -33,10 +34,10 @@ type CardDialogProps = {
     onTokenSelect: (asset: Asset) => void;
 };
 
-// enum TABS {
-//     ALL = "ALL",
-//     FAVORITES = "FAVORITES",
-// }
+enum TABS {
+    ALL = "ALL",
+    FAVORITES = "FAVORITES",
+}
 
 const CardDialog: FC<CardDialogProps> = ({
     isSelectVisible,
@@ -56,7 +57,7 @@ const CardDialog: FC<CardDialogProps> = ({
         pinnedTokens,
     } = useSwapStore();
     const [receiveAssets, setReceiveAssets] = useState<Asset[]>([]);
-    // const [activeTab, setActiveTab] = useState<TABS>(TABS.ALL);
+    const [activeTab, setActiveTab] = useState<TABS>(TABS.ALL);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [searchInput, setSearchInput] = useState("");
@@ -256,9 +257,9 @@ const CardDialog: FC<CardDialogProps> = ({
             <AnimatePresence>
                 {isSelectVisible && (
                     <motion.div
-                        // initial={{ opacity: 0 }}
-                        // animate={{ opacity: 1 }}
-                        // exit={{ opacity: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         className={clsx("card-dialog-container")}
                     >
                         <motion.div
@@ -319,23 +320,13 @@ const CardDialog: FC<CardDialogProps> = ({
                             )}
                             {!promptForCommunity && (
                                 <>
-                                    {/* <div
-                                        className="flex items-center gap-5 text-sm font-light px-3 mt-3 w-full border-b-[1px] pb-2"
-                                        style={{ borderColor: colors.border }}
-                                    >
+                                    <div className="tab-container">
                                         <button
                                             className={clsx(
-                                                "relative",
+                                                "tab-item",
                                                 activeTab === TABS.ALL &&
-                                                    " font-bold"
+                                                    "active"
                                             )}
-                                            style={{
-                                                color:
-                                                    activeTab === TABS.ALL
-                                                        ? colors.primary
-                                                        : colors.layout
-                                                              ?.text_black,
-                                            }}
                                             onClick={() =>
                                                 setActiveTab(TABS.ALL)
                                             }
@@ -343,28 +334,22 @@ const CardDialog: FC<CardDialogProps> = ({
                                             All
                                             {activeTab === TABS.ALL && (
                                                 <motion.div
-                                                    layoutId="tab-underline"
-                                                    className="w-full h-[1px] absolute -bottom-[9px] "
-                                                    style={{
-                                                        background:
-                                                            colors.primary,
+                                                    initial={{
+                                                        opacity: 0,
                                                     }}
+                                                    animate={{
+                                                        opacity: 1,
+                                                    }}
+                                                    className="tab-item-cursor"
                                                 ></motion.div>
                                             )}
                                         </button>
                                         <button
                                             className={clsx(
-                                                "relative",
+                                                "tab-item",
                                                 activeTab === TABS.FAVORITES &&
-                                                    "font-bold"
+                                                    "active"
                                             )}
-                                            style={{
-                                                color:
-                                                    activeTab === TABS.FAVORITES
-                                                        ? colors.primary
-                                                        : colors.layout
-                                                              ?.text_black,
-                                            }}
                                             onClick={() =>
                                                 setActiveTab(TABS.FAVORITES)
                                             }
@@ -372,60 +357,68 @@ const CardDialog: FC<CardDialogProps> = ({
                                             Favorites
                                             {activeTab === TABS.FAVORITES && (
                                                 <motion.div
-                                                    layoutId="tab-underline"
-                                                    className="w-full h-[1px]  absolute -bottom-[9px] "
-                                                    style={{
-                                                        background:
-                                                            colors.primary,
-                                                    }}
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    className="tab-item-cursor"
                                                 ></motion.div>
                                             )}
                                         </button>
-                                    </div> */}
-                                    <div
-                                        className="dialog-tokens-container"
-                                        style={{
-                                            ...({
-                                                "--thumb-scrollbar": `var(--primary-color)`,
-                                            } as CSSProperties),
-                                        }}
-                                        id="scroll-div"
-                                    >
-                                        <InfiniteScroll
-                                            dataLength={
-                                                filteredAssets.length + page
-                                            }
-                                            hasMore={hasMore}
-                                            next={() => onNextPage(page)}
-                                            scrollableTarget="scroll-div"
-                                            loader={
-                                                <div className="infinite-scroll-loading">
-                                                    <CgSpinnerTwo className="animate-spin" />
-                                                </div>
-                                            }
-                                            endMessage={
-                                                <div
-                                                    className="no-token-found"
-                                                    data-testid="token-not-found"
-                                                >
-                                                    {t("token_notfound")}
-                                                    <span>
-                                                        {t("not_found_desc")}
-                                                    </span>
-                                                </div>
-                                            }
-                                        >
-                                            {filteredAssets?.map((item) => (
-                                                <Token
-                                                    onTokenSelect={
-                                                        handleOnTokenSelect
-                                                    }
-                                                    asset={item}
-                                                    key={item.address}
-                                                />
-                                            ))}
-                                        </InfiniteScroll>
                                     </div>
+                                    {activeTab === TABS.ALL && (
+                                        <div
+                                            className="dialog-tokens-container"
+                                            style={{
+                                                ...({
+                                                    "--thumb-scrollbar": `var(--primary-color)`,
+                                                } as CSSProperties),
+                                            }}
+                                            id="scroll-div"
+                                        >
+                                            <InfiniteScroll
+                                                dataLength={
+                                                    filteredAssets.length + page
+                                                }
+                                                hasMore={hasMore}
+                                                next={() => onNextPage(page)}
+                                                scrollableTarget="scroll-div"
+                                                loader={
+                                                    <div className="infinite-scroll-loading">
+                                                        <CgSpinnerTwo className="animate-spin" />
+                                                    </div>
+                                                }
+                                                endMessage={
+                                                    <div
+                                                        className="no-token-found"
+                                                        data-testid="token-not-found"
+                                                    >
+                                                        {t("token_notfound")}
+                                                        <span>
+                                                            {t(
+                                                                "not_found_desc"
+                                                            )}
+                                                        </span>
+                                                    </div>
+                                                }
+                                            >
+                                                {filteredAssets?.map((item) => (
+                                                    <Token
+                                                        onTokenSelect={
+                                                            handleOnTokenSelect
+                                                        }
+                                                        asset={item}
+                                                        key={item.address}
+                                                        type={type}
+                                                    />
+                                                ))}
+                                            </InfiniteScroll>
+                                        </div>
+                                    )}
+                                    {activeTab === TABS.FAVORITES && (
+                                        <FavList
+                                            type={type}
+                                            onTokenSelect={onTokenSelect}
+                                        />
+                                    )}
                                 </>
                             )}
                             {promptForCommunity && (
@@ -451,7 +444,10 @@ const CardDialog: FC<CardDialogProps> = ({
                                                         asset={
                                                             contractCommunity
                                                         }
-                                                        onTokenSelect={() => {}}
+                                                        onTokenSelect={
+                                                            onTokenSelect
+                                                        }
+                                                        type={type}
                                                     />
                                                 )}
                                             </div>

@@ -7,9 +7,11 @@ const meta: Meta<typeof WalletProfile> = {
     decorators: [
         (Story, ctx) => {
             return (
-                <Story
-                    args={{ ...ctx.args, tonConnectInstance: tonConnectUi }}
-                />
+                <div className="mts-default">
+                    <Story
+                        args={{ ...ctx.args, tonConnectInstance: tonConnectUi }}
+                    />
+                </div>
             );
         },
     ],
@@ -45,15 +47,13 @@ export const bottomLeft: Story = {
 
 export const customTheme: Story = {
     args: {
-        theme: {
-            text_black_color: "#ffffff",
-            primary_color: "#22c55e",
-            background_color: "#101828",
-            border_color: "#1D2939",
-            text_white_color: "#FFFFFF",
-            background_shade_color: "#1D2939",
-        },
-
-        position: "bottom-right"
+        position: "bottom-right",
     },
+    decorators: [
+        (Story) => (
+            <div className="mts-dark">
+                <Story />
+            </div>
+        ),
+    ],
 };

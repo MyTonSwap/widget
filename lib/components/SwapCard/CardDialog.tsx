@@ -33,10 +33,10 @@ type CardDialogProps = {
     onTokenSelect: (asset: Asset) => void;
 };
 
-// enum TABS {
-//     ALL = "ALL",
-//     FAVORITES = "FAVORITES",
-// }
+enum TABS {
+    ALL = "ALL",
+    FAVORITES = "FAVORITES",
+}
 
 const CardDialog: FC<CardDialogProps> = ({
     isSelectVisible,
@@ -56,7 +56,7 @@ const CardDialog: FC<CardDialogProps> = ({
         pinnedTokens,
     } = useSwapStore();
     const [receiveAssets, setReceiveAssets] = useState<Asset[]>([]);
-    // const [activeTab, setActiveTab] = useState<TABS>(TABS.ALL);
+    const [activeTab, setActiveTab] = useState<TABS>(TABS.ALL);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [searchInput, setSearchInput] = useState("");
@@ -319,23 +319,13 @@ const CardDialog: FC<CardDialogProps> = ({
                             )}
                             {!promptForCommunity && (
                                 <>
-                                    {/* <div
-                                        className="flex items-center gap-5 text-sm font-light px-3 mt-3 w-full border-b-[1px] pb-2"
-                                        style={{ borderColor: colors.border }}
-                                    >
+                                    <div className="tab-container">
                                         <button
                                             className={clsx(
                                                 "relative",
                                                 activeTab === TABS.ALL &&
                                                     " font-bold"
                                             )}
-                                            style={{
-                                                color:
-                                                    activeTab === TABS.ALL
-                                                        ? colors.primary
-                                                        : colors.layout
-                                                              ?.text_black,
-                                            }}
                                             onClick={() =>
                                                 setActiveTab(TABS.ALL)
                                             }
@@ -344,11 +334,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                             {activeTab === TABS.ALL && (
                                                 <motion.div
                                                     layoutId="tab-underline"
-                                                    className="w-full h-[1px] absolute -bottom-[9px] "
-                                                    style={{
-                                                        background:
-                                                            colors.primary,
-                                                    }}
+                                                    className="tab-item"
                                                 ></motion.div>
                                             )}
                                         </button>
@@ -358,13 +344,6 @@ const CardDialog: FC<CardDialogProps> = ({
                                                 activeTab === TABS.FAVORITES &&
                                                     "font-bold"
                                             )}
-                                            style={{
-                                                color:
-                                                    activeTab === TABS.FAVORITES
-                                                        ? colors.primary
-                                                        : colors.layout
-                                                              ?.text_black,
-                                            }}
                                             onClick={() =>
                                                 setActiveTab(TABS.FAVORITES)
                                             }
@@ -373,15 +352,11 @@ const CardDialog: FC<CardDialogProps> = ({
                                             {activeTab === TABS.FAVORITES && (
                                                 <motion.div
                                                     layoutId="tab-underline"
-                                                    className="w-full h-[1px]  absolute -bottom-[9px] "
-                                                    style={{
-                                                        background:
-                                                            colors.primary,
-                                                    }}
+                                                    className="tab-item"
                                                 ></motion.div>
                                             )}
                                         </button>
-                                    </div> */}
+                                    </div>
                                     <div
                                         className="dialog-tokens-container"
                                         style={{

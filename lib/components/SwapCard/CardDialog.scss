@@ -222,6 +222,27 @@
                     }
                 }
             }
+
+            // Tab
+            .tab-container {
+                display: flex;
+                align-items: center;
+                gap: 1.25rem;
+                font-size: 0.875rem;
+                font-weight: 300;
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                margin-top: 0.75rem;
+                width: 100%;
+                border-bottom-width: 1px;
+                padding-bottom: 0.5rem;
+                .tab-item {
+                    width: 100%; /* w-full */
+                    height: 1px; /* h-[1px] */
+                    position: absolute; /* absolute */
+                    bottom: -9px; /* -bottom-[9px] */
+                }
+            }
         }
     }
 }

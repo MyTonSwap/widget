@@ -9,8 +9,11 @@
         border-radius: 9999999rem;
         font-size: 0.875rem;
         font-weight: 500;
-        font-family: "Inter", sans-serif;
         cursor: pointer;
         user-select: none;
+        &.connected {
+            background: var(--light-shade-color);
+            color: var(--text-black-color);
+        }
     }
 }

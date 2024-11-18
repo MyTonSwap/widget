@@ -7,9 +7,10 @@ import { CgSpinnerTwo } from "react-icons/cg";
 
 type FavListProps = {
     onTokenSelect: (asset: Asset) => void;
+    type: "pay" | "receive";
 };
 
-const FavList: FC<FavListProps> = ({ onTokenSelect }) => {
+const FavList: FC<FavListProps> = ({ onTokenSelect, type }) => {
     const { favList } = useFavoriteStore();
     const { client, addToAssets, assets } = useSwapStore();
     const [isLoading, setIsLoading] = useState(false);
@@ -41,6 +42,7 @@ const FavList: FC<FavListProps> = ({ onTokenSelect }) => {
         >
             {favItems?.map((token) => (
                 <Token
+                    type={type}
                     asset={token}
                     onTokenSelect={onTokenSelect}
                     key={token.address}

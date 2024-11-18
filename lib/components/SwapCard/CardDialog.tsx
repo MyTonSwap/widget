@@ -407,6 +407,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                         }
                                                         asset={item}
                                                         key={item.address}
+                                                        type={type}
                                                     />
                                                 ))}
                                             </InfiniteScroll>
@@ -414,6 +415,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                     )}
                                     {activeTab === TABS.FAVORITES && (
                                         <FavList
+                                            type={type}
                                             onTokenSelect={onTokenSelect}
                                         />
                                     )}
@@ -442,7 +444,10 @@ const CardDialog: FC<CardDialogProps> = ({
                                                         asset={
                                                             contractCommunity
                                                         }
-                                                        onTokenSelect={() => {}}
+                                                        onTokenSelect={
+                                                            onTokenSelect
+                                                        }
+                                                        type={type}
                                                     />
                                                 )}
                                             </div>

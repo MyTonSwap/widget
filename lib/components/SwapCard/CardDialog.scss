@@ -230,6 +230,7 @@
                 align-items: center;
                 gap: 1.25rem;
                 font-size: var(--font-size-lg);
+                color: var(--text-black-color);
                 font-weight: 300;
                 padding-left: 0.75rem;
                 padding-right: 0.75rem;
@@ -240,6 +241,7 @@
                 padding-bottom: 0.5rem;
                 .tab-item {
                     position: relative;
+                    color: var(--text-black-color);
                     transition: all 0.3s ease-in-out;
                     font-size: var(--font-size-base);
                     &.active {

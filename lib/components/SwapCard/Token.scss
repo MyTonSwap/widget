@@ -9,6 +9,10 @@
         padding-left: 0.5rem;
         padding-right: 0.5rem;
         align-items: center;
+        &.selected {
+            cursor: auto;
+            opacity: 0.5;
+        }
     }
     .token-content {
         display: flex;

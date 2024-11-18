@@ -21,6 +21,9 @@
                 .max-text {
                     color: var(--primary-color);
                 }
+                &.pay {
+                    cursor: auto;
+                }
             }
         }
 

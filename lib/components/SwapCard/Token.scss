@@ -9,6 +9,10 @@
         padding-left: 0.5rem;
         padding-right: 0.5rem;
         align-items: center;
+        &.selected {
+            cursor: auto;
+            opacity: 0.5;
+        }
     }
     .token-content {
         display: flex;
@@ -70,6 +74,20 @@
                     justify-content: center;
                     gap: 0.125rem;
                 }
+            }
+        }
+
+        .fav {
+            font-size: var(--font-size-2xl);
+            color: var(--text-black-color);
+            opacity: 0.5;
+            transition: transform 0.2s ease-in-out;
+            &:active {
+                transform: scale(0.9);
+            }
+            &.faved {
+                color: var(--primary-color);
+                opacity: 1;
             }
         }
     }

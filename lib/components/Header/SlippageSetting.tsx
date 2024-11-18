@@ -8,7 +8,9 @@ const SlippageSetting = () => {
     const { t } = useTranslation();
 
     const { slippage, setSlippage } = useSwapStore();
-    const [userInput, setUserInput] = useState("");
+    const [userInput, setUserInput] = useState(
+        slippage === "auto" ? "" : slippage.toString()
+    );
 
     const handleSlippageChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();

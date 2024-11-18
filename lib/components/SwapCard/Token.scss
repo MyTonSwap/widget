@@ -72,6 +72,20 @@
                 }
             }
         }
+
+        .fav {
+            font-size: var(--font-size-2xl);
+            color: var(--text-black-color);
+            opacity: 0.5;
+            transition: transform 0.2s ease-in-out;
+            &:active {
+                transform: scale(0.9);
+            }
+            &.faved {
+                color: var(--primary-color);
+                opacity: 1;
+            }
+        }
     }
 }
 

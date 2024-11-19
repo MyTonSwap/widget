@@ -27,6 +27,7 @@ type SwapStates = {
     pay_amount: bigint;
     assets: Asset[] | null;
     isLoading: boolean;
+    isSelectingToken: boolean;
     isFindingBestRoute: boolean;
     bestRoute: BestRoute | null;
     onePayRoute: BestRoute | null;
@@ -76,6 +77,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     receive_token: null,
     receive_rate: null,
     isLoading: true,
+    isSelectingToken: false,
     isFindingBestRoute: false,
     bestRoute: null,
     onePayRoute: null,
@@ -182,6 +184,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         set(() => ({ isLoading }));
     },
     setPayToken: async (token) => {
+        set(() => ({ isSelectingToken: true }));
         useEventsStore.getState().onTokenSelect({ type: "pay", asset: token });
         const { client } = get();
         if (!token) return;
@@ -205,6 +208,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             receive_rate: null,
             receive_token: null,
             bestRoute: null,
+            isSelectingToken: false,
         }));
     },
     async setPayAmount(amount) {
@@ -234,6 +238,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         set(() => ({ bestRoute, isFindingBestRoute: false }));
     },
     setReceiveToken: async (token) => {
+        set(() => ({ isSelectingToken: true }));
         useEventsStore
             .getState()
             .onTokenSelect({ type: "receive", asset: token });
@@ -256,6 +261,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             receive_token: token,
             receive_rate: tokenRate ?? null,
             isFindingBestRoute: true,
+            isSelectingToken: false,
         }));
         const onePayRouteResult = await catchError(() =>
             client.router.findBestRoute(

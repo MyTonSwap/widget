@@ -4,6 +4,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import "./CardButton.scss";
 import { useOptionsStore } from "../../store/options.store";
 import { useTranslation } from "react-i18next";
+import { useSwapStore } from "../../store/swap.store";
 type CardButtonProps = {
     isLoading: boolean;
     onClick: () => void;
@@ -18,7 +19,9 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
 }) => {
     const { t } = useTranslation();
     const { options } = useOptionsStore();
+    const { isSelectingToken } = useSwapStore();
     const isDisabled = (() => {
+        if (isSelectingToken) return true;
         if (type === "pay" && options.lock_pay_token) return true;
         if (type === "receive" && options.lock_receive_token) return true;
         return false;

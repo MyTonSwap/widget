@@ -19,6 +19,7 @@ import { useOptionsStore } from "../../store/options.store";
 import { useTranslation } from "react-i18next";
 import { cn } from "../../utils/cn";
 import { useRef } from "react";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 const SwapButton = () => {
     const { t } = useTranslation();
@@ -36,9 +37,16 @@ const SwapButton = () => {
         swapModal,
         receive_token,
         setModalState,
+        isSelectingToken,
     } = useSwapStore();
 
     const getSwapText = () => {
+        if (isSelectingToken)
+            return (
+                <span className="loading-button">
+                    <CgSpinnerTwo className="animate-loading" /> Loading ...
+                </span>
+            );
         if (!tonConnectInstance?.wallet) return t("button_text.connect_wallet");
         if (!receive_token || !pay_token)
             return t("button_text.choose_a_token");

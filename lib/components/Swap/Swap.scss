@@ -74,21 +74,16 @@
         .container {
             max-width: 450px;
             width: 450px;
-            padding: 1rem 0.75rem;
+            padding: 0.75rem;
         }
     }
     @media screen and (min-width: 1024px) {
         .container {
-            max-width: 500px;
-            width: 550px;
+            max-width: calc(550px + 24px);
+            width: calc(550px + 24px);
         }
     }
-    @media screen and (min-width: 1440px) {
-        .container {
-            max-width: 600px;
-            width: 600px;
-        }
-    }
+
     .text-provided {
         color: var(--text-black-color);
         width: 100%;

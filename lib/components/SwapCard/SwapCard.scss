@@ -47,12 +47,11 @@
 @media screen and (min-width: 768px) {
     .mytonswap-app {
         .swap-card-container {
-            padding: 1.5rem 1rem;
             .line {
                 height: 5px;
             }
             .change-direction-button {
-                padding: 1rem 5rem;
+                padding: 0.75rem 3.75rem;
                 font-size: var(--font-size-2xl);
             }
         }

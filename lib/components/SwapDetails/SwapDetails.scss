@@ -12,7 +12,6 @@
         align-items: center;
         padding-left: 0.75rem;
         padding-right: 0.75rem;
-        font-size: 0.75rem;
 
         .detail-accordion {
             display: flex;
@@ -21,6 +20,7 @@
             width: 100%;
             min-height: 52px;
             font-size: var(--font-size-sm);
+            font-weight: 500;
 
             .finding {
                 display: flex;
@@ -92,6 +92,7 @@
             padding-right: 1rem;
             .detail-accordion {
                 min-height: 3.5rem;
+                font-size: var(--font-size-sm);
                 .finding {
                     column-gap: 0.5rem;
                 }

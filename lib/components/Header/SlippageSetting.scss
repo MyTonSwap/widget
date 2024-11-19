@@ -34,7 +34,7 @@
                 align-items: center;
             }
             .dropdown-item {
-                background: var(--light-shade-color);
+                background: var(--secondary-color);
                 position: relative;
                 padding: 0.25rem;
                 height: 2rem;
@@ -53,7 +53,7 @@
                     width: 50px;
                     background-color: var(--light-shade-color);
                 }
-                background: var(--light-shade-color);
+
                 .icon {
                     position: absolute;
                     top: -0.25rem;

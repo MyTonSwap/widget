@@ -24,11 +24,11 @@
 }
 
 .mts-dark {
-    --border-color: #1d2939;
+    --border-color: #344054;
     --primary-color: #16a34a;
     --secondary-color: #283241;
     --background-color: #101828;
-    --modal-background-color: #101828;
+    --modal-background-color: #1d2939;
     --swap-container-background-color: #101828;
     --swap-container-border-color: #1d293900;
     --input-card-pay-color: #09090b;
@@ -38,10 +38,10 @@
     --change-direction-background-color: #101828;
     --change-direction-icon-color: #16a34a;
     --light-shade-color: #1d2939;
-    --slippage-box-color: #101828;
+    --slippage-box-color: #344054;
     --text-black-color: #ffffff;
     --text-white-color: #ffffff;
-    --text-fade-color: #6b7280;
+    --text-fade-color: #687085;
     --skeleton-shine-color: #585959;
 }
 

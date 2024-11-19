@@ -72,6 +72,7 @@
                 border-radius: 0.75rem;
                 width: 100%;
                 border: 1px solid var(--border-color);
+                background: var(--input-card-color);
                 display: flex;
                 align-items: center;
                 padding-left: 0.5rem;
@@ -89,7 +90,6 @@
                 .dialog-search-icon {
                     font-size: var(--font-size-lg);
                     color: var(--text-black-color);
-                    opacity: 0.5;
                 }
 
                 .dialog-search-input {
@@ -109,6 +109,7 @@
                 height: 50vh;
             }
             .infinite-scroll-loading {
+                color: var(--text-black-color);
                 display: flex;
                 align-items: center;
                 justify-content: center;

@@ -61,7 +61,8 @@ const SwapButton = () => {
 
     const isButtonDisabled = () => {
         if (!tonConnectInstance?.wallet) return false;
-        if (!pay_amount || !pay_token) return true;
+
+        if (!pay_amount || !receive_token) return true;
         if (bestRoute && !bestRoute.pool_data.status) return true;
         if (pay_amount > Number(balance.get(pay_token!.address)?.balance ?? 0))
             return true;

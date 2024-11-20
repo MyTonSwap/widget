@@ -63,7 +63,7 @@ export default async function swap(
         .then((result) => {
             const cell = Cell.fromBoc(Buffer.from(result.boc, "base64"))[0];
             const stateInstance = useSwapStore.getState();
-            stateInstance.setTransactionHash(cell.hash().toString("base64"));
+            stateInstance.setTransactionHash(cell.hash().toString("hex"));
         })
         .catch((e) => {
             console.log(e);

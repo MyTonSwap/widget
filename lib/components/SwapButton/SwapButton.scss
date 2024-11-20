@@ -19,7 +19,7 @@
             border-color: var(--border-color);
             position: fixed;
             width: 100%;
-            max-height: 430px;
+            max-height: 26.875rem;
             height: 100%;
 
             padding: 0.5rem 0.25rem;
@@ -35,17 +35,17 @@
 
             @media (min-width: 768px) {
                 width: 90%;
-                max-width: 450px;
+                max-width: 28.125rem;
                 height: 100%;
                 max-height: 80%;
-                max-height: 380px;
+                max-height: 23.75rem;
                 box-shadow: 0 0px 10px rgba(0, 0, 0, 0.05);
                 border-radius: 0.75rem;
             }
 
             @media (min-width: 1024px) {
-                max-width: 520px;
-                width: 520px;
+                max-width: 32.5rem;
+                width: 32.5rem;
             }
         }
     }
@@ -74,7 +74,7 @@
             .modal-container-inner {
                 height: 100%;
                 max-height: 80%;
-                max-height: 400px;
+                max-height: 25rem;
                 border-radius: 1rem;
             }
         }
@@ -91,7 +91,7 @@
             .modal-container-inner {
                 height: 100%;
                 max-height: 80%;
-                max-height: 420px;
+                max-height: 26.25rem;
                 border-radius: 1rem;
             }
         }

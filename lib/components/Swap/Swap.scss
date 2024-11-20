@@ -69,22 +69,22 @@
         border-color: var(--swap-container-border-color);
         border-width: 1px;
         border-style: solid;
-        max-width: 350px;
+        max-width: 21.875rem;
         padding: 0.5rem;
         border-radius: 1rem;
         overflow: hidden;
     }
     @media screen and (min-width: 768px) {
         .container {
-            max-width: 450px;
-            width: 450px;
+            max-width: 28.125rem;
+            width: 28.125rem;
             padding: 0.75rem;
         }
     }
     @media screen and (min-width: 1024px) {
         .container {
-            max-width: calc(550px + 24px);
-            width: calc(550px + 24px);
+            max-width: calc(34.375rem + 24px);
+            width: calc(34.375rem + 24px);
         }
     }
 

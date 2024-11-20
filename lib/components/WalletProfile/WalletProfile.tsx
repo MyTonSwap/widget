@@ -32,9 +32,9 @@ export const WalletProfile: FC<WalletProfileProps> = ({
 
     const [isOpen, setIsOpen] = useState(false);
     const ref = useRef(null);
-
-    useOnClickOutside(ref, () => {
-        setTimeout(() => setIsOpen(false), 150);
+    const buttonRef = useRef(null);
+    useOnClickOutside([ref, buttonRef], () => {
+        setIsOpen(false);
     });
 
     const handleButtonClick = (e: React.MouseEvent) => {
@@ -70,6 +70,7 @@ export const WalletProfile: FC<WalletProfileProps> = ({
             <div
                 className={`wallet-profile-button ${wallet ? "connected" : ""}`}
                 onClick={wallet ? handleButtonClick : handleConnectWallet}
+                ref={buttonRef}
             >
                 {wallet
                     ? shortAddress(wallet.account.address, "mainnet", 4)

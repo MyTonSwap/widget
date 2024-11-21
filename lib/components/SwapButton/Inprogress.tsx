@@ -45,6 +45,10 @@ const Inprogress = () => {
                             hash: transactionHash,
                         },
                     });
+                    sendTransaction({
+                        hash: transactionHash,
+                        query_id: transactionQueryId!,
+                    });
                     setModalState(ModalState.DONE);
                 } else {
                     onSwap({
@@ -61,6 +65,7 @@ const Inprogress = () => {
                             hash: transactionHash,
                         },
                     });
+
                     setErrorMessage({
                         errorTitle: t("errors.transaction_failed"),
                         errorMessage: t("errors.unknown_error"),

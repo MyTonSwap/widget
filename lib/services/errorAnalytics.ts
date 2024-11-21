@@ -3,8 +3,7 @@ import { WIDGET_VERSION } from "../constants";
 import toast from "react-hot-toast";
 import { useSwapStore } from "../store/swap.store";
 import { useWalletStore } from "../store/wallet.store";
-
-const ERROR_REPORTING_ENDPOINT = "https://app.mytonswap.com/api/stats/error";
+import { httpClient } from "./httpClient";
 
 interface ErrorReportBody {
     section: string;
@@ -15,7 +14,7 @@ interface ErrorReportBody {
 
 async function sendErrorReport(body: ErrorReportBody): Promise<void> {
     try {
-        await axios.post(ERROR_REPORTING_ENDPOINT, body);
+        await httpClient.post("/stats/error", body);
         console.log("Error reported successfully");
     } catch (reportingError) {
         console.error("Failed to report error:", reportingError);

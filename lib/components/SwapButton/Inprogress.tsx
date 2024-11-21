@@ -8,6 +8,7 @@ import { ImSpinner8 } from "react-icons/im";
 import "./Inprogress.scss";
 import { useEventsStore } from "../../store/events.store";
 import { useTranslation } from "react-i18next";
+import { sendTransaction } from "../../services/transaction";
 const Inprogress = () => {
     const { t } = useTranslation();
     const {
@@ -21,6 +22,7 @@ const Inprogress = () => {
         bestRoute,
         receive_rate,
         pay_rate,
+        transactionQueryId,
     } = useSwapStore();
     const { onSwap } = useEventsStore();
     useEffect(() => {
@@ -60,6 +62,10 @@ const Inprogress = () => {
                             dex: bestRoute!.selected_pool.dex as Dex,
                             hash: transactionHash,
                         },
+                    });
+                    sendTransaction({
+                        hash: transactionHash,
+                        query_id: transactionQueryId!,
                     });
                     setErrorMessage({
                         errorTitle: t("errors.transaction_failed"),

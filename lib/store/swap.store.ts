@@ -38,6 +38,7 @@ type SwapStates = {
     transactionError: string | null;
     transactionErrorBody: string | null;
     transactionHash: string | null;
+    transactionQueryId: string | null;
     pinnedTokens: Asset[] | null;
 };
 
@@ -62,7 +63,7 @@ type SwapActions = {
         errorMessage: string | null;
         errorTitle: string | null;
     }) => void;
-    setTransactionHash: (hash: string) => void;
+    setTransactionHash: (hash: string, query_id: string) => void;
 
     refetchBestRoute: () => void;
 };
@@ -90,9 +91,12 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     transactionError: null,
     transactionErrorBody: null,
     transactionHash: null,
+    transactionQueryId: null,
     transactionBestRoute: null,
     pinnedTokens: null,
-    setTransactionHash(hash) {
+    assets: null,
+
+    setTransactionHash(hash, query_id) {
         const {
             pay_token,
             receive_token,
@@ -116,6 +120,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         });
         set(() => ({
             transactionHash: hash,
+            transactionQueryId: query_id,
             swapModal: ModalState.IN_PROGRESS,
         }));
     },
@@ -306,7 +311,6 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         }
     },
 
-    assets: null,
     async addToAssets(newAssets) {
         if (!newAssets) return;
         set((state) => {

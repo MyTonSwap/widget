@@ -71,7 +71,7 @@
         "confirm_title": "Confirm swap",
         "confirm_button": "Confirm",
         "confirm_close": "Close",
-        "confirm_in_wallet": "Confirm the transaction in {{wallet}} your Wallet",
+        "confirm_in_wallet": "Confirm the transaction in your {{wallet}} Wallet",
         "action_in_progress": "It will only take a moment"
     },
     "transaction": {

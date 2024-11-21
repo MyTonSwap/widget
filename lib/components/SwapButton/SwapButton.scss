@@ -38,7 +38,7 @@
                 max-width: 28.125rem;
                 height: 100%;
                 max-height: 80%;
-                max-height: 23.75rem;
+                max-height: 30rem;
                 box-shadow: 0 0px 10px rgba(0, 0, 0, 0.05);
                 border-radius: 0.75rem;
             }
@@ -70,14 +70,6 @@
 
 @media screen and (min-width: 768px) {
     .mytonswap-app {
-        .modal-container {
-            .modal-container-inner {
-                height: 100%;
-                max-height: 80%;
-                max-height: 25rem;
-                border-radius: 1rem;
-            }
-        }
         .swap-button {
             height: 3.25rem;
             font-size: var(--font-size-md);
@@ -87,14 +79,6 @@
 
 @media screen and (min-width: 1024px) {
     .mytonswap-app {
-        .modal-container {
-            .modal-container-inner {
-                height: 100%;
-                max-height: 80%;
-                max-height: 26.25rem;
-                border-radius: 1rem;
-            }
-        }
         .swap-button {
             height: 3.5rem;
             border-radius: 1rem;

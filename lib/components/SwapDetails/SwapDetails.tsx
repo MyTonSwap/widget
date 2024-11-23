@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import SwapKeyValue from "./SwapKeyValue";
 import { AnimatePresence, motion } from "framer-motion";
@@ -9,6 +9,8 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import "./SwapDetails.scss";
 import { useTranslation } from "react-i18next";
 import { useMeasure } from "@uidotdev/usehooks";
+import { BsArrowRightShort, BsChevronRight } from "react-icons/bs";
+
 const SwapDetails = () => {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
@@ -117,12 +119,16 @@ const SwapDetails = () => {
                                                 ></div>
                                                 {bestRoute.selected_pool.dex ===
                                                 "dedust"
-                                                    ? "Dedust -"
-                                                    : "Ston.fi -"}
+                                                    ? "Dedust"
+                                                    : "Ston.fi"}
+                                                <BsArrowRightShort />
                                             </span>
-                                            {bestRoute?.pool_data?.route_view.join(
-                                                " > "
-                                            )}
+                                            <RouteView
+                                                routes={
+                                                    bestRoute.pool_data
+                                                        .route_view
+                                                }
+                                            />
                                         </div>
                                     ) : (
                                         "Enter amount"
@@ -134,6 +140,21 @@ const SwapDetails = () => {
                 )}
             </AnimatePresence>
         </motion.button>
+    );
+};
+
+const RouteView: FC<{ routes: string[] }> = ({ routes }) => {
+    return (
+        <span>
+            {routes.map((route, idx) => (
+                <>
+                    {route}{" "}
+                    {idx !== routes.length - 1 && (
+                        <BsChevronRight className="route-icon" />
+                    )}
+                </>
+            ))}
+        </span>
     );
 };
 

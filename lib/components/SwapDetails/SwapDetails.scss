@@ -59,7 +59,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 0.25rem;
+                gap: 0.125rem;
                 .dex {
                     display: flex;
                     align-items: center;
@@ -70,6 +70,9 @@
                         height: 0.75rem;
                         background-size: contain !important;
                     }
+                }
+                .route-icon {
+                    font-size: var(--font-size-xs);
                 }
             }
         }

@@ -1,17 +1,17 @@
 .mytonswap-app {
     .details-key-value {
         display: flex;
-        align-items: center;
         justify-content: space-between;
-        font-family: Inter, sans-serif;
-        font-size: var(--font-size-sm);
+        align-items: center;
         font-weight: 500;
+        font-size: var(--font-size-sm);
+        font-family: Inter, sans-serif;
         .details-key-value-value {
             color: var(--text-black-color);
         }
         .details-key-value-key {
-            color: var(--text-black-color);
             opacity: 0.6;
+            color: var(--text-black-color);
         }
     }
 }

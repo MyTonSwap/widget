@@ -1,63 +1,63 @@
 .mytonswap-app {
     .loading-button {
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
         gap: 0.5rem;
     }
     .modal-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999999999999999999999999;
+        background-color: rgba(0, 0, 0, 0.1);
         width: 100%;
         height: 100%;
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 9999999999999999999999999;
         overflow: hidden;
-        background-color: rgba(0, 0, 0, 0.1);
         .modal-container-inner {
-            background: var(--modal-background-color);
-            border-color: var(--border-color);
-            position: fixed;
-            width: 100%;
-            max-height: 26.875rem;
-            height: 100%;
-
-            padding: 0.5rem 0.25rem;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
+            position: fixed;
             bottom: 0;
             left: 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+            border-color: var(--border-color);
+            border-top-right-radius: 1rem;
+            border-top-left-radius: 1rem;
+            background: var(--modal-background-color);
+
+            padding: 0.5rem 0.25rem;
+            width: 100%;
+            height: 100%;
+            max-height: 26.875rem;
 
             @media (min-width: 768px) {
+                box-shadow: 0 0px 10px rgba(0, 0, 0, 0.05);
+                border-radius: 0.75rem;
                 width: 90%;
                 max-width: 28.125rem;
                 height: 100%;
                 max-height: 80%;
                 max-height: 30rem;
-                box-shadow: 0 0px 10px rgba(0, 0, 0, 0.05);
-                border-radius: 0.75rem;
             }
 
             @media (min-width: 1024px) {
-                max-width: 32.5rem;
                 width: 32.5rem;
+                max-width: 32.5rem;
             }
         }
     }
     .swap-button {
+        margin-top: 0.5rem;
+        margin-top: 0.75rem;
+        border-radius: 0.75rem;
+        background-color: var(--primary-color);
         width: 100%;
         height: 3.75rem;
-        margin-top: 0.5rem;
-        border-radius: 0.75rem;
-        font-size: var(--font-size-base);
         color: var(--text-white-color);
-        background-color: var(--primary-color);
-        margin-top: 0.75rem;
+        font-size: var(--font-size-base);
         &.price-impact {
             background: var(--price-impact-color);
         }
@@ -80,8 +80,8 @@
 @media screen and (min-width: 1024px) {
     .mytonswap-app {
         .swap-button {
-            height: 3.5rem;
             border-radius: 1rem;
+            height: 3.5rem;
             font-size: var(--font-size-md);
         }
     }

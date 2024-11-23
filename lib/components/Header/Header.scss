@@ -1,17 +1,17 @@
 .mytonswap-app {
     .header-container {
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
         padding: 0 0.25rem;
+        color: var(--text-black-color);
         font-weight: 700;
         font-size: var(--font-size-lg);
-        color: var(--text-black-color);
     }
     .header-setting {
         display: flex;
-        gap: 0.5rem;
         align-items: center;
+        gap: 0.5rem;
 
         .loading-container {
             width: 1.25rem;

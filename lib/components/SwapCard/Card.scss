@@ -1,23 +1,23 @@
 .mytonswap-app {
     .swapcard-card {
-        width: 100%;
         display: flex;
         flex-direction: column;
+        width: 100%;
         font-size: var(--font-size-base);
         .card-head {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding-left: 0.25rem;
+            align-items: center;
             padding-right: 0.25rem;
+            padding-left: 0.25rem;
             .card-title {
-                color: var(--text-black-color);
                 opacity: 0.7;
+                color: var(--text-black-color);
             }
 
             .max-button {
-                color: var(--text-black-color);
                 cursor: pointer;
+                color: var(--text-black-color);
                 .max-text {
                     color: var(--primary-color);
                 }
@@ -28,14 +28,14 @@
         }
 
         .card-content {
-            background: var(--input-card-color);
-            margin-top: 0.875rem;
             display: grid;
-            gap: 0.25rem;
             grid-template-columns: 1fr auto;
-            width: 100%;
+            gap: 0.25rem;
+            margin-top: 0.875rem;
             border-radius: 0.75rem;
+            background: var(--input-card-color);
             padding: 1rem 1rem;
+            width: 100%;
             &.pay {
                 background: var(--input-card-pay-color);
             }
@@ -46,36 +46,36 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                width: 100%;
                 gap: 0.25rem;
+                width: 100%;
                 .card-input {
-                    height: 1.875rem;
-                    color: var(--text-black-color);
-                    font-family: inherit;
                     outline: none;
                     background: transparent;
-                    font-size: var(--font-size-2xl);
+                    height: 1.875rem;
+                    color: var(--text-black-color);
                     font-weight: 700;
+                    font-size: var(--font-size-2xl);
+                    font-family: inherit;
                 }
                 .card-input-loading {
-                    height: 1.875rem;
-                    width: 6rem;
                     border-radius: 0.75rem;
+                    width: 6rem;
+                    height: 1.875rem;
                 }
                 .card-rate {
-                    font-family: inherit;
-                    text-align: left;
-                    font-size: var(--font-size-base);
-                    color: var(--text-black-color);
-                    opacity: 0.5;
-                    height: 1.25rem;
                     display: flex;
                     align-items: center;
+                    opacity: 0.5;
+                    height: 1.25rem;
+                    color: var(--text-black-color);
+                    font-size: var(--font-size-base);
+                    font-family: inherit;
+                    text-align: left;
                 }
                 .card-rate-loading {
-                    height: 1.25rem;
-                    width: 3rem;
                     border-radius: 0.75rem;
+                    width: 3rem;
+                    height: 1.25rem;
                 }
             }
             .card-button {
@@ -83,10 +83,10 @@
                 align-items: center;
 
                 .selection-box {
-                    height: 2rem;
-                    width: 2rem;
                     border-radius: 9999px;
                     background-size: contain !important;
+                    width: 2rem;
+                    height: 2rem;
                 }
             }
         }
@@ -98,8 +98,8 @@
         .card-content {
             .card-inputs {
                 .card-rate {
-                    text-align: right;
                     font-size: var(--font-size-xs);
+                    text-align: right;
                 }
             }
         }
@@ -116,8 +116,8 @@
             .card-content {
                 .card-button {
                     .selection-box {
-                        height: 2rem;
                         width: 2rem;
+                        height: 2rem;
                     }
                 }
             }

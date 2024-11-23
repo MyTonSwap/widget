@@ -1,33 +1,33 @@
 .mytonswap-app {
     .token-setting-container {
         display: flex;
-        font-size: 0.75rem;
-        padding: 0 0.25rem;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
+        padding: 0 0.25rem;
+        font-size: 0.75rem;
         .token-setting-text {
             color: var(--text-black-color);
         }
         .checkbox {
             display: flex;
-            height: 1.5rem;
-            width: 3rem;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 0.25rem;
-            border-radius: 9999px;
-            transition: all 0.3s ease;
             position: relative;
+            justify-content: flex-start;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-radius: 9999px;
             background: var(--light-shade-color);
+            padding: 0.25rem;
+            width: 3rem;
+            height: 1.5rem;
             &.checkbox-active {
                 background: var(--primary-color);
             }
             .checkbox-inner {
+                position: absolute;
+                transition: all 0.3s ease;
+                border-radius: 9999px;
                 width: 1rem;
                 height: 1rem;
-                border-radius: 9999px;
-                transition: all 0.3s ease;
-                position: absolute;
                 &.checkbox-inner-active {
                     left: 1.75rem;
                     background: var(--background-color);

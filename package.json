@@ -60,7 +60,7 @@
         "cypress:run": "cypress run --browser chrome"
     },
     "peerDependencies": {
-        "@mytonswap/sdk": "^1.0.9",
+        "@mytonswap/sdk": "^1.0.12",
         "@ton/ton": "^15.0.0",
         "clsx": "^2.1.1",
         "react": "^18.3.1",

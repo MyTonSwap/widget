@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@mytonswap/sdk':
         specifier: ^1.0.9
-        version: 1.0.11(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))(typescript@5.6.2)
+        version: 1.0.12(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))(typescript@5.6.2)
       '@r2wc/react-to-web-component':
         specifier: ^2.0.3
         version: 2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -698,8 +698,8 @@ packages:
   '@microsoft/tsdoc@0.15.0':
     resolution: {integrity: sha512-HZpPoABogPvjeJOdzCOSJsXeL/SMCBgBZMVC3X3d7YYp2gf31MfxhUoYUNwf1ERPJOnQc0wkFn9trqI6ZEdZuA==}
 
-  '@mytonswap/sdk@1.0.11':
-    resolution: {integrity: sha512-lDxOQ9RRwuqY/ApiF/QVVAjBc8JQm0IYqjxe04o/wL4jLeAj/E5OpGXcXUckn2JGWmWyKlY1ctFCQsE5Dg64Sw==}
+  '@mytonswap/sdk@1.0.12':
+    resolution: {integrity: sha512-dBxSKyWdKV3P7Gp5+Qs8rsecFCCVZWArpF/XQTA2ZByEm4z9fJYYoVJRSTQfnhSSgml+8og8kZ9nk5a/ucSDbg==}
     peerDependencies:
       '@ton/ton': ^15.0.0
       typescript: ^5.0.0
@@ -4694,7 +4694,7 @@ snapshots:
 
   '@microsoft/tsdoc@0.15.0': {}
 
-  '@mytonswap/sdk@1.0.11(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))(typescript@5.6.2)':
+  '@mytonswap/sdk@1.0.12(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))(typescript@5.6.2)':
     dependencies:
       '@lifeomic/attempt': 3.1.0
       '@ton/ton': 15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)

@@ -1,93 +1,93 @@
 .mytonswap-app {
     .token-container {
-        width: 100%;
-        height: 3rem;
+        display: flex;
+        align-items: center;
         cursor: pointer;
         margin-top: 0.25rem;
         border-radius: 0.75rem;
-        display: flex;
-        padding-left: 0.5rem;
         padding-right: 0.5rem;
-        align-items: center;
+        padding-left: 0.5rem;
+        width: 100%;
+        height: 3rem;
         &.selected {
-            cursor: auto;
             opacity: 0.5;
+            cursor: auto;
         }
     }
     .token-content {
         display: flex;
-        align-items: center;
         flex-grow: 1;
+        align-items: center;
         gap: 0.5rem;
         .token-image {
-            width: 2.75rem;
-            height: 2.75rem;
             border-radius: 9999px;
             background-size: contain !important;
+            width: 2.75rem;
+            height: 2.75rem;
         }
         .token-details {
             flex-grow: 1;
         }
         .token-details-symbol-balance {
-            color: var(--text-black-color);
-            font-size: var(--font-size-base);
-            font-weight: 500;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
             flex-grow: 1;
-            white-space: nowrap;
+            justify-content: space-between;
+            align-items: center;
             overflow: hidden;
+            color: var(--text-black-color);
+            font-weight: 500;
+            font-size: var(--font-size-base);
             text-overflow: ellipsis;
+            white-space: nowrap;
             .symbol {
                 display: flex;
-                align-items: center;
                 justify-content: center;
+                align-items: center;
                 gap: 0.125rem;
                 font-size: var(--font-size-base);
                 a {
-                    opacity: 50%;
-                    text-decoration: none;
-                    color: inherit;
                     display: flex;
-                    align-items: center;
                     justify-content: center;
+                    align-items: center;
+                    opacity: 50%;
+                    color: inherit;
+                    text-decoration: none;
                 }
             }
         }
         .token-details-name-rate {
-            color: var(--text-black-color);
-            opacity: 0.5;
-            font-size: var(--font-size-xs);
             display: flex;
-            align-items: center;
-            justify-content: space-between;
             flex-grow: 1;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.5;
+            color: var(--text-black-color);
+            font-size: var(--font-size-xs);
             .name-liq {
                 display: flex;
-                align-items: center;
                 justify-content: center;
+                align-items: center;
                 gap: 0.125rem;
                 .liq {
                     display: flex;
-                    align-items: center;
                     justify-content: center;
+                    align-items: center;
                     gap: 0.125rem;
                 }
             }
         }
 
         .fav {
-            font-size: var(--font-size-2xl);
-            color: var(--text-black-color);
             opacity: 0.5;
             transition: transform 0.2s ease-in-out;
+            color: var(--text-black-color);
+            font-size: var(--font-size-2xl);
             &:active {
                 transform: scale(0.9);
             }
             &.faved {
-                color: var(--primary-color);
                 opacity: 1;
+                color: var(--primary-color);
             }
         }
     }
@@ -96,8 +96,8 @@
 @media screen and (min-width: 1024px) {
     .mytonswap-app {
         .token-container {
-            height: 3rem;
             margin-top: 0.5rem;
+            height: 3rem;
         }
         .token-content {
             .token-image {

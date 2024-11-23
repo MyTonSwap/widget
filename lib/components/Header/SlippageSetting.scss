@@ -5,15 +5,15 @@
         gap: 0.25rem;
 
         .button-container {
-            color: var(--text-black-color);
             display: flex;
             justify-content: space-between;
             width: 100%;
+            color: var(--text-black-color);
         }
         .slippage-indicator {
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             .icon {
                 transition: transform 0.3s ease;
             }
@@ -22,45 +22,45 @@
         .slippage-setting-dropdown {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            width: 100%;
             justify-content: space-around;
             gap: 0 0.5rem;
+            width: 100%;
             font-size: var(--font-size-sm);
 
             .controllers {
                 display: flex;
                 justify-content: space-between;
-                gap: 0.25rem;
                 align-items: center;
+                gap: 0.25rem;
             }
             .dropdown-item {
-                background: var(--secondary-color);
+                display: flex;
                 position: relative;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                margin: 0.125rem;
+                border: 1px solid transparent;
+                border-radius: 0.75rem;
+                background: var(--secondary-color);
                 padding: 0.25rem;
                 height: 2rem;
-                margin: 0.125rem;
-                border-radius: 0.75rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                border: 1px solid transparent;
                 &.active {
                     border: 1px solid var(--primary-color);
                 }
                 &.percent-input {
-                    width: 50px;
                     background-color: var(--light-shade-color);
+                    width: 50px;
                 }
 
                 .icon {
                     position: absolute;
                     top: -0.25rem;
                     left: -0.25rem;
-                    font-size: 1.125rem;
                     transition: color 0.3s ease;
                     color: var(--primary-color);
+                    font-size: 1.125rem;
                     &:hover {
                         color: var(--primary-color);
                     }
@@ -69,19 +69,19 @@
                     }
                 }
                 input {
-                    color: var(--text-black-color);
                     width: 100%;
+                    color: var(--text-black-color);
                 }
                 .slippage-input-group {
                     display: flex;
-                    align-items: center;
                     justify-content: center;
+                    align-items: center;
 
                     .slippage-input {
-                        background: transparent;
-                        color: var(--text-black-color);
-                        width: 100%;
                         outline: none;
+                        background: transparent;
+                        width: 100%;
+                        color: var(--text-black-color);
                     }
                     .slippage-input-percent {
                         padding-right: 0.25rem;
@@ -90,22 +90,22 @@
                 }
             }
             .controller {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                border-radius: 0.75rem;
+                background: var(--primary-color);
                 width: 3rem;
                 height: 2rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 0.75rem;
                 color: var(--text-white-color);
-                background: var(--primary-color);
                 font-weight: 700;
-                cursor: pointer;
                 &:disabled {
                     cursor: not-allowed;
                 }
                 &.disabled {
-                    color: var(--text-fade-color);
                     background: var(--light-shade-color);
+                    color: var(--text-fade-color);
                 }
             }
         }
@@ -115,15 +115,15 @@
 @media screen and (min-width: 768px) {
     .mytonswap-app {
         .slippage-setting-container {
-            font-size: 0.875rem;
             gap: 0.5rem;
+            font-size: 0.875rem;
             .button-container {
                 font-size: var(--font-size-sm);
             }
             .slippage-setting-dropdown {
                 .dropdown-item {
-                    height: 2.5rem;
                     margin: 0.25rem;
+                    height: 2.5rem;
                     .icon {
                         font-size: 1.25rem;
                     }

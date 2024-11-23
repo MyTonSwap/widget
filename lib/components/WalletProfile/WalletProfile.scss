@@ -1,15 +1,15 @@
 .wallet-profile-mts {
     position: relative;
     .wallet-profile-button {
-        background: var(--primary-color);
-        color: var(--text-white-color);
-        border-color: var(--border-color);
-        color: white;
-        padding: 0.5rem 0.75rem;
-        border-radius: 9999999rem;
-        font-size: 0.875rem;
-        font-weight: 500;
         cursor: pointer;
+        border-color: var(--border-color);
+        border-radius: 9999999rem;
+        background: var(--primary-color);
+        padding: 0.5rem 0.75rem;
+        color: var(--text-white-color);
+        color: white;
+        font-weight: 500;
+        font-size: 0.875rem;
         user-select: none;
         &.connected {
             background: var(--light-shade-color);

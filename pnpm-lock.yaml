@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@mytonswap/sdk':
-        specifier: ^1.0.9
+        specifier: ^1.0.12
         version: 1.0.12(@ton/ton@15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0))(typescript@5.6.2)
       '@r2wc/react-to-web-component':
         specifier: ^2.0.3

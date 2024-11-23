@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 .mts-default {
     --border-color: #f4f4f5;
@@ -67,8 +67,8 @@
     --skeleton-shine-color: #585959;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -82,7 +82,6 @@ input[type="number"]::-webkit-outer-spin-button {
 :where([data-skeleton]) {
     /* These will need to be intents (ie, dark mode), perhaps new global intents */
     --skeleton-shine: white;
-    background-color: var(--skeleton-bg) !important;
     background-image: linear-gradient(
         100deg,
         transparent 40%,
@@ -90,28 +89,29 @@ input[type="number"]::-webkit-outer-spin-button {
         transparent 60%
     ) !important;
     background-size: 200% 100%;
+    background-color: var(--skeleton-bg) !important;
     background-position-x: 120%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
     :where([data-skeleton]) {
-        background-position-x: 180%;
         animation: 2s loading ease-in-out infinite;
+        background-position-x: 180%;
     }
 }
 
-:where([data-skeleton][style*="--skeleton-lines"]) {
+:where([data-skeleton][style*='--skeleton-lines']) {
     --l-h: 1lh;
     --l-gap: 1ex;
-    min-height: calc(
-        var(--skeleton-lines) * var(--l-h) + (var(--skeleton-lines) - 1) *
-            var(--l-gap)
-    );
     mask: linear-gradient(
             #000 0 var(--l-h),
             transparent var(--l-h) calc(var(--l-h) + var(--l-gap))
         )
         0 0/100% calc(var(--l-h) + var(--l-gap));
+    min-height: calc(
+        var(--skeleton-lines) * var(--l-h) + (var(--skeleton-lines) - 1) *
+            var(--l-gap)
+    );
 }
 ::-webkit-scrollbar {
     width: 5px;
@@ -120,38 +120,38 @@ input[type="number"]::-webkit-outer-spin-button {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--thumb-scrollbar);
     border-radius: 5px;
+    background: var(--thumb-scrollbar);
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--thumb-scrollbar);
     border-radius: 5px;
+    background: var(--thumb-scrollbar);
 }
 
 ._refresher_wadtj_43 {
-    height: 100%;
     position: relative;
     width: 100%;
+    height: 100%;
 }
 
 .icon_overlay {
-    color: rgb(108, 108, 108);
-    height: auto;
-    left: 0;
     position: absolute;
     top: 0;
+    left: 0;
     transition: color 0.25s ease-in-out;
     width: 100%;
+    height: auto;
+    color: rgb(108, 108, 108);
 }
 
 .refresh_icon {
-    color: #6c6c6c;
-    height: auto;
-    left: 0;
     position: absolute;
     top: 0;
+    left: 0;
     transition: color 0.25s ease-in-out;
     width: 100%;
+    height: auto;
+    color: #6c6c6c;
 }
 
 .icon_overlay.overlay {
@@ -163,17 +163,17 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .icon_overlay.progressing {
+    animation-duration: 30000ms;
+    animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-name: loading_refresh_icon;
-    animation-timing-function: linear;
-    animation-duration: 30000ms;
 }
 
 .icon_overlay.waiting {
+    animation-duration: 30000ms;
+    animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     animation-name: waiting_refresh_icon;
-    animation-timing-function: ease-in-out;
-    animation-duration: 30000ms;
 }
 
 @keyframes loading_refresh_icon {

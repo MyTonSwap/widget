@@ -3,30 +3,30 @@
         border-radius: 0.5rem;
         padding: 0.5rem;
         .title {
-            font-size: 0.7rem;
             opacity: 0.75;
+            font-size: 0.7rem;
         }
         .wallet-content {
             display: flex;
             flex-direction: column;
             .balance-title {
-                font-size: 0.8rem;
                 margin-top: 0.5rem;
+                font-size: 0.8rem;
             }
             .balance-amount {
-                color: var(--primary-color);
-                font-size: 1.25rem;
-                font-weight: 900;
                 margin: 0.5rem 0;
+                color: var(--primary-color);
+                font-weight: 900;
+                font-size: 1.25rem;
             }
             .address {
-                background: var(--secondary-color);
-                font-size: 0.8rem;
-                width: fit-content;
-                padding: 0.25rem 0.5rem;
-                border-radius: 0.25rem;
-                opacity: 0.75;
                 display: flex;
+                opacity: 0.75;
+                border-radius: 0.25rem;
+                background: var(--secondary-color);
+                padding: 0.25rem 0.5rem;
+                width: fit-content;
+                font-size: 0.8rem;
             }
             .address-section {
                 display: flex;
@@ -34,46 +34,46 @@
                 gap: 0.25rem;
 
                 .address {
-                    font-size: 0.8rem;
+                    display: flex;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    opacity: 0.75;
+                    border-radius: 0.5rem;
                     width: fit-content;
                     height: 2rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 0.5rem;
-                    opacity: 0.75;
-                    display: flex;
+                    font-size: 0.8rem;
                 }
                 .wallet-icon {
-                    color: var(--text-black-color);
-                    background: var(--secondary-color);
-                    font-size: var(--font-size-xs);
-                    width: 2rem;
-                    height: 2rem;
                     display: flex;
-                    align-items: center;
                     justify-content: center;
-                    border-radius: 0.5rem;
+                    align-items: center;
                     opacity: 0.75;
                     cursor: pointer;
+                    border-radius: 0.5rem;
+                    background: var(--secondary-color);
+                    width: 2rem;
+                    height: 2rem;
+                    color: var(--text-black-color);
+                    font-size: var(--font-size-xs);
                     &:disabled {
-                        cursor: not-allowed;
                         opacity: 0.5;
+                        cursor: not-allowed;
                     }
                 }
             }
             .disconnect-wallet {
-                background: var(--secondary-color);
-                color: var(--text-black-color);
-                font-size: 0.8rem;
-                margin-top: 0.5rem;
-                height: 2.5rem;
-                border-radius: 0.5rem;
                 display: flex;
-                align-items: center;
                 justify-content: center;
+                align-items: center;
                 transition: all 0.3s ease-in-out;
                 cursor: pointer;
+                margin-top: 0.5rem;
+                border-radius: 0.5rem;
+                background: var(--secondary-color);
+                height: 2.5rem;
+                color: var(--text-black-color);
+                font-size: 0.8rem;
             }
         }
     }
@@ -94,18 +94,18 @@
                 }
                 .address-section {
                     .address {
-                        font-size: var(--font-size-base);
                         height: 2.5rem;
+                        font-size: var(--font-size-base);
                     }
                     .wallet-icon {
-                        font-size: var(--font-size-xs);
                         width: 2.5rem;
                         height: 2.5rem;
+                        font-size: var(--font-size-xs);
                     }
                 }
                 .disconnect-wallet {
-                    font-size: var(--font-size-sm);
                     height: 3rem;
+                    font-size: var(--font-size-sm);
                 }
             }
         }

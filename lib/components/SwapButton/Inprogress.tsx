@@ -1,14 +1,14 @@
-import { useEffect } from "react";
-import { ModalState, useSwapStore } from "../../store/swap.store";
-import { IoClose } from "react-icons/io5";
-import { Dex, fromNano } from "@mytonswap/sdk";
-import { FaArrowRightArrowLeft } from "react-icons/fa6";
-import formatNumber from "../../utils/formatNum";
-import { ImSpinner8 } from "react-icons/im";
-import "./Inprogress.scss";
-import { useEventsStore } from "../../store/events.store";
-import { useTranslation } from "react-i18next";
-import { sendTransaction } from "../../services/transaction";
+import { useEffect } from 'react';
+import { ModalState, useSwapStore } from '../../store/swap.store';
+import { IoClose } from 'react-icons/io5';
+import { Dex, fromNano } from '@mytonswap/sdk';
+import { FaArrowRightArrowLeft } from 'react-icons/fa6';
+import formatNumber from '../../utils/formatNum';
+import { ImSpinner8 } from 'react-icons/im';
+import './Inprogress.scss';
+import { useEventsStore } from '../../store/events.store';
+import { useTranslation } from 'react-i18next';
+
 const Inprogress = () => {
     const { t } = useTranslation();
     const {
@@ -22,7 +22,6 @@ const Inprogress = () => {
         bestRoute,
         receive_rate,
         pay_rate,
-        transactionQueryId,
     } = useSwapStore();
     const { onSwap } = useEventsStore();
     useEffect(() => {
@@ -34,7 +33,7 @@ const Inprogress = () => {
                 );
                 if (event) {
                     onSwap({
-                        type: "success",
+                        type: 'success',
                         data: {
                             pay: pay_token!,
                             receive: receive_token!,
@@ -47,14 +46,11 @@ const Inprogress = () => {
                             hash: transactionHash,
                         },
                     });
-                    sendTransaction({
-                        hash: transactionHash,
-                        query_id: transactionQueryId!,
-                    });
+
                     setModalState(ModalState.DONE);
                 } else {
                     onSwap({
-                        type: "error",
+                        type: 'error',
                         data: {
                             pay: pay_token!,
                             receive: receive_token!,
@@ -69,8 +65,8 @@ const Inprogress = () => {
                     });
 
                     setErrorMessage({
-                        errorTitle: t("errors.transaction_failed"),
-                        errorMessage: t("errors.unknown_error"),
+                        errorTitle: t('errors.transaction_failed'),
+                        errorMessage: t('errors.unknown_error'),
                     });
                 }
             }
@@ -100,7 +96,7 @@ const Inprogress = () => {
             </div>
             <div className="inprogress-modal-change-rate ">
                 <div>
-                    {fromNano(pay_amount, pay_token?.decimal)}{" "}
+                    {fromNano(pay_amount, pay_token?.decimal)}{' '}
                     {pay_token?.symbol}
                 </div>
                 <div>
@@ -110,7 +106,7 @@ const Inprogress = () => {
                     {bestRoute!.pool_data.receive_show!} {receive_token?.symbol}
                 </div>
                 <div className="rate">
-                    ≈{" "}
+                    ≈{' '}
                     {formatNumber(
                         Number(bestRoute!.pool_data.receive_show) *
                             receive_rate!.USD,
@@ -120,9 +116,9 @@ const Inprogress = () => {
                 </div>
             </div>
 
-            <div className="description">{t("transaction.pending")}</div>
+            <div className="description">{t('transaction.pending')}</div>
             <p className="description-2">
-                {t("transaction.action_in_progress")}
+                {t('transaction.action_in_progress')}
             </p>
             <div className="loading-icon">
                 <ImSpinner8 className="animate-spin icon" />

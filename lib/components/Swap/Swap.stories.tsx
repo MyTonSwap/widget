@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
+import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
-import { Swap } from "./Swap";
-import { tonConnectUi } from "../../../.storybook/preview";
+import { Swap } from './Swap';
+import { tonConnectUi } from '../../../.storybook/preview';
 
 const meta: Meta<typeof Swap> = {
     component: Swap,
@@ -14,8 +14,8 @@ const meta: Meta<typeof Swap> = {
                         args={{
                             ...args.args,
                             tonConnectInstance: tonConnectUi,
-                            onTokenSelect: action("onTokenSelect"),
-                            onSwap: action("onSwap"),
+                            onTokenSelect: action('onTokenSelect'),
+                            onSwap: action('onSwap'),
                         }}
                     />
                 </div>
@@ -52,8 +52,8 @@ export const WithPinnedTokens: Story = {
     args: {
         options: {
             pin_tokens: [
-                "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c",
-                "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+                'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c',
+                'EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_',
             ],
         },
     },
@@ -63,9 +63,8 @@ export const WithDefaultTokens: Story = {
     args: {
         options: {
             default_pay_token:
-                "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
-            default_receive_token:
-                "EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
+                'EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_',
+            default_receive_token: 'RAFF',
         },
     },
 };
@@ -74,9 +73,9 @@ export const WithLockedToken: Story = {
     args: {
         options: {
             default_pay_token:
-                "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+                'EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_',
             default_receive_token:
-                "EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
+                'EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7',
             lock_pay_token: true,
         },
     },
@@ -86,13 +85,13 @@ export const WithLockedInput: Story = {
     args: {
         options: {
             default_pay_token:
-                "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+                'EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_',
             default_receive_token:
-                "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c",
+                'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c',
             lock_pay_token: true,
             lock_receive_token: true,
             lock_input: true,
-            default_pay_amount: "1000000",
+            default_pay_amount: '1000000',
 
             ui_preferences: {
                 disable_provided_text: false,
@@ -111,13 +110,13 @@ export const WithoutRefresh: Story = {
     args: {
         options: {
             default_pay_token:
-                "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+                'EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_',
             default_receive_token:
-                "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c",
+                'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c',
             lock_pay_token: true,
             lock_receive_token: true,
             lock_input: true,
-            default_pay_amount: "1000000",
+            default_pay_amount: '1000000',
 
             ui_preferences: {
                 show_refresh: false,
@@ -139,7 +138,7 @@ export const TonJiggle: Story = {
 export const WithAppId: Story = {
     args: {
         options: {
-            app_id: "tonjiggle",
+            app_id: 'tonjiggle',
         },
     },
     decorators: [
@@ -154,7 +153,7 @@ export const WithAppId: Story = {
 export const HideSwapDetail: Story = {
     args: {
         options: {
-            app_id: "tonjiggle",
+            app_id: 'tonjiggle',
 
             ui_preferences: {
                 show_swap_details: false,
@@ -166,30 +165,30 @@ export const HideSwapDetail: Story = {
 
 export const Russian: Story = {
     args: {
-        locale: "ru",
+        locale: 'ru',
     },
 };
 
 export const Arabic: Story = {
     args: {
-        locale: "ar",
+        locale: 'ar',
     },
 };
 
 export const Spanish: Story = {
     args: {
-        locale: "es",
+        locale: 'es',
     },
 };
 
 export const SimplifiedChinese: Story = {
     args: {
-        locale: "cn",
+        locale: 'cn',
     },
 };
 
 export const Farsi: Story = {
     args: {
-        locale: "fa",
+        locale: 'fa',
     },
 };

@@ -1,15 +1,15 @@
-import clsx from "clsx";
-import { FC, useState } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import SwapKeyValue from "./SwapKeyValue";
-import { AnimatePresence, motion } from "framer-motion";
-import { useSwapStore } from "../../store/swap.store";
-import formatNumber from "../../utils/formatNum";
-import { CgSpinnerTwo } from "react-icons/cg";
-import "./SwapDetails.scss";
-import { useTranslation } from "react-i18next";
-import { useMeasure } from "@uidotdev/usehooks";
-import { BsArrowRightShort, BsChevronRight } from "react-icons/bs";
+import clsx from 'clsx';
+import { FC, useState } from 'react';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+import SwapKeyValue from './SwapKeyValue';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useSwapStore } from '../../store/swap.store';
+import formatNumber from '../../utils/formatNum';
+import { CgSpinnerTwo } from 'react-icons/cg';
+import './SwapDetails.scss';
+import { useTranslation } from 'react-i18next';
+import { useMeasure } from '@uidotdev/usehooks';
+import { BsArrowRightShort, BsChevronRight } from 'react-icons/bs';
 
 const SwapDetails = () => {
     const { t } = useTranslation();
@@ -28,8 +28,8 @@ const SwapDetails = () => {
             <div className="detail-accordion">
                 {onePayRoute && onePayRoute.pool_data && !isFindingBestRoute ? (
                     <div className="one-pay">
-                        1 {onePayRoute.pool_data.route_view[0]} ≈{" "}
-                        {formatNumber(onePayRoute.pool_data.receive_show, 4)}{" "}
+                        1 {onePayRoute.pool_data.route_view[0]} ≈{' '}
+                        {formatNumber(onePayRoute.pool_data.receive_show, 4)}{' '}
                         {
                             onePayRoute.pool_data.route_view[
                                 onePayRoute.pool_data.route_view.length - 1
@@ -39,12 +39,12 @@ const SwapDetails = () => {
                 ) : (
                     <div className="finding">
                         <CgSpinnerTwo className="animate-spin" />
-                        {t("fetching_best_route")}
+                        {t('fetching_best_route')}
                     </div>
                 )}
                 <div>
                     <MdKeyboardArrowDown
-                        className={clsx("icon", isOpen ? "is-open" : "")}
+                        className={clsx('icon', isOpen ? 'is-open' : '')}
                     />
                 </div>
             </div>
@@ -62,41 +62,41 @@ const SwapDetails = () => {
                     >
                         <div ref={ref} className="details-inner-container">
                             <SwapKeyValue
-                                keyText={t("slippage_tolerance")}
+                                keyText={t('slippage_tolerance')}
                                 value={
                                     <div className="slippage-box">
-                                        {slippage === "auto" ? "1" : slippage}%{" "}
-                                        {slippage === "auto" ? t("auto") : ""}
+                                        {slippage === 'auto' ? '1' : slippage}%{' '}
+                                        {slippage === 'auto' ? t('auto') : ''}
                                     </div>
                                 }
                             />
                             <SwapKeyValue
-                                keyText={t("blockchain_fee")}
+                                keyText={t('blockchain_fee')}
                                 value={
                                     bestRoute?.pool_data.blockchainFee ??
-                                    "0 TON"
+                                    '0 TON'
                                 }
                             />
                             <SwapKeyValue
-                                keyText={t("price_impact")}
+                                keyText={t('price_impact')}
                                 value={
                                     <span data-testid="price-impact">
                                         {bestRoute
                                             ? bestRoute.pool_data.priceImpact +
-                                              "%"
-                                            : "0%"}
+                                              '%'
+                                            : '0%'}
                                     </span>
                                 }
                             />
                             <SwapKeyValue
-                                keyText={t("minimum_received")}
+                                keyText={t('minimum_received')}
                                 value={
                                     bestRoute?.pool_data.minimumReceive_show ??
-                                    "0"
+                                    '0'
                                 }
                             />
                             <SwapKeyValue
-                                keyText={t("route")}
+                                keyText={t('route')}
                                 value={
                                     bestRoute ? (
                                         <div className="route-container">
@@ -111,16 +111,16 @@ const SwapDetails = () => {
                                                             bestRoute
                                                                 .selected_pool
                                                                 .dex ===
-                                                            "dedust"
-                                                                ? "https://dedust.io/favicon-32x32.png"
-                                                                : "https://ston.fi/images/tild3432-3236-4431-b139-376231383134__favicon.svg"
+                                                            'dedust'
+                                                                ? 'https://dedust.io/favicon-32x32.png'
+                                                                : 'https://ston.fi/images/tild3432-3236-4431-b139-376231383134__favicon.svg'
                                                         })`,
                                                     }}
                                                 ></div>
                                                 {bestRoute.selected_pool.dex ===
-                                                "dedust"
-                                                    ? "Dedust"
-                                                    : "Ston.fi"}
+                                                'dedust'
+                                                    ? 'Dedust'
+                                                    : 'Ston.fi'}
                                                 <BsArrowRightShort />
                                             </span>
                                             <RouteView
@@ -131,7 +131,7 @@ const SwapDetails = () => {
                                             />
                                         </div>
                                     ) : (
-                                        "Enter amount"
+                                        'Enter amount'
                                     )
                                 }
                             />
@@ -145,10 +145,10 @@ const SwapDetails = () => {
 
 const RouteView: FC<{ routes: string[] }> = ({ routes }) => {
     return (
-        <span>
+        <span className="route-view-token">
             {routes.map((route, idx) => (
                 <>
-                    {route}{" "}
+                    {route}{' '}
                     {idx !== routes.length - 1 && (
                         <BsChevronRight className="route-icon" />
                     )}

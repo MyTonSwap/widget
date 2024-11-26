@@ -1,21 +1,20 @@
-import { create } from "zustand";
-import { Asset, BestRoute, Dex, MyTonSwapClient, Prices } from "@mytonswap/sdk";
-import { toNano } from "@mytonswap/sdk";
-import { useOptionsStore } from "./options.store";
-import { address } from "@ton/ton";
-import catchError from "../utils/catchErrors";
-import { WIDGET_VERSION } from "../constants";
-import { reportErrorWithToast } from "../services/errorAnalytics";
-import { useEventsStore } from "./events.store";
+import { create } from 'zustand';
+import { Asset, BestRoute, Dex, MyTonSwapClient, Prices } from '@mytonswap/sdk';
+import { toNano } from '@mytonswap/sdk';
+import { useOptionsStore } from './options.store';
+import catchError from '../utils/catchErrors';
+import { WIDGET_VERSION } from '../constants';
+import { reportErrorWithToast } from '../services/errorAnalytics';
+import { useEventsStore } from './events.store';
 
 export enum ModalState {
-    NONE = "NONE",
-    WAITING = "WAITING",
-    ACCEPTED = "ACCEPTED",
-    IN_PROGRESS = "IN_PROGRESS",
-    DONE = "DONE",
-    ERROR = "ERROR",
-    CONFIRM = "CONFIRM",
+    NONE = 'NONE',
+    WAITING = 'WAITING',
+    ACCEPTED = 'ACCEPTED',
+    IN_PROGRESS = 'IN_PROGRESS',
+    DONE = 'DONE',
+    ERROR = 'ERROR',
+    CONFIRM = 'CONFIRM',
 }
 
 type SwapStates = {
@@ -31,7 +30,7 @@ type SwapStates = {
     isFindingBestRoute: boolean;
     bestRoute: BestRoute | null;
     onePayRoute: BestRoute | null;
-    slippage: "auto" | number;
+    slippage: 'auto' | number;
     communityTokens: boolean;
     acceptedCommunityToken: string[];
     swapModal: ModalState;
@@ -49,7 +48,7 @@ type SwapActions = {
     setIsLoading: (isLoading: boolean) => void;
     addToAssets: (assets: Asset[]) => void;
     setPayAmount: (amount: bigint) => Promise<void>;
-    setSlippage: (slippage: "auto" | number) => void;
+    setSlippage: (slippage: 'auto' | number) => void;
     setCommunityTokens: (state: boolean) => void;
     addToken: (token: string) => void;
     removeToken: (token: string) => void;
@@ -70,7 +69,7 @@ type SwapActions = {
 
 export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     client: new MyTonSwapClient({
-        headers: { "widget-version": WIDGET_VERSION },
+        headers: { 'widget-version': WIDGET_VERSION },
     }),
     pay_token: null,
     pay_rate: null,
@@ -82,10 +81,10 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     isFindingBestRoute: false,
     bestRoute: null,
     onePayRoute: null,
-    slippage: "auto",
-    communityTokens: localStorage.getItem("mts_widget_ct") === "true",
+    slippage: 'auto',
+    communityTokens: localStorage.getItem('mts_widget_ct') === 'true',
     acceptedCommunityToken: JSON.parse(
-        localStorage.getItem("mts_widget_act") ?? "[]"
+        localStorage.getItem('mts_widget_act') ?? '[]'
     ),
     swapModal: ModalState.NONE,
     transactionError: null,
@@ -106,12 +105,12 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             receive_rate,
         } = get();
         useEventsStore.getState().onSwap({
-            type: "start",
+            type: 'start',
             data: {
                 pay: pay_token!,
                 receive: receive_token!,
                 pay_amount: pay_amount.toString(),
-                receive_amount: bestRoute?.pool_data.receive.toString() ?? "0",
+                receive_amount: bestRoute?.pool_data.receive.toString() ?? '0',
                 pay_rate: pay_rate?.USD ?? 0,
                 receive_rate: receive_rate?.USD ?? 0,
                 dex: bestRoute!.selected_pool.dex as Dex,
@@ -140,7 +139,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         if (!receive_token) return;
         useEventsStore
             .getState()
-            .onTokenSelect({ type: "pay", asset: receive_token });
+            .onTokenSelect({ type: 'pay', asset: receive_token });
         set(() => ({
             pay_token: receive_token,
             pay_rate: receive_rate,
@@ -155,7 +154,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         if (!acceptedCommunityToken.includes(token)) {
             const newCommunityTokens = [...acceptedCommunityToken, token];
             localStorage.setItem(
-                "mts_widget_act",
+                'mts_widget_act',
                 JSON.stringify(newCommunityTokens)
             );
             set(() => ({ acceptedCommunityToken: newCommunityTokens }));
@@ -168,7 +167,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 (item) => item !== token
             );
             localStorage.setItem(
-                "mts_widget_act",
+                'mts_widget_act',
                 JSON.stringify(newCommunityTokens)
             );
             set(() => ({ acceptedCommunityToken: newCommunityTokens }));
@@ -179,7 +178,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         return acceptedCommunityToken.includes(token);
     },
     setCommunityTokens(communityTokens) {
-        localStorage.setItem("mts_widget_ct", String(communityTokens));
+        localStorage.setItem('mts_widget_ct', String(communityTokens));
         set(() => ({ communityTokens }));
     },
     setSlippage(slippage) {
@@ -190,7 +189,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     },
     setPayToken: async (token) => {
         set(() => ({ isSelectingToken: true }));
-        useEventsStore.getState().onTokenSelect({ type: "pay", asset: token });
+        useEventsStore.getState().onTokenSelect({ type: 'pay', asset: token });
         const { client } = get();
         if (!token) return;
         const result = await catchError(() =>
@@ -199,8 +198,8 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         if (result.error) {
             reportErrorWithToast(
                 result.error,
-                "Failed to get asset rates",
-                "swap.store.ts setPayToken getAssetsRates :165"
+                'Failed to get asset rates',
+                'swap.store.ts setPayToken getAssetsRates :165'
             );
             return;
         }
@@ -226,27 +225,27 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 pay_token.address,
                 receive_token.address,
                 amount,
-                slippage === "auto" ? undefined : slippage
+                slippage === 'auto' ? undefined : slippage
             )
         );
         if (bestRouteResult.error) {
             reportErrorWithToast(
                 bestRouteResult.error,
-                "Failed to get best route",
-                "swap.store.ts setPayAmount findBestRoute :196"
+                'Failed to get best route',
+                'swap.store.ts setPayAmount findBestRoute :196'
             );
             return;
         }
         const bestRoute = bestRouteResult.data;
         // TODO: Handle error properly
-        if (!bestRoute) throw new Error("failed to get best route");
+        if (!bestRoute) throw new Error('failed to get best route');
         set(() => ({ bestRoute, isFindingBestRoute: false }));
     },
     setReceiveToken: async (token) => {
         set(() => ({ isSelectingToken: true }));
         useEventsStore
             .getState()
-            .onTokenSelect({ type: "receive", asset: token });
+            .onTokenSelect({ type: 'receive', asset: token });
         const { client, pay_token, pay_amount, slippage } = get();
         if (!token || token.address === pay_token?.address) return;
         const ratesResult = await catchError(() =>
@@ -255,8 +254,8 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         if (ratesResult.error) {
             reportErrorWithToast(
                 ratesResult.error,
-                "Failed to get asset rates",
-                "swap.store.ts setReceiveToken getAssetsRates :215"
+                'Failed to get asset rates',
+                'swap.store.ts setReceiveToken getAssetsRates :215'
             );
             return;
         }
@@ -273,14 +272,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 pay_token!.address,
                 token.address,
                 toNano(1, pay_token!.decimal),
-                slippage === "auto" ? undefined : slippage
+                slippage === 'auto' ? undefined : slippage
             )
         );
         if (onePayRouteResult.error) {
             reportErrorWithToast(
                 onePayRouteResult.error,
-                "Failed to get one pay route",
-                "swap.store.ts setReceiveToken findBestRoute :238"
+                'Failed to get one pay route',
+                'swap.store.ts setReceiveToken findBestRoute :238'
             );
             return;
         }
@@ -293,14 +292,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                     pay_token.address,
                     token.address,
                     pay_amount,
-                    slippage === "auto" ? undefined : slippage
+                    slippage === 'auto' ? undefined : slippage
                 )
             );
             if (bestRouteResult.error) {
                 reportErrorWithToast(
                     bestRouteResult.error,
-                    "Failed to get best route",
-                    "swap.store.ts setReceiveToken findBestRoute :258"
+                    'Failed to get best route',
+                    'swap.store.ts setReceiveToken findBestRoute :258'
                 );
                 return;
             }
@@ -349,23 +348,22 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 if (assetResult.error) {
                     reportErrorWithToast(
                         assetResult.error,
-                        "Failed to get asset",
-                        "swap.store.ts initializeApp getAsset :305"
+                        'Failed to get asset',
+                        'swap.store.ts initializeApp getAsset :305'
                     );
                     return null;
                 }
                 return assetResult.data;
             }
             try {
-                address(tokenAddress);
                 const assetResult = await catchError(() =>
                     client.assets.getExactAsset(tokenAddress)
                 );
                 if (assetResult.error) {
                     reportErrorWithToast(
                         assetResult.error,
-                        "Failed to get asset",
-                        "swap.store.ts initializeApp getAsset :320"
+                        'Failed to get asset',
+                        'swap.store.ts initializeApp getAsset :320'
                     );
                     return null;
                 }
@@ -377,8 +375,8 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 if (assetResult.error) {
                     reportErrorWithToast(
                         assetResult.error,
-                        "Failed to get asset",
-                        "swap.store.ts initializeApp getAsset :333"
+                        'Failed to get asset',
+                        'swap.store.ts initializeApp getAsset :333'
                     );
                     return null;
                 }
@@ -396,8 +394,8 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             if (ratesResult.error) {
                 reportErrorWithToast(
                     ratesResult.error,
-                    "Failed to get asset rates",
-                    "swap.store.ts initializeApp getRates :352"
+                    'Failed to get asset rates',
+                    'swap.store.ts initializeApp getRates :352'
                 );
                 return null;
             }
@@ -406,8 +404,8 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
         };
 
         const initializeTokens = async () => {
-            const payToken = await getAsset(default_pay_token, "TON");
-            const receiveToken = await getAsset(default_receive_token, "");
+            const payToken = await getAsset(default_pay_token, 'TON');
+            const receiveToken = await getAsset(default_receive_token, '');
 
             if (!payToken) return;
 
@@ -421,14 +419,14 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                         payToken.address,
                         receiveToken.address,
                         toNano(1, payToken!.decimal),
-                        slippage === "auto" ? undefined : slippage
+                        slippage === 'auto' ? undefined : slippage
                     )
                 );
                 if (onePayRouteResult.error) {
                     reportErrorWithToast(
                         onePayRouteResult.error,
-                        "Failed to get one pay route",
-                        "swap.store.ts initializeApp findBestRoute :383"
+                        'Failed to get one pay route',
+                        'swap.store.ts initializeApp findBestRoute :383'
                     );
                     return;
                 }
@@ -443,8 +441,8 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 if (pinnedTokensResult.error) {
                     reportErrorWithToast(
                         pinnedTokensResult.error,
-                        "Failed to get pinned tokens",
-                        "swap.store.ts initializeApp getAssets :399"
+                        'Failed to get pinned tokens',
+                        'swap.store.ts initializeApp getAssets :399'
                     );
                     return;
                 }
@@ -452,11 +450,11 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             }
             useEventsStore
                 .getState()
-                .onTokenSelect({ type: "pay", asset: payToken });
+                .onTokenSelect({ type: 'pay', asset: payToken });
             if (receiveToken) {
                 useEventsStore
                     .getState()
-                    .onTokenSelect({ type: "receive", asset: receiveToken });
+                    .onTokenSelect({ type: 'receive', asset: receiveToken });
             }
             set({
                 pay_token: payToken,
@@ -489,20 +487,20 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 pay_token.address,
                 receive_token.address,
                 pay_amount,
-                slippage === "auto" ? undefined : slippage
+                slippage === 'auto' ? undefined : slippage
             )
         );
         if (bestRouteResult.error) {
             reportErrorWithToast(
                 bestRouteResult.error,
-                "Failed to get best route",
-                "swap.store.ts refetchBestRoute findBestRoute :436"
+                'Failed to get best route',
+                'swap.store.ts refetchBestRoute findBestRoute :436'
             );
             return;
         }
         const bestRoute = bestRouteResult.data;
         // TODO: Handle error properly
-        if (!bestRoute) throw new Error("failed to get best route");
+        if (!bestRoute) throw new Error('failed to get best route');
         set(() => ({ bestRoute, isFindingBestRoute: false }));
     },
 }));

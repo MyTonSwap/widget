@@ -73,6 +73,11 @@
                 .route-icon {
                     font-size: var(--font-size-xs);
                 }
+                .route-view-token {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.125rem;
+                }
             }
         }
     }

@@ -104,6 +104,12 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             pay_rate,
             receive_rate,
         } = get();
+
+        set(() => ({
+            transactionHash: hash,
+            transactionQueryId: query_id,
+            swapModal: ModalState.IN_PROGRESS,
+        }));
         useEventsStore.getState().onSwap({
             type: 'start',
             data: {
@@ -117,11 +123,6 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
                 hash,
             },
         });
-        set(() => ({
-            transactionHash: hash,
-            transactionQueryId: query_id,
-            swapModal: ModalState.IN_PROGRESS,
-        }));
     },
 
     setErrorMessage({ errorMessage, errorTitle }) {

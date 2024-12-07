@@ -64,10 +64,12 @@ export default async function swap(
         .then((result) => {
             const cell = Cell.fromBoc(Buffer.from(result.boc, 'base64'))[0];
             const hash = cell.hash().toString('hex');
+            const stateInstance = useSwapStore.getState();
             sendTransaction({
                 hash: hash,
                 query_id: rawMessage.query_id,
             });
+            stateInstance.setTransactionHash(hash, rawMessage.query_id);
         })
         .catch((e) => {
             console.log(e);

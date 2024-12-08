@@ -135,9 +135,16 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     setModalState(state) {
         set(() => ({ swapModal: state }));
     },
-    changeDirection() {
-        const { receive_token, receive_rate } = get();
-        if (!receive_token) return;
+    async changeDirection() {
+        const {
+            receive_token,
+            receive_rate,
+            pay_token,
+            pay_rate,
+            client,
+            slippage,
+        } = get();
+        if (!receive_token || !pay_token) return;
         useEventsStore
             .getState()
             .onTokenSelect({ type: 'pay', asset: receive_token });
@@ -145,9 +152,31 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
             pay_token: receive_token,
             pay_rate: receive_rate,
             pay_amount: 0n,
-            receive_token: null,
-            receive_rate: null,
+            receive_token: pay_token,
+            receive_rate: pay_rate,
             bestRoute: null,
+        }));
+        const bestRouteResult = await catchError(() =>
+            client.router.findBestRoute(
+                pay_token.address,
+                receive_token.address,
+                0n,
+                slippage === 'auto' ? undefined : slippage
+            )
+        );
+        if (bestRouteResult.error) {
+            reportErrorWithToast(
+                bestRouteResult.error,
+                'Failed to get best route',
+                'swap.store.ts setPayAmount findBestRoute :196'
+            );
+            return;
+        }
+        const bestRoute = bestRouteResult.data;
+        // TODO: Handle error properly
+        if (!bestRoute) throw new Error('failed to get best route');
+        set(() => ({
+            bestRoute: bestRoute,
         }));
     },
     addToken(token) {

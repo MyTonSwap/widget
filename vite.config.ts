@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
@@ -27,6 +28,10 @@ export default defineConfig({
             insertTypesEntry: true,
         }),
         cssInjectedByJsPlugin(),
+        sentryVitePlugin({
+            org: "mytonswap-i5",
+            project: "widget"
+        })
     ],
     build: {
         lib: {
@@ -34,6 +39,7 @@ export default defineConfig({
             name: "MyTonSwap Widget",
             fileName: "mytonswap-widget",
         },
+
         rollupOptions: {
             external: ["react", "react-dom", "react/jsx-runtime"],
             output: {
@@ -44,5 +50,7 @@ export default defineConfig({
                 },
             },
         },
+
+        sourcemap: true
     },
 });

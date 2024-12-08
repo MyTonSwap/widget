@@ -38,6 +38,23 @@ interface NewWindow extends Window {
     };
 }
 
+import * as Sentry from '@sentry/react';
+
+Sentry.init({
+    dsn: 'https://a0fd184abe72bfb85e2b0f8dd3f339ce@o4508426959257600.ingest.de.sentry.io/4508427069620304',
+    integrations: [
+        Sentry.browserTracingIntegration(),
+        Sentry.replayIntegration(),
+    ],
+    tracesSampleRate: 1.0,
+    tracePropagationTargets: [
+        'localhost',
+        /^https:\/\/app\.mytonswap\.com\/api/,
+    ],
+    replaysSessionSampleRate: 0.1,
+    replaysOnErrorSampleRate: 1.0,
+});
+
 export const SwapComponent: FC<SwapProps> = ({
     options,
     locale,

@@ -14,6 +14,12 @@ importers:
       '@r2wc/react-to-web-component':
         specifier: ^2.0.3
         version: 2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@sentry/react':
+        specifier: ^8.42.0
+        version: 8.42.0(react@18.3.1)
+      '@sentry/vite-plugin':
+        specifier: ^2.22.7
+        version: 2.22.7
       '@ton/ton':
         specifier: ^15.0.0
         version: 15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)
@@ -89,10 +95,10 @@ importers:
         version: 8.3.6(storybook@8.3.6)
       '@storybook/addon-docs':
         specifier: ^8.4.1
-        version: 8.4.1(@types/react@18.3.11)(storybook@8.3.6)
+        version: 8.4.1(@types/react@18.3.11)(storybook@8.3.6)(webpack-sources@3.2.3)
       '@storybook/addon-essentials':
         specifier: ^8.3.6
-        version: 8.3.6(storybook@8.3.6)
+        version: 8.3.6(storybook@8.3.6)(webpack-sources@3.2.3)
       '@storybook/addon-interactions':
         specifier: ^8.3.6
         version: 8.3.6(storybook@8.3.6)
@@ -107,13 +113,13 @@ importers:
         version: 8.3.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.3.6)
       '@storybook/builder-vite':
         specifier: ^8.3.6
-        version: 8.3.6(storybook@8.3.6)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))
+        version: 8.3.6(storybook@8.3.6)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))(webpack-sources@3.2.3)
       '@storybook/react':
         specifier: ^8.3.6
         version: 8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.3.6)(typescript@5.6.2)
       '@storybook/react-vite':
         specifier: ^8.3.6
-        version: 8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.24.0)(storybook@8.3.6)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))
+        version: 8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.24.0)(storybook@8.3.6)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))(webpack-sources@3.2.3)
       '@storybook/test':
         specifier: ^8.3.6
         version: 8.3.6(storybook@8.3.6)
@@ -925,6 +931,94 @@ packages:
   '@rushstack/ts-command-line@4.22.6':
     resolution: {integrity: sha512-QSRqHT/IfoC5nk9zn6+fgyqOPXHME0BfchII9EUPR19pocsNp/xSbeBCbD3PIR2Lg+Q5qk7OFqk1VhWPMdKHJg==}
 
+  '@sentry-internal/browser-utils@8.42.0':
+    resolution: {integrity: sha512-xzgRI0wglKYsPrna574w1t38aftuvo44gjOKFvPNGPnYfiW9y4m+64kUz3JFbtanvOrKPcaITpdYiB4DeJXEbA==}
+    engines: {node: '>=14.18'}
+
+  '@sentry-internal/feedback@8.42.0':
+    resolution: {integrity: sha512-dkIw5Wdukwzngg5gNJ0QcK48LyJaMAnBspqTqZ3ItR01STi6Z+6+/Bt5XgmrvDgRD+FNBinflc5zMmfdFXXhvw==}
+    engines: {node: '>=14.18'}
+
+  '@sentry-internal/replay-canvas@8.42.0':
+    resolution: {integrity: sha512-XrPErqVhPsPh/oFLVKvz7Wb+Fi2J1zCPLeZCxWqFuPWI2agRyLVu0KvqJyzSpSrRAEJC/XFzuSVILlYlXXSfgA==}
+    engines: {node: '>=14.18'}
+
+  '@sentry-internal/replay@8.42.0':
+    resolution: {integrity: sha512-oNcJEBlDfXnRFYC5Mxj5fairyZHNqlnU4g8kPuztB9G5zlsyLgWfPxzcn1ixVQunth2/WZRklDi4o1ZfyHww7w==}
+    engines: {node: '>=14.18'}
+
+  '@sentry/babel-plugin-component-annotate@2.22.7':
+    resolution: {integrity: sha512-aa7XKgZMVl6l04NY+3X7BP7yvQ/s8scn8KzQfTLrGRarziTlMGrsCOBQtCNWXOPEbtxAIHpZ9dsrAn5EJSivOQ==}
+    engines: {node: '>= 14'}
+
+  '@sentry/browser@8.42.0':
+    resolution: {integrity: sha512-lStrEk609KJHwXfDrOgoYVVoFFExixHywxSExk7ZDtwj2YPv6r6Y1gogvgr7dAZj7jWzadHkxZ33l9EOSJBfug==}
+    engines: {node: '>=14.18'}
+
+  '@sentry/bundler-plugin-core@2.22.7':
+    resolution: {integrity: sha512-ouQh5sqcB8vsJ8yTTe0rf+iaUkwmeUlGNFi35IkCFUQlWJ22qS6OfvNjOqFI19e6eGUXks0c/2ieFC4+9wJ+1g==}
+    engines: {node: '>= 14'}
+
+  '@sentry/cli-darwin@2.39.1':
+    resolution: {integrity: sha512-kiNGNSAkg46LNGatfNH5tfsmI/kCAaPA62KQuFZloZiemTNzhy9/6NJP8HZ/GxGs8GDMxic6wNrV9CkVEgFLJQ==}
+    engines: {node: '>=10'}
+    os: [darwin]
+
+  '@sentry/cli-linux-arm64@2.39.1':
+    resolution: {integrity: sha512-5VbVJDatolDrWOgaffsEM7znjs0cR8bHt9Bq0mStM3tBolgAeSDHE89NgHggfZR+DJ2VWOy4vgCwkObrUD6NQw==}
+    engines: {node: '>=10'}
+    cpu: [arm64]
+    os: [linux, freebsd]
+
+  '@sentry/cli-linux-arm@2.39.1':
+    resolution: {integrity: sha512-DkENbxyRxUrfLnJLXTA4s5UL/GoctU5Cm4ER1eB7XN7p9WsamFJd/yf2KpltkjEyiTuplv0yAbdjl1KX3vKmEQ==}
+    engines: {node: '>=10'}
+    cpu: [arm]
+    os: [linux, freebsd]
+
+  '@sentry/cli-linux-i686@2.39.1':
+    resolution: {integrity: sha512-pXWVoKXCRrY7N8vc9H7mETiV9ZCz+zSnX65JQCzZxgYrayQPJTc+NPRnZTdYdk5RlAupXaFicBI2GwOCRqVRkg==}
+    engines: {node: '>=10'}
+    cpu: [x86, ia32]
+    os: [linux, freebsd]
+
+  '@sentry/cli-linux-x64@2.39.1':
+    resolution: {integrity: sha512-IwayNZy+it7FWG4M9LayyUmG1a/8kT9+/IEm67sT5+7dkMIMcpmHDqL8rWcPojOXuTKaOBBjkVdNMBTXy0mXlA==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [linux, freebsd]
+
+  '@sentry/cli-win32-i686@2.39.1':
+    resolution: {integrity: sha512-NglnNoqHSmE+Dz/wHeIVRnV2bLMx7tIn3IQ8vXGO5HWA2f8zYJGktbkLq1Lg23PaQmeZLPGlja3gBQfZYSG10Q==}
+    engines: {node: '>=10'}
+    cpu: [x86, ia32]
+    os: [win32]
+
+  '@sentry/cli-win32-x64@2.39.1':
+    resolution: {integrity: sha512-xv0R2CMf/X1Fte3cMWie1NXuHmUyQPDBfCyIt6k6RPFPxAYUgcqgMPznYwVMwWEA1W43PaOkSn3d8ZylsDaETw==}
+    engines: {node: '>=10'}
+    cpu: [x64]
+    os: [win32]
+
+  '@sentry/cli@2.39.1':
+    resolution: {integrity: sha512-JIb3e9vh0+OmQ0KxmexMXg9oZsR/G7HMwxt5BUIKAXZ9m17Xll4ETXTRnRUBT3sf7EpNGAmlQk1xEmVN9pYZYQ==}
+    engines: {node: '>= 10'}
+    hasBin: true
+
+  '@sentry/core@8.42.0':
+    resolution: {integrity: sha512-ac6O3pgoIbU6rpwz6LlwW0wp3/GAHuSI0C5IsTgIY6baN8rOBnlAtG6KrHDDkGmUQ2srxkDJu9n1O6Td3cBCqw==}
+    engines: {node: '>=14.18'}
+
+  '@sentry/react@8.42.0':
+    resolution: {integrity: sha512-UBi/WM4oMa+kOA99R7t7Ke57zq6uQw6mALYW4fJ+wuhHZJBLDDDHSGpEUhdWuQ1oWQv/laT34DGS44PJOjfeAg==}
+    engines: {node: '>=14.18'}
+    peerDependencies:
+      react: ^16.14.0 || 17.x || 18.x || 19.x
+
+  '@sentry/vite-plugin@2.22.7':
+    resolution: {integrity: sha512-sYRNiNm4toQGq2BfZSJPdw36em3eQaLu+3NTFpA7Hl4g3Sp2Rt3CYObnW5bxlFEruRhxzvdyB383N9OefVZ6KA==}
+    engines: {node: '>= 14'}
+
   '@storybook/addon-actions@8.3.6':
     resolution: {integrity: sha512-nOqgl0WoZK2KwjaABaXMoIgrIHOQl9inOzJvqQau0HOtsvnXGXYfJXYnpjZenoZDoZXKbUDl0U2haDFx2a2fJw==}
     peerDependencies:
@@ -1558,6 +1652,10 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  agent-base@6.0.2:
+    resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
+    engines: {node: '>= 6.0.0'}
+
   aggregate-error@3.1.0:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
     engines: {node: '>=8'}
@@ -2137,6 +2235,10 @@ packages:
     resolution: {integrity: sha512-ArzcM/II1wCCujdCNyQjXrAFwS4mrLh4C7DZWlaI8mdh7h3BfKdNd3bKXITfl2PT9FtfQqaGvhi1vPRQPimjGA==}
     engines: {node: '>=10'}
 
+  dotenv@16.4.7:
+    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+    engines: {node: '>=12'}
+
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
@@ -2526,6 +2628,10 @@ packages:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Glob versions prior to v9 are no longer supported
 
+  glob@9.3.5:
+    resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
+    engines: {node: '>=16 || 14 >=14.17'}
+
   global-dirs@3.0.1:
     resolution: {integrity: sha512-NBcGGFbBA9s1VzD41QXDG+3++t9Mn5t1FpLdhESY6oKY4gYTFpX4wO3sqGUa0Srjtbfj3szX0RnemmrVRUdULA==}
     engines: {node: '>=10'}
@@ -2613,6 +2719,9 @@ packages:
   hmac-drbg@1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==}
 
+  hoist-non-react-statics@3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+
   html-parse-stringify@3.0.1:
     resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
 
@@ -2630,6 +2739,10 @@ packages:
 
   https-browserify@1.0.0:
     resolution: {integrity: sha512-J+FkSdyD+0mA0N+81tMotaRMfSL9SGi+xpD3T6YApKsc3bGSXJlfXri3VyFOeYkfLRQisDk1W+jIFFKBeUBbBg==}
+
+  https-proxy-agent@5.0.1:
+    resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
+    engines: {node: '>= 6'}
 
   human-signals@1.1.1:
     resolution: {integrity: sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==}
@@ -2964,6 +3077,10 @@ packages:
   magic-string@0.30.11:
     resolution: {integrity: sha512-+Wri9p0QHMy+545hKww7YAu5NyzF8iomPL/RQazugQ9+Ez4Ic3mERMd8ZTX5rfK944j+560ZJi8iAwgak1Ac7A==}
 
+  magic-string@0.30.8:
+    resolution: {integrity: sha512-ISQTe55T2ao7XtlAStud6qwYPZjE4GK1S/BeVPus4jrq6JuOnQ00YKQC581RWhR122W7msZV263KzVeLoqidyQ==}
+    engines: {node: '>=12'}
+
   make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
@@ -3042,12 +3159,20 @@ packages:
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
 
+  minimatch@8.0.4:
+    resolution: {integrity: sha512-W0Wvr9HyFXZRGIDgCicunpQ299OKXs9RgZfaukz4qAW/pJhcpUfupc9c+OObPOFueNy8VSrZgEmDtk6Kh4WzDA==}
+    engines: {node: '>=16 || 14 >=14.17'}
+
   minimatch@9.0.5:
     resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
     engines: {node: '>=16 || 14 >=14.17'}
 
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
+
+  minipass@4.2.8:
+    resolution: {integrity: sha512-fNzuVyifolSLFL4NzpF+wEF4qrgqaaKX0haXPQEdQ7NKAN+WecoKMHV09YcuL/DHxrUsYQOK3MiuDf7Ip2OXfQ==}
+    engines: {node: '>=8'}
 
   minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
@@ -3385,6 +3510,10 @@ packages:
   process@0.11.10:
     resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
     engines: {node: '>= 0.6.0'}
+
+  progress@2.0.3:
+    resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
+    engines: {node: '>=0.4.0'}
 
   prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
@@ -4012,6 +4141,9 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
+  unplugin@1.0.1:
+    resolution: {integrity: sha512-aqrHaVBWW1JVKBHmGo33T5TxeL0qWzfvjWokObHA9bYmN7eNDkwOxmLjhioHl9878qDFMAaT51XNroRyuz7WxA==}
+
   unplugin@1.14.1:
     resolution: {integrity: sha512-lBlHbfSFPToDYp9pjXlUEFVxYLaue9f9T1HC+4OHlmj+HnMDdz9oZY+erXfoCe/5V/7gKUSY2jpXPb9S7f0f/w==}
     engines: {node: '>=14.0.0'}
@@ -4155,6 +4287,13 @@ packages:
 
   webidl-conversions@4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
+
+  webpack-sources@3.2.3:
+    resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
+    engines: {node: '>=10.13.0'}
+
+  webpack-virtual-modules@0.5.0:
+    resolution: {integrity: sha512-kyDivFZ7ZM0BVOUteVbDFhlRt7Ah/CSPwJdi8hBpkK7QLumUqdLtVfm/PX/hkcnrvr0i77fO5+TjZ94Pe+C9iw==}
 
   webpack-virtual-modules@0.6.2:
     resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
@@ -4881,6 +5020,105 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
+  '@sentry-internal/browser-utils@8.42.0':
+    dependencies:
+      '@sentry/core': 8.42.0
+
+  '@sentry-internal/feedback@8.42.0':
+    dependencies:
+      '@sentry/core': 8.42.0
+
+  '@sentry-internal/replay-canvas@8.42.0':
+    dependencies:
+      '@sentry-internal/replay': 8.42.0
+      '@sentry/core': 8.42.0
+
+  '@sentry-internal/replay@8.42.0':
+    dependencies:
+      '@sentry-internal/browser-utils': 8.42.0
+      '@sentry/core': 8.42.0
+
+  '@sentry/babel-plugin-component-annotate@2.22.7': {}
+
+  '@sentry/browser@8.42.0':
+    dependencies:
+      '@sentry-internal/browser-utils': 8.42.0
+      '@sentry-internal/feedback': 8.42.0
+      '@sentry-internal/replay': 8.42.0
+      '@sentry-internal/replay-canvas': 8.42.0
+      '@sentry/core': 8.42.0
+
+  '@sentry/bundler-plugin-core@2.22.7':
+    dependencies:
+      '@babel/core': 7.25.7
+      '@sentry/babel-plugin-component-annotate': 2.22.7
+      '@sentry/cli': 2.39.1
+      dotenv: 16.4.7
+      find-up: 5.0.0
+      glob: 9.3.5
+      magic-string: 0.30.8
+      unplugin: 1.0.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
+  '@sentry/cli-darwin@2.39.1':
+    optional: true
+
+  '@sentry/cli-linux-arm64@2.39.1':
+    optional: true
+
+  '@sentry/cli-linux-arm@2.39.1':
+    optional: true
+
+  '@sentry/cli-linux-i686@2.39.1':
+    optional: true
+
+  '@sentry/cli-linux-x64@2.39.1':
+    optional: true
+
+  '@sentry/cli-win32-i686@2.39.1':
+    optional: true
+
+  '@sentry/cli-win32-x64@2.39.1':
+    optional: true
+
+  '@sentry/cli@2.39.1':
+    dependencies:
+      https-proxy-agent: 5.0.1
+      node-fetch: 2.7.0
+      progress: 2.0.3
+      proxy-from-env: 1.1.0
+      which: 2.0.2
+    optionalDependencies:
+      '@sentry/cli-darwin': 2.39.1
+      '@sentry/cli-linux-arm': 2.39.1
+      '@sentry/cli-linux-arm64': 2.39.1
+      '@sentry/cli-linux-i686': 2.39.1
+      '@sentry/cli-linux-x64': 2.39.1
+      '@sentry/cli-win32-i686': 2.39.1
+      '@sentry/cli-win32-x64': 2.39.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
+  '@sentry/core@8.42.0': {}
+
+  '@sentry/react@8.42.0(react@18.3.1)':
+    dependencies:
+      '@sentry/browser': 8.42.0
+      '@sentry/core': 8.42.0
+      hoist-non-react-statics: 3.3.2
+      react: 18.3.1
+
+  '@sentry/vite-plugin@2.22.7':
+    dependencies:
+      '@sentry/bundler-plugin-core': 2.22.7
+      unplugin: 1.0.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+
   '@storybook/addon-actions@8.3.6(storybook@8.3.6)':
     dependencies:
       '@storybook/global': 5.0.0
@@ -4905,11 +5143,11 @@ snapshots:
       storybook: 8.3.6
       ts-dedent: 2.2.0
 
-  '@storybook/addon-docs@8.3.6(storybook@8.3.6)':
+  '@storybook/addon-docs@8.3.6(storybook@8.3.6)(webpack-sources@3.2.3)':
     dependencies:
       '@mdx-js/react': 3.0.1(@types/react@18.3.11)(react@18.3.1)
       '@storybook/blocks': 8.3.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.3.6)
-      '@storybook/csf-plugin': 8.3.6(storybook@8.3.6)
+      '@storybook/csf-plugin': 8.3.6(storybook@8.3.6)(webpack-sources@3.2.3)
       '@storybook/global': 5.0.0
       '@storybook/react-dom-shim': 8.3.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.3.6)
       '@types/react': 18.3.11
@@ -4923,11 +5161,11 @@ snapshots:
     transitivePeerDependencies:
       - webpack-sources
 
-  '@storybook/addon-docs@8.4.1(@types/react@18.3.11)(storybook@8.3.6)':
+  '@storybook/addon-docs@8.4.1(@types/react@18.3.11)(storybook@8.3.6)(webpack-sources@3.2.3)':
     dependencies:
       '@mdx-js/react': 3.0.1(@types/react@18.3.11)(react@18.3.1)
       '@storybook/blocks': 8.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.3.6)
-      '@storybook/csf-plugin': 8.4.1(storybook@8.3.6)
+      '@storybook/csf-plugin': 8.4.1(storybook@8.3.6)(webpack-sources@3.2.3)
       '@storybook/react-dom-shim': 8.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.3.6)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -4937,12 +5175,12 @@ snapshots:
       - '@types/react'
       - webpack-sources
 
-  '@storybook/addon-essentials@8.3.6(storybook@8.3.6)':
+  '@storybook/addon-essentials@8.3.6(storybook@8.3.6)(webpack-sources@3.2.3)':
     dependencies:
       '@storybook/addon-actions': 8.3.6(storybook@8.3.6)
       '@storybook/addon-backgrounds': 8.3.6(storybook@8.3.6)
       '@storybook/addon-controls': 8.3.6(storybook@8.3.6)
-      '@storybook/addon-docs': 8.3.6(storybook@8.3.6)
+      '@storybook/addon-docs': 8.3.6(storybook@8.3.6)(webpack-sources@3.2.3)
       '@storybook/addon-highlight': 8.3.6(storybook@8.3.6)
       '@storybook/addon-measure': 8.3.6(storybook@8.3.6)
       '@storybook/addon-outline': 8.3.6(storybook@8.3.6)
@@ -5035,9 +5273,9 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@storybook/builder-vite@8.3.6(storybook@8.3.6)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))':
+  '@storybook/builder-vite@8.3.6(storybook@8.3.6)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))(webpack-sources@3.2.3)':
     dependencies:
-      '@storybook/csf-plugin': 8.3.6(storybook@8.3.6)
+      '@storybook/csf-plugin': 8.3.6(storybook@8.3.6)(webpack-sources@3.2.3)
       '@types/find-cache-dir': 3.2.1
       browser-assert: 1.2.1
       es-module-lexer: 1.5.4
@@ -5082,17 +5320,17 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@storybook/csf-plugin@8.3.6(storybook@8.3.6)':
+  '@storybook/csf-plugin@8.3.6(storybook@8.3.6)(webpack-sources@3.2.3)':
     dependencies:
       storybook: 8.3.6
-      unplugin: 1.14.1
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - webpack-sources
 
-  '@storybook/csf-plugin@8.4.1(storybook@8.3.6)':
+  '@storybook/csf-plugin@8.4.1(storybook@8.3.6)(webpack-sources@3.2.3)':
     dependencies:
       storybook: 8.3.6
-      unplugin: 1.14.1
+      unplugin: 1.14.1(webpack-sources@3.2.3)
     transitivePeerDependencies:
       - webpack-sources
 
@@ -5134,11 +5372,11 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       storybook: 8.3.6
 
-  '@storybook/react-vite@8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.24.0)(storybook@8.3.6)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))':
+  '@storybook/react-vite@8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.24.0)(storybook@8.3.6)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))(webpack-sources@3.2.3)':
     dependencies:
       '@joshwooding/vite-plugin-react-docgen-typescript': 0.3.0(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))
       '@rollup/pluginutils': 5.1.2(rollup@4.24.0)
-      '@storybook/builder-vite': 8.3.6(storybook@8.3.6)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))
+      '@storybook/builder-vite': 8.3.6(storybook@8.3.6)(typescript@5.6.2)(vite@5.4.8(@types/node@22.7.4)(sass@1.80.1))(webpack-sources@3.2.3)
       '@storybook/react': 8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.3.6)(typescript@5.6.2)
       find-up: 5.0.0
       magic-string: 0.30.11
@@ -5714,6 +5952,12 @@ snapshots:
   acorn@7.4.1: {}
 
   acorn@8.12.1: {}
+
+  agent-base@6.0.2:
+    dependencies:
+      debug: 4.3.7(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
 
   aggregate-error@3.1.0:
     dependencies:
@@ -6322,6 +6566,8 @@ snapshots:
 
   domain-browser@4.23.0: {}
 
+  dotenv@16.4.7: {}
+
   eastasianwidth@0.2.0: {}
 
   ecc-jsbn@0.1.2:
@@ -6824,6 +7070,13 @@ snapshots:
       once: 1.4.0
       path-is-absolute: 1.0.1
 
+  glob@9.3.5:
+    dependencies:
+      fs.realpath: 1.0.0
+      minimatch: 8.0.4
+      minipass: 4.2.8
+      path-scurry: 1.11.1
+
   global-dirs@3.0.1:
     dependencies:
       ini: 2.0.0
@@ -6904,6 +7157,10 @@ snapshots:
       minimalistic-assert: 1.0.1
       minimalistic-crypto-utils: 1.0.1
 
+  hoist-non-react-statics@3.3.2:
+    dependencies:
+      react-is: 16.13.1
+
   html-parse-stringify@3.0.1:
     dependencies:
       void-elements: 3.1.0
@@ -6925,6 +7182,13 @@ snapshots:
       sshpk: 1.18.0
 
   https-browserify@1.0.0: {}
+
+  https-proxy-agent@5.0.1:
+    dependencies:
+      agent-base: 6.0.2
+      debug: 4.3.7(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
 
   human-signals@1.1.1: {}
 
@@ -7201,6 +7465,10 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  magic-string@0.30.8:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.0
+
   make-dir@3.1.0:
     dependencies:
       semver: 6.3.1
@@ -7265,11 +7533,17 @@ snapshots:
     dependencies:
       brace-expansion: 1.1.11
 
+  minimatch@8.0.4:
+    dependencies:
+      brace-expansion: 2.0.1
+
   minimatch@9.0.5:
     dependencies:
       brace-expansion: 2.0.1
 
   minimist@1.2.8: {}
+
+  minipass@4.2.8: {}
 
   minipass@7.1.2: {}
 
@@ -7581,6 +7855,8 @@ snapshots:
   process-nextick-args@2.0.1: {}
 
   process@0.11.10: {}
+
+  progress@2.0.3: {}
 
   prop-types@15.8.1:
     dependencies:
@@ -8275,10 +8551,19 @@ snapshots:
 
   unpipe@1.0.0: {}
 
-  unplugin@1.14.1:
+  unplugin@1.0.1:
+    dependencies:
+      acorn: 8.12.1
+      chokidar: 3.6.0
+      webpack-sources: 3.2.3
+      webpack-virtual-modules: 0.5.0
+
+  unplugin@1.14.1(webpack-sources@3.2.3):
     dependencies:
       acorn: 8.12.1
       webpack-virtual-modules: 0.6.2
+    optionalDependencies:
+      webpack-sources: 3.2.3
 
   untildify@4.0.0: {}
 
@@ -8400,6 +8685,10 @@ snapshots:
   webidl-conversions@3.0.1: {}
 
   webidl-conversions@4.0.2: {}
+
+  webpack-sources@3.2.3: {}
+
+  webpack-virtual-modules@0.5.0: {}
 
   webpack-virtual-modules@0.6.2: {}
 

@@ -6,14 +6,15 @@ on:
 jobs:
     test:
         runs-on: ubuntu-latest
-
+        env:
+            SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         name: Run test on push main
         steps:
             - uses: actions/checkout@v3
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: "20.x"
+                  node-version: '20.x'
             - name: Install pnpm
               run: npm install -g pnpm
             - run: pnpm install
@@ -43,6 +44,7 @@ jobs:
 
             - name: Deploy to Server
               env:
+                  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
                   DEPLOY_USER: ${{ secrets.DEV_SSH_USER }}
                   DEPLOY_HOST: ${{ secrets.DEV_SSH_HOST }}
                   DEPLOY_PATH: ${{ secrets.DEV_SSH_DEPLOY_PATH }}

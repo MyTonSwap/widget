@@ -9,13 +9,15 @@ jobs:
         permissions:
             contents: read
             id-token: write
+        env:
+            SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         steps:
             - uses: actions/checkout@v3
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: "20.x"
-                  registry-url: "https://registry.npmjs.org"
+                  node-version: '20.x'
+                  registry-url: 'https://registry.npmjs.org'
             - name: Install pnpm
               run: npm install -g pnpm
             - run: pnpm install

@@ -1,7 +1,7 @@
 {
     "name": "@mytonswap/widget",
     "description": "MyTonSwap Widget - Easy to use swap widget for React on TON Blockchain",
-    "version": "2.0.26",
+    "version": "2.0.27",
     "type": "module",
     "author": {
         "name": "MyTonSwap",

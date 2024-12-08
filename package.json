@@ -117,6 +117,8 @@
     },
     "dependencies": {
         "@r2wc/react-to-web-component": "^2.0.3",
+        "@sentry/react": "^8.42.0",
+        "@sentry/vite-plugin": "^2.22.7",
         "@tonconnect/ui-react": "^2.0.9",
         "@uidotdev/usehooks": "^2.4.1",
         "axios": "^1.7.7",

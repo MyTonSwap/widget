@@ -5,7 +5,7 @@ import SwapDetails from '../SwapDetails/SwapDetails';
 import clsx from 'clsx';
 import { TonConnectUI } from '@tonconnect/ui-react';
 import { useOptionsStore, SwapOptions } from '../../store/options.store';
-import { ModalState, useSwapStore } from '../../store/swap.store';
+import { useSwapStore } from '../../store/swap.store';
 import { useWalletStore } from '../../store/wallet.store';
 import SwapButton from '../SwapButton/SwapButton';
 import './Swap.scss';
@@ -92,7 +92,7 @@ export const SwapComponent: FC<SwapProps> = ({
     }
     const {
         setWallet,
-        refetch,
+
         wallet: stateWallet,
         disconnect,
     } = useWalletStore();
@@ -115,8 +115,7 @@ export const SwapComponent: FC<SwapProps> = ({
     const {
         initializeApp,
         receive_token,
-        refetchBestRoute,
-        swapModal,
+
         pay_token,
     } = useSwapStore();
 
@@ -124,15 +123,8 @@ export const SwapComponent: FC<SwapProps> = ({
 
     useEffect(() => {
         if (isInitMount) {
-            let refetchInterval: ReturnType<typeof setInterval>;
             if (!pay_token) {
                 initializeApp();
-                refetchInterval = setInterval(() => {
-                    if (swapModal === ModalState.NONE) {
-                        refetch();
-                        refetchBestRoute();
-                    }
-                }, 10000);
             }
             if (
                 (window as NewWindow)?.Telegram?.WebApp?.initData?.length !== 0
@@ -158,9 +150,6 @@ export const SwapComponent: FC<SwapProps> = ({
                 setOnSwap(onSwap);
             }
             isInitMount.current = false;
-            return () => {
-                clearInterval(refetchInterval);
-            };
         }
     }, []);
 

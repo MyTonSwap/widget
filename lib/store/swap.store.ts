@@ -6,6 +6,7 @@ import catchError from '../utils/catchErrors';
 import { WIDGET_VERSION } from '../constants';
 import { reportErrorWithToast } from '../services/errorAnalytics';
 import { useEventsStore } from './events.store';
+import { useWalletStore } from './wallet.store';
 
 export enum ModalState {
     NONE = 'NONE',
@@ -39,6 +40,7 @@ type SwapStates = {
     transactionHash: string | null;
     transactionQueryId: string | null;
     pinnedTokens: Asset[] | null;
+    refetchInterval: ReturnType<typeof setInterval> | null;
 };
 
 type SwapActions = {
@@ -71,6 +73,7 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     client: new MyTonSwapClient({
         headers: { 'widget-version': WIDGET_VERSION },
     }),
+    refetchInterval: null,
     pay_token: null,
     pay_rate: null,
     pay_amount: 0n,
@@ -359,13 +362,32 @@ export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     },
 
     async initializeApp() {
-        const { client, slippage, setPayAmount } = get();
+        const {
+            client,
+            slippage,
+            setPayAmount,
+            refetchBestRoute,
+            refetchInterval,
+        } = get();
         const {
             default_pay_token,
             default_receive_token,
             pin_tokens,
             default_pay_amount,
         } = useOptionsStore.getState().options;
+
+        if (refetchInterval) {
+            clearInterval(refetchInterval);
+        }
+        set({
+            refetchInterval: setInterval(() => {
+                const modalState = useSwapStore.getState().swapModal;
+                if (modalState === ModalState.NONE) {
+                    useWalletStore.getState().refetch();
+                    refetchBestRoute();
+                }
+            }, 10000),
+        });
 
         const getAsset = async (
             tokenAddress: string | undefined,

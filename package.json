@@ -49,7 +49,7 @@
     "sideEffects": false,
     "scripts": {
         "dev": "vite",
-        "prebuild": "rm -rf dist",
+        "prebuild": "rimraf dist",
         "build": "tsc -b && vite build && vite build --config vite.config.cdn.js",
         "lint": "eslint .",
         "preview": "vite preview",
@@ -60,8 +60,6 @@
         "cypress:run": "cypress run --browser chrome"
     },
     "peerDependencies": {
-        "@mytonswap/sdk": "^1.0.12",
-        "@ton/ton": "^15.0.0",
         "clsx": "^2.1.1",
         "react": "^18.3.1",
         "react-dom": "^18.3.1"
@@ -99,6 +97,7 @@
         "prettier-plugin-css-order": "^2.1.2",
         "process": "^0.11.10",
         "react-icons": "^5.3.0",
+        "rimraf": "^6.0.1",
         "sass": "^1.80.1",
         "storybook": "^8.3.6",
         "tailwindcss": "^3.4.13",
@@ -116,9 +115,11 @@
         ]
     },
     "dependencies": {
+        "@mytonswap/sdk": "^1.1.0",
         "@r2wc/react-to-web-component": "^2.0.3",
         "@sentry/react": "^8.42.0",
         "@sentry/vite-plugin": "^2.22.7",
+        "@ton/ton": "^15.1.0",
         "@tonconnect/ui-react": "^2.0.9",
         "@uidotdev/usehooks": "^2.4.1",
         "axios": "^1.7.7",

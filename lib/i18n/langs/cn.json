@@ -4,6 +4,7 @@
     "auto": "自动",
     "search": "搜索 ...",
     "not_found_desc": "检查您的请求并重试",
+    "no_more_tokens": "没有更多代币",
     "service_provided": "服务由提供",
     "mytonswap": "MyTonSwap",
     "fetching_best_route": "正在获取最佳路径",

@@ -4,6 +4,7 @@
     "auto": "অটো",
     "search": "অনুসন্ধান করুন ...",
     "not_found_desc": "আপনার অনুরোধটি পুনরায় যাচাই করুন এবং আবার চেষ্টা করুন",
+    "no_more_tokens": "আর কোনো টোকেন নেই",
     "service_provided": "সেবা প্রদান করেছে",
     "mytonswap": "MyTonSwap",
     "fetching_best_route": "সর্বোত্তম পথ খুঁজছি",

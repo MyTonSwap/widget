@@ -1,10 +1,10 @@
-import { create } from "zustand";
-import { Balance, MyTonSwapClient } from "@mytonswap/sdk";
-import { Wallet } from "@tonconnect/ui-react";
-import { useSwapStore } from "./swap.store";
-import catchError from "../utils/catchErrors";
-import { WIDGET_VERSION } from "../constants";
-import { reportErrorWithToast } from "../services/errorAnalytics";
+import { create } from 'zustand';
+import { Balance, MyTonSwapClient } from '@mytonswap/sdk';
+import { Wallet } from '@tonconnect/ui-react';
+import { useSwapStore } from './swap.store';
+import catchError from '../utils/catchErrors';
+import { WIDGET_VERSION } from '../constants';
+import { reportErrorWithToast } from '../services/errorAnalytics';
 type WalletStates = {
     client: MyTonSwapClient;
     wallet: Wallet | null;
@@ -21,7 +21,8 @@ type WalletActions = {
 export const useWalletStore = create<WalletActions & WalletStates>(
     (set, get) => ({
         client: new MyTonSwapClient({
-            headers: { "widget-version": WIDGET_VERSION },
+            headers: { 'widget-version': WIDGET_VERSION },
+            baseUrl: 'https://devtest.mytonswap.com/api/',
         }),
         wallet: null,
         walletConnected: false,
@@ -45,8 +46,8 @@ export const useWalletStore = create<WalletActions & WalletStates>(
                 if (balancesResult.error) {
                     reportErrorWithToast(
                         balancesResult.error,
-                        "Failed to fetch balances",
-                        "wallet.store.ts setWallet getWalletAssets :45"
+                        'Failed to fetch balances',
+                        'wallet.store.ts setWallet getWalletAssets :45'
                     );
                     return;
                 }
@@ -59,8 +60,8 @@ export const useWalletStore = create<WalletActions & WalletStates>(
                 if (assetsResult.error) {
                     reportErrorWithToast(
                         assetsResult.error,
-                        "Failed to fetch assets",
-                        "wallet.store.ts setWallet getAssets :59"
+                        'Failed to fetch assets',
+                        'wallet.store.ts setWallet getAssets :59'
                     );
                     return;
                 }
@@ -81,8 +82,8 @@ export const useWalletStore = create<WalletActions & WalletStates>(
                     if (balancesResult.error) {
                         reportErrorWithToast(
                             balancesResult.error,
-                            "Failed to fetch balances",
-                            "wallet.store.ts refetch getWalletAssets :81"
+                            'Failed to fetch balances',
+                            'wallet.store.ts refetch getWalletAssets :81'
                         );
                         return;
                     }

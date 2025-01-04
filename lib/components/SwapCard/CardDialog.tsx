@@ -84,6 +84,7 @@ const CardDialog: FC<CardDialogProps> = ({
                 );
                 return;
             }
+            console.log(result);
             const { assets, meta } = result.data;
             setPage(currPage + 1);
             addToAssets(assets);

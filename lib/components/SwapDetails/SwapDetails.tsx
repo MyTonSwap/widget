@@ -110,17 +110,15 @@ const SwapDetails = () => {
                                                         background: `url(${
                                                             bestRoute
                                                                 .selected_pool
-                                                                .dex ===
-                                                            'dedust'
-                                                                ? 'https://dedust.io/favicon-32x32.png'
-                                                                : 'https://ston.fi/images/tild3432-3236-4431-b139-376231383134__favicon.svg'
+                                                                .dex_details
+                                                                .icon_url
                                                         })`,
                                                     }}
                                                 ></div>
-                                                {bestRoute.selected_pool.dex ===
-                                                'dedust'
-                                                    ? 'Dedust'
-                                                    : 'Ston.fi'}
+                                                {
+                                                    bestRoute.selected_pool
+                                                        .dex_details.name
+                                                }
                                                 <BsArrowRightShort />
                                             </span>
                                             <RouteView

@@ -4,6 +4,7 @@
     "auto": "Авто",
     "search": "Поиск ...",
     "not_found_desc": "Проверьте запрос и попробуйте снова",
+    "no_more_tokens": "Больше нет токенов",
     "service_provided": "Услуга предоставлена",
     "mytonswap": "MyTonSwap",
     "fetching_best_route": "Поиск лучшего маршрута",

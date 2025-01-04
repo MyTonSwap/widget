@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 import {
     CSSProperties,
     Dispatch,
@@ -7,36 +7,36 @@ import {
     useEffect,
     useRef,
     useState,
-} from "react";
-import { IoClose } from "react-icons/io5";
-import { MdOutlineSearch } from "react-icons/md";
-import { AnimatePresence, motion } from "framer-motion";
-import Token from "./Token";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useSwapStore } from "../../store/swap.store";
-import { Asset } from "@mytonswap/sdk";
-import sortAssets from "../../utils/sortAssets";
-import { CgSpinnerTwo } from "react-icons/cg";
-import { address } from "@ton/ton";
-import { TiWarning } from "react-icons/ti";
-import "./CardDialog.scss";
-import { useMediaQuery, useOnClickOutside } from "usehooks-ts";
-import { modalAnimationDesktop, modalAnimationMobile } from "../../constants";
-import catchError from "../../utils/catchErrors";
+} from 'react';
+import { IoClose } from 'react-icons/io5';
+import { MdOutlineSearch } from 'react-icons/md';
+import { AnimatePresence, motion } from 'framer-motion';
+import Token from './Token';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useSwapStore } from '../../store/swap.store';
+import { Asset } from '@mytonswap/sdk';
+import sortAssets from '../../utils/sortAssets';
+import { CgSpinnerTwo } from 'react-icons/cg';
+import { address } from '@ton/ton';
+import { TiWarning } from 'react-icons/ti';
+import './CardDialog.scss';
+import { useMediaQuery, useOnClickOutside } from 'usehooks-ts';
+import { modalAnimationDesktop, modalAnimationMobile } from '../../constants';
+import catchError from '../../utils/catchErrors';
 
-import { reportErrorWithToast } from "../../services/errorAnalytics";
-import { useTranslation } from "react-i18next";
-import FavList from "./FavList";
+import { reportErrorWithToast } from '../../services/errorAnalytics';
+import { useTranslation } from 'react-i18next';
+import FavList from './FavList';
 type CardDialogProps = {
     isSelectVisible: boolean;
     setIsSelectVisible: Dispatch<SetStateAction<boolean>>;
-    type: "pay" | "receive";
+    type: 'pay' | 'receive';
     onTokenSelect: (asset: Asset) => void;
 };
 
 enum TABS {
-    ALL = "ALL",
-    FAVORITES = "FAVORITES",
+    ALL = 'ALL',
+    FAVORITES = 'FAVORITES',
 }
 
 const CardDialog: FC<CardDialogProps> = ({
@@ -60,15 +60,15 @@ const CardDialog: FC<CardDialogProps> = ({
     const [activeTab, setActiveTab] = useState<TABS>(TABS.ALL);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
-    const [searchInput, setSearchInput] = useState("");
+    const [searchInput, setSearchInput] = useState('');
     const [contractCommunity, setContractCommunity] = useState<Asset | null>(
         null
     );
     const [promptForCommunity, setPromptForCommunity] = useState(false);
-    const isDesktop = useMediaQuery("(min-width: 768px)");
+    const isDesktop = useMediaQuery('(min-width: 768px)');
     const ref = useRef(null);
     const onNextPage = async (currPage: number) => {
-        if (type === "pay") {
+        if (type === 'pay') {
             const result = await catchError(() =>
                 client.assets.getPaginatedAssets(
                     currPage,
@@ -79,19 +79,20 @@ const CardDialog: FC<CardDialogProps> = ({
             if (result.error) {
                 reportErrorWithToast(
                     result.error,
-                    "Failed to fetch assets",
-                    "CardDialog.tsx onNextPage pay :86"
+                    'Failed to fetch assets',
+                    'CardDialog.tsx onNextPage pay :86'
                 );
                 return;
             }
+            console.log(result);
             const { assets, meta } = result.data;
             setPage(currPage + 1);
             addToAssets(assets);
             setHasMore(!meta.isLastPage);
             return;
         }
-        if (type === "receive" && !pay_token) return;
-        if (type === "receive") {
+        if (type === 'receive' && !pay_token) return;
+        if (type === 'receive') {
             const newAssets = await catchError(() =>
                 client.assets.getPairs(
                     pay_token!.address,
@@ -103,8 +104,8 @@ const CardDialog: FC<CardDialogProps> = ({
             if (newAssets.error) {
                 reportErrorWithToast(
                     newAssets.error,
-                    "Failed to fetch assets",
-                    "CardDialog.tsx onNextPage receive :105"
+                    'Failed to fetch assets',
+                    'CardDialog.tsx onNextPage receive :105'
                 );
                 return;
             }
@@ -130,7 +131,7 @@ const CardDialog: FC<CardDialogProps> = ({
         }
     };
     useEffect(() => {
-        if (pay_token && type === "pay") {
+        if (pay_token && type === 'pay') {
             return;
         }
 
@@ -158,7 +159,7 @@ const CardDialog: FC<CardDialogProps> = ({
         }
     }, [searchInput]);
 
-    const assetList = type === "pay" ? assets : receiveAssets;
+    const assetList = type === 'pay' ? assets : receiveAssets;
 
     const handleOnTokenSelect = (asset: Asset) => {
         if (!communityTokens && asset.warning) {
@@ -168,7 +169,7 @@ const CardDialog: FC<CardDialogProps> = ({
         if (promptForCommunity) {
             setPromptForCommunity(false);
         }
-        setSearchInput("");
+        setSearchInput('');
         onTokenSelect(asset);
         setPage(1);
         setHasMore(true);
@@ -181,8 +182,8 @@ const CardDialog: FC<CardDialogProps> = ({
               .sort(sortAssets)
               .filter((item) => {
                   if (
-                      searchInput.toLowerCase() === "usdt" &&
-                      item.symbol === "USD₮"
+                      searchInput.toLowerCase() === 'usdt' &&
+                      item.symbol === 'USD₮'
                   ) {
                       return true;
                   }
@@ -199,7 +200,7 @@ const CardDialog: FC<CardDialogProps> = ({
 
     const handleOnClose = () => {
         setIsSelectVisible(false);
-        setSearchInput("");
+        setSearchInput('');
     };
 
     useEffect(() => {
@@ -215,8 +216,8 @@ const CardDialog: FC<CardDialogProps> = ({
                 if (assetByAddrResult.error) {
                     reportErrorWithToast(
                         assetByAddrResult.error,
-                        "Failed to fetch asset",
-                        "CardDialog.tsx getToken :197"
+                        'Failed to fetch asset',
+                        'CardDialog.tsx getToken :197'
                     );
                     return;
                 }
@@ -260,20 +261,20 @@ const CardDialog: FC<CardDialogProps> = ({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className={clsx("card-dialog-container")}
+                        className={clsx('card-dialog-container')}
                     >
                         <motion.div
                             initial={modalAnimation.initial}
                             animate={modalAnimation.animate}
                             exit={modalAnimation.exit}
-                            className={clsx("card-dialog")}
+                            className={clsx('card-dialog')}
                             ref={ref}
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}
                         >
                             <div className="dialog-head">
-                                <div>{t("select_a_token")}</div>
+                                <div>{t('select_a_token')}</div>
                                 <button
                                     onClick={handleOnClose}
                                     className="card-dialog-close"
@@ -287,7 +288,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                     <input
                                         className="dialog-search-input"
                                         type="text"
-                                        placeholder={t("search")}
+                                        placeholder={t('search')}
                                         data-testid="dialog-search-input"
                                         onChange={(e) => {
                                             setSearchInput(e.target.value);
@@ -323,9 +324,9 @@ const CardDialog: FC<CardDialogProps> = ({
                                     <div className="tab-container">
                                         <button
                                             className={clsx(
-                                                "tab-item",
+                                                'tab-item',
                                                 activeTab === TABS.ALL &&
-                                                    "active"
+                                                    'active'
                                             )}
                                             onClick={() =>
                                                 setActiveTab(TABS.ALL)
@@ -346,9 +347,9 @@ const CardDialog: FC<CardDialogProps> = ({
                                         </button>
                                         <button
                                             className={clsx(
-                                                "tab-item",
+                                                'tab-item',
                                                 activeTab === TABS.FAVORITES &&
-                                                    "active"
+                                                    'active'
                                             )}
                                             onClick={() =>
                                                 setActiveTab(TABS.FAVORITES)
@@ -369,7 +370,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                             className="dialog-tokens-container"
                                             style={{
                                                 ...({
-                                                    "--thumb-scrollbar": `var(--primary-color)`,
+                                                    '--thumb-scrollbar': `var(--primary-color)`,
                                                 } as CSSProperties),
                                             }}
                                             id="scroll-div"
@@ -387,17 +388,31 @@ const CardDialog: FC<CardDialogProps> = ({
                                                     </div>
                                                 }
                                                 endMessage={
-                                                    <div
-                                                        className="no-token-found"
-                                                        data-testid="token-not-found"
-                                                    >
-                                                        {t("token_notfound")}
-                                                        <span>
+                                                    filteredAssets.length ===
+                                                    0 ? (
+                                                        <div
+                                                            className="no-token-found"
+                                                            data-testid="token-not-found"
+                                                        >
                                                             {t(
-                                                                "not_found_desc"
+                                                                'token_notfound'
                                                             )}
-                                                        </span>
-                                                    </div>
+                                                            <span>
+                                                                {t(
+                                                                    'not_found_desc'
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                    ) : (
+                                                        <div
+                                                            className="no-token-found"
+                                                            data-testid="no-more-token"
+                                                        >
+                                                            {t(
+                                                                'no_more_tokens'
+                                                            )}
+                                                        </div>
+                                                    )
                                                 }
                                             >
                                                 {filteredAssets?.map((item) => (
@@ -430,12 +445,12 @@ const CardDialog: FC<CardDialogProps> = ({
                                                     <TiWarning className="icon" />
                                                     <h1 className="title">
                                                         {t(
-                                                            "trade_warning.trade_title"
+                                                            'trade_warning.trade_title'
                                                         )}
                                                     </h1>
                                                     <p className="description">
                                                         {t(
-                                                            "trade_warning.trade_description"
+                                                            'trade_warning.trade_description'
                                                         )}
                                                     </p>
                                                 </div>
@@ -463,7 +478,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                     );
                                                 }}
                                             >
-                                                {t("trade_warning.agree")}
+                                                {t('trade_warning.agree')}
                                             </button>
                                         </>
                                     )}

@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@mytonswap/sdk':
-        specifier: ^1.1.0
-        version: 1.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)(typescript@5.6.2)
+        specifier: ^1.1.2
+        version: 1.1.2(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)(typescript@5.6.2)
       '@r2wc/react-to-web-component':
         specifier: ^2.0.3
         version: 2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -685,9 +685,6 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
-  '@lifeomic/attempt@3.1.0':
-    resolution: {integrity: sha512-QZqem4QuAnAyzfz+Gj5/+SLxqwCAw2qmt7732ZXodr6VDWGeYLG6w1i/vYLa55JQM9wRuBKLmXmiZ2P0LtE5rw==}
-
   '@mdx-js/react@3.0.1':
     resolution: {integrity: sha512-9ZrPIU4MGf6et1m1ov3zKf+q9+deetI51zprKB1D/z3NOb+rUxxtEl3mCjW5wTGh6VhRdwPueh1oRzi6ezkA8A==}
     peerDependencies:
@@ -707,8 +704,8 @@ packages:
   '@microsoft/tsdoc@0.15.0':
     resolution: {integrity: sha512-HZpPoABogPvjeJOdzCOSJsXeL/SMCBgBZMVC3X3d7YYp2gf31MfxhUoYUNwf1ERPJOnQc0wkFn9trqI6ZEdZuA==}
 
-  '@mytonswap/sdk@1.1.0':
-    resolution: {integrity: sha512-3GQ0Yo0cgtDdXaY6wYV3kyqtjIoAPmQnbd7eyNliXnabM9aG6iRgAHMcVpVPS4YsAX7gF+umQTPxSbpNtB/PpA==}
+  '@mytonswap/sdk@1.1.2':
+    resolution: {integrity: sha512-MKIi8jCiyWb74v8VsHi14x2vk8IZY1IgwN8cKv03DodqZdE4IoxXMBf8NLZRC0hv2q16p+CDrjU1OcE4YIgwgg==}
     peerDependencies:
       typescript: ^5.0.0
 
@@ -4818,8 +4815,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@lifeomic/attempt@3.1.0': {}
-
   '@mdx-js/react@3.0.1(@types/react@18.3.11)(react@18.3.1)':
     dependencies:
       '@types/mdx': 2.0.13
@@ -4861,11 +4856,11 @@ snapshots:
 
   '@microsoft/tsdoc@0.15.0': {}
 
-  '@mytonswap/sdk@1.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)(typescript@5.6.2)':
+  '@mytonswap/sdk@1.1.2(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)(typescript@5.6.2)':
     dependencies:
-      '@lifeomic/attempt': 3.1.0
       '@ton/ton': 15.1.0(@ton/core@0.59.0(@ton/crypto@3.3.0))(@ton/crypto@3.3.0)
       axios: 1.7.7
+      axios-retry: 4.5.0(axios@1.7.7)
       lodash: 4.17.21
       typescript: 5.6.2
     transitivePeerDependencies:

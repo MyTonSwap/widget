@@ -4,6 +4,7 @@
     "auto": "Auto",
     "search": "Rechercher ...",
     "not_found_desc": "Vérifiez votre demande et réessayez",
+    "no_more_tokens": "Plus de jetons",
     "service_provided": "Service fourni par",
     "mytonswap": "MyTonSwap",
     "fetching_best_route": "Recherche du meilleur itinéraire",

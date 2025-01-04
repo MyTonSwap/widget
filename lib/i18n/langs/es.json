@@ -4,6 +4,7 @@
     "auto": "Auto",
     "search": "Buscar ...",
     "not_found_desc": "Revise su solicitud e intente nuevamente",
+    "no_more_tokens": "No hay más tokens",
     "service_provided": "Servicio provisto por",
     "mytonswap": "MyTonSwap",
     "fetching_best_route": "Buscando la mejor ruta",

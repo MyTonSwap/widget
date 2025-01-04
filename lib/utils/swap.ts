@@ -19,6 +19,7 @@ export default async function swap(
 ) {
     const client = new MyTonSwapClient({
         headers: { 'widget-version': WIDGET_VERSION },
+        baseUrl: 'https://devtest.mytonswap.com/api/',
     });
     const app_id = useOptionsStore.getState().options.app_id;
     const rawMessageResult = await catchError(() =>

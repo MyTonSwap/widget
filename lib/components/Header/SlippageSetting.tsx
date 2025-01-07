@@ -1,47 +1,47 @@
-import { ChangeEvent, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { useSwapStore } from "../../store/swap.store";
-import "./SlippageSetting.scss";
-import { useTranslation } from "react-i18next";
+import { ChangeEvent, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useSwapStore } from '../../store/swap.store';
+import './SlippageSetting.scss';
+import { useTranslation } from 'react-i18next';
 
 const SlippageSetting = () => {
     const { t } = useTranslation();
 
     const { slippage, setSlippage } = useSwapStore();
     const [userInput, setUserInput] = useState(
-        slippage === "auto" ? "" : slippage.toString()
+        slippage === 'auto' ? '' : slippage.toString()
     );
 
     const handleSlippageChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const decimalRegexp = /^\d*(?:\.\d{0,1})?$/;
 
-        const userInput = e.target.value.replace(/,/g, ".");
-        let clearedInput = "";
-        if (userInput === "") {
-            clearedInput = "".replace(/^0+$/, "0");
-        } else if (userInput === "." || userInput === "0.") {
-            clearedInput = "0.".replace(/^0+$/, "0");
+        const userInput = e.target.value.replace(/,/g, '.');
+        let clearedInput = '';
+        if (userInput === '') {
+            clearedInput = ''.replace(/^0+$/, '0');
+        } else if (userInput === '.' || userInput === '0.') {
+            clearedInput = '0.'.replace(/^0+$/, '0');
         } else if (decimalRegexp.test(userInput)) {
-            clearedInput = userInput.replace(/^0+$/, "0");
+            clearedInput = userInput.replace(/^0+$/, '0');
         } else {
             return;
         }
-        if (clearedInput.includes(".") || userInput === "0") {
-            setUserInput(clearedInput.replace(/^0+(?=\d)/, ""));
+        if (clearedInput.includes('.') || userInput === '0') {
+            setUserInput(clearedInput.replace(/^0+(?=\d)/, ''));
         }
         if (Number(clearedInput) > 0 && Number(clearedInput) <= 10) {
-            setUserInput(clearedInput.replace(/^0+(?=\d)/, ""));
+            setUserInput(clearedInput.replace(/^0+(?=\d)/, ''));
             setSlippage(+clearedInput);
-        } else if (clearedInput === "") {
-            setUserInput("");
-            setSlippage("auto");
+        } else if (clearedInput === '') {
+            setUserInput('');
+            setSlippage('auto');
         }
     };
 
     const handleOnAutoClick = () => {
-        setUserInput("");
-        setSlippage("auto");
+        setUserInput('');
+        setSlippage('auto');
     };
     const handleOnPercentClick = (percent: number) => {
         setUserInput(percent.toString());
@@ -54,12 +54,12 @@ const SlippageSetting = () => {
             data-testid="slippage-setting"
         >
             <button className="button-container">
-                <div>{t("max_slippage")}</div>
+                <div>{t('max_slippage')}</div>
                 <div
                     className="slippage-indicator"
                     data-testid="slippage-indicator"
                 >
-                    {slippage === "auto" ? t("auto") : `${slippage}%`}{" "}
+                    {slippage === 'auto' ? t('auto') : `${slippage}%`}{' '}
                 </div>
             </button>
             <AnimatePresence>
@@ -72,16 +72,16 @@ const SlippageSetting = () => {
                     <div
                         onClick={handleOnAutoClick}
                         className={`dropdown-item ${
-                            slippage === "auto" ? "active" : "disabled"
+                            slippage === 'auto' ? 'active' : 'inactive-border'
                         }`}
                         data-testid="slippage-setting-auto"
                     >
-                        {t("auto")}
+                        {t('auto')}
                     </div>
                     <div
                         onClick={() => handleOnPercentClick(2)}
                         className={`dropdown-item ${
-                            slippage === 2 ? "active" : "disabled"
+                            slippage === 2 ? 'active' : 'inactive-border'
                         }`}
                         data-testid="slippage-setting-2"
                     >
@@ -90,7 +90,7 @@ const SlippageSetting = () => {
                     <div
                         onClick={() => handleOnPercentClick(5)}
                         className={`dropdown-item ${
-                            slippage === 5 ? "active" : "disabled"
+                            slippage === 5 ? 'active' : 'inactive-border'
                         }`}
                         data-testid="slippage-setting-5"
                     >
@@ -98,9 +98,9 @@ const SlippageSetting = () => {
                     </div>
                     <div
                         className={`controllers dropdown-item ${
-                            ["auto", 2, 5].includes(slippage)
-                                ? "disabled"
-                                : "active"
+                            ['auto', 2, 5].includes(slippage)
+                                ? 'inactive-border'
+                                : 'active'
                         }`}
                     >
                         <input

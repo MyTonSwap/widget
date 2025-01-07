@@ -64,7 +64,7 @@
                     &:hover {
                         color: var(--primary-color);
                     }
-                    &.disabled {
+                    &.inactive-border {
                         color: var(--text-fade-color);
                     }
                 }
@@ -103,7 +103,7 @@
                 &:disabled {
                     cursor: not-allowed;
                 }
-                &.disabled {
+                &.inactive-border {
                     background: var(--light-shade-color);
                     color: var(--text-fade-color);
                 }

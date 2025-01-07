@@ -177,26 +177,32 @@ const CardDialog: FC<CardDialogProps> = ({
         onNextPage(1);
     };
 
-    const filteredAssets = assetList
-        ? assetList
-              .sort(sortAssets)
-              .filter((item) => {
-                  if (
-                      searchInput.toLowerCase() === 'usdt' &&
-                      item.symbol === 'USD₮'
-                  ) {
-                      return true;
-                  }
-                  const searchValue = searchInput.toLowerCase();
+    const filteredAssets =
+        assetList
+            ?.sort(sortAssets)
+            .filter((item) => {
+                const searchValue = searchInput.toLowerCase();
 
-                  return (
-                      item.name.toLowerCase().includes(searchValue) ||
-                      item.symbol.toLowerCase().includes(searchValue) ||
-                      item.address.includes(searchInput)
-                  );
-              })
-              .filter((item) => (communityTokens ? true : !item.warning))
-        : [];
+                if (searchValue === 'usdt' && item.symbol === 'USD₮') {
+                    return true;
+                }
+
+                let addressSearch = '';
+                try {
+                    addressSearch = address(searchInput).toString({
+                        bounceable: true,
+                    });
+                } catch {
+                    // Ignore invalid address
+                }
+
+                return (
+                    item.name.toLowerCase().includes(searchValue) ||
+                    item.symbol.toLowerCase().includes(searchValue) ||
+                    item.address.includes(addressSearch)
+                );
+            })
+            .filter((item) => (communityTokens ? true : !item.warning)) || [];
 
     const handleOnClose = () => {
         setIsSelectVisible(false);

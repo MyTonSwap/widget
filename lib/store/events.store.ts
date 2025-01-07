@@ -1,8 +1,8 @@
-import { Asset } from "@mytonswap/sdk";
-import { create } from "zustand";
+import { Asset } from '@mytonswap/sdk';
+import { create } from 'zustand';
 
 export type onSwap = {
-    type: "start" | "success" | "error";
+    type: 'start' | 'success' | 'error';
     data: {
         pay: Asset;
         receive: Asset;
@@ -10,13 +10,13 @@ export type onSwap = {
         receive_amount: string;
         pay_rate: number;
         receive_rate: number;
-        dex: "stonfi" | "dedust";
+        dex: 'stonfi' | 'dedust' | 'tonco';
         hash: string;
     };
 };
 
 export type onTokenSelect = {
-    type: "pay" | "receive";
+    type: 'pay' | 'receive';
     asset: Asset;
 };
 
@@ -29,11 +29,11 @@ type EventsActions = {
 
 export const useEventsStore = create<EventsActions>((set) => ({
     onTokenSelect: (data) => {
-        console.log("default onTokenSelect called");
+        console.log('default onTokenSelect called');
         console.log(data);
     },
     onSwap: (data) => {
-        console.log("default onSwap called");
+        console.log('default onSwap called');
         console.log(data);
     },
     setOnTokenSelect: (onTokenSelect) => {

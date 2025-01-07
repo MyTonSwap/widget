@@ -150,6 +150,21 @@ export const WithAppId: Story = {
     ],
 };
 
+export const WithLiquidityProvider: Story = {
+    args: {
+        options: {
+            liquidity_provider: 'dedust',
+        },
+    },
+    decorators: [
+        (Story) => (
+            <div className="mts-ton-jiggle">
+                <Story />
+            </div>
+        ),
+    ],
+};
+
 export const HideSwapDetail: Story = {
     args: {
         options: {

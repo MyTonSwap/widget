@@ -18,7 +18,9 @@ export default async function swap(
     bestRoute: BestRoute
 ) {
     const client = new MyTonSwapClient({
-        headers: { 'widget-version': WIDGET_VERSION },
+        headers: {
+            'widget-version': WIDGET_VERSION,
+        },
     });
     const app_id = useOptionsStore.getState().options.app_id;
     const rawMessageResult = await catchError(() =>

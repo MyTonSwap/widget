@@ -199,7 +199,8 @@ const CardDialog: FC<CardDialogProps> = ({
                 return (
                     item.name.toLowerCase().includes(searchValue) ||
                     item.symbol.toLowerCase().includes(searchValue) ||
-                    item.address.includes(addressSearch)
+                    (addressSearch.length > 0 &&
+                        item.address.includes(addressSearch))
                 );
             })
             .filter((item) => (communityTokens ? true : !item.warning)) || [];

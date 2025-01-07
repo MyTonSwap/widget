@@ -71,7 +71,9 @@ type SwapActions = {
 
 export const useSwapStore = create<SwapActions & SwapStates>((set, get) => ({
     client: new MyTonSwapClient({
-        headers: { 'widget-version': WIDGET_VERSION },
+        headers: {
+            'widget-version': WIDGET_VERSION,
+        },
     }),
     refetchInterval: null,
     pay_token: null,

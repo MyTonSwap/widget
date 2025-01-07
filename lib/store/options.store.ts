@@ -1,7 +1,10 @@
-import { create } from "zustand";
-import { defaultsDeep } from "lodash";
-import { TonConnectUI } from "@tonconnect/ui-react";
-import { useSwapStore } from "./swap.store";
+import { create } from 'zustand';
+import { defaultsDeep } from 'lodash';
+import { TonConnectUI } from '@tonconnect/ui-react';
+import { useSwapStore } from './swap.store';
+import { MyTonSwapClient } from '@mytonswap/sdk';
+import { WIDGET_VERSION } from '../constants';
+import { useWalletStore } from './wallet.store';
 
 export type SwapOptions = {
     default_pay_token?: string;
@@ -13,7 +16,13 @@ export type SwapOptions = {
     default_pay_amount?: string;
     pin_tokens?: string[];
     app_id?: string;
-    layout_direction?: "ltr" | "rtl";
+    liquidity_provider?:
+        | 'mytonswap'
+        | 'stonfi'
+        | 'dedust'
+        | 'tonco'
+        | 'omniston';
+    layout_direction?: 'ltr' | 'rtl';
     ui_preferences?: {
         disable_provided_text?: boolean;
         show_swap_details?: boolean;
@@ -41,6 +50,7 @@ export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
     (set, get) => ({
         tonConnectInstance: null,
         options: {
+            liquidity_provider: 'mytonswap',
             ui_preferences: {
                 disable_provided_text: false,
                 disable_token_select_pay: false,
@@ -66,6 +76,24 @@ export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
             set({ options: newSchema, userOptions: option });
             if (option.default_slippage) {
                 useSwapStore.getState().setSlippage(option.default_slippage);
+            }
+            if (option.liquidity_provider) {
+                useSwapStore.setState({
+                    client: new MyTonSwapClient({
+                        headers: {
+                            'widget-version': WIDGET_VERSION,
+                            'liquidity-provider': option.liquidity_provider,
+                        },
+                    }),
+                });
+                useWalletStore.setState({
+                    client: new MyTonSwapClient({
+                        headers: {
+                            'widget-version': WIDGET_VERSION,
+                            'liquidity-provider': option.liquidity_provider,
+                        },
+                    }),
+                });
             }
         },
         setTonConnectInstance: (instance) => {

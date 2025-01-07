@@ -21,8 +21,9 @@ type WalletActions = {
 export const useWalletStore = create<WalletActions & WalletStates>(
     (set, get) => ({
         client: new MyTonSwapClient({
-            headers: { 'widget-version': WIDGET_VERSION },
-            baseUrl: 'https://devtest.mytonswap.com/api/',
+            headers: {
+                'widget-version': WIDGET_VERSION,
+            },
         }),
         wallet: null,
         walletConnected: false,

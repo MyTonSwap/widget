@@ -61,7 +61,7 @@ export default async function swap(
     tonconnect
         .sendTransaction({
             messages: messages,
-            validUntil: Date.now() + 1000 * 60 * 60 * 24 - 1000,
+            validUntil: Date.now() + 1000 * 60 * 60 * 12 - 1000,
         })
         .then((result) => {
             const cell = Cell.fromBoc(Buffer.from(result.boc, 'base64'))[0];

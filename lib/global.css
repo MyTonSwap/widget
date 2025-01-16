@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --mts-primary-50: 233 251 240;
+    --mts-primary-100: 207 247 222;
+    --mts-primary-200: 159 239 188;
+    --mts-primary-300: 111 230 155;
+    --mts-primary-400: 64 222 122;
+    --mts-primary-500: 34 197 94;
+    --mts-primary-600: 27 157 75;
+    --mts-primary-700: 20 117 56;
+    --mts-primary-800: 13 78 37;
+    --mts-primary-900: 7 39 19;
+    --mts-primary-950: 4 22 10;
+}
+
 .mts-default {
     --border-color: #f4f4f5;
     --primary-color: #22c55e;

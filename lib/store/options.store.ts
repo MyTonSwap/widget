@@ -5,6 +5,7 @@ import { useSwapStore } from './swap.store';
 import { MyTonSwapClient } from '@mytonswap/sdk';
 import { WIDGET_VERSION } from '../constants';
 import { useWalletStore } from './wallet.store';
+import { setupColors } from '../utils/color/setupColors';
 
 export type SwapOptions = {
     default_pay_token?: string;
@@ -24,6 +25,7 @@ export type SwapOptions = {
         | 'omniston';
     layout_direction?: 'ltr' | 'rtl';
     ui_preferences?: {
+        primary_color?: string;
         disable_provided_text?: boolean;
         show_swap_details?: boolean;
         show_settings_wallet?: boolean;
@@ -52,6 +54,7 @@ export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
         options: {
             liquidity_provider: 'mytonswap',
             ui_preferences: {
+                primary_color: '#22C55E',
                 disable_provided_text: false,
                 disable_token_select_pay: false,
                 disable_token_select_receive: false,
@@ -68,6 +71,9 @@ export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
         setOptions: (option) => {
             const { options, userOptions } = get();
             if (JSON.stringify(option) === JSON.stringify(userOptions)) return;
+            if (option.ui_preferences?.primary_color) {
+                setupColors(option.ui_preferences.primary_color);
+            }
             const newSchema = defaultsDeep(
                 option,
                 options

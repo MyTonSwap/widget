@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useSwapStore } from '../../store/swap.store';
 import './SlippageSetting.scss';
 import { useTranslation } from 'react-i18next';
+import { cn } from '../../utils/cn';
 
 const SlippageSetting = () => {
     const { t } = useTranslation();
@@ -50,13 +51,13 @@ const SlippageSetting = () => {
 
     return (
         <div
-            className="slippage-setting-container"
+            className="mts-flex mts-flex-col gap-1 md:mts-gap-2 md:mts-text-sm"
             data-testid="slippage-setting"
         >
-            <button className="button-container">
+            <button className="mts-flex mts-text-xs mts-justify-between mts-w-full mts-text-black md:mts-text-sm">
                 <div>{t('max_slippage')}</div>
                 <div
-                    className="slippage-indicator"
+                    className="mts-flex mts-justify-center mts-items-center"
                     data-testid="slippage-indicator"
                 >
                     {slippage === 'auto' ? t('auto') : `${slippage}%`}{' '}
@@ -67,41 +68,51 @@ const SlippageSetting = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="slippage-setting-dropdown"
+                    className="mts-grid mts-grid-cols-4 mts-justify-around mts-gap-x-2 mts-w-full mts-text-sm"
                 >
                     <div
                         onClick={handleOnAutoClick}
-                        className={`dropdown-item ${
-                            slippage === 'auto' ? 'active' : 'inactive-border'
-                        }`}
+                        className={cn(
+                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-xl mts-bg-zinc-100 mts-p-1 mts-h-8 md:mts-h-10 md:mts-m-1`,
+                            slippage === 'auto'
+                                ? 'mts-border-primary-500'
+                                : 'inactive-border'
+                        )}
                         data-testid="slippage-setting-auto"
                     >
                         {t('auto')}
                     </div>
                     <div
                         onClick={() => handleOnPercentClick(2)}
-                        className={`dropdown-item ${
-                            slippage === 2 ? 'active' : 'inactive-border'
-                        }`}
+                        className={cn(
+                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-xl mts-bg-zinc-100 mts-p-1 mts-h-8 md:mts-h-10`,
+                            slippage === 2
+                                ? 'mts-border-primary-500'
+                                : 'inactive-border'
+                        )}
                         data-testid="slippage-setting-2"
                     >
                         2%
                     </div>
                     <div
                         onClick={() => handleOnPercentClick(5)}
-                        className={`dropdown-item ${
-                            slippage === 5 ? 'active' : 'inactive-border'
-                        }`}
+                        className={cn(
+                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-xl mts-bg-zinc-100 mts-p-1 mts-h-8 md:mts-h-10`,
+                            slippage === 5
+                                ? 'mts-border-primary-500'
+                                : 'inactive-border'
+                        )}
                         data-testid="slippage-setting-5"
                     >
                         5%
                     </div>
                     <div
-                        className={`controllers dropdown-item ${
+                        className={cn(
+                            `mts-flex mts-justify-between mts-items-center mts-gap-1 mts-relative mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-xl mts-bg-zinc-100 mts-h-8 md:mts-h-10`,
                             ['auto', 2, 5].includes(slippage)
                                 ? 'inactive-border'
-                                : 'active'
-                        }`}
+                                : 'mts-border-primary-500'
+                        )}
                     >
                         <input
                             value={userInput}
@@ -109,10 +120,11 @@ const SlippageSetting = () => {
                             data-testid="slippage-setting-input"
                             type="text"
                             dir="rtl"
-                            className={`slippage-input `}
                             placeholder="1"
                         />
-                        <span className="slippage-input-percent">%</span>
+                        <span className="mts-text-xs md:text-sm mts-pr-1">
+                            %
+                        </span>
                     </div>
                 </motion.div>
             </AnimatePresence>

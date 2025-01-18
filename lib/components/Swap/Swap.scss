@@ -22,22 +22,12 @@
         font-family: 'Plus Jakarta Sans', sans-serif !important;
         -webkit-tap-highlight-color: transparent;
     }
-    button {
-        cursor: pointer;
-        border: none;
-        background: transparent;
-        font-family: Inter, sans-serif;
-    }
+
     input {
         outline: none;
         border: none;
         background: none;
         width: 100%;
-    }
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
     }
 
     .animate-spin {
@@ -69,7 +59,7 @@
         border-style: solid;
         border-color: var(--swap-container-border-color);
         border-radius: 1rem;
-        background: var(--swap-container-background-color);
+        // background: var(--swap-container-background-color);
         padding: 0.5rem;
         max-width: 21.875rem;
         overflow: hidden;

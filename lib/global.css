@@ -173,7 +173,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .icon_overlay.overlay {
-    color: #22c55e;
+    color: rgb(var(--mts-primary-500));
 }
 
 .active {
@@ -239,7 +239,6 @@ input[type='number']::-webkit-outer-spin-button {
             50% -50%,
             150% 50%
         );
-        color: #f2f2f2;
     }
 
     to {
@@ -251,7 +250,6 @@ input[type='number']::-webkit-outer-spin-button {
             50% -50%,
             150% 50%
         );
-        color: #6c6c6c;
     }
 }
 

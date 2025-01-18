@@ -1,30 +1,30 @@
-import clsx from "clsx";
-import { useSwapStore } from "../../store/swap.store";
-import "./TokensSettings.scss";
-import { useTranslation } from "react-i18next";
+import { useSwapStore } from '../../store/swap.store';
+import { useTranslation } from 'react-i18next';
+import { cn } from '../../utils/cn';
+
 const TokensSettings = () => {
     const { t } = useTranslation();
     const { communityTokens, setCommunityTokens } = useSwapStore();
     return (
-        <div className="token-setting-container">
-            <div className="token-setting-text">
-                <span>{t("community_tokens")}</span>
+        <div className="mts-flex mts-justify-between mts-items-center mts-px-1 mts-text-xs md:mts-text-sm">
+            <div className="mts-text-black">
+                <span>{t('community_tokens')}</span>
             </div>
             <div>
                 <button
-                    className={clsx(
-                        "checkbox",
-                        communityTokens ? "checkbox-active" : ""
+                    className={cn(
+                        'mts-flex mts-relative mts-justify-start mts-items-center mts-transition-all mts-duration-300 mts-rounded-full mts-bg-zinc-100 mts-p-1 mts-w-12 mts-h-6',
+                        communityTokens ? 'mts-bg-primary-500' : ''
                     )}
                     onClick={() => setCommunityTokens(!communityTokens)}
                     data-testid="community-token-setting"
                 >
                     <div
-                        className={clsx(
-                            "checkbox-inner",
+                        className={cn(
+                            'mts-absolute mts-transition-all mts-duration-300 mts-ease mts-rounded-full mts-w-4 mts-h-4',
                             communityTokens
-                                ? "checkbox-inner-active"
-                                : "checkbox-inner-inactive"
+                                ? 'mts-left-7 mts-bg-white'
+                                : 'mts-left-1 mts-bg-primary-500'
                         )}
                     ></div>
                 </button>

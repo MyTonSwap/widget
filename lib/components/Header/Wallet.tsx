@@ -1,14 +1,14 @@
-import { fromNano } from "@mytonswap/sdk";
-import { TON_ADDR } from "../../constants";
-import { useWalletStore } from "../../store/wallet.store";
-import "./Wallet.scss";
-import formatNumber from "../../utils/formatNum";
-import shortAddress from "../../utils/shortAddress";
-import { FaCheck, FaCopy } from "react-icons/fa6";
-import { useState } from "react";
-import { MdArrowOutward } from "react-icons/md";
-import { useOptionsStore } from "../../store/options.store";
-import { useTranslation } from "react-i18next";
+import { fromNano } from '@mytonswap/sdk';
+import { TON_ADDR } from '../../constants';
+import { useWalletStore } from '../../store/wallet.store';
+import './Wallet.scss';
+import formatNumber from '../../utils/formatNum';
+import shortAddress from '../../utils/shortAddress';
+import { FaCheck, FaCopy } from 'react-icons/fa6';
+import { useState } from 'react';
+import { MdArrowOutward } from 'react-icons/md';
+import { useOptionsStore } from '../../store/options.store';
+import { useTranslation } from 'react-i18next';
 // import { useTonConnectUI } from "@tonconnect/ui-react";
 
 const Wallet = () => {
@@ -45,24 +45,24 @@ const Wallet = () => {
     return (
         <>
             {wallet && (
-                <div className="wallet-card">
-                    <p className="title">{t("account")}</p>
-                    <div className="wallet-content">
-                        <p className="balance-title">{t("balance")}</p>
-                        <div className="balance-amount">
+                <div className="mts-rounded-lg mts-p-2">
+                    <p className="mts-opacity-75 mts-text-xs">{t('account')}</p>
+                    <div className="mts-flex mts-flex-col">
+                        <p className="mts-mt-2 mts-text-sm">{t('balance')}</p>
+                        <div className="mts-my-2 mts-text-primary-500 mts-font-black mts-text-xl">
                             {TON_BALANCE}
-                            {t("ton")}
+                            {t('ton')}
                         </div>
-                        <div className="address-section">
-                            <div className="address">
+                        <div className="mts-flex mts-items-center mts-gap-1">
+                            <div className="mts-flex mts-opacity-75 mts-rounded mts-bg-zinc-100 mts-px-2 mts-py-1 mts-w-fit mts-text-sm">
                                 {shortAddress(
                                     wallet.account.address,
-                                    "mainnet",
+                                    'mainnet',
                                     4
                                 )}
                             </div>
                             <button
-                                className="wallet-icon"
+                                className="mts-flex mts-justify-center mts-items-center mts-opacity-75 mts-cursor-pointer mts-rounded mts-bg-zinc-100 mts-w-8 mts-h-8 mts-text-black mts-text-xs disabled:mts-opacity-50 disabled:mts-cursor-not-allowed"
                                 disabled={copied}
                                 onClick={() =>
                                     copyToClipboard(wallet.account.address)
@@ -71,7 +71,7 @@ const Wallet = () => {
                                 {copied ? <FaCheck /> : <FaCopy />}
                             </button>
                             <a
-                                className="wallet-icon"
+                                className="mts-flex mts-justify-center mts-items-center mts-opacity-75 mts-cursor-pointer mts-rounded mts-bg-zinc-100 mts-w-8 mts-h-8 mts-text-black mts-text-xs"
                                 target="_blank"
                                 href={`https://tonviewer.com/${wallet.account.address}`}
                             >
@@ -79,10 +79,10 @@ const Wallet = () => {
                             </a>
                         </div>
                         <button
-                            className="disconnect-wallet"
+                            className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer mts-mt-2 mts-rounded mts-bg-zinc-100 mts-h-10 mts-text-black mts-text-sm"
                             onClick={handleDisconnect}
                         >
-                            {t("disconnect_wallet")}
+                            {t('disconnect_wallet')}
                         </button>
                     </div>
                 </div>

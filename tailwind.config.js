@@ -10,7 +10,7 @@ export default {
                 swapcard: '1fr auto',
             },
             colors: {
-                'mts-primary': {
+                primary: {
                     50: 'rgb(var(--mts-primary-50) / <alpha-value>)',
                     100: 'rgb(var(--mts-primary-100) / <alpha-value>)',
                     200: 'rgb(var(--mts-primary-200) / <alpha-value>)',

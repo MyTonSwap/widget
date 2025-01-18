@@ -268,32 +268,36 @@ const CardDialog: FC<CardDialogProps> = ({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className={clsx('card-dialog-container')}
+                        className={clsx(
+                            'mts-fixed mts-top-0 mts-left-0 mts-z-[9999999999999999999999999] mts-bg-black/50 mts-w-full mts-h-full mts-overflow-hidden'
+                        )}
                     >
                         <motion.div
                             initial={modalAnimation.initial}
                             animate={modalAnimation.animate}
                             exit={modalAnimation.exit}
-                            className={clsx('card-dialog')}
+                            className={clsx(
+                                'mts-fixed mts-bottom-0 mts-left-0 mts-flex mts-flex-col mts-shadow-[0px_0px_10px_rgba(0,0,0,0.05)] mts-rounded-t-2xl mts-bg-white mts-p-3 mts-pt-4 mts-pb-2 mts-w-full mts-min-h-[92.5dvh] mts-max-h-[92.5dvh] mts-overflow-y-auto md:mts-shadow-[0_0px_10px_rgba(0,0,0,0.05)] md:mts-rounded-2xl md:mts-w-[90%] md:mts-max-w-[34.375rem] md:mts-h-auto md:mts-min-h-[21.875rem] md:mts-max-h-[70dvh]'
+                            )}
                             ref={ref}
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}
                         >
-                            <div className="dialog-head">
+                            <div className="mts-flex mts-justify-between mts-items-center mts-text-black mts-font-bold mts-text-xl">
                                 <div>{t('select_a_token')}</div>
                                 <button
                                     onClick={handleOnClose}
-                                    className="card-dialog-close"
+                                    className="mts-hidden mts-opacity-50 mts-text-black mts-text-xl md:mts-block"
                                 >
                                     <IoClose />
                                 </button>
                             </div>
                             <div>
-                                <div className="dialog-search">
-                                    <MdOutlineSearch className="dialog-search-icon" />
+                                <div className="mts-flex mts-items-center mts-transition-all mts-duration-200 mts-ease-in-out mts-mt-6 mts-mb-2 mts-border mts-border-black/10 mts-rounded-lg mts-bg-white mts-px-2 mts-w-full mts-h-[3.25rem] hover:mts-bg-zinc-100 focus-within:mts-border-primary-500">
+                                    <MdOutlineSearch className="mts-text-black mts-text-lg md:mts-opacity-50" />
                                     <input
-                                        className="dialog-search-input"
+                                        className="mts-outline-none mts-bg-transparent mts-px-1 mts-w-full mts-h-full mts-text-black mts-text-base md:mts-text-lg"
                                         type="text"
                                         placeholder={t('search')}
                                         data-testid="dialog-search-input"
@@ -304,18 +308,18 @@ const CardDialog: FC<CardDialogProps> = ({
                                 </div>
                             </div>
                             {pinnedTokens && (
-                                <div className="pinned-token-container">
+                                <div className="mts-flex mts-items-center mts-gap-2 mts-py-3">
                                     {pinnedTokens.map((item) => {
                                         return (
                                             <button
-                                                className="pinned-token"
+                                                className="mts-flex mts-items-center mts-gap-1 mts-opacity-80 mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer mts-rounded-full mts-bg-zinc-100 mts-p-1 mts-px-2 mts-text-black mts-text-[0.9rem] hover:mts-opacity-100"
                                                 onClick={() => {
                                                     handleOnTokenSelect(item);
                                                 }}
                                                 key={item.address}
                                             >
                                                 <div
-                                                    className="pinned-token-image"
+                                                    className="mts-rounded-full mts-bg-contain mts-w-5 mts-h-5"
                                                     style={{
                                                         background: `url(${item.image}) var(--background-color)`,
                                                     }}
@@ -328,12 +332,12 @@ const CardDialog: FC<CardDialogProps> = ({
                             )}
                             {!promptForCommunity && (
                                 <>
-                                    <div className="tab-container">
+                                    <div className="mts-flex mts-items-center mts-gap-5 mts-mt-3 mts-mb-2 mts-border-b mts-border-black/10 mts-px-3 mts-pb-2 mts-w-full mts-text-black mts-font-light mts-text-lg">
                                         <button
                                             className={clsx(
-                                                'tab-item',
+                                                'mts-relative mts-transition-all mts-duration-300 mts-ease-in-out mts-bg-transparent mts-text-black mts-text-base',
                                                 activeTab === TABS.ALL &&
-                                                    'active'
+                                                    'mts-text-primary-500 mts-font-semibold'
                                             )}
                                             onClick={() =>
                                                 setActiveTab(TABS.ALL)
@@ -348,15 +352,15 @@ const CardDialog: FC<CardDialogProps> = ({
                                                     animate={{
                                                         opacity: 1,
                                                     }}
-                                                    className="tab-item-cursor"
+                                                    className="mts-absolute mts-bottom-[-9px] mts-bg-primary-500 mts-w-full mts-h-[1px]"
                                                 ></motion.div>
                                             )}
                                         </button>
                                         <button
                                             className={clsx(
-                                                'tab-item',
+                                                'mts-relative mts-transition-all mts-duration-300 mts-ease-in-out mts-bg-transparent mts-text-black mts-text-base',
                                                 activeTab === TABS.FAVORITES &&
-                                                    'active'
+                                                    'mts-text-primary-500 mts-font-semibold'
                                             )}
                                             onClick={() =>
                                                 setActiveTab(TABS.FAVORITES)
@@ -367,17 +371,17 @@ const CardDialog: FC<CardDialogProps> = ({
                                                 <motion.div
                                                     initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
-                                                    className="tab-item-cursor"
+                                                    className="mts-absolute mts-bottom-[-9px] mts-bg-primary-500 mts-w-full mts-h-[1px]"
                                                 ></motion.div>
                                             )}
                                         </button>
                                     </div>
                                     {activeTab === TABS.ALL && (
                                         <div
-                                            className="dialog-tokens-container"
+                                            className="mts-flex-grow mts-h-[50vh] mts-overflow-y-scroll"
                                             style={{
                                                 ...({
-                                                    '--thumb-scrollbar': `var(--primary-color)`,
+                                                    '--thumb-scrollbar': `rgb(var(--mts-primary-500))`,
                                                 } as CSSProperties),
                                             }}
                                             id="scroll-div"
@@ -390,21 +394,21 @@ const CardDialog: FC<CardDialogProps> = ({
                                                 next={() => onNextPage(page)}
                                                 scrollableTarget="scroll-div"
                                                 loader={
-                                                    <div className="infinite-scroll-loading">
-                                                        <CgSpinnerTwo className="animate-spin" />
+                                                    <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-[var(--text-black-color)] mts-text-[1.25rem]">
+                                                        <CgSpinnerTwo className="mts-animate-spin" />
                                                     </div>
                                                 }
                                                 endMessage={
                                                     filteredAssets.length ===
                                                     0 ? (
                                                         <div
-                                                            className="no-token-found"
+                                                            className="mts-flex mts-grow mts-flex-col mts-justify-center mts-items-center mts-mt-4 mts-h-full mts-text-[var(--text-black-color)]"
                                                             data-testid="token-not-found"
                                                         >
                                                             {t(
                                                                 'token_notfound'
                                                             )}
-                                                            <span>
+                                                            <span className="mts-opacity-70 mts-text-xs">
                                                                 {t(
                                                                     'not_found_desc'
                                                                 )}
@@ -412,7 +416,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                         </div>
                                                     ) : (
                                                         <div
-                                                            className="no-token-found"
+                                                            className="mts-flex mts-grow mts-flex-col mts-justify-center mts-items-center mts-mt-4 mts-h-full mts-text-[var(--text-black-color)]"
                                                             data-testid="no-more-token"
                                                         >
                                                             {t(
@@ -444,18 +448,18 @@ const CardDialog: FC<CardDialogProps> = ({
                                 </>
                             )}
                             {promptForCommunity && (
-                                <div className="dialog-community-modal">
+                                <div className="mts-flex mts-grow mts-flex-col mts-h-full">
                                     {contractCommunity && (
                                         <>
-                                            <div className="community-modal-container">
-                                                <div className="community-modal-warning">
-                                                    <TiWarning className="icon" />
-                                                    <h1 className="title">
+                                            <div className="mts-flex mts-grow mts-flex-col mts-gap-2">
+                                                <div className="mts-flex mts-flex-col mts-justify-center mts-items-center mts-mt-1 mts-mb-1 mts-rounded-lg mts-bg-[var(--input-card-color)] mts-p-2 mts-text-[var(--text-black-color)]">
+                                                    <TiWarning className="mts-text-[#f59e00] mts-text-[1.875rem]" />
+                                                    <h1 className="mts-font-bold mts-text-base">
                                                         {t(
                                                             'trade_warning.trade_title'
                                                         )}
                                                     </h1>
-                                                    <p className="description">
+                                                    <p className="mts-px-5 mts-text-sm mts-text-center">
                                                         {t(
                                                             'trade_warning.trade_description'
                                                         )}
@@ -474,7 +478,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                 )}
                                             </div>
                                             <button
-                                                className="accept-button"
+                                                className="mts-flex mts-justify-center mts-items-center mts-rounded-lg mts-bg-[var(--primary-color)] mts-w-full mts-h-10 mts-text-[var(--text-black-color)] mts-text-sm"
                                                 onClick={() => {
                                                     addToken(
                                                         contractCommunity!
@@ -491,10 +495,10 @@ const CardDialog: FC<CardDialogProps> = ({
                                     )}
                                 </div>
                             )}
-                            <div className="close-footer">
+                            <div className="mts-flex mts-justify-center mts-items-center mts-cursor-pointer mts-pt-2 mts-text-sm md:mts-hidden">
                                 <button
                                     onClick={handleOnClose}
-                                    className="close-footer-button"
+                                    className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-rounded-lg mts-bg-[var(--secondary-color)] mts-w-full mts-h-12 mts-text-[var(--text-black-color)] mts-text-center active:mts-scale-95"
                                 >
                                     Close
                                 </button>

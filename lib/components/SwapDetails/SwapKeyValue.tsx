@@ -1,5 +1,4 @@
-import { FC, ReactNode } from "react";
-import "./SwapKeyValue.scss";
+import { FC, ReactNode } from 'react';
 type SwapKeyValueProps = {
     keyText: ReactNode;
     value: ReactNode;
@@ -7,9 +6,9 @@ type SwapKeyValueProps = {
 
 const SwapKeyValue: FC<SwapKeyValueProps> = ({ keyText, value }) => {
     return (
-        <div className="details-key-value">
-            <div className="details-key-value-key">{keyText}</div>
-            <div className="details-key-value-value">{value}</div>
+        <div className="mts-flex mts-justify-between mts-items-center mts-font-medium mts-text-sm mts-font-inter">
+            <div className="mts-opacity-60 mts-text-black">{keyText}</div>
+            <div className="mts-text-black">{value}</div>
         </div>
     );
 };

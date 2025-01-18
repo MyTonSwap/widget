@@ -1,18 +1,19 @@
-import { ChangeEvent, CSSProperties, FC, useEffect, useState } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import CardDialog from "./CardDialog";
-import { useSwapStore } from "../../store/swap.store";
-import { Asset, BestRoute, fromNano } from "@mytonswap/sdk";
-import formatNumber from "../../utils/formatNum";
-import CardButton from "./CardButton";
-import { toNano } from "@mytonswap/sdk";
-import { useWalletStore } from "../../store/wallet.store";
-import { TON_ADDR } from "../../constants";
-import "./Card.scss";
-import { useOptionsStore } from "../../store/options.store";
-import { useTranslation } from "react-i18next";
+import { ChangeEvent, CSSProperties, FC, useEffect, useState } from 'react';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+import CardDialog from './CardDialog';
+import { useSwapStore } from '../../store/swap.store';
+import { Asset, BestRoute, fromNano } from '@mytonswap/sdk';
+import formatNumber from '../../utils/formatNum';
+import CardButton from './CardButton';
+import { toNano } from '@mytonswap/sdk';
+import { useWalletStore } from '../../store/wallet.store';
+import { TON_ADDR } from '../../constants';
+import './Card.scss';
+import { useOptionsStore } from '../../store/options.store';
+import { useTranslation } from 'react-i18next';
+import { cn } from '../../utils/cn';
 type CardProps = {
-    type: "pay" | "receive";
+    type: 'pay' | 'receive';
 };
 
 const Card: FC<CardProps> = ({ type }) => {
@@ -20,7 +21,7 @@ const Card: FC<CardProps> = ({ type }) => {
     const [isSelectVisible, setIsSelectVisible] = useState(false);
     const [typingTimeout, setTypingTimeout] =
         useState<ReturnType<typeof setTimeout>>();
-    const [userInput, setUserInput] = useState("");
+    const [userInput, setUserInput] = useState('');
     const {
         setPayToken,
         pay_token,
@@ -37,7 +38,7 @@ const Card: FC<CardProps> = ({ type }) => {
     const { balance } = useWalletStore();
     const { options } = useOptionsStore();
     const onTokenSelect = (asset: Asset) => {
-        if (type === "pay") {
+        if (type === 'pay') {
             setPayToken(asset);
         } else {
             setReceiveToken(asset);
@@ -46,7 +47,7 @@ const Card: FC<CardProps> = ({ type }) => {
     };
 
     const tokenRate = (() => {
-        if (type === "pay") {
+        if (type === 'pay') {
             return pay_rate?.USD ?? 0;
         } else {
             return receive_rate?.USD ?? 0;
@@ -54,7 +55,7 @@ const Card: FC<CardProps> = ({ type }) => {
     })();
 
     const token = (() => {
-        if (type === "pay") {
+        if (type === 'pay') {
             return pay_token;
         } else {
             return receive_token;
@@ -64,9 +65,9 @@ const Card: FC<CardProps> = ({ type }) => {
     const isRouteAvailable = bestRoute && bestRoute.pool_data;
 
     const value =
-        type === "pay"
+        type === 'pay'
             ? userInput
-            : (isRouteAvailable && bestRoute?.pool_data.receive_show) ?? 0;
+            : ((isRouteAvailable && bestRoute?.pool_data.receive_show) ?? 0);
 
     const calculatePayRate = (payAmount: bigint, tokenRate: number) =>
         payAmount
@@ -88,7 +89,7 @@ const Card: FC<CardProps> = ({ type }) => {
             : 0;
 
     const calculatedRate =
-        type === "pay"
+        type === 'pay'
             ? calculatePayRate(pay_amount, tokenRate)
             : calculateReceiveRate(bestRoute, tokenRate);
 
@@ -106,11 +107,11 @@ const Card: FC<CardProps> = ({ type }) => {
         e.preventDefault();
         const decimalRegexp = /^\d*(?:\.\d{0,18})?$/; // Allow up to 18 decimal places
 
-        let userInput = e.target.value.replace(/,/g, ".");
+        let userInput = e.target.value.replace(/,/g, '.');
 
         // Handle empty string input
-        if (userInput === "") {
-            setUserInput("");
+        if (userInput === '') {
+            setUserInput('');
             timeoutSetPayAmount(0n);
             return;
         }
@@ -118,11 +119,11 @@ const Card: FC<CardProps> = ({ type }) => {
         // If input matches the decimal pattern
         if (decimalRegexp.test(userInput)) {
             // Avoid leading zeros (except for values like "0." or "0.1")
-            userInput = userInput.replace(/^0+(?=\d)/, "");
+            userInput = userInput.replace(/^0+(?=\d)/, '');
 
             // Handle case where input is exactly "0." (valid scenario)
-            if (userInput === "." || userInput === "0.") {
-                setUserInput("0.");
+            if (userInput === '.' || userInput === '0.') {
+                setUserInput('0.');
             } else {
                 setUserInput(userInput);
             }
@@ -137,13 +138,13 @@ const Card: FC<CardProps> = ({ type }) => {
     };
 
     useEffect(() => {
-        if (type === "pay") {
+        if (type === 'pay') {
             setUserInput(fromNano(pay_amount, pay_token?.decimal));
         }
     }, [pay_amount]);
 
     const balanceToken = (() => {
-        if (type === "pay") {
+        if (type === 'pay') {
             return pay_token ? balance.get(pay_token.address) : null;
         } else {
             return receive_token ? balance.get(receive_token.address) : null;
@@ -164,20 +165,28 @@ const Card: FC<CardProps> = ({ type }) => {
         setPayAmount(payAmount);
     };
     const isDisabled = (() => {
-        if (type === "pay" && options.lock_pay_token) return true;
-        if (type === "receive" && options.lock_receive_token) return true;
+        if (type === 'pay' && options.lock_pay_token) return true;
+        if (type === 'receive' && options.lock_receive_token) return true;
         return false;
     })();
     return (
         <>
-            <div className="swapcard-card">
-                <div className="card-head">
-                    <span data-testid="swapcard-title" className="card-title">
-                        {type === "pay" ? t("you_pay") : t("you_receive")}
+            <div className="mts-flex mts-flex-col mts-w-full mts-text-base">
+                <div className="mts-flex mts-justify-between mts-items-center mts-px-1">
+                    <span
+                        data-testid="swapcard-title"
+                        className="mts-opacity-70 mts-text-black"
+                    >
+                        {type === 'pay' ? t('you_pay') : t('you_receive')}
                     </span>
-                    {type === "pay" && balanceToken ? (
-                        <span className="max-button" onClick={handleMaxClick}>
-                            <span className="max-text">{t("max")} : </span>
+                    {type === 'pay' && balanceToken ? (
+                        <span
+                            className="mts-cursor-pointer mts-text-black"
+                            onClick={handleMaxClick}
+                        >
+                            <span className="mts-text-primary-500">
+                                {t('max')} :{' '}
+                            </span>
                             <span>
                                 {formatNumber(
                                     +fromNano(
@@ -186,12 +195,12 @@ const Card: FC<CardProps> = ({ type }) => {
                                     ),
                                     2,
                                     false
-                                )}{" "}
+                                )}{' '}
                                 {pay_token?.symbol}
                             </span>
                         </span>
                     ) : (
-                        <span className="max-button pay">
+                        <span className="mts-cursor-auto mts-text-black">
                             {balanceToken && receive_token && (
                                 <span>
                                     {formatNumber(
@@ -201,17 +210,22 @@ const Card: FC<CardProps> = ({ type }) => {
                                         ),
                                         2,
                                         false
-                                    )}{" "}
+                                    )}{' '}
                                     {receive_token?.symbol}
                                 </span>
                             )}
                         </span>
                     )}
                 </div>
-                <div className={`card-content ${type}`}>
-                    <div className="card-inputs">
-                        {((type === "receive" && !isFindingBestRoute) ||
-                            type === "pay") && (
+                <div
+                    className={cn(
+                        `mts-grid mts-grid-cols-[1fr_auto] mts-gap-1 mts-mt-3.5 mts-rounded-lg mts-bg-white mts-p-4 mts-w-full`,
+                        type === 'pay' ? 'mts-bg-white' : 'mts-bg-zinc-200'
+                    )}
+                >
+                    <div className="mts-flex mts-flex-col mts-justify-center mts-gap-1 mts-w-full">
+                        {((type === 'receive' && !isFindingBestRoute) ||
+                            type === 'pay') && (
                             <input
                                 type="text"
                                 inputMode="decimal"
@@ -219,61 +233,63 @@ const Card: FC<CardProps> = ({ type }) => {
                                 autoCorrect="off"
                                 minLength={1}
                                 maxLength={14}
-                                value={value ?? ""}
+                                value={value ?? ''}
                                 disabled={
-                                    type === "receive" || options.lock_input
+                                    type === 'receive' || options.lock_input
                                 }
                                 onChange={handlePayAmountChange}
                                 pattern="^[0-9]*[.,]?[0-9]*$"
                                 placeholder="0"
-                                className={`card-input ${type}`}
+                                className={`mts-outline-none mts-bg-transparent mts-h-7.5 mts-text-black mts-font-bold mts-text-2xl mts-font-inherit ${type}`}
                                 data-testid={`swapcard-input-${type}`}
                             />
                         )}
-                        {type === "receive" && isFindingBestRoute && (
+                        {type === 'receive' && isFindingBestRoute && (
                             <div
-                                className="card-input-loading"
+                                className="mts-rounded-lg mts-w-24 mts-h-[2rem]"
                                 data-skeleton
                                 style={{
                                     ...({
-                                        "--skeleton-bg": `var(--input-token-color)`,
-                                        "--skeleton-shine": `var(--skeleton-shine-color)`,
+                                        '--skeleton-bg': `var(--input-token-color)`,
+                                        '--skeleton-shine': `var(--skeleton-shine-color)`,
                                     } as CSSProperties),
                                 }}
                             />
                         )}
-                        {((type === "receive" && !isFindingBestRoute) ||
-                            type === "pay") && (
-                            <span className="card-rate">${calculatedRate}</span>
+                        {((type === 'receive' && !isFindingBestRoute) ||
+                            type === 'pay') && (
+                            <span className="mts-flex mts-items-center mts-opacity-50 mts-h-5 mts-text-black mts-text-base mts-font-inherit mts-text-left">
+                                ${calculatedRate}
+                            </span>
                         )}
-                        {type === "receive" && isFindingBestRoute && (
+                        {type === 'receive' && isFindingBestRoute && (
                             <div
-                                className="card-rate-loading"
+                                className="mts-rounded-lg mts-w-12 mts-h-5"
                                 data-skeleton
                                 style={{
                                     ...({
-                                        "--skeleton-bg": `var(--input-token-color)`,
-                                        "--skeleton-shine": `var(--skeleton-shine-color)`,
+                                        '--skeleton-bg': `var(--input-token-color)`,
+                                        '--skeleton-shine': `var(--skeleton-shine-color)`,
                                     } as CSSProperties),
                                 }}
                             />
                         )}
                     </div>
-                    <div className="card-button">
+                    <div className="mts-flex mts-items-center">
                         <CardButton
                             type={type}
                             onClick={() => setIsSelectVisible(true)}
                             isLoading={isLoading || !token}
                         >
                             <div
-                                className="selection-box"
+                                className="mts-rounded-full !mts-bg-contain mts-w-8 mts-h-8"
                                 style={{
-                                    background: `url(${token?.image})`,
+                                    background: `url(${token?.image}) `,
                                 }}
                             ></div>
                             <div>{token?.symbol}</div>
                             {!isDisabled && (
-                                <div className="dropdown-icon">
+                                <div className="mts-dropdown-icon">
                                     <MdKeyboardArrowDown />
                                 </div>
                             )}

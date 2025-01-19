@@ -13,9 +13,24 @@ type ConfirmationModalProps = {
 };
 
 const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
+    const {
+        pay_amount,
+        pay_token,
+        bestRoute,
+        receive_token,
+        receive_rate,
+        slippage,
+        setModalState,
+        setErrorMessage,
+    } = useSwapStore();
     const { t } = useTranslation();
+
     const handleConfirmClose = () => {
-        setConfirmModal(ModalState.IN_PROGRESS);
+        setErrorMessage({
+            errorMessage: t('error.cancel_swap'),
+            errorTitle: t('error.cancel_swap_title'),
+        });
+        setConfirmModal(ModalState.ERROR);
     };
     const { tonConnectInstance } = useOptionsStore();
     useEffect(() => {
@@ -26,15 +41,6 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
         }
     }, [tonConnectInstance]);
 
-    const {
-        pay_amount,
-        pay_token,
-        bestRoute,
-        receive_token,
-        receive_rate,
-        slippage,
-        setModalState,
-    } = useSwapStore();
     const handleConfirmSwap = () => {
         if (tonConnectInstance?.wallet) {
             swap(tonConnectInstance, bestRoute!);

@@ -1,16 +1,16 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { useWalletStore } from "../../store/wallet.store";
-import { ConnectedWallet, TonConnectUI } from "@tonconnect/ui-react";
-import shortAddress from "../../utils/shortAddress";
+import { FC, useEffect, useRef, useState } from 'react';
+import { useWalletStore } from '../../store/wallet.store';
+import { ConnectedWallet, TonConnectUI } from '@tonconnect/ui-react';
+import shortAddress from '../../utils/shortAddress';
 
-import "./WalletProfile.scss";
-import "../Header/SettingPopover.scss";
-import "../Swap/Swap.scss";
+import './WalletProfile.scss';
+import '../Header/SettingPopover.scss';
+import '../Swap/Swap.scss';
 
-import { AnimatePresence, motion } from "framer-motion";
-import Wallet from "../Header/Wallet";
-import { useOnClickOutside } from "usehooks-ts";
-import { popOverVariationsKeyValue } from "../../constants";
+import { AnimatePresence, motion } from 'framer-motion';
+import Wallet from '../Header/Wallet';
+import { useOnClickOutside } from 'usehooks-ts';
+import { popOverVariationsKeyValue } from '../../constants';
 export type WalletProfileProps = {
     tonConnectInstance: TonConnectUI;
     position?: keyof typeof popOverVariationsKeyValue;
@@ -26,7 +26,7 @@ export type WalletProfileProps = {
 
 export const WalletProfile: FC<WalletProfileProps> = ({
     tonConnectInstance,
-    position = "top-right",
+    position = 'top-right',
 }) => {
     const { setWallet, disconnect, wallet } = useWalletStore();
 
@@ -66,15 +66,15 @@ export const WalletProfile: FC<WalletProfileProps> = ({
 
     const popOverAnimationVariation = popOverVariationsKeyValue[position];
     return (
-        <div className="wallet-profile-mts mytonswap-app">
+        <div className="mts-relative">
             <div
-                className={`wallet-profile-button ${wallet ? "connected" : ""}`}
+                className={`mts-cursor-pointer mts-border mts-rounded-full mts-bg-primary mts-px-3 mts-py-2 mts-text-white mts-font-medium mts-text-sm mts-select-none ${wallet ? 'mts-bg-zinc-100 mts-text-black' : ''}`}
                 onClick={wallet ? handleButtonClick : handleConnectWallet}
                 ref={buttonRef}
             >
                 {wallet
-                    ? shortAddress(wallet.account.address, "mainnet", 4)
-                    : "Connect Wallet"}
+                    ? shortAddress(wallet.account.address, 'mainnet', 4)
+                    : 'Connect Wallet'}
             </div>
 
             <AnimatePresence>
@@ -83,7 +83,7 @@ export const WalletProfile: FC<WalletProfileProps> = ({
                         initial={popOverAnimationVariation.initial}
                         exit={popOverAnimationVariation.exit}
                         animate={popOverAnimationVariation.animate}
-                        transition={{ ease: "easeOut", duration: 0.15 }}
+                        transition={{ ease: 'easeOut', duration: 0.15 }}
                         ref={ref}
                         className="wallet-popover"
                     >

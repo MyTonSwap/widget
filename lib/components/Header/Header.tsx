@@ -4,7 +4,7 @@ import { useOptionsStore } from '../../store/options.store';
 import Refresh from '../Common/Refresh';
 import { useSwapStore } from '../../store/swap.store';
 import { useTranslation } from 'react-i18next';
-import Setting from '../icons/Setting';
+import Menu from '../icons/Menu';
 const Header = () => {
     const { t } = useTranslation();
     const { options } = useOptionsStore();
@@ -28,7 +28,7 @@ const Header = () => {
                 )}
                 {options.ui_preferences?.show_settings && (
                     <SettingPopover>
-                        <Setting className="mts-text-primary-950 mts-text-2xl" />
+                        <Menu className="mts-text-primary-950 mts-text-2xl mts-rotate-90" />
                     </SettingPopover>
                 )}
             </div>

@@ -17,12 +17,6 @@
 }
 
 .mytonswap-app {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    * {
-        font-family: 'Plus Jakarta Sans', sans-serif !important;
-        -webkit-tap-highlight-color: transparent;
-    }
-
     input {
         outline: none;
         border: none;
@@ -55,10 +49,10 @@
         line-clamp: 1;
     }
     .container {
-        border-width: 1px;
-        border-style: solid;
-        border-color: var(--swap-container-border-color);
-        border-radius: 1rem;
+        // border-width: 1px;
+        // border-style: solid;
+        // border-color: var(--swap-container-border-color);
+        // border-radius: 1rem;
         // background: var(--swap-container-background-color);
         padding: 0.5rem;
         max-width: 21.875rem;

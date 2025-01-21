@@ -11,6 +11,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Wallet from '../Header/Wallet';
 import { useOnClickOutside } from 'usehooks-ts';
 import { popOverVariationsKeyValue } from '../../constants';
+import { useTranslation } from 'react-i18next';
+import { cn } from '../../utils/cn';
 export type WalletProfileProps = {
     tonConnectInstance: TonConnectUI;
     position?: keyof typeof popOverVariationsKeyValue;
@@ -29,7 +31,7 @@ export const WalletProfile: FC<WalletProfileProps> = ({
     position = 'top-right',
 }) => {
     const { setWallet, disconnect, wallet } = useWalletStore();
-
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const ref = useRef(null);
     const buttonRef = useRef(null);
@@ -68,13 +70,16 @@ export const WalletProfile: FC<WalletProfileProps> = ({
     return (
         <div className="mts-relative">
             <div
-                className={`mts-cursor-pointer mts-border mts-rounded-full mts-bg-primary mts-px-3 mts-py-2 mts-text-white mts-font-medium mts-text-sm mts-select-none ${wallet ? 'mts-bg-zinc-100 mts-text-black' : ''}`}
+                className={cn(
+                    `mts-cursor-pointer mts-border mts-rounded-full mts-bg-primary-500 mts-px-3 mts-py-2 mts-text-white mts-font-medium mts-text-sm mts-select-none`,
+                    wallet && 'mts-bg-zinc-100 mts-text-black'
+                )}
                 onClick={wallet ? handleButtonClick : handleConnectWallet}
                 ref={buttonRef}
             >
                 {wallet
                     ? shortAddress(wallet.account.address, 'mainnet', 4)
-                    : 'Connect Wallet'}
+                    : t('button_text.connect_wallet')}
             </div>
 
             <AnimatePresence>
@@ -85,9 +90,9 @@ export const WalletProfile: FC<WalletProfileProps> = ({
                         animate={popOverAnimationVariation.animate}
                         transition={{ ease: 'easeOut', duration: 0.15 }}
                         ref={ref}
-                        className="wallet-popover"
+                        className="mts-absolute mts-shadow-lg mts-rounded-xl mts-bg-modal-background-color mts-p-1 mts-min-w-[15.625rem] mts-w-full  mts-h-fit mts-text-text-black-color"
                     >
-                        <Wallet />
+                        <Wallet isWalletPopover />
                     </motion.div>
                 )}
             </AnimatePresence>

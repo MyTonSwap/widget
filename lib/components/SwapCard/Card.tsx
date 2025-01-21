@@ -171,56 +171,23 @@ const Card: FC<CardProps> = ({ type }) => {
     })();
     return (
         <>
-            <div className="mts-flex mts-flex-col mts-w-full mts-text-base">
-                <div className="mts-flex mts-justify-between mts-items-center mts-px-1">
+            <div
+                className={cn(
+                    'mts-flex mts-flex-col mts-w-full mts-text-base mts-bg-zinc-50 mts-border-[1px] mts-border-zinc-200 mts-p-4 mts-rounded-lg',
+                    type === 'receive' && 'mts-m-[2px]'
+                )}
+            >
+                <div className="mts-flex mts-justify-between mts-items-center">
                     <span
                         data-testid="swapcard-title"
-                        className="mts-opacity-70 mts-text-black"
+                        className="mts-opacity-70 mts-text-black mts-text-xs mts-font-normal"
                     >
                         {type === 'pay' ? t('you_pay') : t('you_receive')}
                     </span>
-                    {type === 'pay' && balanceToken ? (
-                        <span
-                            className="mts-cursor-pointer mts-text-black"
-                            onClick={handleMaxClick}
-                        >
-                            <span className="mts-text-primary-500">
-                                {t('max')} :{' '}
-                            </span>
-                            <span>
-                                {formatNumber(
-                                    +fromNano(
-                                        balanceToken.balance,
-                                        pay_token!.decimal
-                                    ),
-                                    2,
-                                    false
-                                )}{' '}
-                                {pay_token?.symbol}
-                            </span>
-                        </span>
-                    ) : (
-                        <span className="mts-cursor-auto mts-text-black">
-                            {balanceToken && receive_token && (
-                                <span>
-                                    {formatNumber(
-                                        +fromNano(
-                                            balanceToken.balance,
-                                            receive_token!.decimal
-                                        ),
-                                        2,
-                                        false
-                                    )}{' '}
-                                    {receive_token?.symbol}
-                                </span>
-                            )}
-                        </span>
-                    )}
                 </div>
                 <div
                     className={cn(
-                        `mts-grid mts-grid-cols-[1fr_auto] mts-gap-1 mts-mt-3.5 mts-rounded-lg mts-bg-white mts-p-4 mts-w-full`,
-                        type === 'pay' ? 'mts-bg-white' : 'mts-bg-zinc-200'
+                        `mts-grid mts-grid-cols-[1fr_auto] mts-gap-1  mts-rounded-lg  mts-w-full mts-mt-3`
                     )}
                 >
                     <div className="mts-flex mts-flex-col mts-justify-center mts-gap-1 mts-w-full">
@@ -240,13 +207,13 @@ const Card: FC<CardProps> = ({ type }) => {
                                 onChange={handlePayAmountChange}
                                 pattern="^[0-9]*[.,]?[0-9]*$"
                                 placeholder="0"
-                                className={`mts-outline-none mts-bg-transparent mts-h-7.5 mts-text-black mts-font-bold mts-text-2xl mts-font-inherit ${type}`}
+                                className={`mts-outline-none mts-bg-transparent mts-h-7 mts-text-black mts-font-bold  mts-font-inherit mts-text-lg ${type}`}
                                 data-testid={`swapcard-input-${type}`}
                             />
                         )}
                         {type === 'receive' && isFindingBestRoute && (
                             <div
-                                className="mts-rounded-lg mts-w-24 mts-h-[2rem]"
+                                className="mts-rounded-lg mts-w-24 mts-h-7"
                                 data-skeleton
                                 style={{
                                     ...({
@@ -258,8 +225,8 @@ const Card: FC<CardProps> = ({ type }) => {
                         )}
                         {((type === 'receive' && !isFindingBestRoute) ||
                             type === 'pay') && (
-                            <span className="mts-flex mts-items-center mts-opacity-50 mts-h-5 mts-text-black mts-text-base mts-font-inherit mts-text-left">
-                                ${calculatedRate}
+                            <span className="mts-flex mts-items-center mts-opacity-50 mts-h-5 mts-text-black mts-text-sm mts-font-inherit mts-text-left">
+                                {calculatedRate} $
                             </span>
                         )}
                         {type === 'receive' && isFindingBestRoute && (
@@ -275,7 +242,7 @@ const Card: FC<CardProps> = ({ type }) => {
                             />
                         )}
                     </div>
-                    <div className="mts-flex mts-items-center">
+                    <div className="mts-flex mts-items-end mts-flex-col mts-gap-2">
                         <CardButton
                             type={type}
                             onClick={() => setIsSelectVisible(true)}
@@ -294,6 +261,43 @@ const Card: FC<CardProps> = ({ type }) => {
                                 </div>
                             )}
                         </CardButton>
+                        {type === 'pay' && balanceToken ? (
+                            <span
+                                className="mts-cursor-pointer  mts-text-xs mts-flex mts-items-center mts-gap-2 mts-text-zinc-500 mts-font-medium"
+                                onClick={handleMaxClick}
+                            >
+                                <span>
+                                    {formatNumber(
+                                        +fromNano(
+                                            balanceToken.balance,
+                                            pay_token!.decimal
+                                        ),
+                                        2,
+                                        false
+                                    )}{' '}
+                                    {pay_token?.symbol}
+                                </span>
+                                <span className="mts-text-black mts-px-1 mts-bg-zinc-200 mts-text-[10px] mts-rounded-full">
+                                    {t('max')}
+                                </span>
+                            </span>
+                        ) : (
+                            <span className="mts-cursor-auto  mts-text-xs mts-text-zinc-500">
+                                {balanceToken && receive_token && (
+                                    <span>
+                                        {formatNumber(
+                                            +fromNano(
+                                                balanceToken.balance,
+                                                receive_token!.decimal
+                                            ),
+                                            2,
+                                            false
+                                        )}{' '}
+                                        {receive_token?.symbol}
+                                    </span>
+                                )}
+                            </span>
+                        )}
                     </div>
                 </div>
             </div>

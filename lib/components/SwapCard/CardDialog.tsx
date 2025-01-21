@@ -8,8 +8,7 @@ import {
     useRef,
     useState,
 } from 'react';
-import { IoClose } from 'react-icons/io5';
-import { MdOutlineSearch } from 'react-icons/md';
+
 import { AnimatePresence, motion } from 'framer-motion';
 import Token from './Token';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -18,7 +17,6 @@ import { Asset } from '@mytonswap/sdk';
 import sortAssets from '../../utils/sortAssets';
 import { CgSpinnerTwo } from 'react-icons/cg';
 import { address } from '@ton/ton';
-import { TiWarning } from 'react-icons/ti';
 import './CardDialog.scss';
 import { useMediaQuery, useOnClickOutside } from 'usehooks-ts';
 import { modalAnimationDesktop, modalAnimationMobile } from '../../constants';
@@ -27,6 +25,9 @@ import catchError from '../../utils/catchErrors';
 import { reportErrorWithToast } from '../../services/errorAnalytics';
 import { useTranslation } from 'react-i18next';
 import FavList from './FavList';
+import Close from '../icons/Close';
+import Search from '../icons/Search';
+import Warning from '../icons/Warning';
 type CardDialogProps = {
     isSelectVisible: boolean;
     setIsSelectVisible: Dispatch<SetStateAction<boolean>>;
@@ -277,27 +278,27 @@ const CardDialog: FC<CardDialogProps> = ({
                             animate={modalAnimation.animate}
                             exit={modalAnimation.exit}
                             className={clsx(
-                                'mts-fixed mts-bottom-0 mts-left-0 mts-flex mts-flex-col mts-shadow-[0px_0px_10px_rgba(0,0,0,0.05)] mts-rounded-t-2xl mts-bg-white mts-p-3 mts-pt-4 mts-pb-2 mts-w-full mts-min-h-[92.5dvh] mts-max-h-[92.5dvh] mts-overflow-y-auto md:mts-shadow-[0_0px_10px_rgba(0,0,0,0.05)] md:mts-rounded-2xl md:mts-w-[90%] md:mts-max-w-[34.375rem] md:mts-h-auto md:mts-min-h-[21.875rem] md:mts-max-h-[70dvh]'
+                                'mts-fixed mts-bottom-0 mts-left-0 mts-flex mts-flex-col mts-shadow-[0px_0px_10px_rgba(0,0,0,0.05)] mts-rounded-t-2xl mts-bg-white mts-p-4 mts-pt-4 mts-pb-2 mts-w-full mts-min-h-[92.5dvh] mts-max-h-[92.5dvh] mts-overflow-y-auto md:mts-shadow-[0_0px_10px_rgba(0,0,0,0.05)] md:mts-rounded-2xl md:mts-w-[90%] md:mts-max-w-[34.375rem] md:mts-h-auto md:mts-min-h-[21.875rem] md:mts-max-h-[70dvh]'
                             )}
                             ref={ref}
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}
                         >
-                            <div className="mts-flex mts-justify-between mts-items-center mts-text-black mts-font-bold mts-text-xl">
+                            <div className="mts-flex mts-justify-between mts-items-center mts-text-black mts-font-bold mts-text-lg">
                                 <div>{t('select_a_token')}</div>
                                 <button
                                     onClick={handleOnClose}
-                                    className="mts-hidden mts-opacity-50 mts-text-black mts-text-xl md:mts-block"
+                                    className="mts-text-black mts-text-2xl md:mts-block"
                                 >
-                                    <IoClose />
+                                    <Close />
                                 </button>
                             </div>
                             <div>
-                                <div className="mts-flex mts-items-center mts-transition-all mts-duration-200 mts-ease-in-out mts-mt-6 mts-mb-2 mts-border mts-border-black/10 mts-rounded-lg mts-bg-white mts-px-2 mts-w-full mts-h-[3.25rem] hover:mts-bg-zinc-100 focus-within:mts-border-primary-500">
-                                    <MdOutlineSearch className="mts-text-black mts-text-lg md:mts-opacity-50" />
+                                <div className="mts-flex mts-items-center mts-transition-all mts-duration-200 mts-ease-in-out mts-mt-6 mts-mb-2 mts-border mts-border-black/10 mts-rounded-lg mts-bg-white mts-px-3 mts-w-full mts-h-10 hover:mts-bg-zinc-100 focus-within:mts-border-primary-500">
+                                    <Search className="mts-text-zinc-500 mts-text-lg md:mts-opacity-50" />
                                     <input
-                                        className="mts-outline-none mts-bg-transparent mts-px-1 mts-w-full mts-h-full mts-text-black mts-text-base md:mts-text-lg"
+                                        className="mts-outline-none mts-bg-transparent mts-px-2 mts-w-full mts-h-full mts-text-black mts-text-sm md:mts-text-lg"
                                         type="text"
                                         placeholder={t('search')}
                                         data-testid="dialog-search-input"
@@ -335,7 +336,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                     <div className="mts-flex mts-items-center mts-gap-5 mts-mt-3 mts-mb-2 mts-border-b mts-border-black/10 mts-px-3 mts-pb-2 mts-w-full mts-text-black mts-font-light mts-text-lg">
                                         <button
                                             className={clsx(
-                                                'mts-relative mts-transition-all mts-duration-300 mts-ease-in-out mts-bg-transparent mts-text-black mts-text-base',
+                                                'mts-relative mts-transition-all mts-duration-300 mts-ease-in-out mts-bg-transparent mts-text-black mts-text-sm',
                                                 activeTab === TABS.ALL &&
                                                     'mts-text-primary-500 mts-font-semibold'
                                             )}
@@ -358,7 +359,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                         </button>
                                         <button
                                             className={clsx(
-                                                'mts-relative mts-transition-all mts-duration-300 mts-ease-in-out mts-bg-transparent mts-text-black mts-text-base',
+                                                'mts-relative mts-transition-all mts-duration-300 mts-ease-in-out mts-bg-transparent mts-text-black mts-text-sm',
                                                 activeTab === TABS.FAVORITES &&
                                                     'mts-text-primary-500 mts-font-semibold'
                                             )}
@@ -395,7 +396,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                 scrollableTarget="scroll-div"
                                                 loader={
                                                     <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-[var(--text-black-color)] mts-text-[1.25rem]">
-                                                        <CgSpinnerTwo className="mts-animate-spin" />
+                                                        <CgSpinnerTwo className="mts-animate-spin mts-text-primary-500" />
                                                     </div>
                                                 }
                                                 endMessage={
@@ -453,32 +454,33 @@ const CardDialog: FC<CardDialogProps> = ({
                                         <>
                                             <div className="mts-flex mts-grow mts-flex-col mts-gap-2">
                                                 <div className="mts-flex mts-flex-col mts-justify-center mts-items-center mts-mt-1 mts-mb-1 mts-rounded-lg mts-bg-[var(--input-card-color)] mts-p-2 mts-text-[var(--text-black-color)]">
-                                                    <TiWarning className="mts-text-[#f59e00] mts-text-[1.875rem]" />
-                                                    <h1 className="mts-font-bold mts-text-base">
+                                                    <div className="mts-h-20 mts-w-20 mts-bg-zinc-100 mts-border-zinc-200 mts-border-[1px] mts-flex mts-items-center mts-justify-center   mts-rounded-full">
+                                                        <Warning className="mts-text-red-500 mts-text-4xl " />
+                                                    </div>
+                                                    <h1 className="mts-font-bold mts-text-lg mts-mt-6 ">
                                                         {t(
                                                             'trade_warning.trade_title'
                                                         )}
                                                     </h1>
-                                                    <p className="mts-px-5 mts-text-sm mts-text-center">
+                                                    <p className="mts-px-5 mts-text-sm mts-text-center mts-mt-6">
                                                         {t(
                                                             'trade_warning.trade_description'
                                                         )}
                                                     </p>
                                                 </div>
+                                                <hr className="mts-mt-6 mts-mb-4" />
                                                 {contractCommunity && (
                                                     <Token
                                                         asset={
                                                             contractCommunity
                                                         }
-                                                        onTokenSelect={
-                                                            onTokenSelect
-                                                        }
+                                                        onTokenSelect={() => {}}
                                                         type={type}
                                                     />
                                                 )}
                                             </div>
                                             <button
-                                                className="mts-flex mts-justify-center mts-items-center mts-rounded-lg mts-bg-[var(--primary-color)] mts-w-full mts-h-10 mts-text-[var(--text-black-color)] mts-text-sm"
+                                                className="mts-flex mts-justify-center mts-items-center mts-rounded-lg mts-w-full mts-h-11 mts-border-[1px] mts-border-primary-600  mts-text-white mts-text-sm mts-bg-primary-500"
                                                 onClick={() => {
                                                     addToken(
                                                         contractCommunity!
@@ -498,7 +500,7 @@ const CardDialog: FC<CardDialogProps> = ({
                             <div className="mts-flex mts-justify-center mts-items-center mts-cursor-pointer mts-pt-2 mts-text-sm md:mts-hidden">
                                 <button
                                     onClick={handleOnClose}
-                                    className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-rounded-lg mts-bg-[var(--secondary-color)] mts-w-full mts-h-12 mts-text-[var(--text-black-color)] mts-text-center active:mts-scale-95"
+                                    className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-rounded-lg mts-bg-white mts-border-zinc-200 mts-border-[1px] mts-w-full mts-h-12 mts-text-black mts-text-center active:mts-scale-95"
                                 >
                                     Close
                                 </button>

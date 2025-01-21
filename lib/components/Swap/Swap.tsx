@@ -161,13 +161,17 @@ export const SwapComponent: FC<SwapProps> = ({
     return (
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
             <div className={cn('mytonswap-app', direction)}>
-                <div className={clsx('container')}>
+                <div
+                    className={clsx(
+                        'mts-rounded-lg mts-p-2 mts-max-w-[21.875rem] mts-overflow-hidden md:mts-p-3 md:mts-w-[28.125rem] md:mts-max-w-[28.125rem] lg:mts-w-[calc(34.375rem+24px)] lg:mts-max-w-[calc(34.375rem+24px)]'
+                    )}
+                >
                     <Header />
                     <SwapCard />
-                    {shouldShowSwapDetails && <SwapDetails />}
                     <SwapButton />
+                    {shouldShowSwapDetails && <SwapDetails />}
                     {shouldShowProvidedText && (
-                        <div className="text-provided">
+                        <div className="mts-mt-2 mts-mb-1 mts-w-full mts-text-black mts-text-[10px] mts-text-center">
                             {t('service_provided')}{' '}
                             <a
                                 href="https://mytonswap.com"

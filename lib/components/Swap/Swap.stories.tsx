@@ -32,7 +32,7 @@ export const Default: Story = {
     args: {
         options: {
             ui_preferences: {
-                primary_color: '#1971ff',
+                primary_color: '#f94905',
             },
         },
     },

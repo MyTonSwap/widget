@@ -1,4 +1,3 @@
-import { IoMdClose } from 'react-icons/io';
 import { ModalState, useSwapStore } from '../../store/swap.store';
 import { fromNano } from '@mytonswap/sdk';
 import { FaArrowRightArrowLeft } from 'react-icons/fa6';
@@ -8,6 +7,7 @@ import swap from '../../utils/swap';
 import { FC, useEffect } from 'react';
 import { useOptionsStore } from '../../store/options.store';
 import { useTranslation } from 'react-i18next';
+import Close from '../icons/Close';
 type ConfirmationModalProps = {
     setConfirmModal: (state: ModalState) => void;
 };
@@ -21,16 +21,11 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
         receive_rate,
         slippage,
         setModalState,
-        setErrorMessage,
     } = useSwapStore();
     const { t } = useTranslation();
 
     const handleConfirmClose = () => {
-        setErrorMessage({
-            errorMessage: t('error.cancel_swap'),
-            errorTitle: t('error.cancel_swap_title'),
-        });
-        setConfirmModal(ModalState.ERROR);
+        setConfirmModal(ModalState.NONE);
     };
     const { tonConnectInstance } = useOptionsStore();
     useEffect(() => {
@@ -49,25 +44,24 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
         }
     };
     return (
-        <div className="mts-flex mts-flex-col mts-items-center mts-gap-3 mts-pt-2 mts-pb-2 mts-w-full mts-h-full">
-            <div className="mts-flex mts-justify-between mts-items-center mts-pr-4 mts-pl-4 mts-w-full">
-                <span className="mts-opacity-50 mts-text-black mts-font-bold">
+        <div className="mts-flex mts-flex-col mts-items-center mts-gap-3 mts-px-2 mts-pt-2 mts-pb-2 mts-w-full mts-h-full">
+            <div className="mts-flex mts-justify-between mts-items-center mts-w-full">
+                <span className="mts-text-black mts-font-bold mts-text-lg">
                     {t('confirm.confirm_title')}
                 </span>{' '}
-                <IoMdClose
-                    onClick={handleConfirmClose}
-                    className="mts-cursor-pointer mts-text-black mts-text-xl"
-                />
+                <button onClick={handleConfirmClose}>
+                    <Close className="mts-cursor-pointer mts-text-black mts-text-2xl" />
+                </button>
             </div>
             <div className="mts-flex mts-items-center mts-pt-1">
                 <div
-                    className="mts-translate-x-3 mts-border-5 mts-border-solid mts-border-modal-background mts-rounded-full mts-bg-contain mts-w-16 mts-h-16"
+                    className="mts-translate-x-3 mts-border-5 mts-border-solid mts-border-modal-background mts-rounded-full !mts-bg-contain mts-w-11 mts-h-11"
                     style={{
                         background: `url(${pay_token?.image})`,
                     }}
                 ></div>
                 <div
-                    className="mts--translate-x-0.5 mts-border-5 mts-border-solid mts-border-modal-background mts-rounded-full mts-bg-contain mts-w-16 mts-h-16"
+                    className="mts--translate-x-0.5 mts-border-5 mts-border-solid mts-border-modal-background mts-rounded-full !mts-bg-contain mts-w-11 mts-h-11"
                     style={{
                         background: `url(${receive_token?.image})`,
                     }}
@@ -94,10 +88,14 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     $
                 </div>
             </div>
-            <div className="mts-flex mts-flex-grow mts-flex-col mts-justify-center mts-gap-3 mts-mt-0.5 mts-pr-4 mts-pl-4 mts-w-full mts-h-fit mts-text-lg">
+            <div className="mts-flex mts-flex-grow mts-flex-col mts-justify-center mts-gap-3 mts-mt-0.5 mts-w-full mts-h-fit mts-text-lg">
                 <SwapKeyValue
                     keyText={t('slippage_tolerance')}
-                    value={slippage === 'auto' ? '1% Auto' : slippage + '%'}
+                    value={
+                        <div className="mts-px-2 mts-py-1 mts-bg-zinc-200 mts-rounded-full">
+                            {slippage === 'auto' ? '1% Auto' : slippage + '%'}
+                        </div>
+                    }
                 />
                 <SwapKeyValue
                     keyText={t('minimum_received')}
@@ -128,10 +126,10 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     }
                 />
             </div>
-            <div className="mts-mt-0.5 mts-pr-4 mts-pl-4 mts-w-full">
+            <div className="mts-mt-0.5 mts-w-full">
                 <button
                     onClick={handleConfirmSwap}
-                    className="mts-cursor-pointer mts-rounded-lg mts-bg-primary-500 mts-w-full mts-h-12 mts-text-white mts-text-base"
+                    className="mts-cursor-pointer mts-rounded-lg mts-bg-primary-500 mts-w-full mts-h-12 mts-text-white mts-text-base mts-border-[1px] mts-border-primary-600"
                 >
                     {t('confirm.confirm_button')}
                 </button>

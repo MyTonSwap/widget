@@ -1,10 +1,10 @@
 import { FaArrowRightArrowLeft, FaCircleCheck } from 'react-icons/fa6';
-import { IoClose } from 'react-icons/io5';
 import { ModalState, useSwapStore } from '../../store/swap.store';
 import { fromNano } from '@mytonswap/sdk';
 import formatNumber from '../../utils/formatNum';
 import './Done.scss';
 import { useTranslation } from 'react-i18next';
+import Close from '../icons/Close';
 
 const Done = () => {
     const { t } = useTranslation();
@@ -16,31 +16,30 @@ const Done = () => {
     };
     return (
         <div className="mts-flex mts-flex-col mts-justify-center mts-items-center mts-h-full">
-            <IoClose
-                onClick={handleCloseModal}
-                className="mts-absolute mts-top-4 mts-right-4 mts-opacity-70 mts-cursor-pointer mts-text-black mts-text-xl"
-            />
-            <div className="mts-flex mts-justify-center mts-items-center mts-w-full mts-text-primary mts-text-5xl mts-text-green-500">
+            <button onClick={handleCloseModal}>
+                <Close className="mts-absolute mts-top-4 mts-right-4 mts-opacity-70 mts-cursor-pointer mts-text-2xl" />
+            </button>
+            <div className="mts-flex mts-justify-center mts-items-center mts-text-primary mts-text-5xl mts-text-green-500 mts-h-20 mts-w-20 mts-border-[1px] mts-border-zinc-200 mts-bg-zinc-100 mts-rounded-full">
                 <FaCircleCheck />
             </div>
-            <div className="mts-mb-8 mts-text-black mts-font-bold mts-text-xl mts-text-center">
+            <div className="mts-mt-6 mts-text-black mts-font-bold mts-text-lg mts-text-center">
                 {t('transaction.complete')}
             </div>
-            <div className="mts-flex mts-items-center mts-pt-1">
+            <div className="mts-flex mts-items-center mts-pt-6">
                 <div
-                    className="mts-translate-x-3 mts-border-4 mts-border-solid mts-border-zinc-100 mts-rounded-full !mts-bg-contain mts-w-16 mts-h-16"
+                    className="mts-translate-x-3 mts-border-5 mts-border-solid mts-border-modal-background mts-rounded-full !mts-bg-contain mts-w-11 mts-h-11"
                     style={{
                         background: `url(${pay_token?.image})`,
                     }}
                 ></div>
                 <div
-                    className="mts--translate-x-0.5 mts-border-4 mts-border-solid mts-border-zinc-100 mts-rounded-full !mts-bg-contain mts-w-16 mts-h-16"
+                    className="mts--translate-x-0.5 mts-border-5 mts-border-solid mts-border-modal-background mts-rounded-full !mts-bg-contain mts-w-11 mts-h-11"
                     style={{
                         background: `url(${receive_token?.image})`,
                     }}
                 ></div>
             </div>
-            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black mts-font-bold mts-text-center">
+            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black mts-font-bold mts-text-center mts-mt-6">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{' '}
                     {pay_token?.symbol}

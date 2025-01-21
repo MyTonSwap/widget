@@ -65,7 +65,7 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
                             exit={modalAnimation.exit}
                             transition={{ ease: 'easeOut', duration: 0.15 }}
                             ref={ref}
-                            className="mts-flex mts-fixed mts-bottom-0 mts-left-0 mts-flex-col mts-gap-3 mts-shadow-sm mts-rounded-t-2xl mts-bg-white mts-p-4 mts-w-full mts-min-w-60 mts-h-fit mts-text-primary-950 rtl:mts-right-auto rtl:left-0 md:mts-min-w-80 md:mts-max-w-[32.5rem] md:mts-rounded-2xl"
+                            className="mts-flex mts-fixed mts-bottom-0 mts-left-0 mts-flex-col mts-gap-3 mts-shadow-sm mts-rounded-t-2xl mts-bg-zinc-100 mts-p-4 mts-w-full mts-min-w-60 mts-h-fit mts-text-primary-950 rtl:mts-right-auto rtl:left-0 md:mts-min-w-80 md:mts-max-w-[32.5rem] md:mts-rounded-2xl"
                             data-testid="setting-popover"
                         >
                             <div className="mts-flex mts-items-center mts-justify-between">

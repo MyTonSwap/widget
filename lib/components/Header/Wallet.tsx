@@ -4,14 +4,20 @@ import { useWalletStore } from '../../store/wallet.store';
 import './Wallet.scss';
 import formatNumber from '../../utils/formatNum';
 import shortAddress from '../../utils/shortAddress';
-import { FaCheck, FaCopy } from 'react-icons/fa6';
-import { useState } from 'react';
-import { MdArrowOutward } from 'react-icons/md';
+import { FaCheck } from 'react-icons/fa6';
+import { FC, useState } from 'react';
 import { useOptionsStore } from '../../store/options.store';
 import { useTranslation } from 'react-i18next';
+import Copy from '../icons/Copy';
+import Link from '../icons/Link';
+import { cn } from '../../utils/cn';
 // import { useTonConnectUI } from "@tonconnect/ui-react";
 
-const Wallet = () => {
+type WalletProps = {
+    isWalletPopover?: boolean;
+};
+
+const Wallet: FC<WalletProps> = ({ isWalletPopover }) => {
     // make function and state for copy to clipboard address button
     const { t } = useTranslation();
     const [copied, setCopied] = useState(false);
@@ -43,18 +49,32 @@ const Wallet = () => {
     );
 
     return (
-        <>
-            {wallet && (
-                <div className="mts-rounded-lg mts-p-2">
-                    <p className="mts-opacity-75 mts-text-xs">{t('account')}</p>
+        wallet && (
+            <div
+                className={cn(
+                    'mts-flex mts-flex-col mts-gap-3 mts-w-full',
+                    isWalletPopover && 'mts-px-2 mts-pt-2 mts-pb-2 '
+                )}
+            >
+                <div
+                    className={cn(
+                        'mts-rounded-2xl mts-p-4 mts-border-zinc-200 mts-bg-white mts-border-[1px]',
+                        isWalletPopover && 'mts-border-none mts-p-0'
+                    )}
+                >
+                    <p className="mts-opacity-75 mts-text-sm">{t('account')}</p>
                     <div className="mts-flex mts-flex-col">
-                        <p className="mts-mt-2 mts-text-sm">{t('balance')}</p>
-                        <div className="mts-my-2 mts-text-primary-500 mts-font-black mts-text-xl">
+                        <p className="mts-mt-3 mts-text-lg mts-font-medium">
+                            {t('balance')}
+                        </p>
+                        <div className="mts-mt-2 mts-mb-1  mts-font-black mts-text-3xl">
                             {TON_BALANCE}
-                            {t('ton')}
+                            <span className="mts-text-primary-500">
+                                {t('ton')}
+                            </span>
                         </div>
                         <div className="mts-flex mts-items-center mts-gap-1">
-                            <div className="mts-flex mts-opacity-75 mts-rounded mts-bg-zinc-100 mts-px-2 mts-py-1 mts-w-fit mts-text-sm">
+                            <div className="mts-flex mts-opacity-75 mts-rounded mts-white mts-border-[1px] mts-border-zinc-200 mts-px-2 mts-py-1 mts-w-fit mts-text-sm mts-h-10  mts-items-center">
                                 {shortAddress(
                                     wallet.account.address,
                                     'mainnet',
@@ -62,32 +82,36 @@ const Wallet = () => {
                                 )}
                             </div>
                             <button
-                                className="mts-flex mts-justify-center mts-items-center mts-opacity-75 mts-cursor-pointer mts-rounded mts-bg-zinc-100 mts-w-8 mts-h-8 mts-text-black mts-text-xs disabled:mts-opacity-50 disabled:mts-cursor-not-allowed"
+                                className="mts-flex mts-justify-center mts-items-center mts-opacity-75 mts-cursor-pointer mts-rounded-md mts-text-white    mts-text-xs disabled:mts-opacity-50 disabled:mts-cursor-not-allowed mts-h-10 mts-w-10 mts-bg-primary-900"
                                 disabled={copied}
                                 onClick={() =>
                                     copyToClipboard(wallet.account.address)
                                 }
                             >
-                                {copied ? <FaCheck /> : <FaCopy />}
+                                {copied ? (
+                                    <FaCheck />
+                                ) : (
+                                    <Copy className="mts-text-xl" />
+                                )}
                             </button>
                             <a
-                                className="mts-flex mts-justify-center mts-items-center mts-opacity-75 mts-cursor-pointer mts-rounded mts-bg-zinc-100 mts-w-8 mts-h-8 mts-text-black mts-text-xs"
+                                className="mts-flex mts-justify-center mts-items-center mts-opacity-75 mts-cursor-pointer mts-rounded-md mts-text-white  mts-text-xs mts-h-10 mts-w-10 mts-bg-primary-900"
                                 target="_blank"
                                 href={`https://tonviewer.com/${wallet.account.address}`}
                             >
-                                <MdArrowOutward />
+                                <Link className="mts-text-xl" />
                             </a>
                         </div>
-                        <button
-                            className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer mts-mt-2 mts-rounded mts-bg-zinc-100 mts-h-10 mts-text-black mts-text-sm"
-                            onClick={handleDisconnect}
-                        >
-                            {t('disconnect_wallet')}
-                        </button>
                     </div>
                 </div>
-            )}
-        </>
+                <button
+                    className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer  mts-bg-primary-500 mts-h-10 mts-text-white mts-border-[1px] mts-border-primary-600 mts-rounded-lg mts-text-sm "
+                    onClick={handleDisconnect}
+                >
+                    {t('disconnect_wallet')}
+                </button>
+            </div>
+        )
     );
 };
 

@@ -54,10 +54,12 @@ const SlippageSetting = () => {
             className="mts-flex mts-flex-col gap-1 md:mts-gap-2 md:mts-text-sm"
             data-testid="slippage-setting"
         >
-            <button className="mts-flex mts-text-xs mts-justify-between mts-w-full mts-text-black md:mts-text-sm">
-                <div>{t('max_slippage')}</div>
+            <button className="mts-flex  mts-justify-between mts-w-full mts-text-black ">
+                <div className="mts-text-lg mts-text-zinc-600">
+                    {t('max_slippage')}
+                </div>
                 <div
-                    className="mts-flex mts-justify-center mts-items-center"
+                    className="mts-flex mts-justify-center mts-items-center mts-text-sm mts-text-zinc-600"
                     data-testid="slippage-indicator"
                 >
                     {slippage === 'auto' ? t('auto') : `${slippage}%`}{' '}
@@ -73,10 +75,10 @@ const SlippageSetting = () => {
                     <div
                         onClick={handleOnAutoClick}
                         className={cn(
-                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-xl mts-bg-zinc-100 mts-p-1 mts-h-8 md:mts-h-10 md:mts-m-1`,
+                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white mts-p-1 mts-h-12 md:mts-h-10 md:mts-m-1`,
                             slippage === 'auto'
                                 ? 'mts-border-primary-500'
-                                : 'inactive-border'
+                                : 'mts-border-zinc-200'
                         )}
                         data-testid="slippage-setting-auto"
                     >
@@ -85,10 +87,10 @@ const SlippageSetting = () => {
                     <div
                         onClick={() => handleOnPercentClick(2)}
                         className={cn(
-                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-xl mts-bg-zinc-100 mts-p-1 mts-h-8 md:mts-h-10`,
+                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white mts-p-1 mts-h-12 md:mts-h-10`,
                             slippage === 2
                                 ? 'mts-border-primary-500'
-                                : 'inactive-border'
+                                : 'mts-border-zinc-200'
                         )}
                         data-testid="slippage-setting-2"
                     >
@@ -97,10 +99,10 @@ const SlippageSetting = () => {
                     <div
                         onClick={() => handleOnPercentClick(5)}
                         className={cn(
-                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-xl mts-bg-zinc-100 mts-p-1 mts-h-8 md:mts-h-10`,
+                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white mts-p-1 mts-h-12 md:mts-h-10`,
                             slippage === 5
                                 ? 'mts-border-primary-500'
-                                : 'inactive-border'
+                                : 'mts-border-zinc-200'
                         )}
                         data-testid="slippage-setting-5"
                     >
@@ -108,9 +110,9 @@ const SlippageSetting = () => {
                     </div>
                     <div
                         className={cn(
-                            `mts-flex mts-justify-between mts-items-center mts-gap-1 mts-relative mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-xl mts-bg-zinc-100 mts-h-8 md:mts-h-10`,
+                            `mts-flex mts-justify-between mts-items-center mts-gap-1 mts-relative mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white mts-h-12 md:mts-h-10`,
                             ['auto', 2, 5].includes(slippage)
-                                ? 'inactive-border'
+                                ? 'mts-border-zinc-200'
                                 : 'mts-border-primary-500'
                         )}
                     >

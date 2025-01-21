@@ -3,7 +3,6 @@ import { useWalletStore } from '../../store/wallet.store';
 import { FC } from 'react';
 import formatNumber from '../../utils/formatNum';
 import './Token.scss';
-import { RiExternalLinkLine } from 'react-icons/ri';
 import { PiStarBold, PiStarFill } from 'react-icons/pi';
 import { TokenTon } from '../icons/TokenTon';
 import { TON_ADDR } from '../../constants';
@@ -11,6 +10,9 @@ import { toFixedDecimal } from '../../utils/toFixedDecimals';
 import { useFavoriteStore } from '../../store/favtorite.store';
 import clsx from 'clsx';
 import { useSwapStore } from '../../store/swap.store';
+import { cn } from '../../utils/cn';
+import Link from '../icons/Link';
+import { useTranslation } from 'react-i18next';
 
 type TokenProps = {
     asset: Asset;
@@ -19,6 +21,7 @@ type TokenProps = {
 };
 
 const Token: FC<TokenProps> = ({ asset, onTokenSelect, type }) => {
+    const { t } = useTranslation();
     const { balance } = useWalletStore();
     const { pay_token, receive_token } = useSwapStore();
     const { isFav, addToFav, removeFromFav } = useFavoriteStore();
@@ -41,22 +44,22 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect, type }) => {
               pay_token?.address === asset.address;
 
     return (
-        <div
+        <button
             onClick={isSelected ? undefined : () => onTokenSelect(asset)}
             className={clsx(
-                'mts-flex mts-items-center mts-cursor-pointer mts-mt-1 mts-rounded-lg mts-px-2 mts-w-full mts-h-12',
+                'mts-flex mts-items-center mts-cursor-pointer mts-mt-1 mts-rounded-lg mts-w-full mts-h-12',
                 isSelected && 'mts-opacity-50 mts-cursor-auto'
             )}
             data-testid={asset.address}
         >
-            <div className="mts-flex mts-flex-grow mts-items-center mts-gap-2">
+            <div className="mts-flex mts-flex-grow mts-items-center mts-justify-center mts-gap-2 mts-h-full">
                 <div
-                    className="mts-rounded-full !mts-bg-contain mts-w-11 mts-h-11"
+                    className="mts-rounded-full !mts-bg-contain mts-w-10 mts-h-10 mts-min-w-10 mts-min-h-10 mts-max-h-10 mts-max-w-10"
                     style={{ background: `url(${asset.image})` }}
                 ></div>
-                <div className="mts-flex-grow">
-                    <div className="mts-flex mts-justify-between mts-items-center mts-overflow-hidden mts-text-black mts-font-medium mts-text-base mts-truncate">
-                        <div className="mts-flex mts-items-center mts-gap-0.5 mts-text-base">
+                <div className="mts-flex-grow mts-h-full mts-justify-center mts-gap-1 mts-flex mts-flex-col">
+                    <div className="mts-flex mts-justify-between mts-items-center mts-overflow-hidden mts-text-black mts-font-medium mts-text-sm mts-truncate">
+                        <div className="mts-flex mts-items-center mts-gap-1  mts-font-medium   ">
                             {asset.symbol}{' '}
                             <span>
                                 <a
@@ -65,15 +68,22 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect, type }) => {
                                     target="_blank"
                                     className="mts-flex mts-items-center mts-opacity-50 mts-text-inherit mts-no-underline"
                                 >
-                                    <RiExternalLinkLine />
+                                    <Link className="mts-text-xs" />
                                 </a>
                             </span>
+                            {asset.warning && (
+                                <div className="mts-text-xs mts-bg-primary-100 mts-rounded-full mts-px-2 mts-text-primary-500 mts-border-primary-200 mts-border-[1px]">
+                                    {t('community')}
+                                </div>
+                            )}
                         </div>
                         <div>{tokenBalance}</div>
                     </div>
-                    <div className="mts-flex mts-justify-between mts-items-center mts-opacity-50 mts-text-black mts-text-xs">
+                    <div className="mts-flex mts-justify-between mts-items-center mts-opacity-50 mts-text-black mts-text-xs mts-gap-2 ">
                         <div className="mts-flex mts-items-center mts-gap-0.5">
-                            {asset.name}
+                            <span className="mts-break-all mts-line-clamp-1 mts-truncate mts-whitespace-pre-wrap">
+                                {asset.name}
+                            </span>
                             {asset.address !== TON_ADDR && (
                                 <span className="mts-flex mts-items-center mts-gap-0.5">
                                     | <TokenTon /> {asset.liquidity_text}
@@ -85,8 +95,8 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect, type }) => {
                 </div>
                 <div>
                     <div
-                        className={clsx(
-                            'mts-opacity-50 mts-transition-transform mts-duration-200 mts-ease-in-out mts-text-black mts-text-2xl',
+                        className={cn(
+                            'mts-opacity-20 mts-transition-transform mts-duration-200 mts-ease-in-out mts-text-black mts-text-2xl',
                             isTokenFav && 'mts-opacity-100 mts-text-primary-500'
                         )}
                     >
@@ -108,7 +118,7 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect, type }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </button>
     );
 };
 

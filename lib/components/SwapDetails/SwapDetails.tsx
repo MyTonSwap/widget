@@ -24,7 +24,7 @@ const SwapDetails = () => {
             }}
             data-testid="swap-details"
         >
-            <div className="mts-flex mts-justify-between mts-items-center mts-w-full mts-min-h-12 mts-font-medium mts-text-sm">
+            <div className="mts-flex mts-justify-between mts-items-center mts-w-full mts-min-h-12 mts-font-medium mts-text-xs">
                 {onePayRoute && onePayRoute.pool_data && !isFindingBestRoute ? (
                     <div className="one-pay mts-ltr">
                         1 {onePayRoute.pool_data.route_view[0]} ≈{' '}

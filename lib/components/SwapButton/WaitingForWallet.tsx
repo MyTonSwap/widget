@@ -4,7 +4,6 @@ import { useOptionsStore } from '../../store/options.store';
 import { useTranslation } from 'react-i18next';
 import { Trans } from 'react-i18next';
 import { FaArrowRightArrowLeft } from 'react-icons/fa6';
-import formatNumber from '../../utils/formatNum';
 import { fromNano } from '@mytonswap/sdk';
 import Close from '../icons/Close';
 import Spinner from '../icons/Spinner';
@@ -12,14 +11,8 @@ import Spinner from '../icons/Spinner';
 const WaitingForWallet = () => {
     const { t } = useTranslation();
     const { tonConnectInstance } = useOptionsStore();
-    const {
-        pay_amount,
-        pay_token,
-        bestRoute,
-        receive_token,
-        receive_rate,
-        setModalState,
-    } = useSwapStore();
+    const { pay_amount, pay_token, bestRoute, receive_token, setModalState } =
+        useSwapStore();
 
     const handleCloseModal = () => {
         setModalState(ModalState.NONE);
@@ -29,7 +22,7 @@ const WaitingForWallet = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="mts-flex mts-relative mts-flex-col mts-justify-center mts-items-center mts-px-4 mts-h-full mts-text-black dark:mts-text-white"
+            className="mts-flex mts-relative mts-flex-col mts-w-full mts-justify-center mts-items-center mts-px-4 mts-h-full mts-text-black dark:mts-text-white"
         >
             <button onClick={handleCloseModal}>
                 <Close className="mts-absolute mts-top-4 mts-right-4 mts-opacity-70 mts-cursor-pointer mts-text-2xl" />
@@ -48,7 +41,7 @@ const WaitingForWallet = () => {
                     }}
                 ></div>
             </div>
-            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-mt-6">
+            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-bg-zinc-50 mts-w-full mts-border-zinc-200 mts-border-[1px] mts-rounded-xl mts-p-2 dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-mt-6">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{' '}
                     {pay_token?.symbol}
@@ -59,7 +52,7 @@ const WaitingForWallet = () => {
                 <div>
                     {bestRoute!.pool_data.receive_show!} {receive_token?.symbol}
                 </div>
-                <div className="mts-opacity-60 mts-text-xs">
+                {/* <div className="mts-opacity-60 mts-text-xs">
                     ≈{' '}
                     {formatNumber(
                         Number(bestRoute!.pool_data.receive_show) *
@@ -67,7 +60,7 @@ const WaitingForWallet = () => {
                         4
                     )}
                     $
-                </div>
+                </div> */}
             </div>
 
             <div className="mts-mt-4 mts-font-bold mts-text-lg md:mts-text-xl mts-text-center">

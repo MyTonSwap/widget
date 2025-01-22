@@ -47,18 +47,18 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect, type }) => {
         <button
             onClick={isSelected ? undefined : () => onTokenSelect(asset)}
             className={clsx(
-                'mts-flex mts-items-center mts-cursor-pointer mts-mt-1 mts-rounded-lg mts-w-full mts-h-12',
+                'mts-flex mts-items-center mts-cursor-pointer mts-mt-1 mts-rounded-lg mts-w-full mts-h-12 md:mts-h-14',
                 isSelected && 'mts-opacity-50 mts-cursor-auto'
             )}
             data-testid={asset.address}
         >
             <div className="mts-flex mts-flex-grow mts-items-center mts-justify-center mts-gap-2 mts-h-full">
                 <div
-                    className="mts-rounded-full !mts-bg-contain mts-w-10 mts-h-10 mts-min-w-10 mts-min-h-10 mts-max-h-10 mts-max-w-10"
+                    className="mts-rounded-full !mts-bg-contain mts-w-10 mts-h-10 mts-min-w-10 mts-min-h-10 mts-max-h-10 mts-max-w-10 md:mts-w-12 md:mts-h-12 md:mts-min-w-12 md:mts-min-h-12 md:mts-max-h-12 md:mts-max-w-12"
                     style={{ background: `url(${asset.image})` }}
                 ></div>
                 <div className="mts-flex-grow mts-h-full mts-justify-center mts-gap-1 mts-flex mts-flex-col">
-                    <div className="mts-flex mts-justify-between mts-items-center mts-overflow-hidden mts-text-black dark:mts-text-white mts-font-medium mts-text-sm mts-truncate">
+                    <div className="mts-flex mts-justify-between mts-items-center mts-overflow-hidden mts-text-black dark:mts-text-white mts-font-medium mts-text-sm md:mts-text-base mts-truncate">
                         <div className="mts-flex mts-items-center mts-gap-1  mts-font-medium   ">
                             {asset.symbol}{' '}
                             <span>
@@ -79,7 +79,7 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect, type }) => {
                         </div>
                         <div>{tokenBalance}</div>
                     </div>
-                    <div className="mts-flex mts-justify-between mts-items-center mts-opacity-50 mts-text-black dark:mts-text-white mts-text-xs mts-gap-2 ">
+                    <div className="mts-flex mts-justify-between mts-items-center mts-opacity-50 mts-text-black dark:mts-text-white mts-text-xs md:mts-text-sm mts-gap-2 ">
                         <div className="mts-flex mts-items-center mts-gap-0.5">
                             <span className="mts-break-all mts-line-clamp-1 mts-truncate mts-whitespace-pre-wrap">
                                 {asset.name}

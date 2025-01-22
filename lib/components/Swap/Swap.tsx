@@ -171,7 +171,7 @@ export const SwapComponent: FC<SwapProps> = ({
             >
                 <div
                     className={clsx(
-                        'mts-rounded-lg  mts-max-w-[21.875rem] mts-overflow-hidden md:mts-p-3 md:mts-w-[28.125rem] md:mts-max-w-[28.125rem] lg:mts-w-[calc(34.375rem+24px)] lg:mts-max-w-[calc(34.375rem+24px)]'
+                        'mts-rounded-lg  mts-max-w-[21.875rem] mts-overflow-hidden md:mts-p-3 md:mts-w-[28.125rem] md:mts-max-w-[450px] '
                     )}
                 >
                     <Header />

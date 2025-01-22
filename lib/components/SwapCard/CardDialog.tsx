@@ -295,10 +295,10 @@ const CardDialog: FC<CardDialogProps> = ({
                                 </button>
                             </div>
                             <div>
-                                <div className="mts-flex mts-items-center mts-transition-all mts-duration-200 mts-ease-in-out mts-mt-6 mts-mb-2 mts-border mts-border-black/10 mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-px-3 mts-w-full mts-h-10 hover:mts-bg-zinc-100 focus-within:mts-border-primary-500 dark:focus-within:mts-border-primary-500">
+                                <div className="mts-flex mts-items-center mts-transition-all mts-duration-200 mts-ease-in-out mts-mt-6 mts-mb-2 mts-border mts-border-black/10 mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-px-3 mts-w-full mts-h-10 md:mts-h-14 hover:mts-bg-zinc-100 focus-within:mts-border-primary-500 dark:focus-within:mts-border-primary-500">
                                     <Search className="mts-text-zinc-500 mts-text-lg md:mts-opacity-50" />
                                     <input
-                                        className="mts-outline-none mts-bg-transparent mts-px-2 mts-w-full mts-h-full mts-text-black mts-text-sm md:mts-text-lg"
+                                        className="mts-outline-none mts-bg-transparent mts-px-2 mts-w-full mts-h-full mts-text-black mts-text-sm md:mts-text-sm mts-font-normal"
                                         type="text"
                                         placeholder={t('search')}
                                         data-testid="dialog-search-input"

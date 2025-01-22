@@ -39,7 +39,7 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
             }}
             data-testid={`card-button-${type}`}
             className={cn(
-                'mts-flex mts-gap-1 mts-items-center mts-transition-all mts-ease-in-out mts-rounded-full mts-py-1 mts-pr-2 mts-pl-1 mts-h-10 mts-font-semibold mts-text-sm mts-ltr mts-text-black dark:mts-text-white dark:mts-border-zinc-800 mts-border-[1px]',
+                'mts-flex mts-gap-1 mts-items-center mts-transition-all mts-ease-in-out mts-rounded-full mts-py-1 mts-pr-2 mts-pl-1 mts-h-10 mts-font-semibold mts-text-sm md:mts-text-base mts-ltr mts-text-black dark:mts-text-white dark:mts-border-zinc-800 mts-border-[1px]',
                 isLoading && 'mts-w-20 mts-h-10',
                 type === 'pay' && isLoading && 'mts-pointer-events-none',
                 type === 'receive' &&

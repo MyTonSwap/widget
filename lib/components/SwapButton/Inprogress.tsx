@@ -3,7 +3,6 @@ import { ModalState, useSwapStore } from '../../store/swap.store';
 import { IoClose } from 'react-icons/io5';
 import { Dex, fromNano } from '@mytonswap/sdk';
 import { FaArrowRightArrowLeft } from 'react-icons/fa6';
-import formatNumber from '../../utils/formatNum';
 import { useEventsStore } from '../../store/events.store';
 import { useTranslation } from 'react-i18next';
 import Spinner from '../icons/Spinner';
@@ -77,7 +76,7 @@ const Inprogress = () => {
     };
 
     return (
-        <div className="mts-flex mts-flex-col mts-justify-center mts-items-center mts-h-full">
+        <div className="mts-flex mts-flex-col mts-justify-center mts-items-center mts-h-full mts-w-full">
             <IoClose
                 onClick={handleCloseModal}
                 className="mts-absolute mts-top-4 mts-right-4 mts-opacity-70 mts-cursor-pointer mts-text-black dark:mts-text-white mts-text-xl"
@@ -96,7 +95,7 @@ const Inprogress = () => {
                     }}
                 ></div>
             </div>
-            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-mt-6">
+            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-bg-zinc-50 mts-w-full mts-border-zinc-200 mts-border-[1px] mts-rounded-xl mts-p-2 dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-mt-6">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{' '}
                     {pay_token?.symbol}
@@ -107,7 +106,7 @@ const Inprogress = () => {
                 <div>
                     {bestRoute!.pool_data.receive_show!} {receive_token?.symbol}
                 </div>
-                <div className="mts-opacity-60 mts-text-xs">
+                {/* <div className="mts-opacity-60 mts-text-xs">
                     ≈{' '}
                     {formatNumber(
                         Number(bestRoute!.pool_data.receive_show) *
@@ -115,7 +114,7 @@ const Inprogress = () => {
                         4
                     )}
                     $
-                </div>
+                </div> */}
             </div>
 
             <div className="mts-mt-4 mts-font-bold mts-text-lg md:mts-text-xl mts-text-center dark:mts-text-white">

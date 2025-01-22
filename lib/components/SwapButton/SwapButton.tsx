@@ -100,7 +100,7 @@ const SwapButton = () => {
                     >
                         <motion.div
                             transition={{ ease: [0.6, -0.05, 0.01, 0.99] }}
-                            className="mts-flex mts-fixed mts-bottom-0 mts-left-0 mts-flex-col mts-justify-center mts-items-center mts-shadow-[0px_0px_5px_rgba(0,0,0,0.05)] mts-border-t mts-border-solid mts-border-black/10 mts-rounded-t-lg mts-bg-white dark:mts-bg-zinc-900 mts-p-2 mts-w-full mts-h-full mts-max-h-[28.75rem] md:mts-shadow-[0_0px_10px_rgba(0,0,0,0.05)] md:mts-rounded-lg md:mts-w-[90%] md:mts-max-w-[28.125rem] md:mtsx-max-h-[80%] md:mts-max-h-[30rem] lg:mts-w-[32.5rem] lg:mts-max-w-[32.5rem]"
+                            className="mts-flex mts-fixed mts-bottom-0 mts-left-0 mts-flex-col mts-justify-center mts-items-center mts-shadow-[0px_0px_5px_rgba(0,0,0,0.05)] mts-border-t mts-border-solid mts-border-black/10 mts-rounded-t-lg mts-bg-white dark:mts-bg-zinc-900 mts-p-2 mts-w-full mts-h-full mts-max-h-[28.75rem] md:mts-shadow-[0_0px_10px_rgba(0,0,0,0.05)] md:mts-rounded-2xl md:mts-w-[90%] md:mts-max-w-[28.125rem] md:mtsx-max-h-[80%] md:mts-max-h-[30rem] lg:mts-w-[32.5rem] lg:mts-max-w-[32.5rem] md:mts-p-2 "
                             initial={modalAnimation.initial}
                             animate={modalAnimation.animate}
                             exit={modalAnimation.exit}

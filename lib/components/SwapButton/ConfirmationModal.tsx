@@ -18,7 +18,6 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
         pay_token,
         bestRoute,
         receive_token,
-        receive_rate,
         slippage,
         setModalState,
     } = useSwapStore();
@@ -44,7 +43,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
         }
     };
     return (
-        <div className="mts-flex mts-flex-col mts-items-center mts-gap-3 mts-px-2 mts-pt-2 mts-pb-2 mts-w-full mts-h-full ">
+        <div className="mts-flex mts-flex-col mts-items-center  mts-px-2 mts-pt-2 mts-pb-2 mts-w-full mts-h-full ">
             <div className="mts-flex mts-justify-between mts-items-center mts-w-full">
                 <span className="mts-text-black dark:mts-text-white mts-font-bold mts-text-lg">
                     {t('confirm.confirm_title')}
@@ -53,7 +52,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     <Close className="mts-cursor-pointer mts-text-black mts-text-2xl dark:mts-text-white" />
                 </button>
             </div>
-            <div className="mts-flex mts-items-center mts-pt-1">
+            <div className="mts-flex mts-items-center mts-mt-6">
                 <div
                     className="mts-translate-x-3 mts-border-5 mts-border-solid mts-border-modal-background mts-rounded-full !mts-bg-contain mts-w-11 mts-h-11"
                     style={{
@@ -67,7 +66,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     }}
                 ></div>
             </div>
-            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center">
+            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-bg-zinc-50 mts-w-full mts-border-zinc-200 mts-border-[1px] mts-rounded-xl mts-p-2 dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-mt-6">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{' '}
                     {pay_token?.symbol}
@@ -78,7 +77,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                 <div>
                     {bestRoute!.pool_data.receive_show!} {receive_token?.symbol}
                 </div>
-                <div className="mts-opacity-60 mts-text-xs">
+                {/* <div className="mts-opacity-60 mts-text-xs">
                     ≈{' '}
                     {formatNumber(
                         Number(bestRoute!.pool_data.receive_show) *
@@ -86,9 +85,9 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                         4
                     )}
                     $
-                </div>
+                </div> */}
             </div>
-            <div className="mts-flex mts-flex-grow mts-flex-col mts-justify-center mts-gap-3 mts-mt-0.5 mts-w-full mts-h-fit mts-text-lg">
+            <div className="mts-flex mts-flex-grow mts-flex-col  mts-gap-3 mts-mt-6 mts-w-full mts-h-fit mts-text-lg">
                 <SwapKeyValue
                     keyText={t('slippage_tolerance')}
                     value={

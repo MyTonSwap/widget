@@ -10,7 +10,6 @@ const ErrorTonConnect = () => {
             transactionError: null,
             transactionErrorBody: null,
         });
-        // close modal
         setModalState(ModalState.NONE);
     };
     return (

@@ -207,7 +207,7 @@ const Card: FC<CardProps> = ({ type }) => {
                                 onChange={handlePayAmountChange}
                                 pattern="^[0-9]*[.,]?[0-9]*$"
                                 placeholder="0"
-                                className={`mts-outline-none mts-bg-transparent mts-h-7 mts-w-full mts-text-black dark:mts-text-white mts-font-bold  mts-font-inherit mts-text-lg ${type}`}
+                                className={`mts-outline-none mts-bg-transparent mts-h-7 mts-w-full mts-text-black dark:mts-text-white mts-font-bold  mts-font-inherit mts-text-lg md:mts-text-2xl ${type}`}
                                 data-testid={`swapcard-input-${type}`}
                             />
                         )}
@@ -225,7 +225,7 @@ const Card: FC<CardProps> = ({ type }) => {
                         )}
                         {((type === 'receive' && !isFindingBestRoute) ||
                             type === 'pay') && (
-                            <span className="mts-flex mts-items-center mts-opacity-50 mts-h-5 mts-text-black dark:mts-text-white mts-text-sm mts-font-inherit mts-text-left">
+                            <span className="mts-flex mts-items-center mts-opacity-50 mts-h-5 mts-text-black dark:mts-text-white mts-text-sm md:mts-text-base mts-font-inherit mts-font-medium mts-text-left">
                                 {calculatedRate} $
                             </span>
                         )}

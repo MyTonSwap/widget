@@ -278,24 +278,24 @@ const CardDialog: FC<CardDialogProps> = ({
                             animate={modalAnimation.animate}
                             exit={modalAnimation.exit}
                             className={clsx(
-                                'mts-fixed mts-bottom-0 mts-left-0 mts-flex mts-flex-col mts-shadow-[0px_0px_10px_rgba(0,0,0,0.05)] mts-rounded-t-2xl mts-bg-white mts-p-4 mts-pt-4 mts-pb-2 mts-w-full mts-min-h-[92.5dvh] mts-max-h-[92.5dvh] mts-overflow-y-auto md:mts-shadow-[0_0px_10px_rgba(0,0,0,0.05)] md:mts-rounded-2xl md:mts-w-[90%] md:mts-max-w-[34.375rem] md:mts-h-auto md:mts-min-h-[21.875rem] md:mts-max-h-[70dvh]'
+                                'mts-fixed mts-bottom-0 mts-left-0 mts-flex mts-flex-col mts-shadow-[0px_0px_10px_rgba(0,0,0,0.05)] mts-rounded-t-2xl mts-bg-white dark:mts-bg-zinc-900 mts-p-4 mts-pt-4 mts-pb-2 mts-w-full mts-min-h-[92.5dvh] mts-max-h-[92.5dvh] mts-overflow-y-auto md:mts-shadow-[0_0px_10px_rgba(0,0,0,0.05)] md:mts-rounded-2xl md:mts-w-[90%] md:mts-max-w-[34.375rem] md:mts-h-auto md:mts-min-h-[21.875rem] md:mts-max-h-[70dvh]'
                             )}
                             ref={ref}
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}
                         >
-                            <div className="mts-flex mts-justify-between mts-items-center mts-text-black mts-font-bold mts-text-lg">
+                            <div className="mts-flex mts-justify-between mts-items-center mts-text-black dark:mts-text-white mts-font-bold mts-text-lg">
                                 <div>{t('select_a_token')}</div>
                                 <button
                                     onClick={handleOnClose}
-                                    className="mts-text-black mts-text-2xl md:mts-block"
+                                    className="mts-text-black dark:mts-text-white mts-text-2xl md:mts-block"
                                 >
                                     <Close />
                                 </button>
                             </div>
                             <div>
-                                <div className="mts-flex mts-items-center mts-transition-all mts-duration-200 mts-ease-in-out mts-mt-6 mts-mb-2 mts-border mts-border-black/10 mts-rounded-lg mts-bg-white mts-px-3 mts-w-full mts-h-10 hover:mts-bg-zinc-100 focus-within:mts-border-primary-500">
+                                <div className="mts-flex mts-items-center mts-transition-all mts-duration-200 mts-ease-in-out mts-mt-6 mts-mb-2 mts-border mts-border-black/10 mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-px-3 mts-w-full mts-h-10 hover:mts-bg-zinc-100 focus-within:mts-border-primary-500 dark:focus-within:mts-border-primary-500">
                                     <Search className="mts-text-zinc-500 mts-text-lg md:mts-opacity-50" />
                                     <input
                                         className="mts-outline-none mts-bg-transparent mts-px-2 mts-w-full mts-h-full mts-text-black mts-text-sm md:mts-text-lg"
@@ -313,7 +313,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                     {pinnedTokens.map((item) => {
                                         return (
                                             <button
-                                                className="mts-flex mts-items-center mts-gap-1 mts-opacity-80 mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer mts-rounded-full mts-bg-zinc-100 mts-p-1 mts-px-2 mts-text-black mts-text-[0.9rem] hover:mts-opacity-100"
+                                                className="mts-flex mts-items-center mts-gap-1 mts-opacity-80 mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer mts-rounded-full mts-bg-zinc-100 dark:mts-bg-zinc-800 mts-p-1 mts-px-2 mts-text-black dark:mts-text-white mts-text-[0.9rem] hover:mts-opacity-100"
                                                 onClick={() => {
                                                     handleOnTokenSelect(item);
                                                 }}
@@ -336,9 +336,9 @@ const CardDialog: FC<CardDialogProps> = ({
                                     <div className="mts-flex mts-items-center mts-gap-5 mts-mt-3 mts-mb-2 mts-border-b mts-border-black/10 mts-px-3 mts-pb-2 mts-w-full mts-text-black mts-font-light mts-text-lg">
                                         <button
                                             className={clsx(
-                                                'mts-relative mts-transition-all mts-duration-300 mts-ease-in-out mts-bg-transparent mts-text-black mts-text-sm',
+                                                'mts-relative mts-transition-all mts-duration-300 mts-ease-in-out mts-bg-transparent mts-text-black dark:mts-text-white mts-text-sm',
                                                 activeTab === TABS.ALL &&
-                                                    'mts-text-primary-500 mts-font-semibold'
+                                                    'mts-text-primary-500 mts-font-semibold dark:mts-text-primary-500'
                                             )}
                                             onClick={() =>
                                                 setActiveTab(TABS.ALL)
@@ -359,9 +359,9 @@ const CardDialog: FC<CardDialogProps> = ({
                                         </button>
                                         <button
                                             className={clsx(
-                                                'mts-relative mts-transition-all mts-duration-300 mts-ease-in-out mts-bg-transparent mts-text-black mts-text-sm',
+                                                'mts-relative mts-transition-all mts-duration-300 mts-ease-in-out mts-bg-transparent mts-text-black dark:mts-text-white mts-text-sm',
                                                 activeTab === TABS.FAVORITES &&
-                                                    'mts-text-primary-500 mts-font-semibold'
+                                                    'mts-text-primary-500 mts-font-semibold dark:mts-text-primary-500'
                                             )}
                                             onClick={() =>
                                                 setActiveTab(TABS.FAVORITES)
@@ -395,7 +395,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                                 next={() => onNextPage(page)}
                                                 scrollableTarget="scroll-div"
                                                 loader={
-                                                    <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-[var(--text-black-color)] mts-text-[1.25rem]">
+                                                    <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-[1.25rem]">
                                                         <CgSpinnerTwo className="mts-animate-spin mts-text-primary-500" />
                                                     </div>
                                                 }
@@ -500,7 +500,7 @@ const CardDialog: FC<CardDialogProps> = ({
                             <div className="mts-flex mts-justify-center mts-items-center mts-cursor-pointer mts-pt-2 mts-text-sm md:mts-hidden">
                                 <button
                                     onClick={handleOnClose}
-                                    className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-rounded-lg mts-bg-white mts-border-zinc-200 mts-border-[1px] mts-w-full mts-h-12 mts-text-black mts-text-center active:mts-scale-95"
+                                    className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-text-white dark:mts-border-zinc-700 mts-border-zinc-200 mts-border-[1px] mts-w-full mts-h-12 mts-text-black mts-text-center active:mts-scale-95"
                                 >
                                     Close
                                 </button>

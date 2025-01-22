@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { useSwapStore } from '../../store/swap.store';
 import './SlippageSetting.scss';
 import { useTranslation } from 'react-i18next';
@@ -51,85 +50,77 @@ const SlippageSetting = () => {
 
     return (
         <div
-            className="mts-flex mts-flex-col gap-1 md:mts-gap-2 md:mts-text-sm"
+            className="mts-flex mts-flex-col mts-gap-1 md:mts-gap-4 "
             data-testid="slippage-setting"
         >
             <button className="mts-flex  mts-justify-between mts-w-full mts-text-black ">
-                <div className="mts-text-lg mts-text-zinc-600">
+                <div className="mts-text-lg mts-text-zinc-600 dark:mts-text-zinc-200">
                     {t('max_slippage')}
                 </div>
                 <div
-                    className="mts-flex mts-justify-center mts-items-center mts-text-sm mts-text-zinc-600"
+                    className="mts-flex mts-justify-center mts-items-center mts-text-sm  mts-text-zinc-600 dark:mts-text-zinc-200"
                     data-testid="slippage-indicator"
                 >
                     {slippage === 'auto' ? t('auto') : `${slippage}%`}{' '}
                 </div>
             </button>
-            <AnimatePresence>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="mts-grid mts-grid-cols-4 mts-justify-around mts-gap-x-2 mts-w-full mts-text-sm"
+            <div className="mts-grid mts-grid-cols-4 mts-justify-around mts-gap-x-2 mts-w-full mts-text-sm md:mts-text-base ">
+                <div
+                    onClick={handleOnAutoClick}
+                    className={cn(
+                        `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-text-white mts-p-1 mts-h-12 md:mts-h-12 md:mts-m-1`,
+                        slippage === 'auto'
+                            ? 'mts-border-primary-500'
+                            : 'mts-border-zinc-200 dark:mts-border-zinc-700'
+                    )}
+                    data-testid="slippage-setting-auto"
                 >
-                    <div
-                        onClick={handleOnAutoClick}
-                        className={cn(
-                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white mts-p-1 mts-h-12 md:mts-h-10 md:mts-m-1`,
-                            slippage === 'auto'
-                                ? 'mts-border-primary-500'
-                                : 'mts-border-zinc-200'
-                        )}
-                        data-testid="slippage-setting-auto"
-                    >
-                        {t('auto')}
-                    </div>
-                    <div
-                        onClick={() => handleOnPercentClick(2)}
-                        className={cn(
-                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white mts-p-1 mts-h-12 md:mts-h-10`,
-                            slippage === 2
-                                ? 'mts-border-primary-500'
-                                : 'mts-border-zinc-200'
-                        )}
-                        data-testid="slippage-setting-2"
-                    >
-                        2%
-                    </div>
-                    <div
-                        onClick={() => handleOnPercentClick(5)}
-                        className={cn(
-                            `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white mts-p-1 mts-h-12 md:mts-h-10`,
-                            slippage === 5
-                                ? 'mts-border-primary-500'
-                                : 'mts-border-zinc-200'
-                        )}
-                        data-testid="slippage-setting-5"
-                    >
-                        5%
-                    </div>
-                    <div
-                        className={cn(
-                            `mts-flex mts-justify-between mts-items-center mts-gap-1 mts-relative mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white mts-h-12 md:mts-h-10`,
-                            ['auto', 2, 5].includes(slippage)
-                                ? 'mts-border-zinc-200'
-                                : 'mts-border-primary-500'
-                        )}
-                    >
-                        <input
-                            value={userInput}
-                            onChange={handleSlippageChange}
-                            data-testid="slippage-setting-input"
-                            type="text"
-                            dir="rtl"
-                            placeholder="1"
-                        />
-                        <span className="mts-text-xs md:text-sm mts-pr-1">
-                            %
-                        </span>
-                    </div>
-                </motion.div>
-            </AnimatePresence>
+                    {t('auto')}
+                </div>
+                <div
+                    onClick={() => handleOnPercentClick(2)}
+                    className={cn(
+                        `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-text-white mts-p-1 mts-h-12 md:mts-h-12`,
+                        slippage === 2
+                            ? 'mts-border-primary-500'
+                            : 'mts-border-zinc-200 dark:mts-border-zinc-700'
+                    )}
+                    data-testid="slippage-setting-2"
+                >
+                    2%
+                </div>
+                <div
+                    onClick={() => handleOnPercentClick(5)}
+                    className={cn(
+                        `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-text-white mts-p-1 mts-h-12 md:mts-h-12`,
+                        slippage === 5
+                            ? 'mts-border-primary-500'
+                            : 'mts-border-zinc-200 dark:mts-border-zinc-700'
+                    )}
+                    data-testid="slippage-setting-5"
+                >
+                    5%
+                </div>
+                <div
+                    className={cn(
+                        `mts-flex mts-justify-between mts-items-center mts-gap-1 mts-relative mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-text-white mts-h-12 md:mts-h-12`,
+                        ['auto', 2, 5].includes(slippage)
+                            ? 'mts-border-zinc-200 dark:mts-border-zinc-700'
+                            : 'mts-border-primary-500'
+                    )}
+                >
+                    <input
+                        value={userInput}
+                        onChange={handleSlippageChange}
+                        data-testid="slippage-setting-input"
+                        type="text"
+                        dir="rtl"
+                        placeholder="1"
+                        className="mts-w-full mts-bg-transparent mts-outline-none"
+                    />
+                    <span className="mts-text-xs md:text-sm mts-pr-1">%</span>
+                </div>
+            </div>
         </div>
     );
 };

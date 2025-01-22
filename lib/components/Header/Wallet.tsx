@@ -53,28 +53,30 @@ const Wallet: FC<WalletProps> = ({ isWalletPopover }) => {
             <div
                 className={cn(
                     'mts-flex mts-flex-col mts-gap-3 mts-w-full',
-                    isWalletPopover && 'mts-px-2 mts-pt-2 mts-pb-2 '
+                    isWalletPopover ? 'mts-px-2 mts-pt-2 mts-pb-2' : 'mts-mt-4'
                 )}
             >
                 <div
                     className={cn(
-                        'mts-rounded-2xl mts-p-4 mts-border-zinc-200 mts-bg-white mts-border-[1px]',
+                        'mts-rounded-2xl mts-p-4 mts-border-zinc-200 dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-bg-white dark:mts-text-white mts-border-[1px]',
                         isWalletPopover && 'mts-border-none mts-p-0'
                     )}
                 >
-                    <p className="mts-opacity-75 mts-text-sm">{t('account')}</p>
+                    <p className="mts-opacity-75 mts-font-normal mts-text-[12px]">
+                        {t('account')}
+                    </p>
                     <div className="mts-flex mts-flex-col">
                         <p className="mts-mt-3 mts-text-lg mts-font-medium">
                             {t('balance')}
                         </p>
-                        <div className="mts-mt-2 mts-mb-1  mts-font-black mts-text-3xl">
+                        <div className="mts-mt-2 mts-mb-1 mts-font-black mts-text-xl md:mts-text-3xl">
                             {TON_BALANCE}
                             <span className="mts-text-primary-500">
                                 {t('ton')}
                             </span>
                         </div>
                         <div className="mts-flex mts-items-center mts-gap-1">
-                            <div className="mts-flex mts-opacity-75 mts-rounded mts-white mts-border-[1px] mts-border-zinc-200 mts-px-2 mts-py-1 mts-w-fit mts-text-sm mts-h-10  mts-items-center">
+                            <div className="mts-flex mts-opacity-75 mts-rounded-lg mts-white mts-border-[1px] mts-border-zinc-200 mts-px-2 mts-py-1 mts-w-fit mts-text-sm mts-font-normal mts-h-10  mts-items-center dark:mts-bg-zinc-900 dark:mts-border-zinc-700">
                                 {shortAddress(
                                     wallet.account.address,
                                     'mainnet',
@@ -82,7 +84,7 @@ const Wallet: FC<WalletProps> = ({ isWalletPopover }) => {
                                 )}
                             </div>
                             <button
-                                className="mts-flex mts-justify-center mts-items-center mts-opacity-75 mts-cursor-pointer mts-rounded-md mts-text-white    mts-text-xs disabled:mts-opacity-50 disabled:mts-cursor-not-allowed mts-h-10 mts-w-10 mts-bg-primary-900"
+                                className="mts-flex mts-justify-center mts-items-center mts-opacity-75 mts-cursor-pointer mts-rounded-md mts-text-white    mts-text-xs disabled:mts-opacity-50 disabled:mts-cursor-not-allowed mts-h-10 mts-w-10 mts-bg-primary-900 dark:mts-bg-primary-700"
                                 disabled={copied}
                                 onClick={() =>
                                     copyToClipboard(wallet.account.address)
@@ -95,7 +97,7 @@ const Wallet: FC<WalletProps> = ({ isWalletPopover }) => {
                                 )}
                             </button>
                             <a
-                                className="mts-flex mts-justify-center mts-items-center mts-opacity-75 mts-cursor-pointer mts-rounded-md mts-text-white  mts-text-xs mts-h-10 mts-w-10 mts-bg-primary-900"
+                                className="mts-flex mts-justify-center mts-items-center mts-opacity-75 mts-cursor-pointer mts-rounded-md mts-text-white  mts-text-xs mts-h-10 mts-w-10 mts-bg-primary-900 dark:mts-bg-primary-700"
                                 target="_blank"
                                 href={`https://tonviewer.com/${wallet.account.address}`}
                             >
@@ -105,7 +107,7 @@ const Wallet: FC<WalletProps> = ({ isWalletPopover }) => {
                     </div>
                 </div>
                 <button
-                    className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer  mts-bg-primary-500 mts-h-10 mts-text-white mts-border-[1px] mts-border-primary-600 mts-rounded-lg mts-text-sm "
+                    className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer  mts-bg-primary-500 mts-h-11 md:mts-h-12 mts-text-white mts-border-[1px] mts-border-primary-600 mts-rounded-lg mts-text-sm "
                     onClick={handleDisconnect}
                 >
                     {t('disconnect_wallet')}

@@ -44,13 +44,13 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
         }
     };
     return (
-        <div className="mts-flex mts-flex-col mts-items-center mts-gap-3 mts-px-2 mts-pt-2 mts-pb-2 mts-w-full mts-h-full">
+        <div className="mts-flex mts-flex-col mts-items-center mts-gap-3 mts-px-2 mts-pt-2 mts-pb-2 mts-w-full mts-h-full ">
             <div className="mts-flex mts-justify-between mts-items-center mts-w-full">
-                <span className="mts-text-black mts-font-bold mts-text-lg">
+                <span className="mts-text-black dark:mts-text-white mts-font-bold mts-text-lg">
                     {t('confirm.confirm_title')}
                 </span>{' '}
                 <button onClick={handleConfirmClose}>
-                    <Close className="mts-cursor-pointer mts-text-black mts-text-2xl" />
+                    <Close className="mts-cursor-pointer mts-text-black mts-text-2xl dark:mts-text-white" />
                 </button>
             </div>
             <div className="mts-flex mts-items-center mts-pt-1">
@@ -67,7 +67,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     }}
                 ></div>
             </div>
-            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black mts-font-bold mts-text-center">
+            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{' '}
                     {pay_token?.symbol}
@@ -92,7 +92,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                 <SwapKeyValue
                     keyText={t('slippage_tolerance')}
                     value={
-                        <div className="mts-px-2 mts-py-1 mts-bg-zinc-200 mts-rounded-full">
+                        <div className="mts-px-2 mts-py-1 mts-bg-zinc-200 dark:mts-bg-zinc-700 dark:mts-text-white mts-rounded-full">
                             {slippage === 'auto' ? '1% Auto' : slippage + '%'}
                         </div>
                     }

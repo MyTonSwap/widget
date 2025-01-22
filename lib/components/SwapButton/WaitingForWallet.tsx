@@ -29,7 +29,7 @@ const WaitingForWallet = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="mts-flex mts-relative mts-flex-col mts-justify-center mts-items-center mts-px-4 mts-h-full mts-text-black"
+            className="mts-flex mts-relative mts-flex-col mts-justify-center mts-items-center mts-px-4 mts-h-full mts-text-black dark:mts-text-white"
         >
             <button onClick={handleCloseModal}>
                 <Close className="mts-absolute mts-top-4 mts-right-4 mts-opacity-70 mts-cursor-pointer mts-text-2xl" />
@@ -48,7 +48,7 @@ const WaitingForWallet = () => {
                     }}
                 ></div>
             </div>
-            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black mts-font-bold mts-text-center mts-mt-6">
+            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-mt-6">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{' '}
                     {pay_token?.symbol}
@@ -79,7 +79,7 @@ const WaitingForWallet = () => {
                 ></Trans>
             </div>
             <p className="mts-text-base">{t('confirm.action_in_progress')}</p>
-            <div className="mts-flex mts-justify-center mts-items-center mts-text-3xl md:mts-text-4xl mts-h-20 mts-w-20 mts-border-[1px] mts-bg-zinc-100 mts-border-zinc-200 mts-rounded-full mts-mt-6">
+            <div className="mts-flex mts-justify-center mts-items-center mts-text-3xl md:mts-text-4xl mts-h-20 mts-w-20 mts-border-[1px] mts-bg-zinc-100 dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-border-zinc-200 mts-rounded-full mts-mt-6">
                 <Spinner className="mts-animate-spin mts-opacity-70 mts-text-primary-500" />
             </div>
         </motion.div>

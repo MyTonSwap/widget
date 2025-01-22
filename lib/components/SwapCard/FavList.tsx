@@ -49,17 +49,17 @@ const FavList: FC<FavListProps> = ({ onTokenSelect, type }) => {
                 />
             ))}
             {isLoading && (
-                <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-black mts-text-xl">
+                <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-black dark:mts-text-white mts-text-xl">
                     <CgSpinnerTwo className="mts-animate-spin mts-text-primary-500" />
                 </div>
             )}
             {isError && (
-                <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-black mts-text-xl">
+                <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-black dark:mts-text-white mts-text-xl">
                     <div>Something went wrong...</div>
                 </div>
             )}
             {!isLoading && !isError && favItems?.length === 0 && (
-                <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-black mts-text-xl">
+                <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-black dark:mts-text-white mts-text-xl">
                     <div className="mts-opacity-70 mts-text-xs">
                         No favorite tokens
                     </div>

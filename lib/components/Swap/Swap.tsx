@@ -160,10 +160,18 @@ export const SwapComponent: FC<SwapProps> = ({
 
     return (
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
-            <div className={cn('mytonswap-app', direction)}>
+            <div
+                className={cn(
+                    'mytonswap-app',
+                    direction,
+                    options?.ui_preferences?.theme === 'light'
+                        ? 'mts-light'
+                        : 'mts-dark'
+                )}
+            >
                 <div
                     className={clsx(
-                        'mts-rounded-lg mts-p-2 mts-max-w-[21.875rem] mts-overflow-hidden md:mts-p-3 md:mts-w-[28.125rem] md:mts-max-w-[28.125rem] lg:mts-w-[calc(34.375rem+24px)] lg:mts-max-w-[calc(34.375rem+24px)]'
+                        'mts-rounded-lg  mts-max-w-[21.875rem] mts-overflow-hidden md:mts-p-3 md:mts-w-[28.125rem] md:mts-max-w-[28.125rem] lg:mts-w-[calc(34.375rem+24px)] lg:mts-max-w-[calc(34.375rem+24px)]'
                     )}
                 >
                     <Header />
@@ -171,7 +179,7 @@ export const SwapComponent: FC<SwapProps> = ({
                     <SwapButton />
                     {shouldShowSwapDetails && <SwapDetails />}
                     {shouldShowProvidedText && (
-                        <div className="mts-mt-2 mts-mb-1 mts-w-full mts-text-black mts-text-[10px] mts-text-center">
+                        <div className="mts-mt-2 mts-mb-1 mts-w-full mts-text-black dark:mts-text-white mts-text-[10px] mts-text-center">
                             {t('service_provided')}{' '}
                             <a
                                 href="https://mytonswap.com"
@@ -188,8 +196,8 @@ export const SwapComponent: FC<SwapProps> = ({
             <Toaster
                 toastOptions={{
                     style: {
-                        background: `var(--background-color)`,
-                        color: `var(--text-black-color)`,
+                        background: `rgb(var(--mts-primary-950))`,
+                        color: `white`,
                     },
                 }}
             />

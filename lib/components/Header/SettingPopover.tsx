@@ -10,7 +10,7 @@ import { useOptionsStore } from '../../store/options.store';
 import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import { modalAnimationDesktop, modalAnimationMobile } from '../../constants';
-import { IoClose } from 'react-icons/io5';
+import Close from '../icons/Close';
 
 export type SettingPopoverProps = PropsWithChildren & {};
 
@@ -65,16 +65,18 @@ const SettingPopover: FC<SettingPopoverProps> = ({ children }) => {
                             exit={modalAnimation.exit}
                             transition={{ ease: 'easeOut', duration: 0.15 }}
                             ref={ref}
-                            className="mts-flex mts-fixed mts-bottom-0 mts-left-0 mts-flex-col mts-gap-3 mts-shadow-sm mts-rounded-t-2xl mts-bg-zinc-100 mts-p-4 mts-w-full mts-min-w-60 mts-h-fit mts-text-primary-950 rtl:mts-right-auto rtl:left-0 md:mts-min-w-80 md:mts-max-w-[32.5rem] md:mts-rounded-2xl"
+                            className="mts-flex mts-fixed mts-bottom-0 mts-left-0 mts-flex-col mts-gap-3 mts-shadow-sm mts-rounded-t-2xl mts-bg-zinc-100 dark:mts-bg-zinc-900 mts-p-4 mts-w-full mts-min-w-60 mts-h-fit mts-text-primary-950 rtl:mts-right-auto rtl:left-0 md:mts-min-w-80 md:mts-max-w-[32.5rem] md:mts-rounded-2xl"
                             data-testid="setting-popover"
                         >
-                            <div className="mts-flex mts-items-center mts-justify-between">
-                                <div>{t('setting')}</div>
+                            <div className="mts-flex mts-items-center mts-justify-between dark:mts-text-white">
+                                <div className="mts-text-lg">
+                                    {t('setting')}
+                                </div>
                                 <button
                                     onClick={handleCloseSetting}
-                                    className="mts-text-primary-950"
+                                    className="mts-text-primary-950 dark:mts-text-white"
                                 >
-                                    <IoClose />
+                                    <Close />
                                 </button>
                             </div>
 

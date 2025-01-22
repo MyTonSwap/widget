@@ -173,14 +173,14 @@ const Card: FC<CardProps> = ({ type }) => {
         <>
             <div
                 className={cn(
-                    'mts-flex mts-flex-col mts-w-full mts-text-base mts-bg-zinc-50 mts-border-[1px] mts-border-zinc-200 mts-p-4 mts-rounded-lg',
+                    'mts-flex mts-flex-col mts-w-full mts-text-base mts-bg-zinc-50 dark:mts-bg-zinc-900 dark:mts-border-transparent mts-border-[1px] mts-border-zinc-200 mts-p-4 mts-rounded-lg',
                     type === 'receive' && 'mts-m-[2px]'
                 )}
             >
                 <div className="mts-flex mts-justify-between mts-items-center">
                     <span
                         data-testid="swapcard-title"
-                        className="mts-opacity-70 mts-text-black mts-text-xs mts-font-normal"
+                        className="mts-opacity-70 mts-text-black mts-text-xs mts-font-normal dark:mts-text-white"
                     >
                         {type === 'pay' ? t('you_pay') : t('you_receive')}
                     </span>
@@ -207,7 +207,7 @@ const Card: FC<CardProps> = ({ type }) => {
                                 onChange={handlePayAmountChange}
                                 pattern="^[0-9]*[.,]?[0-9]*$"
                                 placeholder="0"
-                                className={`mts-outline-none mts-bg-transparent mts-h-7 mts-text-black mts-font-bold  mts-font-inherit mts-text-lg ${type}`}
+                                className={`mts-outline-none mts-bg-transparent mts-h-7 mts-w-full mts-text-black dark:mts-text-white mts-font-bold  mts-font-inherit mts-text-lg ${type}`}
                                 data-testid={`swapcard-input-${type}`}
                             />
                         )}
@@ -225,7 +225,7 @@ const Card: FC<CardProps> = ({ type }) => {
                         )}
                         {((type === 'receive' && !isFindingBestRoute) ||
                             type === 'pay') && (
-                            <span className="mts-flex mts-items-center mts-opacity-50 mts-h-5 mts-text-black mts-text-sm mts-font-inherit mts-text-left">
+                            <span className="mts-flex mts-items-center mts-opacity-50 mts-h-5 mts-text-black dark:mts-text-white mts-text-sm mts-font-inherit mts-text-left">
                                 {calculatedRate} $
                             </span>
                         )}
@@ -277,7 +277,7 @@ const Card: FC<CardProps> = ({ type }) => {
                                     )}{' '}
                                     {pay_token?.symbol}
                                 </span>
-                                <span className="mts-text-black mts-px-1 mts-bg-zinc-200 mts-text-[10px] mts-rounded-full">
+                                <span className="mts-text-black mts-px-1 mts-bg-zinc-200 dark:mts-bg-zinc-700 dark:mts-text-white mts-text-[10px] mts-rounded-full">
                                     {t('max')}
                                 </span>
                             </span>

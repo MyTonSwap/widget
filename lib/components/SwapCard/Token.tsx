@@ -58,7 +58,7 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect, type }) => {
                     style={{ background: `url(${asset.image})` }}
                 ></div>
                 <div className="mts-flex-grow mts-h-full mts-justify-center mts-gap-1 mts-flex mts-flex-col">
-                    <div className="mts-flex mts-justify-between mts-items-center mts-overflow-hidden mts-text-black mts-font-medium mts-text-sm mts-truncate">
+                    <div className="mts-flex mts-justify-between mts-items-center mts-overflow-hidden mts-text-black dark:mts-text-white mts-font-medium mts-text-sm mts-truncate">
                         <div className="mts-flex mts-items-center mts-gap-1  mts-font-medium   ">
                             {asset.symbol}{' '}
                             <span>
@@ -72,21 +72,21 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect, type }) => {
                                 </a>
                             </span>
                             {asset.warning && (
-                                <div className="mts-text-xs mts-bg-primary-100 mts-rounded-full mts-px-2 mts-text-primary-500 mts-border-primary-200 mts-border-[1px]">
+                                <div className="mts-text-xs mts-bg-primary-100 mts-rounded-full mts-px-2 mts-text-primary-500 mts-border-primary-200 dark:mts-bg-primary-900 dark:mts-border-primary-700 mts-border-[1px]">
                                     {t('community')}
                                 </div>
                             )}
                         </div>
                         <div>{tokenBalance}</div>
                     </div>
-                    <div className="mts-flex mts-justify-between mts-items-center mts-opacity-50 mts-text-black mts-text-xs mts-gap-2 ">
+                    <div className="mts-flex mts-justify-between mts-items-center mts-opacity-50 mts-text-black dark:mts-text-white mts-text-xs mts-gap-2 ">
                         <div className="mts-flex mts-items-center mts-gap-0.5">
                             <span className="mts-break-all mts-line-clamp-1 mts-truncate mts-whitespace-pre-wrap">
                                 {asset.name}
                             </span>
                             {asset.address !== TON_ADDR && (
                                 <span className="mts-flex mts-items-center mts-gap-0.5">
-                                    | <TokenTon /> {asset.liquidity_text}
+                                    | <TokenTon /> {asset.liquidity_text ?? 0}
                                 </span>
                             )}
                         </div>
@@ -96,8 +96,9 @@ const Token: FC<TokenProps> = ({ asset, onTokenSelect, type }) => {
                 <div>
                     <div
                         className={cn(
-                            'mts-opacity-20 mts-transition-transform mts-duration-200 mts-ease-in-out mts-text-black mts-text-2xl',
-                            isTokenFav && 'mts-opacity-100 mts-text-primary-500'
+                            'mts-opacity-20 mts-transition-transform mts-duration-200 mts-ease-in-out mts-text-black mts-text-2xl dark:mts-text-white',
+                            isTokenFav &&
+                                'mts-opacity-100 mts-text-primary-500 dark:mts-text-primary-500'
                         )}
                     >
                         {isTokenFav ? (

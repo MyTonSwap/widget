@@ -15,14 +15,14 @@ const Done = () => {
         setModalState(ModalState.NONE);
     };
     return (
-        <div className="mts-flex mts-flex-col mts-justify-center mts-items-center mts-h-full">
+        <div className="mts-flex mts-flex-col mts-justify-center mts-items-center mts-h-full ">
             <button onClick={handleCloseModal}>
-                <Close className="mts-absolute mts-top-4 mts-right-4 mts-opacity-70 mts-cursor-pointer mts-text-2xl" />
+                <Close className="mts-absolute mts-top-4 mts-right-4 mts-opacity-70 mts-cursor-pointer mts-text-2xl dark:mts-text-white" />
             </button>
-            <div className="mts-flex mts-justify-center mts-items-center mts-text-primary mts-text-5xl mts-text-green-500 mts-h-20 mts-w-20 mts-border-[1px] mts-border-zinc-200 mts-bg-zinc-100 mts-rounded-full">
+            <div className="mts-flex mts-justify-center mts-items-center mts-text-primary mts-text-5xl mts-text-green-500 mts-h-20 mts-w-20 mts-border-[1px] mts-border-zinc-200 mts-bg-zinc-100 mts-rounded-full dark:mts-bg-zinc-800 dark:mts-border-zinc-700">
                 <FaCircleCheck />
             </div>
-            <div className="mts-mt-6 mts-text-black mts-font-bold mts-text-lg mts-text-center">
+            <div className="mts-mt-6 mts-text-black mts-font-bold mts-text-lg mts-text-center dark:mts-text-white">
                 {t('transaction.complete')}
             </div>
             <div className="mts-flex mts-items-center mts-pt-6">
@@ -39,7 +39,7 @@ const Done = () => {
                     }}
                 ></div>
             </div>
-            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black mts-font-bold mts-text-center mts-mt-6">
+            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-mt-6">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{' '}
                     {pay_token?.symbol}

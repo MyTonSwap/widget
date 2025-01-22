@@ -18,7 +18,7 @@ const SwapDetails = () => {
     const [ref, { height }] = useMeasure();
     return (
         <motion.button
-            className="mts-flex mts-flex-col mts-items-center mts-mt-3 mts-rounded-lg   mts-w-full mts-min-h-12 mts-text-black"
+            className="mts-flex mts-flex-col mts-items-center mts-mt-3 mts-rounded-lg   mts-w-full mts-min-h-12 mts-text-black dark:mts-text-white"
             onClick={() => {
                 setIsOpen((prev) => !prev);
             }}
@@ -60,7 +60,7 @@ const SwapDetails = () => {
                             height: height ?? 0,
                         }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="mts-flex mts-flex-col mts-gap-1 mts-w-full mts-overflow-hidden mts-bg-zinc-100  mts-rounded-lg mts-border-zinc-200 mts-border-[1px]"
+                        className="mts-flex mts-flex-col mts-gap-1 mts-w-full mts-overflow-hidden mts-bg-zinc-100 dark:mts-bg-zinc-900 dark:mts-border-zinc-800 mts-rounded-lg mts-border-zinc-200 mts-border-[1px]"
                     >
                         <div
                             ref={ref}
@@ -69,7 +69,7 @@ const SwapDetails = () => {
                             <SwapKeyValue
                                 keyText={t('slippage_tolerance')}
                                 value={
-                                    <div className="mts-rounded-full mts-bg-zinc-200 mts-px-2 mts-py-1 mts-text-black">
+                                    <div className="mts-rounded-full mts-bg-zinc-200 dark:mts-bg-zinc-700 dark:mts-text-white mts-px-2 mts-py-1 mts-text-black">
                                         {slippage === 'auto' ? '1' : slippage}%{' '}
                                         {slippage === 'auto' ? t('auto') : ''}
                                     </div>

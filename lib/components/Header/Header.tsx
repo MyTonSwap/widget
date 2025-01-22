@@ -12,7 +12,7 @@ const Header = () => {
         useSwapStore();
 
     return (
-        <div className="mts-flex mts-justify-between mts-items-center mts-px-1 mts-text-primary-950 mts-font-bold mts-text-lg">
+        <div className="mts-flex mts-justify-between mts-items-center mts-px-1 mts-text-primary-950 dark:mts-text-white mts-font-bold mts-text-lg md:mts-text-xl">
             <div data-testid="swap-header-title">{t('swap')}</div>
             <div className="mts-flex mts-items-center mts-gap-2">
                 {options.ui_preferences?.show_refresh && (
@@ -28,7 +28,7 @@ const Header = () => {
                 )}
                 {options.ui_preferences?.show_settings && (
                     <SettingPopover>
-                        <Menu className="mts-text-primary-950 mts-text-2xl mts-rotate-90" />
+                        <Menu className="mts-text-primary-950 dark:mts-text-white mts-text-2xl mts-rotate-90" />
                     </SettingPopover>
                 )}
             </div>

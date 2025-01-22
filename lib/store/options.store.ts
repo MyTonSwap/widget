@@ -26,6 +26,7 @@ export type SwapOptions = {
     layout_direction?: 'ltr' | 'rtl';
     ui_preferences?: {
         primary_color?: string;
+        theme?: 'light' | 'dark';
         disable_provided_text?: boolean;
         show_swap_details?: boolean;
         show_settings_wallet?: boolean;

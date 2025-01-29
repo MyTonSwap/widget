@@ -278,7 +278,7 @@ const CardDialog: FC<CardDialogProps> = ({
                             animate={modalAnimation.animate}
                             exit={modalAnimation.exit}
                             className={clsx(
-                                'mts-fixed mts-bottom-0 mts-left-0 mts-flex mts-flex-col mts-shadow-[0px_0px_10px_rgba(0,0,0,0.05)] mts-rounded-t-2xl mts-bg-white dark:mts-bg-zinc-900 mts-p-4 mts-pt-4 mts-pb-2 mts-w-full mts-min-h-[92.5dvh] mts-max-h-[92.5dvh] mts-overflow-y-auto md:mts-shadow-[0_0px_10px_rgba(0,0,0,0.05)] md:mts-rounded-2xl md:mts-w-[90%] md:mts-max-w-[34.375rem] md:mts-h-auto md:mts-min-h-[21.875rem] md:mts-max-h-[70dvh]'
+                                'mts-fixed mts-bottom-0 mts-left-0 mts-flex mts-flex-col mts-shadow-[0px_0px_10px_rgba(0,0,0,0.05)] mts-rounded-t-2xl mts-bg-white dark:mts-bg-dark-900 mts-p-4 mts-pt-4 mts-pb-2 mts-w-full mts-min-h-[92.5dvh] mts-max-h-[92.5dvh] mts-overflow-y-auto md:mts-shadow-[0_0px_10px_rgba(0,0,0,0.05)] md:mts-rounded-2xl md:mts-w-[90%] md:mts-max-w-[34.375rem] md:mts-h-auto md:mts-min-h-[21.875rem] md:mts-max-h-[70dvh]'
                             )}
                             ref={ref}
                             onClick={(e) => {
@@ -295,8 +295,8 @@ const CardDialog: FC<CardDialogProps> = ({
                                 </button>
                             </div>
                             <div>
-                                <div className="mts-flex mts-items-center mts-transition-all mts-duration-200 mts-ease-in-out mts-mt-6 mts-mb-2 mts-border mts-border-black/10 mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-px-3 mts-w-full mts-h-10 md:mts-h-14 hover:mts-bg-zinc-100 focus-within:mts-border-primary-500 dark:focus-within:mts-border-primary-500">
-                                    <Search className="mts-text-zinc-500 mts-text-lg md:mts-opacity-50" />
+                                <div className="mts-flex mts-items-center mts-transition-all mts-duration-200 mts-ease-in-out mts-mt-6 mts-mb-2 mts-border mts-border-black/10 mts-rounded-lg mts-bg-white dark:mts-bg-dark-800 dark:mts-border-dark-700 mts-px-3 mts-w-full mts-h-10 md:mts-h-14 hover:mts-bg-dark-100 focus-within:mts-border-primary-500 dark:focus-within:mts-border-primary-500">
+                                    <Search className="mts-text-dark-500 mts-text-lg md:mts-opacity-50" />
                                     <input
                                         className="mts-outline-none mts-bg-transparent mts-px-2 mts-w-full mts-h-full mts-text-black mts-text-sm md:mts-text-sm mts-font-normal"
                                         type="text"
@@ -313,7 +313,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                     {pinnedTokens.map((item) => {
                                         return (
                                             <button
-                                                className="mts-flex mts-items-center mts-gap-1 mts-opacity-80 mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer mts-rounded-full mts-bg-zinc-100 dark:mts-bg-zinc-800 mts-p-1 mts-px-2 mts-text-black dark:mts-text-white mts-text-[0.9rem] hover:mts-opacity-100"
+                                                className="mts-flex mts-items-center mts-gap-1 mts-opacity-80 mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer mts-rounded-full mts-bg-dark-100 dark:mts-bg-dark-800 mts-p-1 mts-px-2 mts-text-black dark:mts-text-white mts-text-[0.9rem] hover:mts-opacity-100"
                                                 onClick={() => {
                                                     handleOnTokenSelect(item);
                                                 }}
@@ -454,7 +454,7 @@ const CardDialog: FC<CardDialogProps> = ({
                                         <>
                                             <div className="mts-flex mts-grow mts-flex-col mts-gap-2">
                                                 <div className="mts-flex mts-flex-col mts-justify-center mts-items-center mts-mt-1 mts-mb-1 mts-rounded-lg mts-bg-[var(--input-card-color)] mts-p-2 mts-text-[var(--text-black-color)]">
-                                                    <div className="mts-h-20 mts-w-20 mts-bg-zinc-100 mts-border-zinc-200 mts-border-[1px] mts-flex mts-items-center mts-justify-center   mts-rounded-full">
+                                                    <div className="mts-h-20 mts-w-20 mts-bg-dark-100 mts-border-dark-200 mts-border-[1px] mts-flex mts-items-center mts-justify-center   mts-rounded-full">
                                                         <Warning className="mts-text-red-500 mts-text-4xl " />
                                                     </div>
                                                     <h1 className="mts-font-bold mts-text-lg mts-mt-6 ">
@@ -500,7 +500,7 @@ const CardDialog: FC<CardDialogProps> = ({
                             <div className="mts-flex mts-justify-center mts-items-center mts-cursor-pointer mts-pt-2 mts-text-sm md:mts-hidden">
                                 <button
                                     onClick={handleOnClose}
-                                    className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-text-white dark:mts-border-zinc-700 mts-border-zinc-200 mts-border-[1px] mts-w-full mts-h-12 mts-text-black mts-text-center active:mts-scale-95"
+                                    className="mts-flex mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-ease-in-out mts-rounded-lg mts-bg-white dark:mts-bg-dark-800 dark:mts-text-white dark:mts-border-dark-700 mts-border-dark-200 mts-border-[1px] mts-w-full mts-h-12 mts-text-black mts-text-center active:mts-scale-95"
                                 >
                                     Close
                                 </button>

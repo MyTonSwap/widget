@@ -160,15 +160,7 @@ export const SwapComponent: FC<SwapProps> = ({
 
     return (
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
-            <div
-                className={cn(
-                    'mytonswap-app',
-                    direction,
-                    options?.ui_preferences?.theme === 'light'
-                        ? 'mts-light'
-                        : 'mts-dark'
-                )}
-            >
+            <div className={cn('mytonswap-app', direction)}>
                 <div
                     className={clsx(
                         'mts-rounded-lg  mts-max-w-[21.875rem] mts-overflow-hidden md:mts-p-3 md:mts-w-[28.125rem] md:mts-max-w-[450px] '

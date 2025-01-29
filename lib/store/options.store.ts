@@ -26,7 +26,7 @@ export type SwapOptions = {
     layout_direction?: 'ltr' | 'rtl';
     ui_preferences?: {
         primary_color?: string;
-        theme?: 'light' | 'dark';
+        dark_color?: string;
         disable_provided_text?: boolean;
         show_swap_details?: boolean;
         show_settings_wallet?: boolean;
@@ -73,7 +73,10 @@ export const useOptionsStore = create<SwapOptionsActions & SwapOptionsStates>(
             const { options, userOptions } = get();
             if (JSON.stringify(option) === JSON.stringify(userOptions)) return;
             if (option.ui_preferences?.primary_color) {
-                setupColors(option.ui_preferences.primary_color);
+                setupColors(
+                    option.ui_preferences.primary_color,
+                    option.ui_preferences.dark_color
+                );
             }
             const newSchema = defaultsDeep(
                 option,

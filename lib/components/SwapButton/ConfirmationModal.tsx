@@ -66,7 +66,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                     }}
                 ></div>
             </div>
-            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-bg-zinc-50 mts-w-full mts-border-zinc-200 mts-border-[1px] mts-rounded-xl mts-p-2 dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-mt-6">
+            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-bg-dark-50 mts-w-full mts-border-dark-200 mts-border-[1px] mts-rounded-xl mts-p-2 dark:mts-bg-dark-800 dark:mts-border-dark-700 mts-mt-6">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{' '}
                     {pay_token?.symbol}
@@ -91,7 +91,7 @@ const ConfirmationModal: FC<ConfirmationModalProps> = ({ setConfirmModal }) => {
                 <SwapKeyValue
                     keyText={t('slippage_tolerance')}
                     value={
-                        <div className="mts-px-2 mts-py-1 mts-bg-zinc-200 dark:mts-bg-zinc-700 dark:mts-text-white mts-rounded-full">
+                        <div className="mts-px-2 mts-py-1 mts-bg-dark-200 dark:mts-bg-dark-700 dark:mts-text-white mts-rounded-full">
                             {slippage === 'auto' ? '1% Auto' : slippage + '%'}
                         </div>
                     }

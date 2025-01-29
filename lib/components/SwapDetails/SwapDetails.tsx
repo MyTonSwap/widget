@@ -60,7 +60,7 @@ const SwapDetails = () => {
                             height: height ?? 0,
                         }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="mts-flex mts-flex-col mts-gap-1 mts-w-full mts-overflow-hidden mts-bg-zinc-100 dark:mts-bg-zinc-900 dark:mts-border-zinc-800 mts-rounded-lg mts-border-zinc-200 mts-border-[1px]"
+                        className="mts-flex mts-flex-col mts-gap-1 mts-w-full mts-overflow-hidden mts-bg-dark-100 dark:mts-bg-dark-900 dark:mts-border-dark-800 mts-rounded-lg mts-border-dark-200 mts-border-[1px]"
                     >
                         <div
                             ref={ref}
@@ -69,7 +69,7 @@ const SwapDetails = () => {
                             <SwapKeyValue
                                 keyText={t('slippage_tolerance')}
                                 value={
-                                    <div className="mts-rounded-full mts-bg-zinc-200 dark:mts-bg-zinc-700 dark:mts-text-white mts-px-2 mts-py-1 mts-text-black">
+                                    <div className="mts-rounded-full mts-bg-dark-200 dark:mts-bg-dark-700 dark:mts-text-white mts-px-2 mts-py-1 mts-text-black">
                                         {slippage === 'auto' ? '1' : slippage}%{' '}
                                         {slippage === 'auto' ? t('auto') : ''}
                                     </div>

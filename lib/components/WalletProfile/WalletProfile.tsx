@@ -72,7 +72,7 @@ export const WalletProfile: FC<WalletProfileProps> = ({
             <div
                 className={cn(
                     `mts-cursor-pointer mts-border mts-rounded-full mts-bg-primary-500 mts-px-3 mts-py-2 mts-text-white mts-font-medium mts-text-sm mts-select-none`,
-                    wallet && 'mts-bg-zinc-100 mts-text-black'
+                    wallet && 'mts-bg-dark-100 mts-text-black'
                 )}
                 onClick={wallet ? handleButtonClick : handleConnectWallet}
                 ref={buttonRef}

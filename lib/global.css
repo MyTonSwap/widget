@@ -17,6 +17,18 @@
     --mts-primary-800: 13 78 37;
     --mts-primary-900: 7 39 19;
     --mts-primary-950: 4 22 10;
+
+    --mts-dark-50: 242 242 243;
+    --mts-dark-100: 226 226 228;
+    --mts-dark-200: 199 199 204;
+    --mts-dark-300: 170 170 177;
+    --mts-dark-400: 141 141 150;
+    --mts-dark-500: 113 113 123;
+    --mts-dark-600: 90 90 98;
+    --mts-dark-700: 68 68 74;
+    --mts-dark-800: 46 46 50;
+    --mts-dark-900: 22 22 24;
+    --mts-dark-950: 12 12 13;
 }
 
 .mts-default {

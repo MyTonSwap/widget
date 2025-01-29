@@ -173,7 +173,7 @@ const Card: FC<CardProps> = ({ type }) => {
         <>
             <div
                 className={cn(
-                    'mts-flex mts-flex-col mts-w-full mts-text-base mts-bg-zinc-50 dark:mts-bg-zinc-900 dark:mts-border-transparent mts-border-[1px] mts-border-zinc-200 mts-p-4 mts-rounded-lg',
+                    'mts-flex mts-flex-col mts-w-full mts-text-base mts-bg-dark-50 dark:mts-bg-dark-900 dark:mts-border-transparent mts-border-[1px] mts-border-dark-200 mts-p-4 mts-rounded-lg',
                     type === 'receive' && 'mts-m-[2px]'
                 )}
             >
@@ -263,7 +263,7 @@ const Card: FC<CardProps> = ({ type }) => {
                         </CardButton>
                         {type === 'pay' && balanceToken ? (
                             <span
-                                className="mts-cursor-pointer  mts-text-xs mts-flex mts-items-center mts-gap-2 mts-text-zinc-500 mts-font-medium"
+                                className="mts-cursor-pointer  mts-text-xs mts-flex mts-items-center mts-gap-2 mts-text-dark-500 mts-font-medium"
                                 onClick={handleMaxClick}
                             >
                                 <span>
@@ -277,12 +277,12 @@ const Card: FC<CardProps> = ({ type }) => {
                                     )}{' '}
                                     {pay_token?.symbol}
                                 </span>
-                                <span className="mts-text-black mts-px-1 mts-bg-zinc-200 dark:mts-bg-zinc-700 dark:mts-text-white mts-text-[10px] mts-rounded-full">
+                                <span className="mts-text-black mts-px-1 mts-bg-dark-200 dark:mts-bg-dark-700 dark:mts-text-white mts-text-[10px] mts-rounded-full">
                                     {t('max')}
                                 </span>
                             </span>
                         ) : (
-                            <span className="mts-cursor-auto  mts-text-xs mts-text-zinc-500">
+                            <span className="mts-cursor-auto  mts-text-xs mts-text-dark-500">
                                 {balanceToken && receive_token && (
                                     <span>
                                         {formatNumber(

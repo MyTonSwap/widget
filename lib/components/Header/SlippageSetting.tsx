@@ -54,11 +54,11 @@ const SlippageSetting = () => {
             data-testid="slippage-setting"
         >
             <button className="mts-flex  mts-justify-between mts-w-full mts-text-black ">
-                <div className="mts-text-lg mts-text-zinc-600 dark:mts-text-zinc-200">
+                <div className="mts-text-lg mts-text-dark-600 dark:mts-text-dark-200">
                     {t('max_slippage')}
                 </div>
                 <div
-                    className="mts-flex mts-justify-center mts-items-center mts-text-sm  mts-text-zinc-600 dark:mts-text-zinc-200"
+                    className="mts-flex mts-justify-center mts-items-center mts-text-sm  mts-text-dark-600 dark:mts-text-dark-200"
                     data-testid="slippage-indicator"
                 >
                     {slippage === 'auto' ? t('auto') : `${slippage}%`}{' '}
@@ -68,10 +68,10 @@ const SlippageSetting = () => {
                 <div
                     onClick={handleOnAutoClick}
                     className={cn(
-                        `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-text-white mts-p-1 mts-h-12 md:mts-h-12 md:mts-m-1`,
+                        `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-dark-800 dark:mts-text-white mts-p-1 mts-h-12 md:mts-h-12 md:mts-m-1`,
                         slippage === 'auto'
                             ? 'mts-border-primary-500'
-                            : 'mts-border-zinc-200 dark:mts-border-zinc-700'
+                            : 'mts-border-dark-200 dark:mts-border-dark-700'
                     )}
                     data-testid="slippage-setting-auto"
                 >
@@ -80,10 +80,10 @@ const SlippageSetting = () => {
                 <div
                     onClick={() => handleOnPercentClick(2)}
                     className={cn(
-                        `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-text-white mts-p-1 mts-h-12 md:mts-h-12`,
+                        `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-dark-800 dark:mts-text-white mts-p-1 mts-h-12 md:mts-h-12`,
                         slippage === 2
                             ? 'mts-border-primary-500'
-                            : 'mts-border-zinc-200 dark:mts-border-zinc-700'
+                            : 'mts-border-dark-200 dark:mts-border-dark-700'
                     )}
                     data-testid="slippage-setting-2"
                 >
@@ -92,10 +92,10 @@ const SlippageSetting = () => {
                 <div
                     onClick={() => handleOnPercentClick(5)}
                     className={cn(
-                        `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-text-white mts-p-1 mts-h-12 md:mts-h-12`,
+                        `mts-flex mts-relative mts-justify-center mts-items-center mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-dark-800 dark:mts-text-white mts-p-1 mts-h-12 md:mts-h-12`,
                         slippage === 5
                             ? 'mts-border-primary-500'
-                            : 'mts-border-zinc-200 dark:mts-border-zinc-700'
+                            : 'mts-border-dark-200 dark:mts-border-dark-700'
                     )}
                     data-testid="slippage-setting-5"
                 >
@@ -103,9 +103,9 @@ const SlippageSetting = () => {
                 </div>
                 <div
                     className={cn(
-                        `mts-flex mts-justify-between mts-items-center mts-gap-1 mts-relative mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-zinc-800 dark:mts-text-white mts-h-12 md:mts-h-12`,
+                        `mts-flex mts-justify-between mts-items-center mts-gap-1 mts-relative mts-transition-all mts-duration-300 mts-cursor-pointer mts-m-[0.125rem] mts-border-[1px] mts-border-transparent mts-rounded-lg mts-bg-white dark:mts-bg-dark-800 dark:mts-text-white mts-h-12 md:mts-h-12`,
                         ['auto', 2, 5].includes(slippage)
-                            ? 'mts-border-zinc-200 dark:mts-border-zinc-700'
+                            ? 'mts-border-dark-200 dark:mts-border-dark-700'
                             : 'mts-border-primary-500'
                     )}
                 >

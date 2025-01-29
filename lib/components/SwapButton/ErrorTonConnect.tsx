@@ -17,7 +17,7 @@ const ErrorTonConnect = () => {
             <button onClick={handleCloseModal}>
                 <Close className="mts-absolute mts-top-4 mts-right-4 mts-opacity-70 mts-cursor-pointer mts-text-2xl" />
             </button>
-            <div className="mts-h-20 mts-w-20 mts-flex mts-justify-center mts-items-center mts-border-[1px] mts-border-zinc-200 mts-bg-zinc-100 mts-rounded-full dark:mts-bg-zinc-800 dark:mts-border-zinc-700">
+            <div className="mts-h-20 mts-w-20 mts-flex mts-justify-center mts-items-center mts-border-[1px] mts-border-dark-200 mts-bg-dark-100 mts-rounded-full dark:mts-bg-dark-800 dark:mts-border-dark-700">
                 <IoCloseCircle className="mts-text-red-500 mts-text-6xl" />
             </div>
             <div className="mts-mt-4 mts-px-7 mts-text-center mts-min-h-52 mts-m-6 mts-flex mts-flex-col mts-items-center mts-justify-center">

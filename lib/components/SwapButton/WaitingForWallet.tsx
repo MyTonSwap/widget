@@ -41,7 +41,7 @@ const WaitingForWallet = () => {
                     }}
                 ></div>
             </div>
-            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-bg-zinc-50 mts-w-full mts-border-zinc-200 mts-border-[1px] mts-rounded-xl mts-p-2 dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-mt-6">
+            <div className="mts-flex mts-flex-col mts-items-center mts-opacity-70 mts-text-black dark:mts-text-white mts-font-bold mts-text-center mts-bg-dark-50 mts-w-full mts-border-dark-200 mts-border-[1px] mts-rounded-xl mts-p-2 dark:mts-bg-dark-800 dark:mts-border-dark-700 mts-mt-6">
                 <div>
                     {fromNano(pay_amount, pay_token?.decimal)}{' '}
                     {pay_token?.symbol}
@@ -72,7 +72,7 @@ const WaitingForWallet = () => {
                 ></Trans>
             </div>
             <p className="mts-text-base">{t('confirm.action_in_progress')}</p>
-            <div className="mts-flex mts-justify-center mts-items-center mts-text-3xl md:mts-text-4xl mts-h-20 mts-w-20 mts-border-[1px] mts-bg-zinc-100 dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-border-zinc-200 mts-rounded-full mts-mt-6">
+            <div className="mts-flex mts-justify-center mts-items-center mts-text-3xl md:mts-text-4xl mts-h-20 mts-w-20 mts-border-[1px] mts-bg-dark-100 dark:mts-bg-dark-800 dark:mts-border-dark-700 mts-border-dark-200 mts-rounded-full mts-mt-6">
                 <Spinner className="mts-animate-spin mts-opacity-70 mts-text-primary-500" />
             </div>
         </motion.div>

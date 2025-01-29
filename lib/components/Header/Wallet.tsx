@@ -58,7 +58,7 @@ const Wallet: FC<WalletProps> = ({ isWalletPopover }) => {
             >
                 <div
                     className={cn(
-                        'mts-rounded-2xl mts-p-4 mts-border-zinc-200 dark:mts-bg-zinc-800 dark:mts-border-zinc-700 mts-bg-white dark:mts-text-white mts-border-[1px]',
+                        'mts-rounded-2xl mts-p-4 mts-border-dark-200 dark:mts-bg-dark-800 dark:mts-border-dark-700 mts-bg-white dark:mts-text-white mts-border-[1px]',
                         isWalletPopover && 'mts-border-none mts-p-0'
                     )}
                 >
@@ -76,7 +76,7 @@ const Wallet: FC<WalletProps> = ({ isWalletPopover }) => {
                             </span>
                         </div>
                         <div className="mts-flex mts-items-center mts-gap-1">
-                            <div className="mts-flex mts-opacity-75 mts-rounded-lg mts-white mts-border-[1px] mts-border-zinc-200 mts-px-2 mts-py-1 mts-w-fit mts-text-sm mts-font-normal mts-h-10  mts-items-center dark:mts-bg-zinc-900 dark:mts-border-zinc-700">
+                            <div className="mts-flex mts-opacity-75 mts-rounded-lg mts-white mts-border-[1px] mts-border-dark-200 mts-px-2 mts-py-1 mts-w-fit mts-text-sm mts-font-normal mts-h-10  mts-items-center dark:mts-bg-dark-900 dark:mts-border-dark-700">
                                 {shortAddress(
                                     wallet.account.address,
                                     'mainnet',

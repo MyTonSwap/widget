@@ -173,7 +173,7 @@ const Card: FC<CardProps> = ({ type }) => {
         <>
             <div
                 className={cn(
-                    'mts-flex mts-flex-col mts-w-full mts-text-base mts-bg-dark-50 dark:mts-bg-dark-900 dark:mts-border-transparent mts-border-[1px] mts-border-dark-200 mts-p-4 mts-rounded-lg',
+                    'mts-flex mts-flex-col mts-w-full mts-text-base mts-bg-dark-50 dark:mts-bg-dark-900 dark:mts-border-transparent mts-border-[1px] mts-border-dark-200 mts-p-4 mts-rounded-2xl',
                     type === 'receive' && 'mts-m-[2px]'
                 )}
             >
@@ -261,15 +261,15 @@ const Card: FC<CardProps> = ({ type }) => {
                                 </div>
                             )}
                         </CardButton>
-                        {type === 'pay' && balanceToken ? (
+                        {type === 'pay' ? (
                             <span
-                                className="mts-cursor-pointer  mts-text-xs mts-flex mts-items-center mts-gap-2 mts-text-dark-500 mts-font-medium"
+                                className="mts-cursor-pointer  mts-text-xs mts-flex mts-items-center mts-gap-2 dark:mts-text-white/70  mts-font-medium"
                                 onClick={handleMaxClick}
                             >
                                 <span>
                                     {formatNumber(
                                         +fromNano(
-                                            balanceToken.balance,
+                                            balanceToken?.balance || 0,
                                             pay_token!.decimal
                                         ),
                                         2,

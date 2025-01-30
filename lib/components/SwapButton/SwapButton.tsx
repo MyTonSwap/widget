@@ -126,7 +126,7 @@ const SwapButton = () => {
             </AnimatePresence>
             <button
                 className={cn(
-                    'mts-mt-3 mts-rounded-lg mts-bg-primary-500 mts-border-[1px] mts-border-primary-600  mts-w-full mts-h-11 mts-text-white mts-text-sm md:mts-h-[3.25rem] md:mts-text-md lg:mts-rounded-xl lg:mts-h-[3.5rem] lg:mts-text-md disabled:mts-bg-primary-300 dark:disabled:mts-bg-primary-800 dark:disabled:mts-border-transparent dark:disabled:mts-text-white/50  disabled:mts-cursor-not-allowed',
+                    'mts-mt-3 mts-rounded-lg mts-bg-primary-500 mts-border-[1px] mts-border-primary-600  mts-w-full mts-h-11 mts-text-white mts-text-sm md:mts-h-12 md:mts-text-md lg:mts-rounded-xl lg:mts-text-md disabled:mts-bg-primary-300 dark:disabled:mts-bg-primary-800 dark:disabled:mts-border-transparent dark:disabled:mts-text-white/50  disabled:mts-cursor-not-allowed',
                     tonConnectInstance?.wallet &&
                         isRouteAvailable &&
                         !bestRoute.pool_data.status

@@ -270,7 +270,7 @@ const Card: FC<CardProps> = ({ type }) => {
                                     {formatNumber(
                                         +fromNano(
                                             balanceToken?.balance || 0,
-                                            pay_token!.decimal
+                                            pay_token?.decimal || 0
                                         ),
                                         2,
                                         false

@@ -47,6 +47,7 @@ export const setupColors = (color_raw: string, dark_color_base?: string) => {
             id: nanoid(),
 
             value: darkColor.replace('#', '').toUpperCase(),
+            valueStop: 950,
             swatches: [],
         }).map((item) => item.hex);
 

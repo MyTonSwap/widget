@@ -1,13 +1,13 @@
-import { CSSProperties, FC, useEffect, useState } from "react";
-import { useFavoriteStore } from "../../store/favtorite.store";
-import { useSwapStore } from "../../store/swap.store";
-import { Asset } from "@mytonswap/sdk";
-import Token from "./Token";
-import { CgSpinnerTwo } from "react-icons/cg";
+import { CSSProperties, FC, useEffect, useState } from 'react';
+import { useFavoriteStore } from '../../store/favtorite.store';
+import { useSwapStore } from '../../store/swap.store';
+import { Asset } from '@mytonswap/sdk';
+import Token from './Token';
+import { CgSpinnerTwo } from 'react-icons/cg';
 
 type FavListProps = {
     onTokenSelect: (asset: Asset) => void;
-    type: "pay" | "receive";
+    type: 'pay' | 'receive';
 };
 
 const FavList: FC<FavListProps> = ({ onTokenSelect, type }) => {
@@ -32,10 +32,10 @@ const FavList: FC<FavListProps> = ({ onTokenSelect, type }) => {
     }, []);
     return (
         <div
-            className="dialog-tokens-container"
+            className="mts-flex-grow mts-h-50vh mts-overflow-y-scroll"
             style={{
                 ...({
-                    "--thumb-scrollbar": `var(--primary-color)`,
+                    '--thumb-scrollbar': `var(--mts-primary-500)`,
                 } as CSSProperties),
             }}
             id="scroll-div"
@@ -49,18 +49,20 @@ const FavList: FC<FavListProps> = ({ onTokenSelect, type }) => {
                 />
             ))}
             {isLoading && (
-                <div className="infinite-scroll-loading">
-                    <CgSpinnerTwo className="animate-spin" />
+                <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-black dark:mts-text-white mts-text-xl">
+                    <CgSpinnerTwo className="mts-animate-spin mts-text-primary-500" />
                 </div>
             )}
             {isError && (
-                <div className="infinite-scroll-loading">
+                <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-black dark:mts-text-white mts-text-xl">
                     <div>Something went wrong...</div>
                 </div>
             )}
             {!isLoading && !isError && favItems?.length === 0 && (
-                <div className="infinite-scroll-loading">
-                    <div className="fav-no-item">No favorite tokens</div>
+                <div className="mts-flex mts-justify-center mts-items-center mts-h-10 mts-text-black dark:mts-text-white mts-text-xl">
+                    <div className="mts-opacity-70 mts-text-xs">
+                        No favorite tokens
+                    </div>
                 </div>
             )}
         </div>

@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useSwapStore } from '../../store/swap.store';
 import formatNumber from '../../utils/formatNum';
 import { CgSpinnerTwo } from 'react-icons/cg';
-import './SwapDetails.scss';
 import { useTranslation } from 'react-i18next';
 import { useMeasure } from '@uidotdev/usehooks';
 import { BsArrowRightShort, BsChevronRight } from 'react-icons/bs';
@@ -19,15 +18,15 @@ const SwapDetails = () => {
     const [ref, { height }] = useMeasure();
     return (
         <motion.button
-            className="detail-accordion-container"
+            className="mts-flex mts-flex-col mts-items-center mts-mt-3 mts-rounded-lg   mts-w-full mts-min-h-12 mts-text-black dark:mts-text-white"
             onClick={() => {
                 setIsOpen((prev) => !prev);
             }}
             data-testid="swap-details"
         >
-            <div className="detail-accordion">
+            <div className="mts-flex mts-justify-between mts-items-center mts-w-full mts-min-h-12 mts-font-medium mts-text-xs">
                 {onePayRoute && onePayRoute.pool_data && !isFindingBestRoute ? (
-                    <div className="one-pay">
+                    <div className="one-pay mts-ltr">
                         1 {onePayRoute.pool_data.route_view[0]} ≈{' '}
                         {formatNumber(onePayRoute.pool_data.receive_show, 4)}{' '}
                         {
@@ -37,14 +36,17 @@ const SwapDetails = () => {
                         }
                     </div>
                 ) : (
-                    <div className="finding">
-                        <CgSpinnerTwo className="animate-spin" />
+                    <div className="mts-flex mts-gap-1 mts-items-center">
+                        <CgSpinnerTwo className="mts-animate-spin mts-text-primary-500" />
                         {t('fetching_best_route')}
                     </div>
                 )}
                 <div>
                     <MdKeyboardArrowDown
-                        className={clsx('icon', isOpen ? 'is-open' : '')}
+                        className={clsx(
+                            'mts-transition-all mts-duration-200 mts-ease-in-out mts-text-lg',
+                            isOpen ? 'mts-rotate-180' : ''
+                        )}
                     />
                 </div>
             </div>
@@ -58,13 +60,16 @@ const SwapDetails = () => {
                             height: height ?? 0,
                         }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="detail-accordion-content"
+                        className="mts-flex mts-flex-col mts-gap-1 mts-w-full mts-overflow-hidden mts-bg-dark-100 dark:mts-bg-dark-900 dark:mts-border-dark-800 mts-rounded-lg mts-border-dark-200 mts-border-[1px]"
                     >
-                        <div ref={ref} className="details-inner-container">
+                        <div
+                            ref={ref}
+                            className="mts-flex mts-flex-col mts-gap-1 mts-p-4 "
+                        >
                             <SwapKeyValue
                                 keyText={t('slippage_tolerance')}
                                 value={
-                                    <div className="slippage-box">
+                                    <div className="mts-rounded-full mts-bg-dark-200 dark:mts-bg-dark-700 dark:mts-text-white mts-px-2 mts-py-1 mts-text-black">
                                         {slippage === 'auto' ? '1' : slippage}%{' '}
                                         {slippage === 'auto' ? t('auto') : ''}
                                     </div>
@@ -99,13 +104,13 @@ const SwapDetails = () => {
                                 keyText={t('route')}
                                 value={
                                     bestRoute ? (
-                                        <div className="route-container">
+                                        <div className="mts-flex mts-justify-center mts-gap-0.5">
                                             <span
-                                                className="dex"
+                                                className="mts-flex mts-justify-center mts-items-center mts-gap-1"
                                                 data-testid="dex-container"
                                             >
                                                 <div
-                                                    className="image"
+                                                    className="!mts-bg-contain mts-w-3 mts-h-3"
                                                     style={{
                                                         background: `url(${
                                                             bestRoute
@@ -143,12 +148,12 @@ const SwapDetails = () => {
 
 const RouteView: FC<{ routes: string[] }> = ({ routes }) => {
     return (
-        <span className="route-view-token">
+        <span className="mts-flex mts-items-center mts-gap-0.5">
             {routes.map((route, idx) => (
                 <>
                     {route}{' '}
                     {idx !== routes.length - 1 && (
-                        <BsChevronRight className="route-icon" />
+                        <BsChevronRight className="mts-text-xs" />
                     )}
                 </>
             ))}

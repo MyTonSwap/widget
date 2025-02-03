@@ -161,13 +161,17 @@ export const SwapComponent: FC<SwapProps> = ({
     return (
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
             <div className={cn('mytonswap-app', direction)}>
-                <div className={clsx('container')}>
+                <div
+                    className={clsx(
+                        'mts-rounded-lg  mts-max-w-[21.875rem] mts-overflow-hidden md:mts-p-3 md:mts-w-[28.125rem] md:mts-max-w-[450px] '
+                    )}
+                >
                     <Header />
                     <SwapCard />
-                    {shouldShowSwapDetails && <SwapDetails />}
                     <SwapButton />
+                    {shouldShowSwapDetails && <SwapDetails />}
                     {shouldShowProvidedText && (
-                        <div className="text-provided">
+                        <div className="mts-mt-2 mts-mb-1 mts-w-full mts-text-black dark:mts-text-white mts-text-[10px] mts-text-center">
                             {t('service_provided')}{' '}
                             <a
                                 href="https://mytonswap.com"
@@ -184,8 +188,8 @@ export const SwapComponent: FC<SwapProps> = ({
             <Toaster
                 toastOptions={{
                     style: {
-                        background: `var(--background-color)`,
-                        color: `var(--text-black-color)`,
+                        background: `rgb(var(--mts-primary-950))`,
+                        color: `white`,
                     },
                 }}
             />

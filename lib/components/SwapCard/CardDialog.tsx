@@ -313,14 +313,14 @@ const CardDialog: FC<CardDialogProps> = ({
                                     {pinnedTokens.map((item) => {
                                         return (
                                             <button
-                                                className="mts-flex mts-items-center mts-gap-1 mts-opacity-80 mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer mts-rounded-full mts-bg-dark-100 dark:mts-bg-dark-800 mts-p-1 mts-px-2 mts-text-black dark:mts-text-white mts-text-[0.9rem] hover:mts-opacity-100"
+                                                className="mts-flex mts-items-center mts-gap-1 mts-opacity-80 mts-transition-all mts-duration-300 mts-ease-in-out mts-cursor-pointer mts-rounded-full mts-bg-dark-100 dark:mts-bg-dark-800  mts-p-1 mts-px-2 mts-text-black dark:mts-text-white mts-text-[0.9rem] hover:mts-opacity-100"
                                                 onClick={() => {
                                                     handleOnTokenSelect(item);
                                                 }}
                                                 key={item.address}
                                             >
                                                 <div
-                                                    className="mts-rounded-full mts-bg-contain mts-w-5 mts-h-5"
+                                                    className="mts-rounded-full !mts-bg-contain mts-w-5 mts-h-5"
                                                     style={{
                                                         background: `url(${item.image}) var(--background-color)`,
                                                     }}

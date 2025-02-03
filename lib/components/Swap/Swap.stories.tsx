@@ -29,6 +29,13 @@ export default meta;
 type Story = StoryObj<typeof Swap>;
 
 export const Default: Story = {
+    args: {
+        options: {
+            ui_preferences: {
+                primary_color: '#e82113',
+            },
+        },
+    },
     decorators: [
         (Story) => (
             <div className="mts-default">

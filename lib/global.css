@@ -1,4 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --mts-primary-50: 233 251 240;
+    --mts-primary-100: 207 247 222;
+    --mts-primary-200: 159 239 188;
+    --mts-primary-300: 111 230 155;
+    --mts-primary-400: 64 222 122;
+    --mts-primary-500: 34 197 94;
+    --mts-primary-600: 27 157 75;
+    --mts-primary-700: 20 117 56;
+    --mts-primary-800: 13 78 37;
+    --mts-primary-900: 7 39 19;
+    --mts-primary-950: 4 22 10;
+
+    --mts-dark-50: 242 242 243;
+    --mts-dark-100: 226 226 228;
+    --mts-dark-200: 199 199 204;
+    --mts-dark-300: 170 170 177;
+    --mts-dark-400: 141 141 150;
+    --mts-dark-500: 113 113 123;
+    --mts-dark-600: 90 90 98;
+    --mts-dark-700: 68 68 74;
+    --mts-dark-800: 46 46 50;
+    --mts-dark-900: 22 22 24;
+    --mts-dark-950: 12 12 13;
+}
 
 .mts-default {
     --border-color: #f4f4f5;
@@ -65,6 +96,12 @@
     --text-white-color: #ffffff;
     --text-fade-color: #6b7280;
     --skeleton-shine-color: #585959;
+}
+
+* {
+    font-family: 'IBM Plex Mono', sans-serif !important;
+    /* font-family: 'Fira Mono', sans-serif !important; */
+    -webkit-tap-highlight-color: transparent;
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -141,7 +178,7 @@ input[type='number']::-webkit-outer-spin-button {
     transition: color 0.25s ease-in-out;
     width: 100%;
     height: auto;
-    color: rgb(108, 108, 108);
+    color: #919191;
 }
 
 .refresh_icon {
@@ -151,11 +188,11 @@ input[type='number']::-webkit-outer-spin-button {
     transition: color 0.25s ease-in-out;
     width: 100%;
     height: auto;
-    color: #6c6c6c;
+    color: #919191;
 }
 
 .icon_overlay.overlay {
-    color: #22c55e;
+    color: rgb(var(--mts-primary-500));
 }
 
 .active {
@@ -221,7 +258,6 @@ input[type='number']::-webkit-outer-spin-button {
             50% -50%,
             150% 50%
         );
-        color: #f2f2f2;
     }
 
     to {
@@ -233,7 +269,6 @@ input[type='number']::-webkit-outer-spin-button {
             50% -50%,
             150% 50%
         );
-        color: #6c6c6c;
     }
 }
 

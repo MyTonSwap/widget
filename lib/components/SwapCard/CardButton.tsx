@@ -1,10 +1,11 @@
 import { FC, PropsWithChildren } from 'react';
-import clsx from 'clsx';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import './CardButton.scss';
 import { useOptionsStore } from '../../store/options.store';
 import { useTranslation } from 'react-i18next';
 import { useSwapStore } from '../../store/swap.store';
+import { cn } from '../../utils/cn';
+
 type CardButtonProps = {
     isLoading: boolean;
     onClick: () => void;
@@ -26,6 +27,7 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
         if (type === 'receive' && options.lock_receive_token) return true;
         return false;
     })();
+
     return (
         <button
             disabled={isDisabled}
@@ -36,20 +38,17 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
                     : {}),
             }}
             data-testid={`card-button-${type}`}
-            className={clsx(
-                'selection-box-container',
-                isLoading && 'loading',
-                type === 'pay' && isLoading && 'pay-loading',
-                type === 'receive' && isLoading && 'receive-loading'
+            className={cn(
+                'mts-flex mts-gap-1 mts-items-center mts-transition-all mts-ease-in-out mts-rounded-full mts-py-1 mts-pr-2 mts-pl-1 mts-h-10 mts-font-semibold mts-text-sm md:mts-text-base mts-ltr mts-text-black dark:mts-text-white  mts-border-dark-300 dark:mts-border-white/10 mts-border-[1px]',
+                isLoading && 'mts-w-20 mts-h-10',
+                type === 'pay' && isLoading && 'mts-pointer-events-none',
+                type === 'receive' &&
+                    isLoading &&
+                    'mts-justify-center mts-px-2 mts-w-fit'
             )}
             style={{
                 ...(isDisabled && { opacity: 0.7, cursor: 'auto' }),
-                ...(isLoading && type === 'pay'
-                    ? { color: `var(--text-black-color)` }
-                    : {
-                          background: `var(--input-token-color)`,
-                          color: `var(--text-black-color)`,
-                      }),
+
                 ...{
                     '--skeleton-bg': `var(--input-token-color)`,
                     '--skeleton-shine': `var(--skeleton-shine-color)`,
@@ -61,7 +60,7 @@ const CardButton: FC<CardButtonProps & PropsWithChildren> = ({
             ) : type === 'receive' ? (
                 <>
                     {t('select')}{' '}
-                    <div className="dropdown-icon">
+                    <div className="mts-flex mts-justify-center mts-items-center">
                         <MdKeyboardArrowDown />
                     </div>
                 </>

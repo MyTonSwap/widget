@@ -6,7 +6,6 @@ import ConfirmationModal from './ConfirmationModal';
 import WaitingForWallet from './WaitingForWallet';
 import Inprogress from './Inprogress';
 import Done from './Done';
-import './SwapButton.scss';
 import { useMediaQuery } from 'usehooks-ts';
 import {
     modalAnimationDesktop,
@@ -39,8 +38,8 @@ const SwapButton = () => {
     const getSwapText = () => {
         if (isSelectingToken)
             return (
-                <span className="loading-button">
-                    <CgSpinnerTwo className="animate-loading" /> Loading ...
+                <span className="mts-flex mts-justify-center mts-items-center mts-gap-2">
+                    <CgSpinnerTwo className="mts-animate-spin" /> Loading ...
                 </span>
             );
         if (!tonConnectInstance?.wallet) return t('button_text.connect_wallet');
@@ -97,11 +96,11 @@ const SwapButton = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-container"
+                        className="mts-fixed mts-top-0 mts-left-0 mts-z-[9999999999999999999999999] mts-bg-[rgba(0,0,0,0.5)] mts-w-full mts-h-full mts-overflow-hidden"
                     >
                         <motion.div
                             transition={{ ease: [0.6, -0.05, 0.01, 0.99] }}
-                            className="modal-container-inner raw-bottom-telegram"
+                            className="mts-flex mts-fixed mts-bottom-0 mts-left-0 mts-flex-col mts-justify-center mts-items-center mts-shadow-[0px_0px_5px_rgba(0,0,0,0.05)] mts-border-t mts-border-solid mts-border-black/10 mts-rounded-t-lg mts-bg-white dark:mts-bg-dark-900 mts-p-2 mts-w-full mts-h-full mts-max-h-[28.75rem] md:mts-shadow-[0_0px_10px_rgba(0,0,0,0.05)] md:mts-rounded-2xl md:mts-w-[90%] md:mts-max-w-[28.125rem] md:mtsx-max-h-[80%] md:mts-max-h-[30rem] lg:mts-w-[32.5rem] lg:mts-max-w-[32.5rem] md:mts-p-2 "
                             initial={modalAnimation.initial}
                             animate={modalAnimation.animate}
                             exit={modalAnimation.exit}
@@ -127,11 +126,11 @@ const SwapButton = () => {
             </AnimatePresence>
             <button
                 className={cn(
-                    'swap-button',
+                    'mts-mt-3 mts-rounded-lg mts-bg-primary-500 mts-border-[1px] mts-border-primary-600  mts-w-full mts-h-11 mts-text-white mts-text-sm md:mts-h-12 md:mts-text-md lg:mts-rounded-xl lg:mts-text-md disabled:mts-bg-primary-300 dark:disabled:mts-bg-primary-800 dark:disabled:mts-border-transparent dark:disabled:mts-text-white/50  disabled:mts-cursor-not-allowed',
                     tonConnectInstance?.wallet &&
                         isRouteAvailable &&
                         !bestRoute.pool_data.status
-                        ? 'price-impact'
+                        ? ''
                         : ''
                 )}
                 data-testid="swap-button"

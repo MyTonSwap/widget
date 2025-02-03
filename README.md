@@ -9,9 +9,9 @@
 
 `@mytonswap/widget` is a customizable Swap component that enables developers to integrate swap functionality on the TON blockchain directly into their React applications. With this widget, users can seamlessly swap assets and connect to the TON blockchain via TonConnect.
 
-- 📃 Docs: https://mytonswap.com/docs
-- 🌐 Demo & Preview: https://widget.mytonswap.com
-- 👨‍💻 Code Examples: [HTML](https://github.com/MyTonSwap/widget/tree/main/examples/html), [React](https://github.com/MyTonSwap/widget/tree/main/examples/react), [Vue](https://github.com/MyTonSwap/widget/tree/main/examples/vue)
+-   📃 Docs: https://mytonswap.com/docs
+-   🌐 Demo & Preview: https://widget.mytonswap.com
+-   👨‍💻 Code Examples: [HTML](https://github.com/MyTonSwap/widget/tree/main/examples/html), [React](https://github.com/MyTonSwap/widget/tree/main/examples/react), [Vue](https://github.com/MyTonSwap/widget/tree/main/examples/vue)
 
 ## Features
 
@@ -67,7 +67,15 @@ function App() {
                 return;
             }
             initMount.current = true;
-            createSwap("swap-component", { tonConnectInstance: tc });
+            createSwap("swap-component", {
+                tonConnectInstance: tc
+                options: {
+                    ui_preferences: {
+                        primary_color: "#1456fb",
+                        dark_color: "#0d1017",
+                    },
+                },
+            });
         }
     }, [tc]);
     return (
@@ -80,46 +88,21 @@ function App() {
 export default App;
 ```
 
-```css
-:root {
-    --border-color: #f4f4f5;
-    --primary-color: #22c55e;
-    --secondary-color: #ebebeb;
-    --background-color: #ffffff;
-    --modal-background-color: #ffffff;
-    --swap-container-background: #f4f4f5;
-    --swap-container-border-color: #ffffff;
-    --input-card-color: #ffffff;
-    --input-card-pay-color: #ffffff;
-    --input-card-receive-color: #d0d5dd;
-    --input-token-color: #f4f4f5;
-    --change-direction-background-color: #22c55e;
-    --change-direction-icon-color: #f4f4f5;
-    --light-shade-color: #f4f4f5;
-    --slippage-box-color: #71717a;
-    --text-black-color: #000000;
-    --text-white-color: #ffffff;
-    --text-fade-color: #9caacb;
-    --skeleton-shine-color: #9c9c9c;
-    --price-impact-color: #e64646;
-}
-```
-
 ### Wallet Button
 
 ```tsx
-import "./App.css";
-import { useEffect } from "react";
-import { createWalletProfile } from "@mytonswap/widget";
-import { useTonConnectUI } from "@tonconnect/ui-react";
+import './App.css';
+import { useEffect } from 'react';
+import { createWalletProfile } from '@mytonswap/widget';
+import { useTonConnectUI } from '@tonconnect/ui-react';
 
 function App() {
     const [tc] = useTonConnectUI();
     useEffect(() => {
         if (tc) {
-            createWalletProfile("wallet-button", {
+            createWalletProfile('wallet-button', {
                 tonConnectInstance: tc,
-                position: "bottom-right",
+                position: 'bottom-right',
             });
         }
     }, [tc]);
@@ -138,28 +121,15 @@ export default App;
 You can fully customize the appearance of the `@mytonswap/widget` by defining css variables for widget like example down bellow.
 
 ```css
-:root {
-    --border-color: #f4f4f5;
-    --primary-color: #22c55e;
-    --secondary-color: #ebebeb;
-    --background-color: #ffffff;
-    --modal-background-color: #ffffff;
-    --swap-container-background: #f4f4f5;
-    --swap-container-border-color: #ffffff;
-    --input-card-color: #ffffff;
-    --input-card-pay-color: #ffffff;
-    --input-card-receive-color: #d0d5dd;
-    --input-token-color: #f4f4f5;
-    --change-direction-background-color: #22c55e;
-    --change-direction-icon-color: #f4f4f5;
-    --light-shade-color: #f4f4f5;
-    --slippage-box-color: #71717a;
-    --text-black-color: #000000;
-    --text-white-color: #ffffff;
-    --text-fade-color: #9caacb;
-    --skeleton-shine-color: #9c9c9c;
-    --price-impact-color: #e64646;
-}
+            createSwap("swap-component", {
+                tonConnectInstance: tc
+                options: {
+                    ui_preferences: {
+                        primary_color: "#1456fb", /* primary color goes */
+                        dark_color: "#0d1017", /* background dark color */
+                    },
+                },
+            });
 ```
 
 ## Default Tokens
@@ -171,13 +141,13 @@ function App() {
     const [tc] = useTonConnectUI();
     useEffect(() => {
         if (tc) {
-            createSwap("swap-component", {
+            createSwap('swap-component', {
                 tonConnectInstance: tc,
                 options: {
                     default_pay_token:
-                        "EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_",
+                        'EQD4P32U10snNoIavoq6cYPTQR82ewAjO20epigrWRAup54_',
                     default_receive_token:
-                        "EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
+                        'EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7',
                 },
             });
         }
@@ -199,12 +169,12 @@ function App() {
     const [tc] = useTonConnectUI();
     useEffect(() => {
         if (tc) {
-            createSwap("swap-component", {
+            createSwap('swap-component', {
                 tonConnectInstance: tc,
                 options: {
                     pin_tokens: [
-                        "EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c",
-                        "EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
+                        'EQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM9c',
+                        'EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7',
                     ],
                 },
             });
@@ -227,10 +197,10 @@ function App() {
     const [tc] = useTonConnectUI();
     useEffect(() => {
         if (tc) {
-            createSwap("swap-component", {
+            createSwap('swap-component', {
                 tonConnectInstance: tc,
                 options: {
-                    app_id: "your_app_id",
+                    app_id: 'your_app_id',
                 },
             });
         }
